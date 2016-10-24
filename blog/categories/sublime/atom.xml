@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Sublime | GUIDE]]></title>
+  <link href="http://weilluo.github.io/blog/categories/sublime/atom.xml" rel="self"/>
+  <link href="http://weilluo.github.io/"/>
+  <updated>2016-10-25T01:16:20+08:00</updated>
+  <id>http://weilluo.github.io/</id>
+  <author>
+    <name><![CDATA[Wei Luo]]></name>
+    <email><![CDATA[luowei---010101@163.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[My Sublime Custom Config]]></title>
+    <link href="http://weilluo.github.io/blog/2015/06/29/my-sublime-custom-config/"/>
+    <updated>2015-06-29T21:13:46+08:00</updated>
+    <id>http://weilluo.github.io/blog/2015/06/29/my-sublime-custom-config</id>
+    <content type="html"><![CDATA[<ul>
+  <li>User Preference:</li>
+</ul>
+
+<p><code>
+{
+  "color_scheme": "Packages/Theme - Cobalt2/cobalt2.tmTheme",
+  "font_face": "Yahei Consolas Hybrid",
+  "font_size": 12,
+  "save_on_focus_lost": true,
+  "tab_size": 2,
+  "theme": "Cobalt2.sublime-theme",
+  "translate_tabs_to_spaces": true,
+  "trim_trailing_white_space_on_save": true,
+  // "tmp/*.tmp" is for ember-cli project
+  "folder_exclude_patterns": [".svn", ".git", ".hg", "CVS", "tmp/*.tmp"]
+}
+</code></p>
+
+<ul>
+  <li>User Key Bindings</li>
+</ul>
+
+<p><code>
+[
+  { "keys": ["command+shift+f"], "command": "reindent"}
+]
+</code></p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: Watchman | GUIDE]]></title>
+  <link href="http://weilluo.github.io/blog/tags/watchman/atom.xml" rel="self"/>
+  <link href="http://weilluo.github.io/"/>
+  <updated>2016-10-25T01:16:20+08:00</updated>
+  <id>http://weilluo.github.io/</id>
+  <author>
+    <name><![CDATA[Wei Luo]]></name>
+    <email><![CDATA[luowei---010101@163.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Clear Watchman Watch-list]]></title>
+    <link href="http://weilluo.github.io/blog/2015/05/18/clear-watchman-watch-list/"/>
+    <updated>2015-05-18T18:22:09+08:00</updated>
+    <id>http://weilluo.github.io/blog/2015/05/18/clear-watchman-watch-list</id>
+    <content type="html"><![CDATA[<p>Watchman: <a href="https://github.com/facebook/watchman">https://github.com/facebook/watchman</a></p>
+
+<ul>
+  <li>create file <code>clear_watchman_list.rb</code> in <code>HOME</code> folder.</li>
+</ul>
+
+<p>```ruby
+require ‘json’</p>
+
+<p>result = JSON.parse %x{watchman watch-list}
+result[“roots”].each do |dir|
+  system “watchman watch-del #{dir}”
+end
+```</p>
+
+<ul>
+  <li>define <code>cwl</code> command in <code>.profile</code></li>
+</ul>
+
+<p><code>bash
+# clear watchman list
+alias cwl="ruby $HOME/clear_watchman_list.rb"
+</code></p>
+
+<ul>
+  <li>use <code>cwl</code> if we want to empty the watchman list.</li>
+</ul>
+]]></content>
+  </entry>
+  
+</feed>

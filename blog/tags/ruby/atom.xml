@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: Ruby | GUIDE]]></title>
+  <link href="http://weilluo.github.io/blog/tags/ruby/atom.xml" rel="self"/>
+  <link href="http://weilluo.github.io/"/>
+  <updated>2016-10-25T01:16:20+08:00</updated>
+  <id>http://weilluo.github.io/</id>
+  <author>
+    <name><![CDATA[Wei Luo]]></name>
+    <email><![CDATA[luowei---010101@163.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[ActiveRecord, Class_attribute]]></title>
+    <link href="http://weilluo.github.io/blog/2015/10/14/activerecord-class_attribute/"/>
+    <updated>2015-10-14T11:51:44+08:00</updated>
+    <id>http://weilluo.github.io/blog/2015/10/14/activerecord-class_attribute</id>
+    <content type="html"><![CDATA[<p>how to use class_attribuet:</p>
+
+<p>```ruby
+require ‘active_record’</p>
+
+<p>class Base
+  class_attribute :setting
+end</p>
+
+<p>class Subclass &lt; Base
+end</p>
+
+<p>Base.setting = true
+puts Subclass.setting # =&gt; true
+Subclass.setting = false
+puts Subclass.setting # =&gt; false
+puts Base.setting # =&gt; true</p>
+
+<p>base = Base.new
+puts base.setting # =&gt; true
+base.setting = false
+puts Base.setting # =&gt; true
+puts base.setting # =&gt; false
+```</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[AWS Beanstalk Ruby Passenger, Solutions of Rjb Installing and 504 Gateway-Timeout]]></title>
+    <link href="http://weilluo.github.io/blog/2015/07/22/aws-beanstalk-ruby-passenger/"/>
+    <updated>2015-07-22T19:03:56+08:00</updated>
+    <id>http://weilluo.github.io/blog/2015/07/22/aws-beanstalk-ruby-passenger</id>
+    <content type="html"><![CDATA[<p>Environment: AWS Beanstalk, 64bit Amazon Linux 2015.03 v1.4.1 running Ruby 2.1 (Passenger Standalone)</p>
+
+<p>Project: Rails</p>
+
+<p>The server had installed <code>java-1.7.0-openjdk</code>, and <code>JAVA_HOME = /usr/lib/jvm/jre</code></p>
+
+<p>There are to issuses:</p>
+
+<ul>
+  <li>gem install rjb, can’t find the floder /usr/lib/jvm/jre/include</li>
+</ul>
+
+<p><code>
+# we should install java-1.7.0-openjdk-devel
+packages:
+  yum:
+      git: []
+        java-1.7.0-openjdk-devel: []
+...
+</code></p>
+
+<ul>
+  <li>504 Gateway-Timeout, when the request invoke some method depend <code>RJB</code></li>
+</ul>
+
+<p>I had found a paragraph: <a href="http://xsen.iteye.com/blog/440675">http://xsen.iteye.com/blog/440675</a></p>
+
+<p>The <code>Reason</code> is <code>rjb</code>, he said, and the solution is, in，passenger_ruby配置项下添加一行设置:</p>
+
+<ul>
+  <li>if using nginx, add this code in passenger_ruby config, <code>rails_spawn_method conservative;</code></li>
+  <li>if using apache, add this code in PassengerRuby config, <code>RailsSpawnMethod conservative</code></li>
+</ul>
+
+<p>and I found s syntax code used for AWS Beanstalk, that is <a href="https://gist.github.com/luoguanzhong/bb684c59dfbe9ae02022">https://gist.github.com/luoguanzhong/bb684c59dfbe9ae02022</a>.</p>
+
+<p><strong>Summary</strong>：You should login the server and see where the package install, and which it install. This could be help you quickly find the right solution.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[What Can Cause a Cookie Not to Be Set on the Client?]]></title>
+    <link href="http://weilluo.github.io/blog/2015/04/17/what-can-cause-a-cookie-not-to-be-set-on-the-client/"/>
+    <updated>2015-04-17T10:11:06+08:00</updated>
+    <id>http://weilluo.github.io/blog/2015/04/17/what-can-cause-a-cookie-not-to-be-set-on-the-client</id>
+    <content type="html"><![CDATA[<h2 id="issues">Issues</h2>
+
+<p>I use ember at cliend, and start on localhost:4200; sinatra at server, start on localhost:9292.</p>
+
+<p>Then I use <code>response.set_cookie()</code> to store user info, but I cannot see cookie setted just now on <code>chrome console -&gt; resource -&gt; cookies -&gt; localhost</code>.</p>
+
+<p>cliend code:</p>
+
+<p><code>js
+$.ajax({
+  url: http://localhost:9292/user
+})
+</code></p>
+
+<p>cliend code:</p>
+
+<p><code>ruby
+response.set_cookie('Cookie-Name',
+          :value =&gt; value,
+          :expires =&gt; Time.now + 3600 * 24 * 14,
+          :domain =&gt; @domain,
+          :path =&gt; '/',
+          :httponly =&gt; true)
+</code></p>
+
+<h2 id="solution">Solution</h2>
+
+<p>Option in ajax:</p>
+
+<p><code>js
+xhrFields: {
+  withCredentials: true
+}
+</code></p>
+
+<p>Response header in sinatra, <code>Access-Control-Allow-Credentials: true</code>, <code>Access-Control-Allow-Origin: http://localhost:4200</code></p>
+
+<h2 id="important">Important</h2>
+
+<p>Don’t set localhost as a domain for your cookies because you need to set it to “” or FALSE</p>
+
+<h2 id="reference">Reference</h2>
+
+<p><a href="http://stackoverflow.com/questions/14801021/what-can-cause-a-cookie-not-to-be-set-on-the-client">http://stackoverflow.com/questions/14801021/what-can-cause-a-cookie-not-to-be-set-on-the-client</a>
+<a href="http://stackoverflow.com/questions/5078091/sinatra-response-set-cookie-doesnt-work">http://stackoverflow.com/questions/5078091/sinatra-response-set-cookie-doesnt-work</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Use Whenever Gem]]></title>
+    <link href="http://weilluo.github.io/blog/2015/04/07/use-whenever-gem/"/>
+    <updated>2015-04-07T10:31:35+08:00</updated>
+    <id>http://weilluo.github.io/blog/2015/04/07/use-whenever-gem</id>
+    <content type="html"><![CDATA[<p>Whenever gem hosthome <a href="https://github.com/javan/whenever">https://github.com/javan/whenever</a></p>
+
+<ul>
+  <li>After installing whenever, use these command to initialize:</li>
+</ul>
+
+<p><code>ruby
+wheneverize .
+</code></p>
+
+<ul>
+  <li>update your scheduler:</li>
+</ul>
+
+<p><code>ruby
+whenever --update-crontab
+</code></p>
+
+<ul>
+  <li><code>crontab</code> usage:</li>
+</ul>
+
+<p><code>bash
+crontab -l # view the schedulers.
+crontab -r # remove all schedulers.
+</code></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Capybara::ElementNotFound: Unable to Find File Field “file”]]></title>
+    <link href="http://weilluo.github.io/blog/2015/01/19/capybara-elementnotfound-unable-to-find-file-field-file/"/>
+    <updated>2015-01-19T17:21:44+08:00</updated>
+    <id>http://weilluo.github.io/blog/2015/01/19/capybara-elementnotfound-unable-to-find-file-field-file</id>
+    <content type="html"><![CDATA[<p>Html code:</p>
+
+<p>```html</p>
+<div class="tpBtn">Upload File<input type="file" name="file" id="resumefile" class="upload" /></div>
+<p>```</p>
+
+<p>Rspec code:</p>
+
+<p><code>ruby
+attach_file('resumefile', file_path)
+</code></p>
+
+<p>And when we exec the spec, there will be an error, ‘Capybara::ElementNotFound: Unable to find file field “file”’, so we should do this:</p>
+
+<p><code>ruby
+Capybara.ignore_hidden_elements = false
+</code></p>
+
+<p>Add above code into spec_helper.rb file.</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: Mac | GUIDE]]></title>
+  <link href="http://weilluo.github.io/blog/tags/mac/atom.xml" rel="self"/>
+  <link href="http://weilluo.github.io/"/>
+  <updated>2016-10-25T01:16:20+08:00</updated>
+  <id>http://weilluo.github.io/</id>
+  <author>
+    <name><![CDATA[Wei Luo]]></name>
+    <email><![CDATA[luowei---010101@163.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Add a User to Admin Group on Mac.]]></title>
+    <link href="http://weilluo.github.io/blog/2016/02/05/add-a-user-to-admin-group-on-mac/"/>
+    <updated>2016-02-05T11:32:33+08:00</updated>
+    <id>http://weilluo.github.io/blog/2016/02/05/add-a-user-to-admin-group-on-mac</id>
+    <content type="html"><![CDATA[<h2 id="issus">Issus</h2>
+
+<p>Many software will apply the <code>admin</code> permission to possibly use some system tools, so I try to add my account to admin group.</p>
+
+<h2 id="solution">Solution</h2>
+
+<ul>
+  <li>
+    <p>press <code>command</code> + <code>s</code> while boot, then mac will go to <code>single-user-mode</code> as <code>root</code>. This is a terminal interface that allows you to login and interact with your computer via text input only.</p>
+  </li>
+  <li>
+    <p>mount the root device as <code>read-write</code></p>
+  </li>
+</ul>
+
+<p><code>bash
+fsck -fy
+mount -uw /
+</code></p>
+
+<ul>
+  <li>edit the sudo user list, and move <code>wluo</code> into it.</li>
+</ul>
+
+<p><code>bash
+chmod 755 etc/sudoers
+vim etc/sudoers  # put "wluo ALL=(ALL) ALL" under "root ALL=(ALL) ALL"
+</code></p>
+
+<ul>
+  <li>
+    <p><code>reboot</code> mac, then open <code>terminal</code>.</p>
+  </li>
+  <li>
+    <p>put <code>wluo</code> into <code>admin</code> group</p>
+  </li>
+</ul>
+
+<p><code>bash
+sudo su
+dseditgroup -o edit -a wluo -t user admin
+</code></p>
+
+<h2 id="references">References</h2>
+
+<p><a href="http://www.techradar.com/how-to/computing/apple/how-to-use-os-x-boot-options-to-troubleshoot-your-mac-1305645">http://www.techradar.com/how-to/computing/apple/how-to-use-os-x-boot-options-to-troubleshoot-your-mac-1305645</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Clear Watchman Watch-list]]></title>
+    <link href="http://weilluo.github.io/blog/2015/05/18/clear-watchman-watch-list/"/>
+    <updated>2015-05-18T18:22:09+08:00</updated>
+    <id>http://weilluo.github.io/blog/2015/05/18/clear-watchman-watch-list</id>
+    <content type="html"><![CDATA[<p>Watchman: <a href="https://github.com/facebook/watchman">https://github.com/facebook/watchman</a></p>
+
+<ul>
+  <li>create file <code>clear_watchman_list.rb</code> in <code>HOME</code> folder.</li>
+</ul>
+
+<p>```ruby
+require ‘json’</p>
+
+<p>result = JSON.parse %x{watchman watch-list}
+result[“roots”].each do |dir|
+  system “watchman watch-del #{dir}”
+end
+```</p>
+
+<ul>
+  <li>define <code>cwl</code> command in <code>.profile</code></li>
+</ul>
+
+<p><code>bash
+# clear watchman list
+alias cwl="ruby $HOME/clear_watchman_list.rb"
+</code></p>
+
+<ul>
+  <li>use <code>cwl</code> if we want to empty the watchman list.</li>
+</ul>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Free Space on Mac.]]></title>
+    <link href="http://weilluo.github.io/blog/2015/04/10/free-space-on-mac/"/>
+    <updated>2015-04-10T13:19:53+08:00</updated>
+    <id>http://weilluo.github.io/blog/2015/04/10/free-space-on-mac</id>
+    <content type="html"><![CDATA[<ul>
+  <li>
+    <p>Use <code>sudo du -sh *</code> command to see the folder size in current folder.</p>
+  </li>
+  <li>
+    <p>I found <code>/Library/Application\ Support/Symantec/AntiVirus/</code> folder is very big, almost <code>51GB</code>, and the files in this folder are the backup about kind of daily job. Each of them is greater than <code>200M</code>.</p>
+  </li>
+</ul>
+
+<p><code>bash
+# file list
+...
+20150401.018   20150405.021   20150407.001   20150408.004   20150409.001   engine.mfst
+20150401.032   20150406.009   20150407.017   20150408.018   Signed
+20150402.001   20150406.032   20150407.057   20150408.035   SymAPComm.kext
+</code></p>
+
+<ul>
+  <li>I use <code>sudo rm -rf ...</code> command to delete the old backup.</li>
+</ul>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Set Prompt String in Shell on Mac]]></title>
+    <link href="http://weilluo.github.io/blog/2014/12/04/set-prompt-string-in-shell-on-mac/"/>
+    <updated>2014-12-04T11:26:49+08:00</updated>
+    <id>http://weilluo.github.io/blog/2014/12/04/set-prompt-string-in-shell-on-mac</id>
+    <content type="html"><![CDATA[<h2 id="ps1">PS1</h2>
+
+<p><figure class='code'><figcaption><span>Custom Path </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># echo $PS1</span>
+</span><span class='line'><span class="c"># \h:\W \u$&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;export <span class="nv">PS1</span><span class="o">=</span>’<span class="k">$(</span>whoami<span class="k">)</span>@<span class="k">$(</span>hostname<span class="k">)</span>:<span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>’
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p><figure class='code'><figcaption><span>Full Folder Path </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">export </span><span class="nv">PS1</span><span class="o">=</span>’<span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>: ‘
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p><figure class='code'><figcaption><span>Current Folder Path </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">export </span><span class="nv">PS1</span><span class="o">=</span>’<span class="k">${</span><span class="nv">PWD</span><span class="p">##*/</span><span class="k">}</span>: ‘
+</span></code></pre></td></tr></table></div></figure></p>
+]]></content>
+  </entry>
+  
+</feed>

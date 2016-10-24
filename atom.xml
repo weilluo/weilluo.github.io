@@ -1,116 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
 
-<!DOCTYPE html>
-<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
-<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
-<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
-<head>
-  <meta charset="utf-8">
-  <title>GUIDE</title>
-  <meta name="author" content="Wei Luo">
-
-  
-  <meta name="description" content="Issus Many software will apply the admin permission to possibly use some system tools, so I try to add my account to admin group. Solution press &hellip;">
-  
-
-  <!-- http://t.co/dKP3o1e -->
-  <meta name="HandheldFriendly" content="True">
-  <meta name="MobileOptimized" content="320">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><![CDATA[GUIDE]]></title>
+  <link href="http://weilluo.github.io/atom.xml" rel="self"/>
+  <link href="http://weilluo.github.io/"/>
+  <updated>2016-10-25T01:16:20+08:00</updated>
+  <id>http://weilluo.github.io/</id>
+  <author>
+    <name><![CDATA[Wei Luo]]></name>
+    <email><![CDATA[luowei---010101@163.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
 
   
-  <link rel="canonical" href="http://weilluo.github.io/">
-  <link href="/favicon.png" rel="icon">
-  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <link href="/atom.xml" rel="alternate" title="GUIDE" type="application/atom+xml">
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
-<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-
-<!-- https://github.com/dongweiming/octopress-wp_cumulus_for_tagcloud -->
-<link rel="stylesheet" type="text/css" href="/stylesheets/calendar.css">
-<script type="text/javascript" src="https://www.google.com/jsapi"></script>
-<script type="text/javascript" src="/javascripts/swfobject.js"></script>
-<script type="text/javascript" src="/javascripts/tagcumulus.js"></script>
-<script type="text/javascript" src="/javascripts/calendar.js"></script>
-
-<!-- font awesome -->
-<link rel="stylesheet" type="text/css" href="/stylesheets/font-awesome.min.css">
-
-  
-
-</head>
-
-<body   >
-  <header role="banner"><hgroup>
-  <h1><a href="/">GUIDE</a></h1>
-  
-    <h2>The road ahead will be long and our climb will be steep</h2>
-  
-</hgroup>
-
-</header>
-  <nav role="navigation">
-<ul class="subscription" data-subscription="rss">
-  <li>
-    <!-- <a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a> -->
-    <a href="/atom.xml" title="subscribe via RSS">
-      <i class="fa fa-rss" aria-hidden="true"></i>
-    </a>
-  </li>
-  
-</ul>
-
-
-
-<form action="https://www.google.com/search" method="get">
-  <fieldset role="search">
-    <input type="hidden" name="sitesearch" value="weilluo.github.io">
-    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-  </fieldset>
-</form>
-
-
-<ul class="main-navigation">
-  <li><a href="/">Blog</a></li>
-  <li><a href="/blog/archives">Archives</a></li>
-  <li><a href="/about">About</a></li>
-</ul>
-
-</nav>
-  <div id="main">
-    <div id="content">
-      <div class="blog-index">
-  
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2016/02/05/add-a-user-to-admin-group-on-mac/">Add a User to Admin Group on Mac.</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2016-02-05T11:32:33+08:00'><span class='date'>2016-02-05</span> <span class='time'>11:32 am</span></time>
-        
-           | <a href="/blog/2016/02/05/add-a-user-to-admin-group-on-mac/#disqus_thread"
-             data-disqus-identifier="http://weilluo.github.io/blog/2016/02/05/add-a-user-to-admin-group-on-mac/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2 id="issus">Issus</h2>
+  <entry>
+    <title type="html"><![CDATA[Add a User to Admin Group on Mac.]]></title>
+    <link href="http://weilluo.github.io/blog/2016/02/05/add-a-user-to-admin-group-on-mac/"/>
+    <updated>2016-02-05T11:32:33+08:00</updated>
+    <id>http://weilluo.github.io/blog/2016/02/05/add-a-user-to-admin-group-on-mac</id>
+    <content type="html"><![CDATA[<h2 id="issus">Issus</h2>
 
 <p>Many software will apply the <code>admin</code> permission to possibly use some system tools, so I try to add my account to admin group.</p>
 
@@ -159,38 +67,15 @@
 <h2 id="references">References</h2>
 
 <p><a href="http://www.techradar.com/how-to/computing/apple/how-to-use-os-x-boot-options-to-troubleshoot-your-mac-1305645">http://www.techradar.com/how-to/computing/apple/how-to-use-os-x-boot-options-to-troubleshoot-your-mac-1305645</a></p>
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/11/04/jenkins-email-notificaiton/">Jenkins Email Notificaiton</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-11-04T12:23:38+08:00'><span class='date'>2015-11-04</span> <span class='time'>12:23 pm</span></time>
-        
-           | <a href="/blog/2015/11/04/jenkins-email-notificaiton/#disqus_thread"
-             data-disqus-identifier="http://weilluo.github.io/blog/2015/11/04/jenkins-email-notificaiton/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Email notification with <code>Email-ext</code> plug-in:</p>
+  <entry>
+    <title type="html"><![CDATA[Jenkins Email Notificaiton]]></title>
+    <link href="http://weilluo.github.io/blog/2015/11/04/jenkins-email-notificaiton/"/>
+    <updated>2015-11-04T12:23:38+08:00</updated>
+    <id>http://weilluo.github.io/blog/2015/11/04/jenkins-email-notificaiton</id>
+    <content type="html"><![CDATA[<p>Email notification with <code>Email-ext</code> plug-in:</p>
 
 <ul>
   <li>pre-send scripts</li>
@@ -311,38 +196,15 @@
 </span><span class="line">    A string containing %p to indicate how to print paths. Defaults to "\\t%p\\n"</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <h2 id="to-be-continue">TO BE CONTINUE</h2>
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/10/29/multiple-ssh-key-add-in-difference-github-account/">Multiple Ssh Key Add in Difference Github Account</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-10-29T12:59:20+08:00'><span class='date'>2015-10-29</span> <span class='time'>12:59 pm</span></time>
-        
-           | <a href="/blog/2015/10/29/multiple-ssh-key-add-in-difference-github-account/#disqus_thread"
-             data-disqus-identifier="http://weilluo.github.io/blog/2015/10/29/multiple-ssh-key-add-in-difference-github-account/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2 id="question">Question</h2>
+  <entry>
+    <title type="html"><![CDATA[Multiple Ssh Key Add in Difference Github Account]]></title>
+    <link href="http://weilluo.github.io/blog/2015/10/29/multiple-ssh-key-add-in-difference-github-account/"/>
+    <updated>2015-10-29T12:59:20+08:00</updated>
+    <id>http://weilluo.github.io/blog/2015/10/29/multiple-ssh-key-add-in-difference-github-account</id>
+    <content type="html"><![CDATA[<h2 id="question">Question</h2>
 
 <p>First computer: I have added <code>id_ras.pub</code> to <code>CBluowei</code> account.</p>
 
@@ -377,38 +239,15 @@
     <p>use <code>ssh -T git@lgz.github.com</code> to verify.</p>
   </li>
 </ul>
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/10/19/es6introduction/">ES6 Introduction</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-10-19T23:12:47+08:00'><span class='date'>2015-10-19</span> <span class='time'>11:12 pm</span></time>
-        
-           | <a href="/blog/2015/10/19/es6introduction/#disqus_thread"
-             data-disqus-identifier="http://weilluo.github.io/blog/2015/10/19/es6introduction/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2 id="what-is-es6">What is ES6?</h2>
+  <entry>
+    <title type="html"><![CDATA[ES6 Introduction]]></title>
+    <link href="http://weilluo.github.io/blog/2015/10/19/es6introduction/"/>
+    <updated>2015-10-19T23:12:47+08:00</updated>
+    <id>http://weilluo.github.io/blog/2015/10/19/es6introduction</id>
+    <content type="html"><![CDATA[<h2 id="what-is-es6">What is ES6?</h2>
 
 <p>It’s <code>ECMAScript 6</code>, the standard of the next generation of javascript. Now <code>ECMAScript 6</code> is renamed to ECMAScript 2015, that mean it was released in 2015.</p>
 
@@ -752,38 +591,15 @@
 <h2 id="conclusion">Conclusion</h2>
 
 <p>OK, let’s start ES6 now!!!</p>
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/10/14/disqus-example/">DISQUS Example</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-10-14T18:05:18+08:00'><span class='date'>2015-10-14</span> <span class='time'>6:05 pm</span></time>
-        
-           | <a href="/blog/2015/10/14/disqus-example/#disqus_thread"
-             data-disqus-identifier="http://weilluo.github.io/blog/2015/10/14/disqus-example/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+  <entry>
+    <title type="html"><![CDATA[DISQUS Example]]></title>
+    <link href="http://weilluo.github.io/blog/2015/10/14/disqus-example/"/>
+    <updated>2015-10-14T18:05:18+08:00</updated>
+    <id>http://weilluo.github.io/blog/2015/10/14/disqus-example</id>
+    <content type="html"><![CDATA[<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
@@ -890,196 +706,563 @@
 </span><span class="line"><span class="nt">&lt;/body&gt;</span>
 </span><span class="line"><span class="nt">&lt;/html&gt;</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
-</div>
+]]></content>
+  </entry>
   
-  
+  <entry>
+    <title type="html"><![CDATA[ActiveRecord, Class_attribute]]></title>
+    <link href="http://weilluo.github.io/blog/2015/10/14/activerecord-class_attribute/"/>
+    <updated>2015-10-14T11:51:44+08:00</updated>
+    <id>http://weilluo.github.io/blog/2015/10/14/activerecord-class_attribute</id>
+    <content type="html"><![CDATA[<p>how to use class_attribuet:</p>
 
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="nb">require</span> <span class="s1">&#39;active_record&#39;</span>
+</span><span class="line">
+</span><span class="line"><span class="k">class</span> <span class="nc">Base</span>
+</span><span class="line">  <span class="n">class_attribute</span> <span class="ss">:setting</span>
+</span><span class="line"><span class="k">end</span>
+</span><span class="line">
+</span><span class="line"><span class="k">class</span> <span class="nc">Subclass</span> <span class="o">&lt;</span> <span class="no">Base</span>
+</span><span class="line"><span class="k">end</span>
+</span><span class="line">
+</span><span class="line"><span class="no">Base</span><span class="o">.</span><span class="n">setting</span> <span class="o">=</span> <span class="kp">true</span>
+</span><span class="line"><span class="nb">puts</span> <span class="no">Subclass</span><span class="o">.</span><span class="n">setting</span> <span class="c1"># =&gt; true</span>
+</span><span class="line"><span class="no">Subclass</span><span class="o">.</span><span class="n">setting</span> <span class="o">=</span> <span class="kp">false</span>
+</span><span class="line"><span class="nb">puts</span> <span class="no">Subclass</span><span class="o">.</span><span class="n">setting</span> <span class="c1"># =&gt; false</span>
+</span><span class="line"><span class="nb">puts</span> <span class="no">Base</span><span class="o">.</span><span class="n">setting</span> <span class="c1"># =&gt; true</span>
+</span><span class="line">
+</span><span class="line">
+</span><span class="line"><span class="n">base</span> <span class="o">=</span> <span class="no">Base</span><span class="o">.</span><span class="n">new</span>
+</span><span class="line"><span class="nb">puts</span> <span class="n">base</span><span class="o">.</span><span class="n">setting</span> <span class="c1"># =&gt; true</span>
+</span><span class="line"><span class="n">base</span><span class="o">.</span><span class="n">setting</span> <span class="o">=</span> <span class="kp">false</span>
+</span><span class="line"><span class="nb">puts</span> <span class="no">Base</span><span class="o">.</span><span class="n">setting</span> <span class="c1"># =&gt; true</span>
+</span><span class="line"><span class="nb">puts</span> <span class="n">base</span><span class="o">.</span><span class="n">setting</span> <span class="c1"># =&gt; false</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[AWS Beanstalk Ruby Passenger, Solutions of Rjb Installing and 504 Gateway-Timeout]]></title>
+    <link href="http://weilluo.github.io/blog/2015/07/22/aws-beanstalk-ruby-passenger/"/>
+    <updated>2015-07-22T19:03:56+08:00</updated>
+    <id>http://weilluo.github.io/blog/2015/07/22/aws-beanstalk-ruby-passenger</id>
+    <content type="html"><![CDATA[<p>Environment: AWS Beanstalk, 64bit Amazon Linux 2015.03 v1.4.1 running Ruby 2.1 (Passenger Standalone)</p>
 
-    </article>
+<p>Project: Rails</p>
+
+<p>The server had installed <code>java-1.7.0-openjdk</code>, and <code>JAVA_HOME = /usr/lib/jvm/jre</code></p>
+
+<p>There are to issuses:</p>
+
+<ul>
+  <li>gem install rjb, can’t find the floder /usr/lib/jvm/jre/include</li>
+</ul>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+</pre></td><td class="code"><pre><code class=""><span class="line"># we should install java-1.7.0-openjdk-devel
+</span><span class="line">packages:
+</span><span class="line">  yum:
+</span><span class="line">      git: []
+</span><span class="line">        java-1.7.0-openjdk-devel: []
+</span><span class="line">...</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<ul>
+  <li>504 Gateway-Timeout, when the request invoke some method depend <code>RJB</code></li>
+</ul>
+
+<p>I had found a paragraph: <a href="http://xsen.iteye.com/blog/440675">http://xsen.iteye.com/blog/440675</a></p>
+
+<p>The <code>Reason</code> is <code>rjb</code>, he said, and the solution is, in，passenger_ruby配置项下添加一行设置:</p>
+
+<ul>
+  <li>if using nginx, add this code in passenger_ruby config, <code>rails_spawn_method conservative;</code></li>
+  <li>if using apache, add this code in PassengerRuby config, <code>RailsSpawnMethod conservative</code></li>
+</ul>
+
+<p>and I found s syntax code used for AWS Beanstalk, that is <a href="https://gist.github.com/luoguanzhong/bb684c59dfbe9ae02022">https://gist.github.com/luoguanzhong/bb684c59dfbe9ae02022</a>.</p>
+
+<p><strong>Summary</strong>：You should login the server and see where the package install, and which it install. This could be help you quickly find the right solution.</p>
+]]></content>
+  </entry>
   
-  <div class="pagination">
-    
-      <a class="prev" href="/posts/2">&larr; Older</a>
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
-</div>
-<aside class="sidebar">
+  <entry>
+    <title type="html"><![CDATA[Delete Commits From a Branch in Git]]></title>
+    <link href="http://weilluo.github.io/blog/2015/06/30/delete-commits-from-a-branch-in-git/"/>
+    <updated>2015-06-30T17:34:07+08:00</updated>
+    <id>http://weilluo.github.io/blog/2015/06/30/delete-commits-from-a-branch-in-git</id>
+    <content type="html"><![CDATA[<p>Reference: <a href="http://stackoverflow.com/questions/1338728/delete-commits-from-a-branch-in-git">http://stackoverflow.com/questions/1338728/delete-commits-from-a-branch-in-git</a></p>
+
+<p><strong>Careful</strong>: <code>git reset --hard</code> WILL DELETE YOUR WORKING DIRECTORY CHANGES. Be sure to <strong>stash any local changes you want to keep</strong> before running this command.</p>
+
+<p>Assuming you are sitting on that commit, then this command will wack it…</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">git reset --hard HEAD~1</span></code></pre></td></tr></table></div></figure></notextile></div>
+<p>The <code>HEAD~1</code> means the commit before head.</p>
+
+<p>Or, you could look at the output of <code>git log</code>, find the commit id of the commit you want to back up to, and then do this:</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">git reset --hard &lt;sha1-commit-id&gt;</span></code></pre></td></tr></table></div></figure></notextile></div>
+<hr />
+<p>If you already pushed it, you will need to do a force push to get rid of it…</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">git push origin HEAD --force</span></code></pre></td></tr></table></div></figure></notextile></div>
+<p><strong>However</strong>, if others may have pulled it, then you would be better off starting a new branch. Because when they pull, it will just merge it into their work, and you will get it pushed back up again.</p>
+
+<p>If you already pushed, it may be better to use <code>git revert</code>, to create a “mirror image” commit that will undo the changes. However, both commits will both be in the log.</p>
+
+<hr />
+
+<p>FYI – <code>git reset --hard HEAD</code> is great if you want to get rid of WORK IN PROGRESS. It will reset you back to the most recent commit, and erase all the changes in your working tree and index.</p>
+
+<hr />
+
+<p>Lastly, if you need to find a commit that you “deleted”, it is typically present in <code>git reflog</code> unless you have garbage collected your repository.</p>
+]]></content>
+  </entry>
   
-    <section>
-  <h1>Recent Posts</h1>
-  <ul id="recent_posts">
-    
-      <li class="post">
-        <a href="/blog/2016/02/05/add-a-user-to-admin-group-on-mac/">Add a User to Admin Group on Mac.</a>
+  <entry>
+    <title type="html"><![CDATA[My Sublime Custom Config]]></title>
+    <link href="http://weilluo.github.io/blog/2015/06/29/my-sublime-custom-config/"/>
+    <updated>2015-06-29T21:13:46+08:00</updated>
+    <id>http://weilluo.github.io/blog/2015/06/29/my-sublime-custom-config</id>
+    <content type="html"><![CDATA[<ul>
+  <li>User Preference:</li>
+</ul>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">{
+</span><span class="line">  "color_scheme": "Packages/Theme - Cobalt2/cobalt2.tmTheme",
+</span><span class="line">  "font_face": "Yahei Consolas Hybrid",
+</span><span class="line">  "font_size": 12,
+</span><span class="line">  "save_on_focus_lost": true,
+</span><span class="line">  "tab_size": 2,
+</span><span class="line">  "theme": "Cobalt2.sublime-theme",
+</span><span class="line">  "translate_tabs_to_spaces": true,
+</span><span class="line">  "trim_trailing_white_space_on_save": true,
+</span><span class="line">  // "tmp/*.tmp" is for ember-cli project
+</span><span class="line">  "folder_exclude_patterns": [".svn", ".git", ".hg", "CVS", "tmp/*.tmp"]
+</span><span class="line">}</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<ul>
+  <li>User Key Bindings</li>
+</ul>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">[
+</span><span class="line">  { "keys": ["command+shift+f"], "command": "reindent"}
+</span><span class="line">]</span></code></pre></td></tr></table></div></figure></notextile></div>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Clear Watchman Watch-list]]></title>
+    <link href="http://weilluo.github.io/blog/2015/05/18/clear-watchman-watch-list/"/>
+    <updated>2015-05-18T18:22:09+08:00</updated>
+    <id>http://weilluo.github.io/blog/2015/05/18/clear-watchman-watch-list</id>
+    <content type="html"><![CDATA[<p>Watchman: <a href="https://github.com/facebook/watchman">https://github.com/facebook/watchman</a></p>
+
+<ul>
+  <li>create file <code>clear_watchman_list.rb</code> in <code>HOME</code> folder.</li>
+</ul>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="nb">require</span> <span class="s1">&#39;json&#39;</span>
+</span><span class="line">
+</span><span class="line"><span class="n">result</span> <span class="o">=</span> <span class="no">JSON</span><span class="o">.</span><span class="n">parse</span> <span class="sx">%x{watchman watch-list}</span>
+</span><span class="line"><span class="n">result</span><span class="o">[</span><span class="s2">&quot;roots&quot;</span><span class="o">].</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">dir</span><span class="o">|</span>
+</span><span class="line">  <span class="nb">system</span> <span class="s2">&quot;watchman watch-del </span><span class="si">#{</span><span class="n">dir</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class="line"><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<ul>
+  <li>define <code>cwl</code> command in <code>.profile</code></li>
+</ul>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="c"># clear watchman list</span>
+</span><span class="line"><span class="nb">alias </span><span class="nv">cwl</span><span class="o">=</span><span class="s2">&quot;ruby $HOME/clear_watchman_list.rb&quot;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<ul>
+  <li>use <code>cwl</code> if we want to empty the watchman list.</li>
+</ul>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Swap Space for Aws Ubuntu Server]]></title>
+    <link href="http://weilluo.github.io/blog/2015/05/07/swap-space-for-aws-ubuntu-server/"/>
+    <updated>2015-05-07T13:20:52+08:00</updated>
+    <id>http://weilluo.github.io/blog/2015/05/07/swap-space-for-aws-ubuntu-server</id>
+    <content type="html"><![CDATA[<p>It’s very <code>important</code>!!!</p>
+
+<p>Swap will auto release (or free) the unused memory.</p>
+
+<p>We setup an <code>jenkins</code> ci server, run functional test on firefox use xvfb. After some hours, the memory is almost full.</p>
+
+<p>So we add swap to our ci server.</p>
+
+<p>Example: <a href="https://www.digitalocean.com/community/tutorials/how-to-add-swap-on-ubuntu-14-04">https://www.digitalocean.com/community/tutorials/how-to-add-swap-on-ubuntu-14-04</a></p>
+
+<p>Reference:</p>
+
+<p><a href="http://stackoverflow.com/questions/29764181/jenkins-email-ext-plugin-pre-send-scripts">http://stackoverflow.com/questions/29764181/jenkins-email-ext-plugin-pre-send-scripts</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Setup JDK Environment]]></title>
+    <link href="http://weilluo.github.io/blog/2015/05/06/setup-jdk-environment/"/>
+    <updated>2015-05-06T10:13:40+08:00</updated>
+    <id>http://weilluo.github.io/blog/2015/05/06/setup-jdk-environment</id>
+    <content type="html"><![CDATA[<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="c"># set jdk environment</span>
+</span><span class="line"><span class="nb">export </span><span class="nv">JAVA_HOME</span><span class="o">=</span><span class="s2">&quot;/home/jenkins/Development/jdk1.8.0_40&quot;</span>
+</span><span class="line"><span class="nb">export </span><span class="nv">CLASSPATH</span><span class="o">=</span><span class="s2">&quot;.:$JAVA_HOME/lib/:$JAVA_HOME/jre/lib:$CLASSPATH&quot;</span>
+</span><span class="line"><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;$JAVA_HOME/bin:$JAVA_HOME/jre/bin:$PATH&quot;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[What Can Cause a Cookie Not to Be Set on the Client?]]></title>
+    <link href="http://weilluo.github.io/blog/2015/04/17/what-can-cause-a-cookie-not-to-be-set-on-the-client/"/>
+    <updated>2015-04-17T10:11:06+08:00</updated>
+    <id>http://weilluo.github.io/blog/2015/04/17/what-can-cause-a-cookie-not-to-be-set-on-the-client</id>
+    <content type="html"><![CDATA[<h2 id="issues">Issues</h2>
+
+<p>I use ember at cliend, and start on localhost:4200; sinatra at server, start on localhost:9292.</p>
+
+<p>Then I use <code>response.set_cookie()</code> to store user info, but I cannot see cookie setted just now on <code>chrome console -&gt; resource -&gt; cookies -&gt; localhost</code>.</p>
+
+<p>cliend code:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class="javascript"><span class="line"><span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+</span><span class="line">  <span class="nx">url</span><span class="o">:</span> <span class="nx">http</span><span class="o">:</span><span class="c1">//localhost:9292/user</span>
+</span><span class="line"><span class="p">})</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>cliend code:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="n">response</span><span class="o">.</span><span class="n">set_cookie</span><span class="p">(</span><span class="s1">&#39;Cookie-Name&#39;</span><span class="p">,</span>
+</span><span class="line">          <span class="ss">:value</span> <span class="o">=&gt;</span> <span class="n">value</span><span class="p">,</span>
+</span><span class="line">          <span class="ss">:expires</span> <span class="o">=&gt;</span> <span class="no">Time</span><span class="o">.</span><span class="n">now</span> <span class="o">+</span> <span class="mi">3600</span> <span class="o">*</span> <span class="mi">24</span> <span class="o">*</span> <span class="mi">14</span><span class="p">,</span>
+</span><span class="line">          <span class="ss">:domain</span> <span class="o">=&gt;</span> <span class="vi">@domain</span><span class="p">,</span>
+</span><span class="line">          <span class="ss">:path</span> <span class="o">=&gt;</span> <span class="s1">&#39;/&#39;</span><span class="p">,</span>
+</span><span class="line">          <span class="ss">:httponly</span> <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="solution">Solution</h2>
+
+<p>Option in ajax:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class="javascript"><span class="line"><span class="nx">xhrFields</span><span class="o">:</span> <span class="p">{</span>
+</span><span class="line">  <span class="nx">withCredentials</span><span class="o">:</span> <span class="kc">true</span>
+</span><span class="line"><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Response header in sinatra, <code>Access-Control-Allow-Credentials: true</code>, <code>Access-Control-Allow-Origin: http://localhost:4200</code></p>
+
+<h2 id="important">Important</h2>
+
+<p>Don’t set localhost as a domain for your cookies because you need to set it to “” or FALSE</p>
+
+<h2 id="reference">Reference</h2>
+
+<p><a href="http://stackoverflow.com/questions/14801021/what-can-cause-a-cookie-not-to-be-set-on-the-client">http://stackoverflow.com/questions/14801021/what-can-cause-a-cookie-not-to-be-set-on-the-client</a>
+<a href="http://stackoverflow.com/questions/5078091/sinatra-response-set-cookie-doesnt-work">http://stackoverflow.com/questions/5078091/sinatra-response-set-cookie-doesnt-work</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Free Space on Mac.]]></title>
+    <link href="http://weilluo.github.io/blog/2015/04/10/free-space-on-mac/"/>
+    <updated>2015-04-10T13:19:53+08:00</updated>
+    <id>http://weilluo.github.io/blog/2015/04/10/free-space-on-mac</id>
+    <content type="html"><![CDATA[<ul>
+  <li>
+    <p>Use <code>sudo du -sh *</code> command to see the folder size in current folder.</p>
+  </li>
+  <li>
+    <p>I found <code>/Library/Application\ Support/Symantec/AntiVirus/</code> folder is very big, almost <code>51GB</code>, and the files in this folder are the backup about kind of daily job. Each of them is greater than <code>200M</code>.</p>
+  </li>
+</ul>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="c"># file list</span>
+</span><span class="line">...
+</span><span class="line">20150401.018   20150405.021   20150407.001   20150408.004   20150409.001   engine.mfst
+</span><span class="line">20150401.032   20150406.009   20150407.017   20150408.018   Signed
+</span><span class="line">20150402.001   20150406.032   20150407.057   20150408.035   SymAPComm.kext
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<ul>
+  <li>I use <code>sudo rm -rf ...</code> command to delete the old backup.</li>
+</ul>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Use Whenever Gem]]></title>
+    <link href="http://weilluo.github.io/blog/2015/04/07/use-whenever-gem/"/>
+    <updated>2015-04-07T10:31:35+08:00</updated>
+    <id>http://weilluo.github.io/blog/2015/04/07/use-whenever-gem</id>
+    <content type="html"><![CDATA[<p>Whenever gem hosthome <a href="https://github.com/javan/whenever">https://github.com/javan/whenever</a></p>
+
+<ul>
+  <li>After installing whenever, use these command to initialize:</li>
+</ul>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="n">wheneverize</span> <span class="o">.</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<ul>
+  <li>update your scheduler:</li>
+</ul>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="n">whenever</span> <span class="o">--</span><span class="n">update</span><span class="o">-</span><span class="n">crontab</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<ul>
+  <li><code>crontab</code> usage:</li>
+</ul>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line">crontab -l <span class="c"># view the schedulers.</span>
+</span><span class="line">crontab -r <span class="c"># remove all schedulers.</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[iPhone4 无 SHSH 从 iOS7.1.2 降级到 iOS6.1.3]]></title>
+    <link href="http://weilluo.github.io/blog/2015/02/09/iphone4-wu-shsh-cong-ios7-dot-1-2-jiang-ji-dao-ios6-dot-1-3/"/>
+    <updated>2015-02-09T12:37:50+08:00</updated>
+    <id>http://weilluo.github.io/blog/2015/02/09/iphone4-wu-shsh-cong-ios7-dot-1-2-jiang-ji-dao-ios6-dot-1-3</id>
+    <content type="html"><![CDATA[<h2 id="iphone4gsm-">经过艰辛的历程，终于将 iPhone4(GSM版) 成功降级；</h2>
+
+<ul>
+  <li>使用工具</li>
+</ul>
+
+<p>爱思，红雪，平台windows7</p>
+
+<ul>
+  <li>悲剧的报错</li>
+</ul>
+
+<p>之前使用的是xp系统，结果出现写入 AppleLogo 失败，set Picture 0 failure…的报错，一直以为是手机硬件问题，纠结了半个多月。之后自己的 win7 电脑修好后，重新试了一下，竟然成功了。</p>
+
+<ul>
+  <li>
+    <p>刷机过程 <a href="http://bbs.i4.cn/thread-18856-1-1.html">http://bbs.i4.cn/thread-18856-1-1.html</a></p>
+
+    <ul>
+      <li>
+        <p>使用红雪或爱思助手等工具查看手机的ECID</p>
       </li>
-    
-      <li class="post">
-        <a href="/blog/2015/11/04/jenkins-email-notificaiton/">Jenkins Email Notificaiton</a>
+      <li>
+        <p>找到对应 iOS 版本的 shsh 文件，打开文件，将 ECID 的改为自己手机的</p>
       </li>
-    
-      <li class="post">
-        <a href="/blog/2015/10/29/multiple-ssh-key-add-in-difference-github-account/">Multiple Ssh Key Add in Difference Github Account</a>
+      <li>
+        <p>将修改后的 shsh 文件上传到爱思服务器</p>
       </li>
-    
-      <li class="post">
-        <a href="/blog/2015/10/19/es6introduction/">ES6 Introduction</a>
+      <li>
+        <p>使用爱思助手刷机，刷机前选中保持基带不升级</p>
       </li>
-    
-      <li class="post">
-        <a href="/blog/2015/10/14/disqus-example/">DISQUS Example</a>
+      <li>
+        <p>使用红雪进行越狱，越狱时一定选择 Deactive 选项，否则开机后手机无服务</p>
       </li>
-    
-  </ul>
-</section>
-<section>
-  <h1>Categories</h1>
-  <div id="category-list"><li><a href='/blog/categories/aws/'>AWS (1)</a></li><li><a href='/blog/categories/css/'>CSS (1)</a></li><li><a href='/blog/categories/disqus/'>DISQUS (1)</a></li><li><a href='/blog/categories/es6/'>ES6 (1)</a></li><li><a href='/blog/categories/git/'>GIT (2)</a></li><li><a href='/blog/categories/javascript/'>JAVASCRIPT (1)</a></li><li><a href='/blog/categories/jenkins/'>JENKINS (1)</a></li><li><a href='/blog/categories/mac/'>MAC (2)</a></li><li><a href='/blog/categories/mongodb/'>MONGODB (1)</a></li><li><a href='/blog/categories/rails/'>RAILS (2)</a></li><li><a href='/blog/categories/ruby/'>RUBY (2)</a></li><li><a href='/blog/categories/shell/'>SHELL (2)</a></li><li><a href='/blog/categories/sinatra/'>SINATRA (1)</a></li><li><a href='/blog/categories/sublime/'>SUBLIME (1)</a></li><li><a href='/blog/categories/swap/'>SWAP (1)</a></li><li><a href='/blog/categories/test/'>TEST (1)</a></li><li><a href='/blog/categories/ubuntu/'>UBUNTU (2)</a></li><li><a href='/blog/categories/watchman/'>WATCHMAN (1)</a></li><li><a href='/blog/categories/shua-ji/'>刷机 (1)</a></li></div>
-</section>
-<section>
-  <h1>
-    <i class="fa fa-tags" aria-hidden="true"></i> Tags
-  </h1>
-  <div id="tag-list"><li><a href='/blog/tags/aws/'>aws (1)</a></li><li><a href='/blog/tags/css/'>css (1)</a></li><li><a href='/blog/tags/disqus/'>disqus (1)</a></li><li><a href='/blog/tags/es6/'>es6 (1)</a></li><li><a href='/blog/tags/git/'>git (2)</a></li><li><a href='/blog/tags/javascript/'>javascript (1)</a></li><li><a href='/blog/tags/jenkins/'>jenkins (1)</a></li><li><a href='/blog/tags/mac/'>mac (2)</a></li><li><a href='/blog/tags/mongodb/'>mongodb (1)</a></li><li><a href='/blog/tags/rails/'>rails (2)</a></li><li><a href='/blog/tags/ruby/'>ruby (2)</a></li><li><a href='/blog/tags/shell/'>shell (2)</a></li><li><a href='/blog/tags/sinatra/'>sinatra (1)</a></li><li><a href='/blog/tags/sublime/'>sublime (1)</a></li><li><a href='/blog/tags/swap/'>swap (1)</a></li><li><a href='/blog/tags/test/'>test (1)</a></li><li><a href='/blog/tags/ubuntu/'>ubuntu (2)</a></li><li><a href='/blog/tags/watchman/'>watchman (1)</a></li><li><a href='/blog/tags/shua-ji/'>刷机 (1)</a></li></div>
-</section>
+      <li>
+        <p>每次关机后都必须使用红雪进行引导开机</p>
+      </li>
+      <li>
+        <p>如果手机锁屏后睡死，请在 Cydia 中添加威锋源(apt.weiphone.com)，再下载 insomnia pro 插件，保证锁屏系统不真正睡眠，但这样非常耗电。喜欢 iOS6 style 的朋友可以使用第二篇文章中的6.2.1的固件刷机，成功后不会出现睡死状况。</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>PS</p>
+  </li>
+</ul>
 
+<p>这篇博客讲了直接使用无睡死的固件来刷机，<a href="http://bbs.app111.com/thread-640908-1-1.html">http://bbs.app111.com/thread-640908-1-1.html</a> ，下载好文章中给出的固件后，还是按照以上 <code>3.4</code> - <code>3.6</code> 的步骤来操作。</p>
+]]></content>
+  </entry>
   
-</aside>
+  <entry>
+    <title type="html"><![CDATA[Functional Test in Ubuntu Server Use Rails]]></title>
+    <link href="http://weilluo.github.io/blog/2015/02/03/functional-test-in-ubuntu-server-use-rails/"/>
+    <updated>2015-02-03T09:34:44+08:00</updated>
+    <id>http://weilluo.github.io/blog/2015/02/03/functional-test-in-ubuntu-server-use-rails</id>
+    <content type="html"><![CDATA[<ul>
+  <li>install xfvb in ubuntu server</li>
+</ul>
 
-    </div>
-  </div>
-  <footer role="contentinfo"><p>
-  Copyright &copy; 2016 - Wei Luo -
-  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
-</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line">sudo apt-get install xvfb
+</span><span class="line">sudo apt-get install xfonts-100dpi xfonts-75dpi xfonts-scalable xfonts-cyrillic
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<p id="back-top">
-  <a href="#top"><span></span>Back to Top</a>
-</p>
-<style type="text/css">
-  #back-top {
-    position: fixed;
-    bottom: 50px;
-    right: 30px;
-    display: none;
-  }
+<ul>
+  <li>run rspec</li>
+</ul>
 
-  #back-top a {
-    width: 40px;
-    display: block;
-    text-align: center;
-    font: 9px Arial, Helvetica, sans-serif;
-    text-transform: uppercase;
-    text-decoration: none;
-    color: #bbb;
-
-    /* transition */
-    -webkit-transition: 1s;
-    -moz-transition: 1s;
-    transition: 1s;
-  }
-
-  /* arrow icon (span tag) */
-  #back-top span {
-    width: 40px;
-    height: 40px;
-    display: block;
-    margin-bottom: 7px;
-    background: #ddd url(/images/up-arrow.png) no-repeat center center;
-    background-size: 40px 40px;
-
-    /* rounded corners */
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-
-    /* transition */
-    -webkit-transition: 1s;
-    -moz-transition: 1s;
-    transition: 1s;
-  }
-
-  @media only screen and (min-width: 768px) {
-    #back-top span {
-      width: 60px;
-      height: 60px;
-      background-size: 60px 60px;
-      -webkit-border-radius: 10px;
-      -moz-border-radius: 10px;
-      border-radius: 10px
-    }
-    #back-top a {
-      width: 60px;
-      font-size: 10px
-    }
-  }
-  @media only screen and (min-width: 960px) {
-    #back-top span {
-      width: 80px;
-      height: 80px;
-      background-size: 80px 80px;
-      -webkit-border-radius: 15px;
-      -moz-border-radius: 15px;
-      border-radius: 15px
-    }
-    #back-top a {
-      width: 80px;
-      font-size: 11px;
-    }
-  }
-</style>
-<script type="text/javascript">
-  $(document).ready(function(){
-    // hide #back-top first
-    // $("#back-top").hide();
-
-    // fade in #back-top
-    $(function () {
-        $(window).scroll(function () {
-            if ($(this).scrollTop() > 100) {
-                $('#back-top').fadeIn();
-            } else {
-                $('#back-top').fadeOut();
-            }
-        });
-
-        // scroll body to 0px on click
-        $('#back-top a').click(function () {
-            $('body,html').animate({
-                scrollTop: 0
-            }, 800);
-            return false;
-        });
-    });
-  });
-</script>
-
-</footer>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line">xvfb-run -a -n <span class="m">99</span> bundle <span class="nb">exec </span>rspec spec
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+]]></content>
+  </entry>
   
+  <entry>
+    <title type="html"><![CDATA[Capybara::ElementNotFound: Unable to Find File Field “file”]]></title>
+    <link href="http://weilluo.github.io/blog/2015/01/19/capybara-elementnotfound-unable-to-find-file-field-file/"/>
+    <updated>2015-01-19T17:21:44+08:00</updated>
+    <id>http://weilluo.github.io/blog/2015/01/19/capybara-elementnotfound-unable-to-find-file-field-file</id>
+    <content type="html"><![CDATA[<p>Html code:</p>
 
-<script type="text/javascript">
-      var disqus_shortname = 'luoguanzhong';
-      
-        
-        var disqus_script = 'count.js';
-      
-    (function () {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    }());
-</script>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="html"><span class="line"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;tpBtn&quot;</span><span class="nt">&gt;</span>Upload File<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;file&quot;</span> <span class="na">name=</span><span class="s">&quot;file&quot;</span> <span class="na">id=</span><span class="s">&quot;resumefile&quot;</span> <span class="na">class=</span><span class="s">&quot;upload&quot;</span><span class="nt">/&gt;&lt;/div&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
+<p>Rspec code:</p>
 
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="n">attach_file</span><span class="p">(</span><span class="s1">&#39;resumefile&#39;</span><span class="p">,</span> <span class="n">file_path</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
+<p>And when we exec the spec, there will be an error, ‘Capybara::ElementNotFound: Unable to find file field “file”’, so we should do this:</p>
 
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="no">Capybara</span><span class="o">.</span><span class="n">ignore_hidden_elements</span> <span class="o">=</span> <span class="kp">false</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
+<p>Add above code into spec_helper.rb file.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Mongoid Query! Combination of Limit and Order]]></title>
+    <link href="http://weilluo.github.io/blog/2015/01/11/mongoid-query-combination-of-limit-and-order/"/>
+    <updated>2015-01-11T09:29:21+08:00</updated>
+    <id>http://weilluo.github.io/blog/2015/01/11/mongoid-query-combination-of-limit-and-order</id>
+    <content type="html"><![CDATA[<ul>
+  <li>grab the 10 last records with a unique value</li>
+</ul>
 
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="vi">@users</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">distinct</span><span class="p">(</span><span class="ss">:first_name</span><span class="p">)</span><span class="o">.</span><span class="n">desc</span><span class="p">(</span><span class="ss">:created_at</span><span class="p">)</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:first_name</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Bundle Install or Exec Another Project in This Project]]></title>
+    <link href="http://weilluo.github.io/blog/2014/12/04/bundle-install-or-exec-another-project-in-this-project/"/>
+    <updated>2014-12-04T12:59:17+08:00</updated>
+    <id>http://weilluo.github.io/blog/2014/12/04/bundle-install-or-exec-another-project-in-this-project</id>
+    <content type="html"><![CDATA[<p>rspec.rake</p>
 
-
-
-
-
-</body>
-</html>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="n">repo_path</span> <span class="o">=</span> <span class="s1">&#39;another project absolute path&#39;</span>
+</span><span class="line">
+</span><span class="line"><span class="no">Bundler</span><span class="o">.</span><span class="n">with_clean_env</span> <span class="k">do</span>
+</span><span class="line">  <span class="no">Dir</span><span class="o">.</span><span class="n">chdir</span> <span class="n">repo_path</span> <span class="k">do</span>
+</span><span class="line">    <span class="sx">%x{bundle install}</span>
+</span><span class="line">  <span class="k">end</span>
+</span><span class="line"><span class="k">end</span>
+</span><span class="line">
+</span><span class="line"><span class="o">.</span><span class="n">.</span><span class="o">.</span>
+</span><span class="line">
+</span><span class="line"><span class="no">Bundler</span><span class="o">.</span><span class="n">with_clean_env</span> <span class="k">do</span>
+</span><span class="line">  <span class="no">Dir</span><span class="o">.</span><span class="n">chdir</span> <span class="n">repo_path</span> <span class="k">do</span>
+</span><span class="line">    <span class="sx">%x{rspec spec --format html --out rspec_results.html --format documentation --out rspec_results.txt}</span>
+</span><span class="line">  <span class="k">end</span>
+</span><span class="line"><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+]]></content>
+  </entry>
+  
+</feed>

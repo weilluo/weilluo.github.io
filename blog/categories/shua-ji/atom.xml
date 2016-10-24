@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: 刷机 | GUIDE]]></title>
+  <link href="http://weilluo.github.io/blog/categories/shua-ji/atom.xml" rel="self"/>
+  <link href="http://weilluo.github.io/"/>
+  <updated>2016-10-25T01:16:20+08:00</updated>
+  <id>http://weilluo.github.io/</id>
+  <author>
+    <name><![CDATA[Wei Luo]]></name>
+    <email><![CDATA[luowei---010101@163.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[iPhone4 无 SHSH 从 iOS7.1.2 降级到 iOS6.1.3]]></title>
+    <link href="http://weilluo.github.io/blog/2015/02/09/iphone4-wu-shsh-cong-ios7-dot-1-2-jiang-ji-dao-ios6-dot-1-3/"/>
+    <updated>2015-02-09T12:37:50+08:00</updated>
+    <id>http://weilluo.github.io/blog/2015/02/09/iphone4-wu-shsh-cong-ios7-dot-1-2-jiang-ji-dao-ios6-dot-1-3</id>
+    <content type="html"><![CDATA[<h2 id="iphone4gsm-">经过艰辛的历程，终于将 iPhone4(GSM版) 成功降级；</h2>
+
+<ul>
+  <li>使用工具</li>
+</ul>
+
+<p>爱思，红雪，平台windows7</p>
+
+<ul>
+  <li>悲剧的报错</li>
+</ul>
+
+<p>之前使用的是xp系统，结果出现写入 AppleLogo 失败，set Picture 0 failure…的报错，一直以为是手机硬件问题，纠结了半个多月。之后自己的 win7 电脑修好后，重新试了一下，竟然成功了。</p>
+
+<ul>
+  <li>
+    <p>刷机过程 <a href="http://bbs.i4.cn/thread-18856-1-1.html">http://bbs.i4.cn/thread-18856-1-1.html</a></p>
+
+    <ul>
+      <li>
+        <p>使用红雪或爱思助手等工具查看手机的ECID</p>
+      </li>
+      <li>
+        <p>找到对应 iOS 版本的 shsh 文件，打开文件，将 ECID 的改为自己手机的</p>
+      </li>
+      <li>
+        <p>将修改后的 shsh 文件上传到爱思服务器</p>
+      </li>
+      <li>
+        <p>使用爱思助手刷机，刷机前选中保持基带不升级</p>
+      </li>
+      <li>
+        <p>使用红雪进行越狱，越狱时一定选择 Deactive 选项，否则开机后手机无服务</p>
+      </li>
+      <li>
+        <p>每次关机后都必须使用红雪进行引导开机</p>
+      </li>
+      <li>
+        <p>如果手机锁屏后睡死，请在 Cydia 中添加威锋源(apt.weiphone.com)，再下载 insomnia pro 插件，保证锁屏系统不真正睡眠，但这样非常耗电。喜欢 iOS6 style 的朋友可以使用第二篇文章中的6.2.1的固件刷机，成功后不会出现睡死状况。</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>PS</p>
+  </li>
+</ul>
+
+<p>这篇博客讲了直接使用无睡死的固件来刷机，<a href="http://bbs.app111.com/thread-640908-1-1.html">http://bbs.app111.com/thread-640908-1-1.html</a> ，下载好文章中给出的固件后，还是按照以上 <code>3.4</code> - <code>3.6</code> 的步骤来操作。</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: Rails | GUIDE]]></title>
+  <link href="http://weilluo.github.io/blog/tags/rails/atom.xml" rel="self"/>
+  <link href="http://weilluo.github.io/"/>
+  <updated>2016-10-25T01:16:20+08:00</updated>
+  <id>http://weilluo.github.io/</id>
+  <author>
+    <name><![CDATA[Wei Luo]]></name>
+    <email><![CDATA[luowei---010101@163.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Capybara::ElementNotFound: Unable to Find File Field “file”]]></title>
+    <link href="http://weilluo.github.io/blog/2015/01/19/capybara-elementnotfound-unable-to-find-file-field-file/"/>
+    <updated>2015-01-19T17:21:44+08:00</updated>
+    <id>http://weilluo.github.io/blog/2015/01/19/capybara-elementnotfound-unable-to-find-file-field-file</id>
+    <content type="html"><![CDATA[<p>Html code:</p>
+
+<p>```html</p>
+<div class="tpBtn">Upload File<input type="file" name="file" id="resumefile" class="upload" /></div>
+<p>```</p>
+
+<p>Rspec code:</p>
+
+<p><code>ruby
+attach_file('resumefile', file_path)
+</code></p>
+
+<p>And when we exec the spec, there will be an error, ‘Capybara::ElementNotFound: Unable to find file field “file”’, so we should do this:</p>
+
+<p><code>ruby
+Capybara.ignore_hidden_elements = false
+</code></p>
+
+<p>Add above code into spec_helper.rb file.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Bundle Install or Exec Another Project in This Project]]></title>
+    <link href="http://weilluo.github.io/blog/2014/12/04/bundle-install-or-exec-another-project-in-this-project/"/>
+    <updated>2014-12-04T12:59:17+08:00</updated>
+    <id>http://weilluo.github.io/blog/2014/12/04/bundle-install-or-exec-another-project-in-this-project</id>
+    <content type="html"><![CDATA[<p>rspec.rake</p>
+
+<p>```ruby
+repo_path = ‘another project absolute path’</p>
+
+<p>Bundler.with_clean_env do
+  Dir.chdir repo_path do
+    %x{bundle install}
+  end
+end</p>
+
+<p>…</p>
+
+<p>Bundler.with_clean_env do
+  Dir.chdir repo_path do
+    %x{rspec spec –format html –out rspec_results.html –format documentation –out rspec_results.txt}
+  end
+end
+```</p>
+]]></content>
+  </entry>
+  
+</feed>

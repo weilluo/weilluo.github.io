@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: Swap | GUIDE]]></title>
+  <link href="http://weilluo.github.io/blog/tags/swap/atom.xml" rel="self"/>
+  <link href="http://weilluo.github.io/"/>
+  <updated>2016-10-25T01:16:20+08:00</updated>
+  <id>http://weilluo.github.io/</id>
+  <author>
+    <name><![CDATA[Wei Luo]]></name>
+    <email><![CDATA[luowei---010101@163.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Swap Space for Aws Ubuntu Server]]></title>
+    <link href="http://weilluo.github.io/blog/2015/05/07/swap-space-for-aws-ubuntu-server/"/>
+    <updated>2015-05-07T13:20:52+08:00</updated>
+    <id>http://weilluo.github.io/blog/2015/05/07/swap-space-for-aws-ubuntu-server</id>
+    <content type="html"><![CDATA[<p>It’s very <code>important</code>!!!</p>
+
+<p>Swap will auto release (or free) the unused memory.</p>
+
+<p>We setup an <code>jenkins</code> ci server, run functional test on firefox use xvfb. After some hours, the memory is almost full.</p>
+
+<p>So we add swap to our ci server.</p>
+
+<p>Example: <a href="https://www.digitalocean.com/community/tutorials/how-to-add-swap-on-ubuntu-14-04">https://www.digitalocean.com/community/tutorials/how-to-add-swap-on-ubuntu-14-04</a></p>
+
+<p>Reference:</p>
+
+<p><a href="http://stackoverflow.com/questions/29764181/jenkins-email-ext-plugin-pre-send-scripts">http://stackoverflow.com/questions/29764181/jenkins-email-ext-plugin-pre-send-scripts</a></p>
+]]></content>
+  </entry>
+  
+</feed>

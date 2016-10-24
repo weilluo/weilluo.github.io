@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: Test | GUIDE]]></title>
+  <link href="http://weilluo.github.io/blog/tags/test/atom.xml" rel="self"/>
+  <link href="http://weilluo.github.io/"/>
+  <updated>2016-10-25T01:16:20+08:00</updated>
+  <id>http://weilluo.github.io/</id>
+  <author>
+    <name><![CDATA[Wei Luo]]></name>
+    <email><![CDATA[luowei---010101@163.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Functional Test in Ubuntu Server Use Rails]]></title>
+    <link href="http://weilluo.github.io/blog/2015/02/03/functional-test-in-ubuntu-server-use-rails/"/>
+    <updated>2015-02-03T09:34:44+08:00</updated>
+    <id>http://weilluo.github.io/blog/2015/02/03/functional-test-in-ubuntu-server-use-rails</id>
+    <content type="html"><![CDATA[<ul>
+  <li>install xfvb in ubuntu server</li>
+</ul>
+
+<p><code>bash
+sudo apt-get install xvfb
+sudo apt-get install xfonts-100dpi xfonts-75dpi xfonts-scalable xfonts-cyrillic
+</code></p>
+
+<ul>
+  <li>run rspec</li>
+</ul>
+
+<p><code>bash
+xvfb-run -a -n 99 bundle exec rspec spec
+</code></p>
+]]></content>
+  </entry>
+  
+</feed>

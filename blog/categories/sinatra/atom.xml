@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Sinatra | GUIDE]]></title>
+  <link href="http://weilluo.github.io/blog/categories/sinatra/atom.xml" rel="self"/>
+  <link href="http://weilluo.github.io/"/>
+  <updated>2016-10-25T01:16:20+08:00</updated>
+  <id>http://weilluo.github.io/</id>
+  <author>
+    <name><![CDATA[Wei Luo]]></name>
+    <email><![CDATA[luowei---010101@163.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[What Can Cause a Cookie Not to Be Set on the Client?]]></title>
+    <link href="http://weilluo.github.io/blog/2015/04/17/what-can-cause-a-cookie-not-to-be-set-on-the-client/"/>
+    <updated>2015-04-17T10:11:06+08:00</updated>
+    <id>http://weilluo.github.io/blog/2015/04/17/what-can-cause-a-cookie-not-to-be-set-on-the-client</id>
+    <content type="html"><![CDATA[<h2 id="issues">Issues</h2>
+
+<p>I use ember at cliend, and start on localhost:4200; sinatra at server, start on localhost:9292.</p>
+
+<p>Then I use <code>response.set_cookie()</code> to store user info, but I cannot see cookie setted just now on <code>chrome console -&gt; resource -&gt; cookies -&gt; localhost</code>.</p>
+
+<p>cliend code:</p>
+
+<p><code>js
+$.ajax({
+  url: http://localhost:9292/user
+})
+</code></p>
+
+<p>cliend code:</p>
+
+<p><code>ruby
+response.set_cookie('Cookie-Name',
+          :value =&gt; value,
+          :expires =&gt; Time.now + 3600 * 24 * 14,
+          :domain =&gt; @domain,
+          :path =&gt; '/',
+          :httponly =&gt; true)
+</code></p>
+
+<h2 id="solution">Solution</h2>
+
+<p>Option in ajax:</p>
+
+<p><code>js
+xhrFields: {
+  withCredentials: true
+}
+</code></p>
+
+<p>Response header in sinatra, <code>Access-Control-Allow-Credentials: true</code>, <code>Access-Control-Allow-Origin: http://localhost:4200</code></p>
+
+<h2 id="important">Important</h2>
+
+<p>Don’t set localhost as a domain for your cookies because you need to set it to “” or FALSE</p>
+
+<h2 id="reference">Reference</h2>
+
+<p><a href="http://stackoverflow.com/questions/14801021/what-can-cause-a-cookie-not-to-be-set-on-the-client">http://stackoverflow.com/questions/14801021/what-can-cause-a-cookie-not-to-be-set-on-the-client</a>
+<a href="http://stackoverflow.com/questions/5078091/sinatra-response-set-cookie-doesnt-work">http://stackoverflow.com/questions/5078091/sinatra-response-set-cookie-doesnt-work</a></p>
+]]></content>
+  </entry>
+  
+</feed>

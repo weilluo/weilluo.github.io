@@ -1,0 +1,474 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Jenkins Email Notificaiton - GUIDE</title>
+  <meta name="author" content="Wei Luo">
+
+  
+  <meta name="description" content="Email notification with Email-ext plug-in: pre-send scripts We use Jenkins as our ci server, and we run integration test on firefox on xvfb. Sometime &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://weilluo.github.io/blog/2015/11/04/jenkins-email-notificaiton/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="GUIDE" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+<!-- https://github.com/dongweiming/octopress-wp_cumulus_for_tagcloud -->
+<link rel="stylesheet" type="text/css" href="/stylesheets/calendar.css">
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript" src="/javascripts/swfobject.js"></script>
+<script type="text/javascript" src="/javascripts/tagcumulus.js"></script>
+<script type="text/javascript" src="/javascripts/calendar.js"></script>
+
+<!-- font awesome -->
+<link rel="stylesheet" type="text/css" href="/stylesheets/font-awesome.min.css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">GUIDE</a></h1>
+  
+    <h2>The road ahead will be long and our climb will be steep</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation">
+<ul class="subscription" data-subscription="rss">
+  <li>
+    <!-- <a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a> -->
+    <a href="/atom.xml" title="subscribe via RSS">
+      <i class="fa fa-rss" aria-hidden="true"></i>
+    </a>
+  </li>
+  
+</ul>
+
+
+
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="weilluo.github.io">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+
+
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Jenkins Email Notificaiton</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-11-04T12:23:38+08:00'><span class='date'>2015-11-04</span> <span class='time'>12:23 pm</span></time>
+        
+           | <a href="#disqus_thread"
+             data-disqus-identifier="http://weilluo.github.io">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Email notification with <code>Email-ext</code> plug-in:</p>
+
+<ul>
+  <li>pre-send scripts</li>
+</ul>
+
+<p>We use <code>Jenkins</code> as our ci server, and we run integration test on firefox on <code>xvfb</code>. Sometime, we receive the email about test failure, caused by<code> xvfb</code> starting failed.</p>
+
+<p>So we want to ignore sending email by this case. As we know, the<code> email-ext</code> plugin can help us. we should write <code>pre-send scripts</code>, but we don’t know how to write them.</p>
+
+<p>How do I write a script to cancel sending email when failure output message contains a specified error message?</p>
+
+<p><em>Solution</em>:</p>
+
+<p>My <code>groovy</code> script in email-ext plugin pre-send-script is:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">try {
+</span><span class="line">    def logFilePath = build.getLogFile().getPath();
+</span><span class="line">    String logContent = new File(logFilePath).text;
+</span><span class="line">    if (logContent.find(/Xvfb failed to start/)) cancel=true;
+</span><span class="line">} catch (all) {
+</span><span class="line">}</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>That resolve my problem.</p>
+
+<ul>
+  <li>CHANGES Token, follow <a href="http://stackoverflow.com/questions/7773010/how-to-include-git-changelog-in-jenkins-emails">this</a></li>
+</ul>
+
+<p>Config email notification in specified job, change the content like below:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">&lt;pre&gt;$PROJECT_DEFAULT_CONTENT&lt;/pre&gt;
+</span><span class="line">&lt;pre&gt;
+</span><span class="line">Changes:
+</span><span class="line">${CHANGES, showPaths=true, format="%a: %r %p \n-- %m", pathFormat="\n\t- %p"}
+</span><span class="line">&lt;/pre&gt;</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Then I will receive this format email:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">test-email - Build # 9 - Successful:
+</span><span class="line">
+</span><span class="line">Check console output at http://jenkins.cb-apac.com/job/test-email/9/ to view the results.
+</span><span class="line">Changes:
+</span><span class="line">Wei Luo: f87b103da4817cbcf1a4ce17ed5bf9687146bfdf
+</span><span class="line">  - app/jobs2/checkparams_check.rb
+</span><span class="line">  - config/resque_schedule.yml
+</span><span class="line">  - app/jobs2/watch_dog.rb
+</span><span class="line">-- copy jobs to resque.</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="this-is-arguments-description">This is arguments description</h2>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">${CHANGES}
+</span><span class="line">Displays the changes since the last build.
+</span><span class="line">
+</span><span class="line">showDependencies
+</span><span class="line">    If true, changes to projects this build depends on are shown. Defaults to false
+</span><span class="line">showPaths
+</span><span class="line">    If true, the paths, modifued by a commit are shown. Defaults to false
+</span><span class="line">format
+</span><span class="line">    For each commit listed, a string containing %X, where %x is one of:
+</span><span class="line">
+</span><span class="line">    %a
+</span><span class="line">        author
+</span><span class="line">    %d
+</span><span class="line">        date
+</span><span class="line">    %m
+</span><span class="line">        message
+</span><span class="line">    %p
+</span><span class="line">        path
+</span><span class="line">    %r
+</span><span class="line">        revision
+</span><span class="line">
+</span><span class="line">    Not all revision systems support %d and %r. If specified showPaths argument is ignored. Defaults to "[%a] %m\\n"
+</span><span class="line">pathFormat
+</span><span class="line">    A string containing %p to indicate how to print paths. Defaults to "\\t%p\\n"</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="to-be-continue">TO BE CONTINUE</h2>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Wei Luo</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2015-11-04T12:23:38+08:00'><span class='date'>2015-11-04</span> <span class='time'>12:23 pm</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/jenkins/'>JENKINS</a>
+  
+</span>
+
+
+      
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/jenkins/'>jenkins</a>, <a class='tag' href='/blog/tags/notification/'>notification</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2015/10/29/multiple-ssh-key-add-in-difference-github-account/" title="Previous Post: Multiple ssh key add in difference Github account">&laquo; Multiple ssh key add in difference Github account</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2016/02/05/add-a-user-to-admin-group-on-mac/" title="Next Post: add a user to admin group on mac.">add a user to admin group on mac. &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2016/02/05/add-a-user-to-admin-group-on-mac/">Add a User to Admin Group on Mac.</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/04/jenkins-email-notificaiton/">Jenkins Email Notificaiton</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/10/29/multiple-ssh-key-add-in-difference-github-account/">Multiple Ssh Key Add in Difference Github Account</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/10/19/es6introduction/">ES6 Introduction</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/10/14/disqus-example/">DISQUS Example</a>
+      </li>
+    
+  </ul>
+</section>
+<section>
+  <h1>Categories</h1>
+  <div id="category-list"><li><a href='/blog/categories/aws/'>AWS (1)</a></li><li><a href='/blog/categories/css/'>CSS (1)</a></li><li><a href='/blog/categories/disqus/'>DISQUS (1)</a></li><li><a href='/blog/categories/es6/'>ES6 (1)</a></li><li><a href='/blog/categories/git/'>GIT (2)</a></li><li><a href='/blog/categories/javascript/'>JAVASCRIPT (1)</a></li><li><a href='/blog/categories/jenkins/'>JENKINS (1)</a></li><li><a href='/blog/categories/mac/'>MAC (2)</a></li><li><a href='/blog/categories/mongodb/'>MONGODB (1)</a></li><li><a href='/blog/categories/rails/'>RAILS (2)</a></li><li><a href='/blog/categories/ruby/'>RUBY (2)</a></li><li><a href='/blog/categories/shell/'>SHELL (2)</a></li><li><a href='/blog/categories/sinatra/'>SINATRA (1)</a></li><li><a href='/blog/categories/sublime/'>SUBLIME (1)</a></li><li><a href='/blog/categories/swap/'>SWAP (1)</a></li><li><a href='/blog/categories/test/'>TEST (1)</a></li><li><a href='/blog/categories/ubuntu/'>UBUNTU (2)</a></li><li><a href='/blog/categories/watchman/'>WATCHMAN (1)</a></li><li><a href='/blog/categories/shua-ji/'>刷机 (1)</a></li></div>
+</section>
+<section>
+  <h1>
+    <i class="fa fa-tags" aria-hidden="true"></i> Tags
+  </h1>
+  <div id="tag-list"><li><a href='/blog/tags/aws/'>aws (1)</a></li><li><a href='/blog/tags/css/'>css (1)</a></li><li><a href='/blog/tags/disqus/'>disqus (1)</a></li><li><a href='/blog/tags/es6/'>es6 (1)</a></li><li><a href='/blog/tags/git/'>git (2)</a></li><li><a href='/blog/tags/javascript/'>javascript (1)</a></li><li><a href='/blog/tags/jenkins/'>jenkins (1)</a></li><li><a href='/blog/tags/mac/'>mac (2)</a></li><li><a href='/blog/tags/mongodb/'>mongodb (1)</a></li><li><a href='/blog/tags/rails/'>rails (2)</a></li><li><a href='/blog/tags/ruby/'>ruby (2)</a></li><li><a href='/blog/tags/shell/'>shell (2)</a></li><li><a href='/blog/tags/sinatra/'>sinatra (1)</a></li><li><a href='/blog/tags/sublime/'>sublime (1)</a></li><li><a href='/blog/tags/swap/'>swap (1)</a></li><li><a href='/blog/tags/test/'>test (1)</a></li><li><a href='/blog/tags/ubuntu/'>ubuntu (2)</a></li><li><a href='/blog/tags/watchman/'>watchman (1)</a></li><li><a href='/blog/tags/shua-ji/'>刷机 (1)</a></li></div>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2016 - Wei Luo -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+<p id="back-top">
+  <a href="#top"><span></span>Back to Top</a>
+</p>
+<style type="text/css">
+  #back-top {
+    position: fixed;
+    bottom: 50px;
+    right: 30px;
+    display: none;
+  }
+
+  #back-top a {
+    width: 40px;
+    display: block;
+    text-align: center;
+    font: 9px Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #bbb;
+
+    /* transition */
+    -webkit-transition: 1s;
+    -moz-transition: 1s;
+    transition: 1s;
+  }
+
+  /* arrow icon (span tag) */
+  #back-top span {
+    width: 40px;
+    height: 40px;
+    display: block;
+    margin-bottom: 7px;
+    background: #ddd url(/images/up-arrow.png) no-repeat center center;
+    background-size: 40px 40px;
+
+    /* rounded corners */
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+
+    /* transition */
+    -webkit-transition: 1s;
+    -moz-transition: 1s;
+    transition: 1s;
+  }
+
+  @media only screen and (min-width: 768px) {
+    #back-top span {
+      width: 60px;
+      height: 60px;
+      background-size: 60px 60px;
+      -webkit-border-radius: 10px;
+      -moz-border-radius: 10px;
+      border-radius: 10px
+    }
+    #back-top a {
+      width: 60px;
+      font-size: 10px
+    }
+  }
+  @media only screen and (min-width: 960px) {
+    #back-top span {
+      width: 80px;
+      height: 80px;
+      background-size: 80px 80px;
+      -webkit-border-radius: 15px;
+      -moz-border-radius: 15px;
+      border-radius: 15px
+    }
+    #back-top a {
+      width: 80px;
+      font-size: 11px;
+    }
+  }
+</style>
+<script type="text/javascript">
+  $(document).ready(function(){
+    // hide #back-top first
+    // $("#back-top").hide();
+
+    // fade in #back-top
+    $(function () {
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 100) {
+                $('#back-top').fadeIn();
+            } else {
+                $('#back-top').fadeOut();
+            }
+        });
+
+        // scroll body to 0px on click
+        $('#back-top a').click(function () {
+            $('body,html').animate({
+                scrollTop: 0
+            }, 800);
+            return false;
+        });
+    });
+  });
+</script>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'luoguanzhong';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://weilluo.github.io/blog/2015/11/04/jenkins-email-notificaiton/';
+        var disqus_url = 'http://weilluo.github.io/blog/2015/11/04/jenkins-email-notificaiton/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

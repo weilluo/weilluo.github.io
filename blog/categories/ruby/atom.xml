@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Ruby | GUIDE]]></title>
+  <link href="http://weilluo.github.io/blog/categories/ruby/atom.xml" rel="self"/>
+  <link href="http://weilluo.github.io/"/>
+  <updated>2016-10-25T01:16:20+08:00</updated>
+  <id>http://weilluo.github.io/</id>
+  <author>
+    <name><![CDATA[Wei Luo]]></name>
+    <email><![CDATA[luowei---010101@163.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[ActiveRecord, Class_attribute]]></title>
+    <link href="http://weilluo.github.io/blog/2015/10/14/activerecord-class_attribute/"/>
+    <updated>2015-10-14T11:51:44+08:00</updated>
+    <id>http://weilluo.github.io/blog/2015/10/14/activerecord-class_attribute</id>
+    <content type="html"><![CDATA[<p>how to use class_attribuet:</p>
+
+<p>```ruby
+require ‘active_record’</p>
+
+<p>class Base
+  class_attribute :setting
+end</p>
+
+<p>class Subclass &lt; Base
+end</p>
+
+<p>Base.setting = true
+puts Subclass.setting # =&gt; true
+Subclass.setting = false
+puts Subclass.setting # =&gt; false
+puts Base.setting # =&gt; true</p>
+
+<p>base = Base.new
+puts base.setting # =&gt; true
+base.setting = false
+puts Base.setting # =&gt; true
+puts base.setting # =&gt; false
+```</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Use Whenever Gem]]></title>
+    <link href="http://weilluo.github.io/blog/2015/04/07/use-whenever-gem/"/>
+    <updated>2015-04-07T10:31:35+08:00</updated>
+    <id>http://weilluo.github.io/blog/2015/04/07/use-whenever-gem</id>
+    <content type="html"><![CDATA[<p>Whenever gem hosthome <a href="https://github.com/javan/whenever">https://github.com/javan/whenever</a></p>
+
+<ul>
+  <li>After installing whenever, use these command to initialize:</li>
+</ul>
+
+<p><code>ruby
+wheneverize .
+</code></p>
+
+<ul>
+  <li>update your scheduler:</li>
+</ul>
+
+<p><code>ruby
+whenever --update-crontab
+</code></p>
+
+<ul>
+  <li><code>crontab</code> usage:</li>
+</ul>
+
+<p><code>bash
+crontab -l # view the schedulers.
+crontab -r # remove all schedulers.
+</code></p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Mac | GUIDE]]></title>
+  <link href="http://weilluo.github.io/blog/categories/mac/atom.xml" rel="self"/>
+  <link href="http://weilluo.github.io/"/>
+  <updated>2016-10-25T01:16:20+08:00</updated>
+  <id>http://weilluo.github.io/</id>
+  <author>
+    <name><![CDATA[Wei Luo]]></name>
+    <email><![CDATA[luowei---010101@163.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Add a User to Admin Group on Mac.]]></title>
+    <link href="http://weilluo.github.io/blog/2016/02/05/add-a-user-to-admin-group-on-mac/"/>
+    <updated>2016-02-05T11:32:33+08:00</updated>
+    <id>http://weilluo.github.io/blog/2016/02/05/add-a-user-to-admin-group-on-mac</id>
+    <content type="html"><![CDATA[<h2 id="issus">Issus</h2>
+
+<p>Many software will apply the <code>admin</code> permission to possibly use some system tools, so I try to add my account to admin group.</p>
+
+<h2 id="solution">Solution</h2>
+
+<ul>
+  <li>
+    <p>press <code>command</code> + <code>s</code> while boot, then mac will go to <code>single-user-mode</code> as <code>root</code>. This is a terminal interface that allows you to login and interact with your computer via text input only.</p>
+  </li>
+  <li>
+    <p>mount the root device as <code>read-write</code></p>
+  </li>
+</ul>
+
+<p><code>bash
+fsck -fy
+mount -uw /
+</code></p>
+
+<ul>
+  <li>edit the sudo user list, and move <code>wluo</code> into it.</li>
+</ul>
+
+<p><code>bash
+chmod 755 etc/sudoers
+vim etc/sudoers  # put "wluo ALL=(ALL) ALL" under "root ALL=(ALL) ALL"
+</code></p>
+
+<ul>
+  <li>
+    <p><code>reboot</code> mac, then open <code>terminal</code>.</p>
+  </li>
+  <li>
+    <p>put <code>wluo</code> into <code>admin</code> group</p>
+  </li>
+</ul>
+
+<p><code>bash
+sudo su
+dseditgroup -o edit -a wluo -t user admin
+</code></p>
+
+<h2 id="references">References</h2>
+
+<p><a href="http://www.techradar.com/how-to/computing/apple/how-to-use-os-x-boot-options-to-troubleshoot-your-mac-1305645">http://www.techradar.com/how-to/computing/apple/how-to-use-os-x-boot-options-to-troubleshoot-your-mac-1305645</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Free Space on Mac.]]></title>
+    <link href="http://weilluo.github.io/blog/2015/04/10/free-space-on-mac/"/>
+    <updated>2015-04-10T13:19:53+08:00</updated>
+    <id>http://weilluo.github.io/blog/2015/04/10/free-space-on-mac</id>
+    <content type="html"><![CDATA[<ul>
+  <li>
+    <p>Use <code>sudo du -sh *</code> command to see the folder size in current folder.</p>
+  </li>
+  <li>
+    <p>I found <code>/Library/Application\ Support/Symantec/AntiVirus/</code> folder is very big, almost <code>51GB</code>, and the files in this folder are the backup about kind of daily job. Each of them is greater than <code>200M</code>.</p>
+  </li>
+</ul>
+
+<p><code>bash
+# file list
+...
+20150401.018   20150405.021   20150407.001   20150408.004   20150409.001   engine.mfst
+20150401.032   20150406.009   20150407.017   20150408.018   Signed
+20150402.001   20150406.032   20150407.057   20150408.035   SymAPComm.kext
+</code></p>
+
+<ul>
+  <li>I use <code>sudo rm -rf ...</code> command to delete the old backup.</li>
+</ul>
+]]></content>
+  </entry>
+  
+</feed>

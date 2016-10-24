@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>GUIDE</title>
+  <title>ES6 Introduction - GUIDE</title>
   <meta name="author" content="Wei Luo">
 
   
-  <meta name="description" content="Issus Many software will apply the admin permission to possibly use some system tools, so I try to add my account to admin group. Solution press &hellip;">
+  <meta name="description" content="What is ES6? It’s ECMAScript 6, the standard of the next generation of javascript. Now ECMAScript 6 is renamed to ECMAScript 2015, that mean it was &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://weilluo.github.io/">
+  <link rel="canonical" href="http://weilluo.github.io/blog/2015/10/19/es6introduction/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="GUIDE" type="application/atom+xml">
@@ -83,313 +83,12 @@
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2016/02/05/add-a-user-to-admin-group-on-mac/">Add a User to Admin Group on Mac.</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2016-02-05T11:32:33+08:00'><span class='date'>2016-02-05</span> <span class='time'>11:32 am</span></time>
-        
-           | <a href="/blog/2016/02/05/add-a-user-to-admin-group-on-mac/#disqus_thread"
-             data-disqus-identifier="http://weilluo.github.io/blog/2016/02/05/add-a-user-to-admin-group-on-mac/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2 id="issus">Issus</h2>
-
-<p>Many software will apply the <code>admin</code> permission to possibly use some system tools, so I try to add my account to admin group.</p>
-
-<h2 id="solution">Solution</h2>
-
-<ul>
-  <li>
-    <p>press <code>command</code> + <code>s</code> while boot, then mac will go to <code>single-user-mode</code> as <code>root</code>. This is a terminal interface that allows you to login and interact with your computer via text input only.</p>
-  </li>
-  <li>
-    <p>mount the root device as <code>read-write</code></p>
-  </li>
-</ul>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-</pre></td><td class="code"><pre><code class="bash"><span class="line">fsck -fy
-</span><span class="line">mount -uw /
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<ul>
-  <li>edit the sudo user list, and move <code>wluo</code> into it.</li>
-</ul>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-</pre></td><td class="code"><pre><code class="bash"><span class="line">chmod <span class="m">755</span> etc/sudoers
-</span><span class="line">vim etc/sudoers  <span class="c"># put &quot;wluo ALL=(ALL) ALL&quot; under &quot;root ALL=(ALL) ALL&quot;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<ul>
-  <li>
-    <p><code>reboot</code> mac, then open <code>terminal</code>.</p>
-  </li>
-  <li>
-    <p>put <code>wluo</code> into <code>admin</code> group</p>
-  </li>
-</ul>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-</pre></td><td class="code"><pre><code class="bash"><span class="line">sudo su
-</span><span class="line">dseditgroup -o edit -a wluo -t user admin
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h2 id="references">References</h2>
-
-<p><a href="http://www.techradar.com/how-to/computing/apple/how-to-use-os-x-boot-options-to-troubleshoot-your-mac-1305645">http://www.techradar.com/how-to/computing/apple/how-to-use-os-x-boot-options-to-troubleshoot-your-mac-1305645</a></p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/11/04/jenkins-email-notificaiton/">Jenkins Email Notificaiton</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-11-04T12:23:38+08:00'><span class='date'>2015-11-04</span> <span class='time'>12:23 pm</span></time>
-        
-           | <a href="/blog/2015/11/04/jenkins-email-notificaiton/#disqus_thread"
-             data-disqus-identifier="http://weilluo.github.io/blog/2015/11/04/jenkins-email-notificaiton/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Email notification with <code>Email-ext</code> plug-in:</p>
-
-<ul>
-  <li>pre-send scripts</li>
-</ul>
-
-<p>We use <code>Jenkins</code> as our ci server, and we run integration test on firefox on <code>xvfb</code>. Sometime, we receive the email about test failure, caused by<code> xvfb</code> starting failed.</p>
-
-<p>So we want to ignore sending email by this case. As we know, the<code> email-ext</code> plugin can help us. we should write <code>pre-send scripts</code>, but we don’t know how to write them.</p>
-
-<p>How do I write a script to cancel sending email when failure output message contains a specified error message?</p>
-
-<p><em>Solution</em>:</p>
-
-<p>My <code>groovy</code> script in email-ext plugin pre-send-script is:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">try {
-</span><span class="line">    def logFilePath = build.getLogFile().getPath();
-</span><span class="line">    String logContent = new File(logFilePath).text;
-</span><span class="line">    if (logContent.find(/Xvfb failed to start/)) cancel=true;
-</span><span class="line">} catch (all) {
-</span><span class="line">}</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>That resolve my problem.</p>
-
-<ul>
-  <li>CHANGES Token, follow <a href="http://stackoverflow.com/questions/7773010/how-to-include-git-changelog-in-jenkins-emails">this</a></li>
-</ul>
-
-<p>Config email notification in specified job, change the content like below:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">&lt;pre&gt;$PROJECT_DEFAULT_CONTENT&lt;/pre&gt;
-</span><span class="line">&lt;pre&gt;
-</span><span class="line">Changes:
-</span><span class="line">${CHANGES, showPaths=true, format="%a: %r %p \n-- %m", pathFormat="\n\t- %p"}
-</span><span class="line">&lt;/pre&gt;</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>Then I will receive this format email:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">test-email - Build # 9 - Successful:
-</span><span class="line">
-</span><span class="line">Check console output at http://jenkins.cb-apac.com/job/test-email/9/ to view the results.
-</span><span class="line">Changes:
-</span><span class="line">Wei Luo: f87b103da4817cbcf1a4ce17ed5bf9687146bfdf
-</span><span class="line">  - app/jobs2/checkparams_check.rb
-</span><span class="line">  - config/resque_schedule.yml
-</span><span class="line">  - app/jobs2/watch_dog.rb
-</span><span class="line">-- copy jobs to resque.</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h2 id="this-is-arguments-description">This is arguments description</h2>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-<span class="line-number">18</span>
-<span class="line-number">19</span>
-<span class="line-number">20</span>
-<span class="line-number">21</span>
-<span class="line-number">22</span>
-<span class="line-number">23</span>
-<span class="line-number">24</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">${CHANGES}
-</span><span class="line">Displays the changes since the last build.
-</span><span class="line">
-</span><span class="line">showDependencies
-</span><span class="line">    If true, changes to projects this build depends on are shown. Defaults to false
-</span><span class="line">showPaths
-</span><span class="line">    If true, the paths, modifued by a commit are shown. Defaults to false
-</span><span class="line">format
-</span><span class="line">    For each commit listed, a string containing %X, where %x is one of:
-</span><span class="line">
-</span><span class="line">    %a
-</span><span class="line">        author
-</span><span class="line">    %d
-</span><span class="line">        date
-</span><span class="line">    %m
-</span><span class="line">        message
-</span><span class="line">    %p
-</span><span class="line">        path
-</span><span class="line">    %r
-</span><span class="line">        revision
-</span><span class="line">
-</span><span class="line">    Not all revision systems support %d and %r. If specified showPaths argument is ignored. Defaults to "[%a] %m\\n"
-</span><span class="line">pathFormat
-</span><span class="line">    A string containing %p to indicate how to print paths. Defaults to "\\t%p\\n"</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h2 id="to-be-continue">TO BE CONTINUE</h2>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/10/29/multiple-ssh-key-add-in-difference-github-account/">Multiple Ssh Key Add in Difference Github Account</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-10-29T12:59:20+08:00'><span class='date'>2015-10-29</span> <span class='time'>12:59 pm</span></time>
-        
-           | <a href="/blog/2015/10/29/multiple-ssh-key-add-in-difference-github-account/#disqus_thread"
-             data-disqus-identifier="http://weilluo.github.io/blog/2015/10/29/multiple-ssh-key-add-in-difference-github-account/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2 id="question">Question</h2>
-
-<p>First computer: I have added <code>id_ras.pub</code> to <code>CBluowei</code> account.</p>
-
-<p>Seconed computer: I have added another <code>id_ras.pub</code> to <code>luoguanzhong</code> account.</p>
-
-<p>I want push <code>luoguanzhong</code>’s project on first computer.</p>
-
-<h2 id="resolve">Resolve</h2>
-
-<ul>
-  <li>config the <code>~/.ssh/config</code>.</li>
-</ul>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-</pre></td><td class="code"><pre><code class="bash"><span class="line">Host lgz.github.com
-</span><span class="line">  HostName github.com
-</span><span class="line">  User git
-</span><span class="line">  IdentityFile ~/.ssh/id_rsa_office
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<ul>
-  <li>
-    <p>replace git remote origin from <code>git@github.com/luoguanzhong/xxx.git</code> to <code>git@lgz.github.com/luoguanzhong/xxx.git</code></p>
-  </li>
-  <li>
-    <p>then I can push <code>xxx</code> project on First computer.</p>
-  </li>
-  <li>
-    <p>use <code>ssh -T git@lgz.github.com</code> to verify.</p>
-  </li>
-</ul>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/10/19/es6introduction/">ES6 Introduction</a></h1>
+      <h1 class="entry-title">ES6 Introduction</h1>
     
     
       <p class="meta">
@@ -400,15 +99,15 @@
 
 <time class='entry-date' datetime='2015-10-19T23:12:47+08:00'><span class='date'>2015-10-19</span> <span class='time'>11:12 pm</span></time>
         
-           | <a href="/blog/2015/10/19/es6introduction/#disqus_thread"
-             data-disqus-identifier="http://weilluo.github.io/blog/2015/10/19/es6introduction/">Comments</a>
+           | <a href="#disqus_thread"
+             data-disqus-identifier="http://weilluo.github.io">Comments</a>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><h2 id="what-is-es6">What is ES6?</h2>
+<div class="entry-content"><h2 id="what-is-es6">What is ES6?</h2>
 
 <p>It’s <code>ECMAScript 6</code>, the standard of the next generation of javascript. Now <code>ECMAScript 6</code> is renamed to ECMAScript 2015, that mean it was released in 2015.</p>
 
@@ -753,158 +452,67 @@
 
 <p>OK, let’s start ES6 now!!!</p>
 </div>
-  
-  
 
 
-    </article>
-  
-  
-    <article>
+  <footer>
+    <p class="meta">
       
-  <header>
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Wei Luo</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2015-10-19T23:12:47+08:00'><span class='date'>2015-10-19</span> <span class='time'>11:12 pm</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/es6/'>ES6</a>, <a class='category' href='/blog/categories/javascript/'>JAVASCRIPT</a>
+  
+</span>
+
+
+      
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/babel/'>babel</a>, <a class='tag' href='/blog/tags/es6/'>es6</a>, <a class='tag' href='/blog/tags/js/'>js</a>
+  
+</span>
+
+
+    </p>
     
-      <h1 class="entry-title"><a href="/blog/2015/10/14/disqus-example/">DISQUS Example</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-10-14T18:05:18+08:00'><span class='date'>2015-10-14</span> <span class='time'>6:05 pm</span></time>
-        
-           | <a href="/blog/2015/10/14/disqus-example/#disqus_thread"
-             data-disqus-identifier="http://weilluo.github.io/blog/2015/10/14/disqus-example/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-<span class="line-number">18</span>
-<span class="line-number">19</span>
-<span class="line-number">20</span>
-<span class="line-number">21</span>
-<span class="line-number">22</span>
-<span class="line-number">23</span>
-<span class="line-number">24</span>
-<span class="line-number">25</span>
-<span class="line-number">26</span>
-<span class="line-number">27</span>
-<span class="line-number">28</span>
-<span class="line-number">29</span>
-<span class="line-number">30</span>
-<span class="line-number">31</span>
-<span class="line-number">32</span>
-<span class="line-number">33</span>
-<span class="line-number">34</span>
-<span class="line-number">35</span>
-<span class="line-number">36</span>
-<span class="line-number">37</span>
-<span class="line-number">38</span>
-<span class="line-number">39</span>
-<span class="line-number">40</span>
-<span class="line-number">41</span>
-<span class="line-number">42</span>
-<span class="line-number">43</span>
-<span class="line-number">44</span>
-<span class="line-number">45</span>
-<span class="line-number">46</span>
-<span class="line-number">47</span>
-<span class="line-number">48</span>
-<span class="line-number">49</span>
-<span class="line-number">50</span>
-<span class="line-number">51</span>
-<span class="line-number">52</span>
-<span class="line-number">53</span>
-</pre></td><td class="code"><pre><code class="html"><span class="line"><span class="cp">&lt;!DOCTYPE HTML&gt;</span>
-</span><span class="line"><span class="nt">&lt;html&gt;</span>
-</span><span class="line"><span class="nt">&lt;head&gt;</span>
-</span><span class="line">  <span class="nt">&lt;title&gt;</span>Disqus AJAX Test Site<span class="nt">&lt;/title&gt;</span>
-</span><span class="line"><span class="nt">&lt;/head&gt;</span>
-</span><span class="line"><span class="nt">&lt;body&gt;</span>
-</span><span class="line"><span class="nt">&lt;div&gt;</span>
-</span><span class="line">    <span class="nt">&lt;pre&gt;</span>
-</span><span class="line">        cklasnclkasnclanclasnclkasnclascasc
-</span><span class="line">        ascnknascklnaskcnaskc
-</span><span class="line">        nalcknlakscnlask
-</span><span class="line">    <span class="nt">&lt;/pre&gt;</span>
-</span><span class="line"><span class="nt">&lt;/div&gt;</span>
-</span><span class="line">
-</span><span class="line"><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;disqus_thread&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
-</span><span class="line">
-</span><span class="line"><span class="nt">&lt;button</span> <span class="na">onclick=</span><span class="s">&quot;reset(&#39;newid1&#39;, &#39;http://example.com/unique-path-to-article1/&#39;, &#39;Article Title 2&#39;, &#39;en&#39;);&quot;</span><span class="nt">&gt;</span>Load article 1 (English)<span class="nt">&lt;/button&gt;</span>
-</span><span class="line"><span class="nt">&lt;button</span> <span class="na">onclick=</span><span class="s">&quot;reset(&#39;newid2&#39;, &#39;http://example.com/unique-path-to-article2/&#39;, &#39;Article Title 2&#39;, &#39;fr&#39;);&quot;</span><span class="nt">&gt;</span>Load article 2 (Franch)<span class="nt">&lt;/button&gt;</span>
-</span><span class="line"><span class="nt">&lt;button</span> <span class="na">onclick=</span><span class="s">&quot;reset(&#39;newid3&#39;, &#39;http://example.com/unique-path-to-article3/&#39;, &#39;Article Title 3&#39;, &#39;zh&#39;);&quot;</span><span class="nt">&gt;</span>Load article 3 (Chinese)<span class="nt">&lt;/button&gt;</span>
-</span><span class="line"><span class="nt">&lt;button</span> <span class="na">onclick=</span><span class="s">&quot;reset(&#39;newid4&#39;, &#39;http://example.com/unique-path-to-article4/&#39;, &#39;Article Title 4&#39;, &#39;ru&#39;);&quot;</span><span class="nt">&gt;</span>Load article 4 (Russian)<span class="nt">&lt;/button&gt;</span>
-</span><span class="line">
-</span><span class="line"><span class="c">&lt;!-- &lt;div id=&quot;disqus_thread&quot;&gt;&lt;/div&gt; --&gt;</span>
-</span><span class="line"><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>
-</span><span class="line">    <span class="cm">/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */</span>
-</span><span class="line">    <span class="kd">var</span> <span class="nx">disqus_shortname</span> <span class="o">=</span> <span class="s1">&#39;example&#39;</span><span class="p">;</span>
-</span><span class="line">    <span class="kd">var</span> <span class="nx">disqus_identifier</span> <span class="o">=</span> <span class="s1">&#39;newid1&#39;</span><span class="p">;</span>
-</span><span class="line">    <span class="kd">var</span> <span class="nx">disqus_url</span> <span class="o">=</span> <span class="s1">&#39;http://example.com/unique-path-to-article-1/&#39;</span><span class="p">;</span>
-</span><span class="line">  <span class="kd">var</span> <span class="nx">disqus_config</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">language</span> <span class="o">=</span> <span class="s2">&quot;en&quot;</span><span class="p">;</span>
-</span><span class="line">  <span class="p">};</span>
-</span><span class="line">    <span class="cm">/* * * DON&#39;T EDIT BELOW THIS LINE * * */</span>
-</span><span class="line">    <span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-</span><span class="line">        <span class="kd">var</span> <span class="nx">dsq</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;script&#39;</span><span class="p">);</span> <span class="nx">dsq</span><span class="p">.</span><span class="nx">type</span> <span class="o">=</span> <span class="s1">&#39;text/javascript&#39;</span><span class="p">;</span> <span class="nx">dsq</span><span class="p">.</span><span class="nx">async</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
-</span><span class="line">        <span class="nx">dsq</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="s1">&#39;http://&#39;</span> <span class="o">+</span> <span class="nx">disqus_shortname</span> <span class="o">+</span> <span class="s1">&#39;.disqus.com/embed.js&#39;</span><span class="p">;</span>
-</span><span class="line">        <span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;head&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">||</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]).</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">dsq</span><span class="p">);</span>
-</span><span class="line">    <span class="p">})();</span>
-</span><span class="line">    <span class="cm">/* * * Disqus Reset Function * * */</span>
-</span><span class="line">    <span class="kd">var</span> <span class="nx">reset</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">newIdentifier</span><span class="p">,</span> <span class="nx">newUrl</span><span class="p">,</span> <span class="nx">newTitle</span><span class="p">,</span> <span class="nx">newLanguage</span><span class="p">)</span> <span class="p">{</span>
-</span><span class="line">        <span class="nx">DISQUS</span><span class="p">.</span><span class="nx">reset</span><span class="p">({</span>
-</span><span class="line">            <span class="nx">reload</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-</span><span class="line">            <span class="nx">config</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-</span><span class="line">                <span class="k">this</span><span class="p">.</span><span class="nx">page</span><span class="p">.</span><span class="nx">identifier</span> <span class="o">=</span> <span class="nx">newIdentifier</span><span class="p">;</span>
-</span><span class="line">                <span class="k">this</span><span class="p">.</span><span class="nx">page</span><span class="p">.</span><span class="nx">url</span> <span class="o">=</span> <span class="nx">newUrl</span><span class="p">;</span>
-</span><span class="line">                <span class="k">this</span><span class="p">.</span><span class="nx">page</span><span class="p">.</span><span class="nx">title</span> <span class="o">=</span> <span class="nx">newTitle</span><span class="p">;</span>
-</span><span class="line">                <span class="k">this</span><span class="p">.</span><span class="nx">language</span> <span class="o">=</span> <span class="nx">newLanguage</span><span class="p">;</span>
-</span><span class="line">            <span class="p">}</span>
-</span><span class="line">        <span class="p">});</span>
-</span><span class="line">    <span class="p">};</span>
-</span><span class="line"><span class="nt">&lt;/script&gt;</span>
-</span><span class="line"><span class="nt">&lt;noscript&gt;</span>Please enable JavaScript to view the <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://disqus.com/?ref_noscript&quot;</span><span class="nt">&gt;</span>comments powered by Disqus.<span class="nt">&lt;/a&gt;&lt;/noscript&gt;</span>
-</span><span class="line"><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://disqus.com&quot;</span> <span class="na">class=</span><span class="s">&quot;dsq-brlink&quot;</span><span class="nt">&gt;</span>blog comments powered by <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;logo-disqus&quot;</span><span class="nt">&gt;</span>Disqus<span class="nt">&lt;/span&gt;&lt;/a&gt;</span>
-</span><span class="line"><span class="nt">&lt;/body&gt;</span>
-</span><span class="line"><span class="nt">&lt;/html&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+      <div class="sharing">
+  
+  
+  
 </div>
-  
-  
 
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2015/10/14/disqus-example/" title="Previous Post: DISQUS Example">&laquo; DISQUS Example</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2015/10/29/multiple-ssh-key-add-in-difference-github-account/" title="Next Post: Multiple ssh key add in difference Github account">Multiple ssh key add in difference Github account &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
 
-    </article>
-  
-  <div class="pagination">
-    
-      <a class="prev" href="/posts/2">&larr; Older</a>
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
+  </section>
+
+</div>
+
 <aside class="sidebar">
   
     <section>
@@ -946,6 +554,7 @@
 
   
 </aside>
+
 
     </div>
   </div>
@@ -1062,7 +671,10 @@
       var disqus_shortname = 'luoguanzhong';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://weilluo.github.io/blog/2015/10/19/es6introduction/';
+        var disqus_url = 'http://weilluo.github.io/blog/2015/10/19/es6introduction/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
