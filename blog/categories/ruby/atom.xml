@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby | GUIDE]]></title>
   <link href="http://weilluo.github.io/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://weilluo.github.io/"/>
-  <updated>2016-10-26T16:44:30+08:00</updated>
+  <updated>2016-11-17T15:38:47+08:00</updated>
   <id>http://weilluo.github.io/</id>
   <author>
     <name><![CDATA[Wei Luo]]></name>
@@ -12,6 +12,46 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Different Between Include and Extend in Ruby]]></title>
+    <link href="http://weilluo.github.io/blog/2016/11/17/different-between-include-and-extend-in-ruby/"/>
+    <updated>2016-11-17T14:35:32+08:00</updated>
+    <id>http://weilluo.github.io/blog/2016/11/17/different-between-include-and-extend-in-ruby</id>
+    <content type="html"><![CDATA[<p><figure class='code'><figcaption class='code-header'><span>Example </span></figcaption>
+ <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> 1</span><span class="keyword">module</span> <span class="class">AAA</span>
+<span class="line-numbers"> 2</span>  <span class="keyword">def</span> <span class="function">aaa</span>
+<span class="line-numbers"> 3</span>    puts “aaa”
+<span class="line-numbers"> 4</span>  <span class="keyword">end</span>&lt;<span class="regexp"><span class="delimiter">/</span><span class="content">p&gt;</span></span>
+<span class="line-numbers"> 5</span><span class="regexp"><span class="content"></span></span>
+<span class="line-numbers"> 6</span><span class="regexp"><span class="content">&lt;p&gt;def self.bbb</span></span>
+<span class="line-numbers"> 7</span><span class="regexp"><span class="content">    puts “bbb”</span></span>
+<span class="line-numbers"> 8</span><span class="regexp"><span class="content">  end</span></span>
+<span class="line-numbers"> 9</span><span class="regexp"><span class="content">end&lt;</span><span class="delimiter">/</span></span>p&gt;
+<span class="line-numbers"><strong>10</strong></span>
+<span class="line-numbers">11</span>&lt;p&gt;<span class="keyword">class</span> <span class="class">C1</span>
+<span class="line-numbers">12</span>  include <span class="constant">AAA</span>
+<span class="line-numbers">13</span><span class="keyword">end</span>&lt;<span class="regexp"><span class="delimiter">/</span><span class="content">p&gt;</span></span>
+<span class="line-numbers">14</span><span class="regexp"><span class="content"></span></span>
+<span class="line-numbers">15</span><span class="regexp"><span class="content">&lt;h1 id=&quot;c1bbb---undefined-method-bbb-for-c1class&quot;&gt;C1.bbb  # undefined method `bbb’ for C1:Class&lt;</span><span class="delimiter">/</span></span>h1&gt;
+<span class="line-numbers">16</span>&lt;p&gt;<span class="comment"># C1.aaa  # undefined method &lt;code&gt;aaa' for C1:Class</span>
+<span class="line-numbers">17</span><span class="constant">C1</span>.new.aaa  <span class="comment"># aaa</span>
+<span class="line-numbers">18</span><span class="comment"># C1.new.bbb  # undefined method &lt;/code&gt;bbb’ for #&lt;c1:0x007ff1f414af08&gt;&lt;/c1:0x007ff1f414af08&gt;&lt;/p&gt;</span>
+<span class="line-numbers">19</span>
+<span class="line-numbers"><strong>20</strong></span>&lt;p&gt;<span class="keyword">class</span> <span class="class">C2</span>
+<span class="line-numbers">21</span>  extend <span class="constant">AAA</span>
+<span class="line-numbers">22</span><span class="keyword">end</span>&lt;<span class="regexp"><span class="delimiter">/</span><span class="content">p&gt;</span></span>
+<span class="line-numbers">23</span><span class="regexp"><span class="content"></span></span>
+<span class="line-numbers">24</span><span class="regexp"><span class="content">&lt;h1 id=&quot;c2bbb---undefined-method-bbb-for-c2class&quot;&gt;C2.bbb  # undefined method `bbb’ for C2:Class&lt;</span><span class="delimiter">/</span></span>h1&gt;
+<span class="line-numbers">25</span>&lt;p&gt;<span class="constant">C2</span>.aaa  <span class="comment"># aaa</span>
+<span class="line-numbers">26</span><span class="comment"># C2.new.aaa  # undefined method &lt;code&gt;aaa' for #&amp;lt;C2:0x007f86ea943298&amp;gt;</span>
+<span class="line-numbers">27</span><span class="comment"># C2.new.bbb  # undefined method &lt;/code&gt;bbb’ for #&lt;c2:0x007fc463117270&gt;</span>
+</pre></div>
+</div>
+ </figure></c2:0x007fc463117270></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[ActiveRecord, Class_attribute]]></title>

@@ -21,7 +21,7 @@ gviz_word_cumulus.WordCumulus = function(container) {
    * @type {Element}
    * @private
    */
-  this.container_ = container;
+  this.container_ = container || {};
 };
 
 gviz_word_cumulus.WordCumulus.prototype.draw = function(data, options) {

@@ -4,7 +4,7 @@
   <title><![CDATA[GUIDE]]></title>
   <link href="http://weilluo.github.io/atom.xml" rel="self"/>
   <link href="http://weilluo.github.io/"/>
-  <updated>2016-10-26T16:44:30+08:00</updated>
+  <updated>2016-11-17T15:38:47+08:00</updated>
   <id>http://weilluo.github.io/</id>
   <author>
     <name><![CDATA[Wei Luo]]></name>
@@ -12,6 +12,46 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Different Between Include and Extend in Ruby]]></title>
+    <link href="http://weilluo.github.io/blog/2016/11/17/different-between-include-and-extend-in-ruby/"/>
+    <updated>2016-11-17T14:35:32+08:00</updated>
+    <id>http://weilluo.github.io/blog/2016/11/17/different-between-include-and-extend-in-ruby</id>
+    <content type="html"><![CDATA[<div class="bogus-wrapper"><notextile><figure class="code"><figcaption class="code-header"><span>Example </span></figcaption>
+ <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> 1</span><span class="keyword">module</span> <span class="class">AAA</span>
+<span class="line-numbers"> 2</span>  <span class="keyword">def</span> <span class="function">aaa</span>
+<span class="line-numbers"> 3</span>    puts <span class="string"><span class="delimiter">&quot;</span><span class="content">aaa</span><span class="delimiter">&quot;</span></span>
+<span class="line-numbers"> 4</span>  <span class="keyword">end</span>
+<span class="line-numbers"> 5</span>
+<span class="line-numbers"> 6</span>  <span class="keyword">def</span> <span class="predefined-constant">self</span>.<span class="function">bbb</span>
+<span class="line-numbers"> 7</span>    puts <span class="string"><span class="delimiter">&quot;</span><span class="content">bbb</span><span class="delimiter">&quot;</span></span>
+<span class="line-numbers"> 8</span>  <span class="keyword">end</span>
+<span class="line-numbers"> 9</span><span class="keyword">end</span>
+<span class="line-numbers"><strong>10</strong></span>
+<span class="line-numbers">11</span><span class="keyword">class</span> <span class="class">C1</span>
+<span class="line-numbers">12</span>  include <span class="constant">AAA</span>
+<span class="line-numbers">13</span><span class="keyword">end</span>
+<span class="line-numbers">14</span>
+<span class="line-numbers">15</span><span class="comment"># C1.bbb  # undefined method `bbb' for C1:Class</span>
+<span class="line-numbers">16</span><span class="comment"># C1.aaa  # undefined method `aaa' for C1:Class</span>
+<span class="line-numbers">17</span><span class="constant">C1</span>.new.aaa  <span class="comment"># aaa</span>
+<span class="line-numbers">18</span><span class="comment"># C1.new.bbb  # undefined method `bbb' for #&lt;C1:0x007ff1f414af08&gt;</span>
+<span class="line-numbers">19</span>
+<span class="line-numbers"><strong>20</strong></span><span class="keyword">class</span> <span class="class">C2</span>
+<span class="line-numbers">21</span>  extend <span class="constant">AAA</span>
+<span class="line-numbers">22</span><span class="keyword">end</span>
+<span class="line-numbers">23</span>
+<span class="line-numbers">24</span><span class="comment"># C2.bbb  # undefined method `bbb' for C2:Class</span>
+<span class="line-numbers">25</span><span class="constant">C2</span>.aaa  <span class="comment"># aaa</span>
+<span class="line-numbers">26</span><span class="comment"># C2.new.aaa  # undefined method `aaa' for #&lt;C2:0x007f86ea943298&gt;</span>
+<span class="line-numbers">27</span><span class="comment"># C2.new.bbb  # undefined method `bbb' for #&lt;C2:0x007fc463117270&gt;</span>
+</pre></div>
+</div>
+ </figure></notextile></div>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Add a User to Admin Group on Mac.]]></title>
@@ -1220,47 +1260,6 @@
 
 <div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 </pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="vi">@users</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">distinct</span><span class="p">(</span><span class="ss">:first_name</span><span class="p">)</span><span class="o">.</span><span class="n">desc</span><span class="p">(</span><span class="ss">:created_at</span><span class="p">)</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:first_name</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Bundle Install or Exec Another Project in This Project]]></title>
-    <link href="http://weilluo.github.io/blog/2014/12/04/bundle-install-or-exec-another-project-in-this-project/"/>
-    <updated>2014-12-04T12:59:17+08:00</updated>
-    <id>http://weilluo.github.io/blog/2014/12/04/bundle-install-or-exec-another-project-in-this-project</id>
-    <content type="html"><![CDATA[<p>rspec.rake</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="n">repo_path</span> <span class="o">=</span> <span class="s1">&#39;another project absolute path&#39;</span>
-</span><span class="line">
-</span><span class="line"><span class="no">Bundler</span><span class="o">.</span><span class="n">with_clean_env</span> <span class="k">do</span>
-</span><span class="line">  <span class="no">Dir</span><span class="o">.</span><span class="n">chdir</span> <span class="n">repo_path</span> <span class="k">do</span>
-</span><span class="line">    <span class="sx">%x{bundle install}</span>
-</span><span class="line">  <span class="k">end</span>
-</span><span class="line"><span class="k">end</span>
-</span><span class="line">
-</span><span class="line"><span class="o">.</span><span class="n">.</span><span class="o">.</span>
-</span><span class="line">
-</span><span class="line"><span class="no">Bundler</span><span class="o">.</span><span class="n">with_clean_env</span> <span class="k">do</span>
-</span><span class="line">  <span class="no">Dir</span><span class="o">.</span><span class="n">chdir</span> <span class="n">repo_path</span> <span class="k">do</span>
-</span><span class="line">    <span class="sx">%x{rspec spec --format html --out rspec_results.html --format documentation --out rspec_results.txt}</span>
-</span><span class="line">  <span class="k">end</span>
-</span><span class="line"><span class="k">end</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 ]]></content>
   </entry>
