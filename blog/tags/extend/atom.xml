@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Extend | GUIDE]]></title>
   <link href="http://weilluo.github.io/blog/tags/extend/atom.xml" rel="self"/>
   <link href="http://weilluo.github.io/"/>
-  <updated>2016-11-17T15:38:47+08:00</updated>
+  <updated>2017-04-15T11:18:23+08:00</updated>
   <id>http://weilluo.github.io/</id>
   <author>
     <name><![CDATA[Wei Luo]]></name>
@@ -37,7 +37,7 @@
 <span class="line-numbers">15</span><span class="regexp"><span class="content">&lt;h1 id=&quot;c1bbb---undefined-method-bbb-for-c1class&quot;&gt;C1.bbb  # undefined method `bbb’ for C1:Class&lt;</span><span class="delimiter">/</span></span>h1&gt;
 <span class="line-numbers">16</span>&lt;p&gt;<span class="comment"># C1.aaa  # undefined method &lt;code&gt;aaa' for C1:Class</span>
 <span class="line-numbers">17</span><span class="constant">C1</span>.new.aaa  <span class="comment"># aaa</span>
-<span class="line-numbers">18</span><span class="comment"># C1.new.bbb  # undefined method &lt;/code&gt;bbb’ for #&lt;c1:0x007ff1f414af08&gt;&lt;/c1:0x007ff1f414af08&gt;&lt;/p&gt;</span>
+<span class="line-numbers">18</span><span class="comment"># C1.new.bbb  # undefined method &lt;/code&gt;bbb’ for #&lt;C1:0x007ff1f414af08&gt;&lt;/C1:0x007ff1f414af08&gt;&lt;/p&gt;</span>
 <span class="line-numbers">19</span>
 <span class="line-numbers"><strong>20</strong></span>&lt;p&gt;<span class="keyword">class</span> <span class="class">C2</span>
 <span class="line-numbers">21</span>  extend <span class="constant">AAA</span>
@@ -46,10 +46,10 @@
 <span class="line-numbers">24</span><span class="regexp"><span class="content">&lt;h1 id=&quot;c2bbb---undefined-method-bbb-for-c2class&quot;&gt;C2.bbb  # undefined method `bbb’ for C2:Class&lt;</span><span class="delimiter">/</span></span>h1&gt;
 <span class="line-numbers">25</span>&lt;p&gt;<span class="constant">C2</span>.aaa  <span class="comment"># aaa</span>
 <span class="line-numbers">26</span><span class="comment"># C2.new.aaa  # undefined method &lt;code&gt;aaa' for #&amp;lt;C2:0x007f86ea943298&amp;gt;</span>
-<span class="line-numbers">27</span><span class="comment"># C2.new.bbb  # undefined method &lt;/code&gt;bbb’ for #&lt;c2:0x007fc463117270&gt;</span>
+<span class="line-numbers">27</span><span class="comment"># C2.new.bbb  # undefined method &lt;/code&gt;bbb’ for #&lt;C2:0x007fc463117270&gt;</span>
 </pre></div>
 </div>
- </figure></c2:0x007fc463117270></p>
+ </figure></C2:0x007fc463117270></p>
 ]]></content>
   </entry>
   

@@ -9,13 +9,19 @@
   <meta name="author" content="Wei Luo">
 
   
-  <meta name="description" content="Watchman: https://github.com/facebook/watchman create file clear_watchman_list.rb in HOME folder. 1
+  <meta name="description" content="User Preference: 1
 2
 3
 4
 5
 6
-require &#39;json&#39; result = JSON. &hellip;">
+7
+8
+9
+10
+11
+12
+{ "color_scheme": "Packages/Theme - Cobalt2/cobalt2.tmTheme", "font_face": "Yahei Consolas Hybrid", " &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -83,6 +89,7 @@ require &#39;json&#39; result = JSON. &hellip;">
 <ul class="main-navigation">
   <li><a href="/">Blog</a></li>
   <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/changelog">News Log</a></li>
   <li><a href="/about">About</a></li>
 </ul>
 
@@ -91,6 +98,76 @@ require &#39;json&#39; result = JSON. &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/06/29/my-sublime-custom-config/">My Sublime Custom Config</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-06-29T21:13:46+08:00'><span class='date'>2015-06-29</span> <span class='time'>9:13 pm</span></time>
+        
+           | <a href="/blog/2015/06/29/my-sublime-custom-config/#disqus_thread"
+             data-disqus-identifier="http://weilluo.github.io/blog/2015/06/29/my-sublime-custom-config/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><ul>
+  <li>User Preference:</li>
+</ul>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">{
+</span><span class="line">  "color_scheme": "Packages/Theme - Cobalt2/cobalt2.tmTheme",
+</span><span class="line">  "font_face": "Yahei Consolas Hybrid",
+</span><span class="line">  "font_size": 12,
+</span><span class="line">  "save_on_focus_lost": true,
+</span><span class="line">  "tab_size": 2,
+</span><span class="line">  "theme": "Cobalt2.sublime-theme",
+</span><span class="line">  "translate_tabs_to_spaces": true,
+</span><span class="line">  "trim_trailing_white_space_on_save": true,
+</span><span class="line">  // "tmp/*.tmp" is for ember-cli project
+</span><span class="line">  "folder_exclude_patterns": [".svn", ".git", ".hg", "CVS", "tmp/*.tmp"]
+</span><span class="line">}</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<ul>
+  <li>User Key Bindings</li>
+</ul>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">[
+</span><span class="line">  { "keys": ["command+shift+f"], "command": "reindent"}
+</span><span class="line">]</span></code></pre></td></tr></table></div></figure></notextile></div>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -325,61 +402,6 @@ require &#39;json&#39; result = JSON. &hellip;">
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/04/10/free-space-on-mac/">Free Space on Mac.</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-04-10T13:19:53+08:00'><span class='date'>2015-04-10</span> <span class='time'>1:19 pm</span></time>
-        
-           | <a href="/blog/2015/04/10/free-space-on-mac/#disqus_thread"
-             data-disqus-identifier="http://weilluo.github.io/blog/2015/04/10/free-space-on-mac/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><ul>
-  <li>
-    <p>Use <code>sudo du -sh *</code> command to see the folder size in current folder.</p>
-  </li>
-  <li>
-    <p>I found <code>/Library/Application\ Support/Symantec/AntiVirus/</code> folder is very big, almost <code>51GB</code>, and the files in this folder are the backup about kind of daily job. Each of them is greater than <code>200M</code>.</p>
-  </li>
-</ul>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="c"># file list</span>
-</span><span class="line">...
-</span><span class="line">20150401.018   20150405.021   20150407.001   20150408.004   20150409.001   engine.mfst
-</span><span class="line">20150401.032   20150406.009   20150407.017   20150408.018   Signed
-</span><span class="line">20150402.001   20150406.032   20150407.057   20150408.035   SymAPComm.kext
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<ul>
-  <li>I use <code>sudo rm -rf ...</code> command to delete the old backup.</li>
-</ul>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/4">&larr; Older</a>
@@ -397,6 +419,10 @@ require &#39;json&#39; result = JSON. &hellip;">
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2017/04/15/waiting-for-dynamically-loaded-script/">Waiting for Dynamically Loaded Script</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2016/11/17/different-between-include-and-extend-in-ruby/">Different Between Include and Extend in Ruby</a>
       </li>
     
@@ -412,21 +438,17 @@ require &#39;json&#39; result = JSON. &hellip;">
         <a href="/blog/2015/10/29/multiple-ssh-key-add-in-difference-github-account/">Multiple Ssh Key Add in Difference Github Account</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2015/10/19/es6introduction/">ES6 Introduction</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Categories</h1>
-  <div id="category-list"><li><a href='/blog/categories/aws/'>AWS (1)</a></li><li><a href='/blog/categories/css/'>CSS (1)</a></li><li><a href='/blog/categories/disqus/'>DISQUS (1)</a></li><li><a href='/blog/categories/es6/'>ES6 (1)</a></li><li><a href='/blog/categories/git/'>GIT (2)</a></li><li><a href='/blog/categories/javascript/'>JAVASCRIPT (1)</a></li><li><a href='/blog/categories/jenkins/'>JENKINS (1)</a></li><li><a href='/blog/categories/mac/'>MAC (2)</a></li><li><a href='/blog/categories/mongodb/'>MONGODB (1)</a></li><li><a href='/blog/categories/rails/'>RAILS (2)</a></li><li><a href='/blog/categories/ruby/'>RUBY (3)</a></li><li><a href='/blog/categories/shell/'>SHELL (2)</a></li><li><a href='/blog/categories/sinatra/'>SINATRA (1)</a></li><li><a href='/blog/categories/sublime/'>SUBLIME (1)</a></li><li><a href='/blog/categories/swap/'>SWAP (1)</a></li><li><a href='/blog/categories/test/'>TEST (1)</a></li><li><a href='/blog/categories/ubuntu/'>UBUNTU (2)</a></li><li><a href='/blog/categories/watchman/'>WATCHMAN (1)</a></li><li><a href='/blog/categories/shua-ji/'>刷机 (1)</a></li></div>
+  <div id="category-list"><li><a href='/blog/categories/aws/'>AWS (1)</a></li><li><a href='/blog/categories/css/'>CSS (1)</a></li><li><a href='/blog/categories/disqus/'>DISQUS (1)</a></li><li><a href='/blog/categories/es6/'>ES6 (1)</a></li><li><a href='/blog/categories/git/'>GIT (2)</a></li><li><a href='/blog/categories/javascript/'>JAVASCRIPT (2)</a></li><li><a href='/blog/categories/jenkins/'>JENKINS (1)</a></li><li><a href='/blog/categories/mac/'>MAC (2)</a></li><li><a href='/blog/categories/mongodb/'>MONGODB (1)</a></li><li><a href='/blog/categories/rails/'>RAILS (2)</a></li><li><a href='/blog/categories/ruby/'>RUBY (3)</a></li><li><a href='/blog/categories/shell/'>SHELL (2)</a></li><li><a href='/blog/categories/sinatra/'>SINATRA (1)</a></li><li><a href='/blog/categories/sublime/'>SUBLIME (1)</a></li><li><a href='/blog/categories/swap/'>SWAP (1)</a></li><li><a href='/blog/categories/test/'>TEST (1)</a></li><li><a href='/blog/categories/ubuntu/'>UBUNTU (2)</a></li><li><a href='/blog/categories/watchman/'>WATCHMAN (1)</a></li><li><a href='/blog/categories/shua-ji/'>刷机 (1)</a></li></div>
 </section>
 <section>
   <h1>
     <i class="fa fa-tags" aria-hidden="true"></i> Tags
   </h1>
-  <div id="tag-list"><li><a href='/blog/tags/aws/'>aws (1)</a></li><li><a href='/blog/tags/css/'>css (1)</a></li><li><a href='/blog/tags/disqus/'>disqus (1)</a></li><li><a href='/blog/tags/es6/'>es6 (1)</a></li><li><a href='/blog/tags/git/'>git (2)</a></li><li><a href='/blog/tags/javascript/'>javascript (1)</a></li><li><a href='/blog/tags/jenkins/'>jenkins (1)</a></li><li><a href='/blog/tags/mac/'>mac (2)</a></li><li><a href='/blog/tags/mongodb/'>mongodb (1)</a></li><li><a href='/blog/tags/rails/'>rails (2)</a></li><li><a href='/blog/tags/ruby/'>ruby (3)</a></li><li><a href='/blog/tags/shell/'>shell (2)</a></li><li><a href='/blog/tags/sinatra/'>sinatra (1)</a></li><li><a href='/blog/tags/sublime/'>sublime (1)</a></li><li><a href='/blog/tags/swap/'>swap (1)</a></li><li><a href='/blog/tags/test/'>test (1)</a></li><li><a href='/blog/tags/ubuntu/'>ubuntu (2)</a></li><li><a href='/blog/tags/watchman/'>watchman (1)</a></li><li><a href='/blog/tags/shua-ji/'>刷机 (1)</a></li></div>
+  <div id="tag-list"><li><a href='/blog/tags/aws/'>aws (1)</a></li><li><a href='/blog/tags/css/'>css (1)</a></li><li><a href='/blog/tags/disqus/'>disqus (1)</a></li><li><a href='/blog/tags/es6/'>es6 (1)</a></li><li><a href='/blog/tags/git/'>git (2)</a></li><li><a href='/blog/tags/javascript/'>javascript (2)</a></li><li><a href='/blog/tags/jenkins/'>jenkins (1)</a></li><li><a href='/blog/tags/mac/'>mac (2)</a></li><li><a href='/blog/tags/mongodb/'>mongodb (1)</a></li><li><a href='/blog/tags/rails/'>rails (2)</a></li><li><a href='/blog/tags/ruby/'>ruby (3)</a></li><li><a href='/blog/tags/shell/'>shell (2)</a></li><li><a href='/blog/tags/sinatra/'>sinatra (1)</a></li><li><a href='/blog/tags/sublime/'>sublime (1)</a></li><li><a href='/blog/tags/swap/'>swap (1)</a></li><li><a href='/blog/tags/test/'>test (1)</a></li><li><a href='/blog/tags/ubuntu/'>ubuntu (2)</a></li><li><a href='/blog/tags/watchman/'>watchman (1)</a></li><li><a href='/blog/tags/shua-ji/'>刷机 (1)</a></li></div>
 </section>
 
   
@@ -435,7 +457,7 @@ require &#39;json&#39; result = JSON. &hellip;">
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2016 - Wei Luo -
+  Copyright &copy; 2017 - Wei Luo -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

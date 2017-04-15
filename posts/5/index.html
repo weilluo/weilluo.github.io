@@ -9,22 +9,8 @@
   <meta name="author" content="Wei Luo">
 
   
-  <meta name="description" content="rspec.rake 1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-repo_path = &#39;another project absolute path&#39; Bundler.with_clean_env do Dir.chdir repo_path do % &hellip;">
+  <meta name="description" content=" grab the 10 last records with a unique value 1
+@users = User.limit(10).distinct(:first_name).desc(:created_at).map(&amp;:first_name) ">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -92,6 +78,7 @@ repo_path = &#39;another project absolute path&#39; Bundler.with_clean_env do Di
 <ul class="main-navigation">
   <li><a href="/">Blog</a></li>
   <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/changelog">News Log</a></li>
   <li><a href="/about">About</a></li>
 </ul>
 
@@ -100,6 +87,44 @@ repo_path = &#39;another project absolute path&#39; Bundler.with_clean_env do Di
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/01/11/mongoid-query-combination-of-limit-and-order/">Mongoid Query! Combination of Limit and Order</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-01-11T09:29:21+08:00'><span class='date'>2015-01-11</span> <span class='time'>9:29 am</span></time>
+        
+           | <a href="/blog/2015/01/11/mongoid-query-combination-of-limit-and-order/#disqus_thread"
+             data-disqus-identifier="http://weilluo.github.io/blog/2015/01/11/mongoid-query-combination-of-limit-and-order/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><ul>
+  <li>grab the 10 last records with a unique value</li>
+</ul>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="vi">@users</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">distinct</span><span class="p">(</span><span class="ss">:first_name</span><span class="p">)</span><span class="o">.</span><span class="n">desc</span><span class="p">(</span><span class="ss">:created_at</span><span class="p">)</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:first_name</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -368,82 +393,9 @@ repo_path = &#39;another project absolute path&#39; Bundler.with_clean_env do Di
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/11/16/div-centre-with-compass-code/">Div Centre With Compass Code</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-11-16T10:21:20+08:00'><span class='date'>2014-11-16</span> <span class='time'>10:21 am</span></time>
-        
-           | <a href="/blog/2014/11/16/div-centre-with-compass-code/#disqus_thread"
-             data-disqus-identifier="http://weilluo.github.io/blog/2014/11/16/div-centre-with-compass-code/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>It’s <code>compass</code> code:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>SCSS </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-<span class="line-number">18</span>
-<span class="line-number">19</span>
-<span class="line-number">20</span>
-</pre></td><td class="code"><pre><code class="scss"><span class="line"><span class="k">@mixin</span><span class="nf"> centre</span><span class="p">(</span><span class="nv">$axis</span><span class="o">:</span> <span class="s2">&quot;both&quot;</span><span class="p">)</span> <span class="p">{</span>
-</span><span class="line"><span class="err"> </span> <span class="nt">position</span><span class="nd">:absolute</span><span class="o">;</span>
-</span><span class="line"><span class="err"> </span> <span class="o">@</span><span class="nt">if</span> <span class="err">$</span><span class="nt">axis</span> <span class="o">==</span> <span class="s2">&quot;y&quot;</span> <span class="p">{</span>
-</span><span class="line"><span class="na"> </span><span class="err"> </span><span class="na"> </span><span class="err"> </span><span class="na">top</span><span class="o">:</span> <span class="mi">50</span><span class="kt">%</span><span class="p">;</span>
-</span><span class="line"><span class="err"> </span> <span class="err"> </span> <span class="o">@</span><span class="nt">include</span> <span class="nt">translateY</span><span class="o">(</span><span class="nt">-50</span><span class="err">%</span><span class="o">);</span>
-</span><span class="line"><span class="err"> </span> <span class="p">}</span>
-</span><span class="line"><span class="err"> </span> <span class="o">@</span><span class="nt">if</span> <span class="err">$</span><span class="nt">axis</span> <span class="o">==</span> <span class="s2">&quot;x&quot;</span> <span class="p">{</span>
-</span><span class="line"><span class="na"> </span><span class="err"> </span><span class="na"> </span><span class="err"> </span><span class="na">left</span><span class="o">:</span> <span class="mi">50</span><span class="kt">%</span><span class="p">;</span>
-</span><span class="line"><span class="err"> </span> <span class="err"> </span> <span class="o">@</span><span class="nt">include</span> <span class="nt">translateX</span><span class="o">(</span><span class="nt">-50</span><span class="err">%</span><span class="o">);</span>
-</span><span class="line"><span class="err"> </span> <span class="p">}</span>
-</span><span class="line"><span class="err"> </span> <span class="o">@</span><span class="nt">if</span> <span class="err">$</span><span class="nt">axis</span> <span class="o">==</span> <span class="s2">&quot;both&quot;</span> <span class="p">{</span>
-</span><span class="line"><span class="na"> </span><span class="err"> </span><span class="na"> </span><span class="err"> </span><span class="na">top</span><span class="o">:</span> <span class="mi">50</span><span class="kt">%</span><span class="p">;</span>
-</span><span class="line"><span class="na"> </span><span class="err"> </span><span class="na"> </span><span class="err"> </span><span class="na">left</span><span class="o">:</span> <span class="mi">50</span><span class="kt">%</span><span class="p">;</span>
-</span><span class="line"><span class="err"> </span> <span class="err"> </span> <span class="o">@</span><span class="nt">include</span> <span class="nt">translate</span><span class="o">(</span><span class="nt">-50</span><span class="err">%</span><span class="o">,</span> <span class="nt">-50</span><span class="err">%</span><span class="o">);</span>
-</span><span class="line"><span class="err"> </span> <span class="p">}</span>
-</span><span class="line"><span class="p">}</span>
-</span><span class="line">
-</span><span class="line"><span class="nt">div</span> <span class="p">{</span>
-</span><span class="line"><span class="err"> </span> <span class="o">@</span><span class="nt">include</span> <span class="nt">centre</span><span class="o">(</span><span class="s1">&#39;</span><span class="s2">x&#39;</span><span class="o">)</span>
-</span><span class="line"><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
+    
+      <a class="prev" href="/posts/6">&larr; Older</a>
     
     <a href="/blog/archives">Blog Archives</a>
     
@@ -456,6 +408,10 @@ repo_path = &#39;another project absolute path&#39; Bundler.with_clean_env do Di
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2017/04/15/waiting-for-dynamically-loaded-script/">Waiting for Dynamically Loaded Script</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2016/11/17/different-between-include-and-extend-in-ruby/">Different Between Include and Extend in Ruby</a>
@@ -473,21 +429,17 @@ repo_path = &#39;another project absolute path&#39; Bundler.with_clean_env do Di
         <a href="/blog/2015/10/29/multiple-ssh-key-add-in-difference-github-account/">Multiple Ssh Key Add in Difference Github Account</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2015/10/19/es6introduction/">ES6 Introduction</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Categories</h1>
-  <div id="category-list"><li><a href='/blog/categories/aws/'>AWS (1)</a></li><li><a href='/blog/categories/css/'>CSS (1)</a></li><li><a href='/blog/categories/disqus/'>DISQUS (1)</a></li><li><a href='/blog/categories/es6/'>ES6 (1)</a></li><li><a href='/blog/categories/git/'>GIT (2)</a></li><li><a href='/blog/categories/javascript/'>JAVASCRIPT (1)</a></li><li><a href='/blog/categories/jenkins/'>JENKINS (1)</a></li><li><a href='/blog/categories/mac/'>MAC (2)</a></li><li><a href='/blog/categories/mongodb/'>MONGODB (1)</a></li><li><a href='/blog/categories/rails/'>RAILS (2)</a></li><li><a href='/blog/categories/ruby/'>RUBY (3)</a></li><li><a href='/blog/categories/shell/'>SHELL (2)</a></li><li><a href='/blog/categories/sinatra/'>SINATRA (1)</a></li><li><a href='/blog/categories/sublime/'>SUBLIME (1)</a></li><li><a href='/blog/categories/swap/'>SWAP (1)</a></li><li><a href='/blog/categories/test/'>TEST (1)</a></li><li><a href='/blog/categories/ubuntu/'>UBUNTU (2)</a></li><li><a href='/blog/categories/watchman/'>WATCHMAN (1)</a></li><li><a href='/blog/categories/shua-ji/'>刷机 (1)</a></li></div>
+  <div id="category-list"><li><a href='/blog/categories/aws/'>AWS (1)</a></li><li><a href='/blog/categories/css/'>CSS (1)</a></li><li><a href='/blog/categories/disqus/'>DISQUS (1)</a></li><li><a href='/blog/categories/es6/'>ES6 (1)</a></li><li><a href='/blog/categories/git/'>GIT (2)</a></li><li><a href='/blog/categories/javascript/'>JAVASCRIPT (2)</a></li><li><a href='/blog/categories/jenkins/'>JENKINS (1)</a></li><li><a href='/blog/categories/mac/'>MAC (2)</a></li><li><a href='/blog/categories/mongodb/'>MONGODB (1)</a></li><li><a href='/blog/categories/rails/'>RAILS (2)</a></li><li><a href='/blog/categories/ruby/'>RUBY (3)</a></li><li><a href='/blog/categories/shell/'>SHELL (2)</a></li><li><a href='/blog/categories/sinatra/'>SINATRA (1)</a></li><li><a href='/blog/categories/sublime/'>SUBLIME (1)</a></li><li><a href='/blog/categories/swap/'>SWAP (1)</a></li><li><a href='/blog/categories/test/'>TEST (1)</a></li><li><a href='/blog/categories/ubuntu/'>UBUNTU (2)</a></li><li><a href='/blog/categories/watchman/'>WATCHMAN (1)</a></li><li><a href='/blog/categories/shua-ji/'>刷机 (1)</a></li></div>
 </section>
 <section>
   <h1>
     <i class="fa fa-tags" aria-hidden="true"></i> Tags
   </h1>
-  <div id="tag-list"><li><a href='/blog/tags/aws/'>aws (1)</a></li><li><a href='/blog/tags/css/'>css (1)</a></li><li><a href='/blog/tags/disqus/'>disqus (1)</a></li><li><a href='/blog/tags/es6/'>es6 (1)</a></li><li><a href='/blog/tags/git/'>git (2)</a></li><li><a href='/blog/tags/javascript/'>javascript (1)</a></li><li><a href='/blog/tags/jenkins/'>jenkins (1)</a></li><li><a href='/blog/tags/mac/'>mac (2)</a></li><li><a href='/blog/tags/mongodb/'>mongodb (1)</a></li><li><a href='/blog/tags/rails/'>rails (2)</a></li><li><a href='/blog/tags/ruby/'>ruby (3)</a></li><li><a href='/blog/tags/shell/'>shell (2)</a></li><li><a href='/blog/tags/sinatra/'>sinatra (1)</a></li><li><a href='/blog/tags/sublime/'>sublime (1)</a></li><li><a href='/blog/tags/swap/'>swap (1)</a></li><li><a href='/blog/tags/test/'>test (1)</a></li><li><a href='/blog/tags/ubuntu/'>ubuntu (2)</a></li><li><a href='/blog/tags/watchman/'>watchman (1)</a></li><li><a href='/blog/tags/shua-ji/'>刷机 (1)</a></li></div>
+  <div id="tag-list"><li><a href='/blog/tags/aws/'>aws (1)</a></li><li><a href='/blog/tags/css/'>css (1)</a></li><li><a href='/blog/tags/disqus/'>disqus (1)</a></li><li><a href='/blog/tags/es6/'>es6 (1)</a></li><li><a href='/blog/tags/git/'>git (2)</a></li><li><a href='/blog/tags/javascript/'>javascript (2)</a></li><li><a href='/blog/tags/jenkins/'>jenkins (1)</a></li><li><a href='/blog/tags/mac/'>mac (2)</a></li><li><a href='/blog/tags/mongodb/'>mongodb (1)</a></li><li><a href='/blog/tags/rails/'>rails (2)</a></li><li><a href='/blog/tags/ruby/'>ruby (3)</a></li><li><a href='/blog/tags/shell/'>shell (2)</a></li><li><a href='/blog/tags/sinatra/'>sinatra (1)</a></li><li><a href='/blog/tags/sublime/'>sublime (1)</a></li><li><a href='/blog/tags/swap/'>swap (1)</a></li><li><a href='/blog/tags/test/'>test (1)</a></li><li><a href='/blog/tags/ubuntu/'>ubuntu (2)</a></li><li><a href='/blog/tags/watchman/'>watchman (1)</a></li><li><a href='/blog/tags/shua-ji/'>刷机 (1)</a></li></div>
 </section>
 
   
@@ -496,7 +448,7 @@ repo_path = &#39;another project absolute path&#39; Bundler.with_clean_env do Di
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2016 - Wei Luo -
+  Copyright &copy; 2017 - Wei Luo -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

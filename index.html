@@ -9,12 +9,7 @@
   <meta name="author" content="Wei Luo">
 
   
-  <meta name="description" content="Example 1module AAA 2 def aaa 3 puts &quot;aaa&quot; 4 end 5 6 def self.bbb 7 puts &quot;bbb&quot; 8 end 9end
-10
-11class C1
-12 include AAA
-13end
-14 &hellip;">
+  <meta name="description" content="Historically, &lt;script&gt; tags are full blocking, hence the second &lt;script&gt; tag can’t get encountered befored the former has finished &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -82,6 +77,7 @@
 <ul class="main-navigation">
   <li><a href="/">Blog</a></li>
   <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/changelog">News Log</a></li>
   <li><a href="/about">About</a></li>
 </ul>
 
@@ -90,6 +86,145 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2017/04/15/waiting-for-dynamically-loaded-script/">Waiting for Dynamically Loaded Script</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2017-04-15T09:37:54+08:00'><span class='date'>2017-04-15</span> <span class='time'>9:37 am</span></time>
+        
+           | <a href="/blog/2017/04/15/waiting-for-dynamically-loaded-script/#disqus_thread"
+             data-disqus-identifier="http://weilluo.github.io/blog/2017/04/15/waiting-for-dynamically-loaded-script/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Historically, <code>&lt;script&gt;</code> tags are full blocking, hence the second <code>&lt;script&gt;</code> tag can’t get encountered befored the former has finished parsing/excuting. Only problem might be that <code>modern</code> browsers tend to load scripts asynchronously and deferred. So to make sure order is correct, use it like this:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Snippet </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+</pre></td><td class="code"><pre><code class="html"><span class="line"><span class="nt">&lt;p&gt;</span>Loading jQuery<span class="nt">&lt;/p&gt;</span>
+</span><span class="line"><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&#39;text/javascript&#39;</span> <span class="na">async=</span><span class="s">false</span> <span class="na">defer=</span><span class="s">false</span> <span class="na">src=</span><span class="s">&#39;scripts/jquery/core/jquery-1.4.4.js&#39;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</span><span class="line"><span class="nt">&lt;p&gt;</span>Using jQuery<span class="nt">&lt;/p&gt;</span>
+</span><span class="line"><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&#39;text/javascript&#39;</span><span class="nt">&gt;</span>
+</span><span class="line">    <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+</span><span class="line">        <span class="p">...</span>
+</span><span class="line">    <span class="p">});</span>
+</span><span class="line"><span class="nt">&lt;/script&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<hr />
+
+<h3 id="plain-script-elements">Plain script elements</h3>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td><td class="code"><pre><code class="html"><span class="line"><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;//other-domain.com/1.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</span><span class="line"><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;2.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p><strong>Spec says:</strong> Download together, execute in order after any pending CSS, block rendering until complete.</p>
+
+<p><strong>Browsers say:</strong> Yes sir!</p>
+
+<h3 id="defer">Defer</h3>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td><td class="code"><pre><code class="html"><span class="line"><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;//other-domain.com/1.js&quot;</span> <span class="na">defer</span><span class="nt">&gt;&lt;/script&gt;</span>
+</span><span class="line"><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;2.js&quot;</span> <span class="na">defer</span><span class="nt">&gt;&lt;/script&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p><strong>Spec says:</strong> Download together, execute in order just before DOMContentLoaded. Ignore <code>defer</code> on scripts without <code>src</code>.</p>
+
+<p><strong>IE &lt; 10 says</strong>: I might execute 2.js halfway through the execution of 1.js. Isn’t that fun??</p>
+
+<p><strong>The <a href="http://caniuse.com/#search=defer">browsers in red</a> say</strong>: I have no idea what this <code>defer</code> thing is, I’m going to load the scripts as if it weren’t there.</p>
+
+<p><strong>Other browsers say:</strong> Ok, but I might not ignore <code>defer</code> on scripts without <code>src</code>.</p>
+
+<h3 id="async">Async</h3>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td><td class="code"><pre><code class="html"><span class="line"><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;//other-domain.com/1.js&quot;</span> <span class="na">async</span><span class="nt">&gt;&lt;/script&gt;</span>
+</span><span class="line"><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;2.js&quot;</span> <span class="na">async</span><span class="nt">&gt;&lt;/script&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p><strong>Spec says:</strong> Download together, execute in whatever order they download in.</p>
+
+<p><strong>The <a href="http://caniuse.com/#search=defer">browsers in red</a> say</strong>: What’s <code>async</code>? I’m going to load the scripts as if it weren’t there..</p>
+
+<p><strong>Other browsers say:</strong> Yeah, ok.</p>
+
+<h3 id="async-false">Async false</h3>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+</pre></td><td class="code"><pre><code class="javascript"><span class="line"><span class="p">[</span>
+</span><span class="line">  <span class="s1">&#39;1.js&#39;</span><span class="p">,</span>
+</span><span class="line">  <span class="s1">&#39;2.js&#39;</span>
+</span><span class="line"><span class="p">].</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">src</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">  <span class="kd">var</span> <span class="nx">script</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;script&#39;</span><span class="p">);</span>
+</span><span class="line">  <span class="nx">script</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="nx">src</span><span class="p">;</span>
+</span><span class="line">  <span class="nx">script</span><span class="p">.</span><span class="nx">async</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+</span><span class="line">  <span class="nb">document</span><span class="p">.</span><span class="nx">head</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">script</span><span class="p">);</span>
+</span><span class="line"><span class="p">});</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p><strong>Spec says:</strong> Download together, execute in order as soon as all download.</p>
+
+<p><strong>Firefox &lt; 3.6, Opera says:</strong> I have no idea what this <code>async</code> thing is, but it just so happens I execute scripts added via JS in the order they’re added.</p>
+
+<p><strong>Safari 5.0 says:</strong>  I understand <code>async</code>, but don’t understand setting it to <code>false</code> with JS. I’ll execute your scripts as soon as they land, in whatever order.</p>
+
+<p><strong>IE &lt; 10 says:</strong> No idea about <code>async</code>, but there is a workaround using <code>onreadystatechange</code>.</p>
+
+<p><strong>The <a href="http://caniuse.com/#search=defer">browsers in red</a> say</strong>: I don’t understand this <code>async</code> thing, I’ll execute your scripts as soon as they land, in whatever order.</p>
+
+<p><strong>Everything else says:</strong> I’m your friend, we’re going to do this by the book.</p>
+
+<hr />
+
+<p>Reference:</p>
+
+<p><a href="http://stackoverflow.com/questions/7308908/waiting-for-dynamically-loaded-script">http://stackoverflow.com/questions/7308908/waiting-for-dynamically-loaded-script</a></p>
+
+<p><a href="https://www.html5rocks.com/en/tutorials/speed/script-loading/">https://www.html5rocks.com/en/tutorials/speed/script-loading</a></p>
+
+<p>Modern browsers only execute scripts asyncrounously or deferred if async and defer has been specified. <code>async=false</code> and <code>defer=false</code> is completely unnecessary in HTML. However, scripts that are dynamically created have async set to <code>true</code> by default, which is why you need the <code>async = false</code>.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -452,381 +587,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/10/19/es6introduction/">ES6 Introduction</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-10-19T23:12:47+08:00'><span class='date'>2015-10-19</span> <span class='time'>11:12 pm</span></time>
-        
-           | <a href="/blog/2015/10/19/es6introduction/#disqus_thread"
-             data-disqus-identifier="http://weilluo.github.io/blog/2015/10/19/es6introduction/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2 id="what-is-es6">What is ES6?</h2>
-
-<p>It’s <code>ECMAScript 6</code>, the standard of the next generation of javascript. Now <code>ECMAScript 6</code> is renamed to ECMAScript 2015, that mean it was released in 2015.</p>
-
-<p><code>ECMAScript</code> is a specification, <code>Javascript</code> is an implementation.</p>
-
-<p><a href="http://www.ecma-international.org/">ECMA</a> is an international, they standardize the scripting language.</p>
-
-<p>There are <a href="https://en.wikipedia.org/wiki/ECMAScript#Versions">released versions</a> of <code>ECMAScript</code>.</p>
-
-<p>Other little languages compile into javascript, such as <a href="http://coffeescript.org/">CoffeeScript</a>, <a href="http://www.typescriptlang.org/">TypeScript</a>.</p>
-
-<h2 id="new-features">New features</h2>
-
-<ul>
-  <li>Constants</li>
-</ul>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption class="code-header"><span>ECMAScript 6 </span></figcaption>
- <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers">1</span>const PI = <span class="float">3.14</span>
-<span class="line-numbers">2</span>PI &gt; <span class="float">3.0</span>
-</pre></div>
-</div>
- </figure></notextile></div>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>ECMAScript 5 </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-</pre></td><td class="code"><pre><code class="javascript"><span class="line"><span class="c1">//  only in ES5 through the help of object properties</span>
-</span><span class="line"><span class="c1">//  and only in global context and not in a block scope</span>
-</span><span class="line"><span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">global</span> <span class="o">===</span> <span class="s2">&quot;object&quot;</span> <span class="o">?</span> <span class="nx">global</span> <span class="o">:</span> <span class="nb">window</span><span class="p">,</span> <span class="s2">&quot;PI&quot;</span><span class="p">,</span> <span class="p">{</span>
-</span><span class="line">    <span class="nx">value</span><span class="o">:</span>        <span class="mf">3.141593</span><span class="p">,</span>
-</span><span class="line">    <span class="nx">enumerable</span><span class="o">:</span>   <span class="kc">true</span><span class="p">,</span>
-</span><span class="line">    <span class="nx">writable</span><span class="o">:</span>     <span class="kc">false</span><span class="p">,</span>
-</span><span class="line">    <span class="nx">configurable</span><span class="o">:</span> <span class="kc">false</span>
-</span><span class="line"><span class="p">})</span>
-</span><span class="line"><span class="nx">PI</span> <span class="o">&gt;</span> <span class="mf">3.0</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<ul>
-  <li>Arrow Functions</li>
-</ul>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption class="code-header"><span>ECMAScript 6 </span></figcaption>
- <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers">1</span>odds  = evens.map(v =&gt; v + <span class="integer">1</span>)
-<span class="line-numbers">2</span>pairs = evens.map(v =&gt; ({ <span class="key">even</span>: v, <span class="key">odd</span>: v + <span class="integer">1</span> }))
-<span class="line-numbers">3</span>nums  = evens.map((v, i) =&gt; v + i)
-</pre></div>
-</div>
- </figure></notextile></div>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>ECMAScript 5 </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-</pre></td><td class="code"><pre><code class="javascript"><span class="line"><span class="nx">odds</span>  <span class="o">=</span> <span class="nx">evens</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">v</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span> <span class="p">});</span>
-</span><span class="line"><span class="nx">pairs</span> <span class="o">=</span> <span class="nx">evens</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="p">{</span> <span class="nx">even</span><span class="o">:</span> <span class="nx">v</span><span class="p">,</span> <span class="nx">odd</span><span class="o">:</span> <span class="nx">v</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">};</span> <span class="p">});</span>
-</span><span class="line"><span class="nx">nums</span>  <span class="o">=</span> <span class="nx">evens</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">v</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">v</span> <span class="o">+</span> <span class="nx">i</span><span class="p">;</span> <span class="p">});</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<ul>
-  <li>Default Parameter Values</li>
-</ul>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption class="code-header"><span>ECMAScript 6 </span></figcaption>
- <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers">1</span><span class="keyword">function</span> <span class="function">f</span> (x, y = <span class="integer">7</span>, z = <span class="integer">42</span>) {
-<span class="line-numbers">2</span>    <span class="keyword">return</span> x + y + z
-<span class="line-numbers">3</span>}
-<span class="line-numbers">4</span>f(<span class="integer">1</span>) === <span class="integer">50</span>
-</pre></div>
-</div>
- </figure></notextile></div>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>ECMAScript 5 </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-</pre></td><td class="code"><pre><code class="javascript"><span class="line"><span class="kd">function</span> <span class="nx">f</span> <span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">z</span><span class="p">)</span> <span class="p">{</span>
-</span><span class="line">    <span class="k">if</span> <span class="p">(</span><span class="nx">y</span> <span class="o">===</span> <span class="kc">undefined</span><span class="p">)</span>
-</span><span class="line">        <span class="nx">y</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
-</span><span class="line">    <span class="k">if</span> <span class="p">(</span><span class="nx">z</span> <span class="o">===</span> <span class="kc">undefined</span><span class="p">)</span>
-</span><span class="line">        <span class="nx">z</span> <span class="o">=</span> <span class="mi">42</span><span class="p">;</span>
-</span><span class="line">    <span class="k">return</span> <span class="nx">x</span> <span class="o">+</span> <span class="nx">y</span> <span class="o">+</span> <span class="nx">z</span><span class="p">;</span>
-</span><span class="line"><span class="p">};</span>
-</span><span class="line"><span class="nx">f</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">===</span> <span class="mi">50</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<ul>
-  <li>Enhanced Object Properties</li>
-</ul>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption class="code-header"><span>ECMAScript 6 </span></figcaption>
- <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"> 1</span><span class="comment">// Property Shorthand</span>
-<span class="line-numbers"> 2</span>obj = { x, y }
-<span class="line-numbers"> 3</span>
-<span class="line-numbers"> 4</span><span class="comment">// Computed Property Names</span>
-<span class="line-numbers"> 5</span>obj = {
-<span class="line-numbers"> 6</span>    <span class="key">foo</span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">bar</span><span class="delimiter">&quot;</span></span>,
-<span class="line-numbers"> 7</span>    [ <span class="string"><span class="delimiter">&quot;</span><span class="content">prop_</span><span class="delimiter">&quot;</span></span> + foo() ]: <span class="integer">42</span>
-<span class="line-numbers"> 8</span>}
-<span class="line-numbers"> 9</span>
-<span class="line-numbers"><strong>10</strong></span><span class="comment">// Method Properties</span>
-<span class="line-numbers">11</span>obj = {
-<span class="line-numbers">12</span>    foo (a, b) {
-<span class="line-numbers">13</span>        <span class="error">…</span>
-<span class="line-numbers">14</span>    },
-<span class="line-numbers">15</span>    bar (x, y) {
-<span class="line-numbers">16</span>        <span class="error">…</span>
-<span class="line-numbers">17</span>    },
-<span class="line-numbers">18</span>    *quux (x, y) {
-<span class="line-numbers">19</span>        <span class="error">…</span>
-<span class="line-numbers"><strong>20</strong></span>    }
-<span class="line-numbers">21</span>}
-</pre></div>
-</div>
- </figure></notextile></div>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>ECMAScript 5 </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-<span class="line-number">18</span>
-<span class="line-number">19</span>
-</pre></td><td class="code"><pre><code class="javascript"><span class="line"><span class="c1">// Property Shorthand</span>
-</span><span class="line"><span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">x</span><span class="o">:</span> <span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="o">:</span> <span class="nx">y</span> <span class="p">};</span>
-</span><span class="line">
-</span><span class="line"><span class="c1">// Computed Property Names</span>
-</span><span class="line"><span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
-</span><span class="line">    <span class="nx">foo</span><span class="o">:</span> <span class="s2">&quot;bar&quot;</span>
-</span><span class="line"><span class="p">};</span>
-</span><span class="line"><span class="nx">obj</span><span class="p">[</span> <span class="s2">&quot;prop_&quot;</span> <span class="o">+</span> <span class="nx">foo</span><span class="p">()</span> <span class="p">]</span> <span class="o">=</span> <span class="mi">42</span><span class="p">;</span>
-</span><span class="line">
-</span><span class="line"><span class="c1">// Method Properties</span>
-</span><span class="line"><span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
-</span><span class="line">    <span class="nx">foo</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
-</span><span class="line">        <span class="err">…</span>
-</span><span class="line">    <span class="p">},</span>
-</span><span class="line">    <span class="nx">bar</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
-</span><span class="line">        <span class="err">…</span>
-</span><span class="line">    <span class="p">},</span>
-</span><span class="line">    <span class="c1">//  quux: no equivalent in ES5</span>
-</span><span class="line"><span class="p">};</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<ul>
-  <li>Modules</li>
-</ul>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption class="code-header"><span>ECMAScript 6 </span></figcaption>
- <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"> 1</span><span class="comment">//  lib/math.js</span>
-<span class="line-numbers"> 2</span><span class="reserved">export</span> <span class="keyword">function</span> <span class="function">sum</span> (x, y) { <span class="keyword">return</span> x + y }
-<span class="line-numbers"> 3</span><span class="reserved">export</span> <span class="keyword">var</span> pi = <span class="float">3.141593</span>
-<span class="line-numbers"> 4</span>
-<span class="line-numbers"> 5</span><span class="comment">//  someApp.js</span>
-<span class="line-numbers"> 6</span><span class="reserved">import</span> * as math from <span class="string"><span class="delimiter">&quot;</span><span class="content">lib/math</span><span class="delimiter">&quot;</span></span>
-<span class="line-numbers"> 7</span>console.log(<span class="string"><span class="delimiter">&quot;</span><span class="content">2π = </span><span class="delimiter">&quot;</span></span> + math.sum(math.pi, math.pi))
-<span class="line-numbers"> 8</span>
-<span class="line-numbers"> 9</span><span class="comment">//  otherApp.js</span>
-<span class="line-numbers"><strong>10</strong></span><span class="reserved">import</span> { sum, pi } from <span class="string"><span class="delimiter">&quot;</span><span class="content">lib/math</span><span class="delimiter">&quot;</span></span>
-<span class="line-numbers">11</span>console.log(<span class="string"><span class="delimiter">&quot;</span><span class="content">2π = </span><span class="delimiter">&quot;</span></span> + sum(pi, pi))
-</pre></div>
-</div>
- </figure></notextile></div>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>ECMAScript 5 </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-</pre></td><td class="code"><pre><code class="javascript"><span class="line"><span class="c1">//  lib/math.js</span>
-</span><span class="line"><span class="nx">LibMath</span> <span class="o">=</span> <span class="p">{};</span>
-</span><span class="line"><span class="nx">LibMath</span><span class="p">.</span><span class="nx">sum</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">x</span> <span class="o">+</span> <span class="nx">y</span> <span class="p">};</span>
-</span><span class="line"><span class="nx">LibMath</span><span class="p">.</span><span class="nx">pi</span> <span class="o">=</span> <span class="mf">3.141593</span><span class="p">;</span>
-</span><span class="line">
-</span><span class="line"><span class="c1">//  someApp.js</span>
-</span><span class="line"><span class="kd">var</span> <span class="nx">math</span> <span class="o">=</span> <span class="nx">LibMath</span><span class="p">;</span>
-</span><span class="line"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;2π = &quot;</span> <span class="o">+</span> <span class="nx">math</span><span class="p">.</span><span class="nx">sum</span><span class="p">(</span><span class="nx">math</span><span class="p">.</span><span class="nx">pi</span><span class="p">,</span> <span class="nx">math</span><span class="p">.</span><span class="nx">pi</span><span class="p">));</span>
-</span><span class="line">
-</span><span class="line"><span class="c1">//  otherApp.js</span>
-</span><span class="line"><span class="kd">var</span> <span class="nx">sum</span> <span class="o">=</span> <span class="nx">LibMath</span><span class="p">.</span><span class="nx">sum</span><span class="p">,</span> <span class="nx">pi</span> <span class="o">=</span> <span class="nx">LibMath</span><span class="p">.</span><span class="nx">pi</span><span class="p">;</span>
-</span><span class="line"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;2π = &quot;</span> <span class="o">+</span> <span class="nx">sum</span><span class="p">(</span><span class="nx">pi</span><span class="p">,</span> <span class="nx">pi</span><span class="p">));</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<ul>
-  <li>Classes</li>
-</ul>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption class="code-header"><span>ECMAScript 6 </span></figcaption>
- <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"> 1</span><span class="reserved">class</span> Shape {
-<span class="line-numbers"> 2</span>    constructor (id, x, y) {
-<span class="line-numbers"> 3</span>        <span class="local-variable">this</span>.id = id
-<span class="line-numbers"> 4</span>        <span class="local-variable">this</span>.move(x, y)
-<span class="line-numbers"> 5</span>    }
-<span class="line-numbers"> 6</span>    move (x, y) {
-<span class="line-numbers"> 7</span>        <span class="local-variable">this</span>.x = x
-<span class="line-numbers"> 8</span>        <span class="local-variable">this</span>.y = y
-<span class="line-numbers"> 9</span>    }
-<span class="line-numbers"><strong>10</strong></span>}
-</pre></div>
-</div>
- </figure></notextile></div>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>ECMAScript 5 </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-</pre></td><td class="code"><pre><code class="javascript"><span class="line"><span class="kd">var</span> <span class="nx">Shape</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">id</span><span class="p">,</span> <span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
-</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">id</span> <span class="o">=</span> <span class="nx">id</span><span class="p">;</span>
-</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">move</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">);</span>
-</span><span class="line"><span class="p">};</span>
-</span><span class="line"><span class="nx">Shape</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">move</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
-</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="nx">x</span><span class="p">;</span>
-</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">y</span> <span class="o">=</span> <span class="nx">y</span><span class="p">;</span>
-</span><span class="line"><span class="p">};</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<ul>
-  <li>Generator Functions</li>
-</ul>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption class="code-header"><span>ECMAScript 6 </span></figcaption>
- <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"> 1</span><span class="keyword">function</span>* idMaker(){
-<span class="line-numbers"> 2</span>  <span class="keyword">var</span> index = <span class="integer">0</span>;
-<span class="line-numbers"> 3</span>  <span class="keyword">while</span>(index &lt; <span class="integer">3</span>)
-<span class="line-numbers"> 4</span>    yield index++;
-<span class="line-numbers"> 5</span>}
-<span class="line-numbers"> 6</span>
-<span class="line-numbers"> 7</span><span class="keyword">var</span> gen = idMaker();
-<span class="line-numbers"> 8</span>
-<span class="line-numbers"> 9</span>console.log(gen.next().value); <span class="comment">// 0</span>
-<span class="line-numbers"><strong>10</strong></span>console.log(gen.next().value); <span class="comment">// 1</span>
-<span class="line-numbers">11</span>console.log(gen.next().value); <span class="comment">// 2</span>
-<span class="line-numbers">12</span>console.log(gen.next().value); <span class="comment">// undefined</span>
-</pre></div>
-</div>
- </figure></notextile></div>
-
-<ul>
-  <li>Spread operator</li>
-</ul>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption class="code-header"><span>ECMAScript 6 </span></figcaption>
- <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"> 1</span><span class="keyword">function</span> <span class="function">add</span>(a, b) {
-<span class="line-numbers"> 2</span>  <span class="keyword">return</span> a + b;
-<span class="line-numbers"> 3</span>}
-<span class="line-numbers"> 4</span>
-<span class="line-numbers"> 5</span>let nums = [<span class="integer">5</span>, <span class="integer">4</span>];
-<span class="line-numbers"> 6</span>
-<span class="line-numbers"> 7</span>console.log(add(...nums));
-<span class="line-numbers"> 8</span>
-<span class="line-numbers"> 9</span>let foo = <span class="string"><span class="delimiter">&quot;</span><span class="content">foo</span><span class="delimiter">&quot;</span></span>
-<span class="line-numbers"><strong>10</strong></span>let chars = [ ...str ] <span class="comment">// [ &quot;f&quot;, &quot;o&quot;, &quot;o&quot; ]</span>
-</pre></div>
-</div>
- </figure></notextile></div>
-
-<ul>
-  <li>Proxying</li>
-</ul>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption class="code-header"><span>ECMAScript 6 </span></figcaption>
- <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"> 1</span>let target = {
-<span class="line-numbers"> 2</span>    <span class="key">foo</span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Welcome, foo</span><span class="delimiter">&quot;</span></span>
-<span class="line-numbers"> 3</span>}
-<span class="line-numbers"> 4</span>let proxy = <span class="keyword">new</span> Proxy(target, {
-<span class="line-numbers"> 5</span>    get (receiver, name) {
-<span class="line-numbers"> 6</span>        <span class="keyword">return</span> name <span class="keyword">in</span> receiver ? receiver[name] : <span class="error">`</span>Hello, <span class="predefined">$</span>{name}<span class="error">`</span>
-<span class="line-numbers"> 7</span>    }
-<span class="line-numbers"> 8</span>})
-<span class="line-numbers"> 9</span>proxy.foo   === <span class="string"><span class="delimiter">&quot;</span><span class="content">Welcome, foo</span><span class="delimiter">&quot;</span></span>
-<span class="line-numbers"><strong>10</strong></span>proxy.world === <span class="string"><span class="delimiter">&quot;</span><span class="content">Hello, world</span><span class="delimiter">&quot;</span></span>
-</pre></div>
-</div>
- </figure></notextile></div>
-
-<ul>
-  <li>Map and Set Data-Structure</li>
-</ul>
-
-<p>To see more, we could visit, <a href="http://es6-features.org/#Constants">ECMAScript 6 — New Features: Overview &amp; Comparison</a></p>
-
-<h2 id="compile">Compile</h2>
-
-<p>Compile ES6 to ES5.</p>
-
-<p>Why need <code>compile</code>? because the <a href="http://kangax.github.io/compat-table/es6/">browser support of ES6</a> isn’t enough.</p>
-
-<ul>
-  <li><a href="https://babeljs.io/">Babel</a></li>
-</ul>
-
-<p><code>Babel</code> is a new name of <code>ES6to5</code>. It can integrate with many js / node frameworks.</p>
-
-<h2 id="conclusion">Conclusion</h2>
-
-<p>OK, let’s start ES6 now!!!</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -840,6 +600,10 @@
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2017/04/15/waiting-for-dynamically-loaded-script/">Waiting for Dynamically Loaded Script</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2016/11/17/different-between-include-and-extend-in-ruby/">Different Between Include and Extend in Ruby</a>
@@ -857,21 +621,17 @@
         <a href="/blog/2015/10/29/multiple-ssh-key-add-in-difference-github-account/">Multiple Ssh Key Add in Difference Github Account</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2015/10/19/es6introduction/">ES6 Introduction</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Categories</h1>
-  <div id="category-list"><li><a href='/blog/categories/aws/'>AWS (1)</a></li><li><a href='/blog/categories/css/'>CSS (1)</a></li><li><a href='/blog/categories/disqus/'>DISQUS (1)</a></li><li><a href='/blog/categories/es6/'>ES6 (1)</a></li><li><a href='/blog/categories/git/'>GIT (2)</a></li><li><a href='/blog/categories/javascript/'>JAVASCRIPT (1)</a></li><li><a href='/blog/categories/jenkins/'>JENKINS (1)</a></li><li><a href='/blog/categories/mac/'>MAC (2)</a></li><li><a href='/blog/categories/mongodb/'>MONGODB (1)</a></li><li><a href='/blog/categories/rails/'>RAILS (2)</a></li><li><a href='/blog/categories/ruby/'>RUBY (3)</a></li><li><a href='/blog/categories/shell/'>SHELL (2)</a></li><li><a href='/blog/categories/sinatra/'>SINATRA (1)</a></li><li><a href='/blog/categories/sublime/'>SUBLIME (1)</a></li><li><a href='/blog/categories/swap/'>SWAP (1)</a></li><li><a href='/blog/categories/test/'>TEST (1)</a></li><li><a href='/blog/categories/ubuntu/'>UBUNTU (2)</a></li><li><a href='/blog/categories/watchman/'>WATCHMAN (1)</a></li><li><a href='/blog/categories/shua-ji/'>刷机 (1)</a></li></div>
+  <div id="category-list"><li><a href='/blog/categories/aws/'>AWS (1)</a></li><li><a href='/blog/categories/css/'>CSS (1)</a></li><li><a href='/blog/categories/disqus/'>DISQUS (1)</a></li><li><a href='/blog/categories/es6/'>ES6 (1)</a></li><li><a href='/blog/categories/git/'>GIT (2)</a></li><li><a href='/blog/categories/javascript/'>JAVASCRIPT (2)</a></li><li><a href='/blog/categories/jenkins/'>JENKINS (1)</a></li><li><a href='/blog/categories/mac/'>MAC (2)</a></li><li><a href='/blog/categories/mongodb/'>MONGODB (1)</a></li><li><a href='/blog/categories/rails/'>RAILS (2)</a></li><li><a href='/blog/categories/ruby/'>RUBY (3)</a></li><li><a href='/blog/categories/shell/'>SHELL (2)</a></li><li><a href='/blog/categories/sinatra/'>SINATRA (1)</a></li><li><a href='/blog/categories/sublime/'>SUBLIME (1)</a></li><li><a href='/blog/categories/swap/'>SWAP (1)</a></li><li><a href='/blog/categories/test/'>TEST (1)</a></li><li><a href='/blog/categories/ubuntu/'>UBUNTU (2)</a></li><li><a href='/blog/categories/watchman/'>WATCHMAN (1)</a></li><li><a href='/blog/categories/shua-ji/'>刷机 (1)</a></li></div>
 </section>
 <section>
   <h1>
     <i class="fa fa-tags" aria-hidden="true"></i> Tags
   </h1>
-  <div id="tag-list"><li><a href='/blog/tags/aws/'>aws (1)</a></li><li><a href='/blog/tags/css/'>css (1)</a></li><li><a href='/blog/tags/disqus/'>disqus (1)</a></li><li><a href='/blog/tags/es6/'>es6 (1)</a></li><li><a href='/blog/tags/git/'>git (2)</a></li><li><a href='/blog/tags/javascript/'>javascript (1)</a></li><li><a href='/blog/tags/jenkins/'>jenkins (1)</a></li><li><a href='/blog/tags/mac/'>mac (2)</a></li><li><a href='/blog/tags/mongodb/'>mongodb (1)</a></li><li><a href='/blog/tags/rails/'>rails (2)</a></li><li><a href='/blog/tags/ruby/'>ruby (3)</a></li><li><a href='/blog/tags/shell/'>shell (2)</a></li><li><a href='/blog/tags/sinatra/'>sinatra (1)</a></li><li><a href='/blog/tags/sublime/'>sublime (1)</a></li><li><a href='/blog/tags/swap/'>swap (1)</a></li><li><a href='/blog/tags/test/'>test (1)</a></li><li><a href='/blog/tags/ubuntu/'>ubuntu (2)</a></li><li><a href='/blog/tags/watchman/'>watchman (1)</a></li><li><a href='/blog/tags/shua-ji/'>刷机 (1)</a></li></div>
+  <div id="tag-list"><li><a href='/blog/tags/aws/'>aws (1)</a></li><li><a href='/blog/tags/css/'>css (1)</a></li><li><a href='/blog/tags/disqus/'>disqus (1)</a></li><li><a href='/blog/tags/es6/'>es6 (1)</a></li><li><a href='/blog/tags/git/'>git (2)</a></li><li><a href='/blog/tags/javascript/'>javascript (2)</a></li><li><a href='/blog/tags/jenkins/'>jenkins (1)</a></li><li><a href='/blog/tags/mac/'>mac (2)</a></li><li><a href='/blog/tags/mongodb/'>mongodb (1)</a></li><li><a href='/blog/tags/rails/'>rails (2)</a></li><li><a href='/blog/tags/ruby/'>ruby (3)</a></li><li><a href='/blog/tags/shell/'>shell (2)</a></li><li><a href='/blog/tags/sinatra/'>sinatra (1)</a></li><li><a href='/blog/tags/sublime/'>sublime (1)</a></li><li><a href='/blog/tags/swap/'>swap (1)</a></li><li><a href='/blog/tags/test/'>test (1)</a></li><li><a href='/blog/tags/ubuntu/'>ubuntu (2)</a></li><li><a href='/blog/tags/watchman/'>watchman (1)</a></li><li><a href='/blog/tags/shua-ji/'>刷机 (1)</a></li></div>
 </section>
 
   
@@ -880,7 +640,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2016 - Wei Luo -
+  Copyright &copy; 2017 - Wei Luo -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 
