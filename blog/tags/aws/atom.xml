@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Aws | GUIDE]]></title>
   <link href="http://weilluo.github.io/blog/tags/aws/atom.xml" rel="self"/>
   <link href="http://weilluo.github.io/"/>
-  <updated>2017-04-15T11:18:23+08:00</updated>
+  <updated>2017-04-15T12:14:59+08:00</updated>
   <id>http://weilluo.github.io/</id>
   <author>
     <name><![CDATA[Wei Luo]]></name>
@@ -12,6 +12,93 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[S3 Policy on EC2 Having Changes Between ECS and EB]]></title>
+    <link href="http://weilluo.github.io/blog/2017/04/15/s3-policy-on-ec2-having-changes-between-ecs-and-eb/"/>
+    <updated>2017-04-15T11:47:12+08:00</updated>
+    <id>http://weilluo.github.io/blog/2017/04/15/s3-policy-on-ec2-having-changes-between-ecs-and-eb</id>
+    <content type="html"><![CDATA[<p>We can see the title, and below is the different policy:</p>
+
+<p><figure class='code'><figcaption class='code-header'><span>EC2 Instance from ECS </span></figcaption>
+ <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> 1</span>{
+<span class="line-numbers"> 2</span>    <span class="error">“</span><span class="error">V</span><span class="error">e</span><span class="error">r</span><span class="error">s</span><span class="error">i</span><span class="error">o</span><span class="error">n</span><span class="error">”</span>: <span class="error">“</span><span class="integer">2012</span><span class="integer">-10</span><span class="integer">-17</span><span class="error">”</span>,
+<span class="line-numbers"> 3</span>    <span class="error">“</span><span class="error">S</span><span class="error">t</span><span class="error">a</span><span class="error">t</span><span class="error">e</span><span class="error">m</span><span class="error">e</span><span class="error">n</span><span class="error">t</span><span class="error">”</span>: [
+<span class="line-numbers"> 4</span>        {
+<span class="line-numbers"> 5</span>            <span class="error">“</span><span class="error">E</span><span class="error">f</span><span class="error">f</span><span class="error">e</span><span class="error">c</span><span class="error">t</span><span class="error">”</span>: <span class="error">“</span><span class="error">A</span><span class="error">l</span><span class="error">l</span><span class="error">o</span><span class="error">w</span><span class="error">”</span>,
+<span class="line-numbers"> 6</span>            <span class="error">“</span><span class="error">A</span><span class="error">c</span><span class="error">t</span><span class="error">i</span><span class="error">o</span><span class="error">n</span><span class="error">”</span>: [
+<span class="line-numbers"> 7</span>                <span class="error">“</span><span class="error">s</span><span class="integer">3</span>:<span class="error">G</span><span class="error">e</span><span class="error">t</span><span class="error">&lt;</span><span class="error">e</span><span class="error">m</span><span class="error">&gt;</span><span class="error">”</span>,
+<span class="line-numbers"> 8</span>                <span class="error">“</span><span class="error">s</span><span class="integer">3</span>:<span class="error">L</span><span class="error">i</span><span class="error">s</span><span class="error">t</span><span class="error">&lt;</span><span class="error">/</span><span class="error">e</span><span class="error">m</span><span class="error">&gt;</span><span class="error">”</span>
+<span class="line-numbers"> 9</span>            ],
+<span class="line-numbers"><strong>10</strong></span>            <span class="error">“</span><span class="error">R</span><span class="error">e</span><span class="error">s</span><span class="error">o</span><span class="error">u</span><span class="error">r</span><span class="error">c</span><span class="error">e</span><span class="error">”</span>: [
+<span class="line-numbers">11</span>                <span class="error">“</span><span class="error">a</span><span class="error">r</span><span class="error">n</span>:<span class="error">a</span><span class="error">w</span><span class="error">s</span>:<span class="error">s</span><span class="integer">3</span>:::<span class="error">e</span><span class="error">l</span><span class="error">a</span><span class="error">s</span><span class="error">t</span><span class="error">i</span><span class="error">c</span><span class="error">b</span><span class="error">e</span><span class="error">a</span><span class="error">n</span><span class="error">s</span><span class="error">t</span><span class="error">a</span><span class="error">l</span><span class="error">k</span><span class="error">-</span><span class="error">&lt;</span><span class="error">e</span><span class="error">m</span><span class="error">&gt;</span><span class="error">”</span>,
+<span class="line-numbers">12</span>                <span class="error">“</span><span class="error">a</span><span class="error">r</span><span class="error">n</span>:<span class="error">a</span><span class="error">w</span><span class="error">s</span>:<span class="error">s</span><span class="integer">3</span>:::<span class="error">e</span><span class="error">l</span><span class="error">a</span><span class="error">s</span><span class="error">t</span><span class="error">i</span><span class="error">c</span><span class="error">b</span><span class="error">e</span><span class="error">a</span><span class="error">n</span><span class="error">s</span><span class="error">t</span><span class="error">a</span><span class="error">l</span><span class="error">k</span><span class="error">-</span><span class="error">&lt;</span><span class="error">/</span><span class="error">e</span><span class="error">m</span><span class="error">&gt;</span><span class="error">/</span><span class="error">&lt;</span><span class="error">e</span><span class="error">m</span><span class="error">&gt;</span><span class="error">/</span><span class="error">s</span><span class="error">y</span><span class="error">s</span><span class="error">t</span><span class="error">e</span><span class="error">m</span><span class="error">_</span><span class="error">f</span><span class="error">i</span><span class="error">l</span><span class="error">e</span><span class="error">s</span><span class="error">/</span><span class="error">&lt;</span><span class="error">/</span><span class="error">e</span><span class="error">m</span><span class="error">&gt;</span><span class="error">”</span>
+<span class="line-numbers">13</span>            ]
+<span class="line-numbers">14</span>        },
+<span class="line-numbers">15</span>        {
+<span class="line-numbers">16</span>            <span class="error">“</span><span class="error">E</span><span class="error">f</span><span class="error">f</span><span class="error">e</span><span class="error">c</span><span class="error">t</span><span class="error">”</span>: <span class="error">“</span><span class="error">A</span><span class="error">l</span><span class="error">l</span><span class="error">o</span><span class="error">w</span><span class="error">”</span>,
+<span class="line-numbers">17</span>            <span class="error">“</span><span class="error">A</span><span class="error">c</span><span class="error">t</span><span class="error">i</span><span class="error">o</span><span class="error">n</span><span class="error">”</span>: [
+<span class="line-numbers">18</span>                <span class="error">“</span><span class="error">s</span><span class="integer">3</span>:<span class="error">P</span><span class="error">u</span><span class="error">t</span><span class="error">&lt;</span><span class="error">e</span><span class="error">m</span><span class="error">&gt;</span><span class="error">”</span>,
+<span class="line-numbers">19</span>                <span class="error">“</span><span class="error">s</span><span class="integer">3</span>:<span class="error">G</span><span class="error">e</span><span class="error">t</span><span class="error">&lt;</span><span class="error">/</span><span class="error">e</span><span class="error">m</span><span class="error">&gt;</span><span class="error">”</span>,
+<span class="line-numbers"><strong>20</strong></span>                <span class="error">“</span><span class="error">s</span><span class="integer">3</span>:<span class="error">L</span><span class="error">i</span><span class="error">s</span><span class="error">t</span><span class="error">&lt;</span><span class="error">e</span><span class="error">m</span><span class="error">&gt;</span><span class="error">”</span>,
+<span class="line-numbers">21</span>                <span class="error">“</span><span class="error">s</span><span class="integer">3</span>:<span class="error">D</span><span class="error">e</span><span class="error">l</span><span class="error">e</span><span class="error">t</span><span class="error">e</span><span class="error">&lt;</span><span class="error">/</span><span class="error">e</span><span class="error">m</span><span class="error">&gt;</span><span class="error">”</span>
+<span class="line-numbers">22</span>            ],
+<span class="line-numbers">23</span>            <span class="error">“</span><span class="error">R</span><span class="error">e</span><span class="error">s</span><span class="error">o</span><span class="error">u</span><span class="error">r</span><span class="error">c</span><span class="error">e</span><span class="error">”</span>: [
+<span class="line-numbers">24</span>                <span class="error">“</span><span class="error">a</span><span class="error">r</span><span class="error">n</span>:<span class="error">a</span><span class="error">w</span><span class="error">s</span>:<span class="error">s</span><span class="integer">3</span>:::<span class="error">e</span><span class="error">l</span><span class="error">a</span><span class="error">s</span><span class="error">t</span><span class="error">i</span><span class="error">c</span><span class="error">b</span><span class="error">e</span><span class="error">a</span><span class="error">n</span><span class="error">s</span><span class="error">t</span><span class="error">a</span><span class="error">l</span><span class="error">k</span><span class="error">-</span><span class="error">&lt;</span><span class="error">e</span><span class="error">m</span><span class="error">&gt;</span><span class="error">”</span>,
+<span class="line-numbers">25</span>                <span class="error">“</span><span class="error">a</span><span class="error">r</span><span class="error">n</span>:<span class="error">a</span><span class="error">w</span><span class="error">s</span>:<span class="error">s</span><span class="integer">3</span>:::<span class="error">e</span><span class="error">l</span><span class="error">a</span><span class="error">s</span><span class="error">t</span><span class="error">i</span><span class="error">c</span><span class="error">b</span><span class="error">e</span><span class="error">a</span><span class="error">n</span><span class="error">s</span><span class="error">t</span><span class="error">a</span><span class="error">l</span><span class="error">k</span><span class="error">-</span><span class="error">&lt;</span><span class="error">/</span><span class="error">e</span><span class="error">m</span><span class="error">&gt;</span><span class="error">/</span><span class="error">&lt;</span><span class="error">e</span><span class="error">m</span><span class="error">&gt;</span><span class="error">/</span><span class="error">a</span><span class="error">p</span><span class="error">p</span><span class="error">_</span><span class="error">d</span><span class="error">a</span><span class="error">t</span><span class="error">a</span><span class="error">/</span><span class="error">&lt;</span><span class="error">/</span><span class="error">e</span><span class="error">m</span><span class="error">&gt;</span><span class="error">”</span>
+<span class="line-numbers">26</span>            ]
+<span class="line-numbers">27</span>        }
+<span class="line-numbers">28</span>    ]
+<span class="line-numbers">29</span>}
+</pre></div>
+</div>
+ </figure></p>
+
+<p><figure class='code'><figcaption><span>EC2 Instance from EB </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="err">“Version”:</span> <span class="err">“2012-10-17”,</span>
+</span><span class='line'>    <span class="err">“Statement”:</span> <span class="err">[</span>
+</span><span class='line'>        <span class="err">{</span>
+</span><span class='line'>            <span class="err">“Effect”:</span> <span class="err">“Allow”,</span>
+</span><span class='line'>            <span class="err">“Action”:</span> <span class="err">“s3:GetObject”,</span>
+</span><span class='line'>            <span class="err">“Resource”:</span> <span class="err">“arn:aws:s3:::elasticbeanstalk-&lt;em&gt;/&lt;/em&gt;/system_files/&lt;em&gt;”</span>
+</span><span class='line'>        <span class="p">}</span><span class="err">,</span>
+</span><span class='line'>        <span class="p">{</span>
+</span><span class='line'>            <span class="err">“Effect”:</span> <span class="err">“Allow”,</span>
+</span><span class='line'>            <span class="err">“Action”:</span> <span class="err">[</span>
+</span><span class='line'>                <span class="err">“s3:PutObject”,</span>
+</span><span class='line'>                <span class="err">“s3:GetObject”,</span>
+</span><span class='line'>                <span class="err">“s3:DeleteObject”</span>
+</span><span class='line'>            <span class="err">],</span>
+</span><span class='line'>            <span class="err">“Resource”:</span> <span class="err">“arn:aws:s3:::elasticbeanstalk-&lt;/em&gt;/&lt;em&gt;/app_data/&lt;/em&gt;”</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>    <span class="err">]</span>
+</span><span class='line'><span class="err">}</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>So if I use EB’s policy on ECS, it must report <code>access denied</code>, I try to find out some documents about this on aws, but failed. But I will continue verifying it.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[AWS Beanstalk Ruby Passenger, Solutions of Rjb Installing and 504 Gateway-Timeout]]></title>

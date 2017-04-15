@@ -4,7 +4,7 @@
   <title><![CDATA[GUIDE]]></title>
   <link href="http://weilluo.github.io/atom.xml" rel="self"/>
   <link href="http://weilluo.github.io/"/>
-  <updated>2017-04-15T11:18:23+08:00</updated>
+  <updated>2017-04-15T12:14:59+08:00</updated>
   <id>http://weilluo.github.io/</id>
   <author>
     <name><![CDATA[Wei Luo]]></name>
@@ -12,6 +12,124 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[S3 Policy on EC2 Having Changes Between ECS and EB]]></title>
+    <link href="http://weilluo.github.io/blog/2017/04/15/s3-policy-on-ec2-having-changes-between-ecs-and-eb/"/>
+    <updated>2017-04-15T11:47:12+08:00</updated>
+    <id>http://weilluo.github.io/blog/2017/04/15/s3-policy-on-ec2-having-changes-between-ecs-and-eb</id>
+    <content type="html"><![CDATA[<p>We can see the title, and below is the different policy:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption class="code-header"><span>EC2 Instance from ECS </span></figcaption>
+ <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> 1</span>{
+<span class="line-numbers"> 2</span>    <span class="key"><span class="delimiter">&quot;</span><span class="content">Version</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">2012-10-17</span><span class="delimiter">&quot;</span></span>,
+<span class="line-numbers"> 3</span>    <span class="key"><span class="delimiter">&quot;</span><span class="content">Statement</span><span class="delimiter">&quot;</span></span>: [
+<span class="line-numbers"> 4</span>        {
+<span class="line-numbers"> 5</span>            <span class="key"><span class="delimiter">&quot;</span><span class="content">Effect</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Allow</span><span class="delimiter">&quot;</span></span>,
+<span class="line-numbers"> 6</span>            <span class="key"><span class="delimiter">&quot;</span><span class="content">Action</span><span class="delimiter">&quot;</span></span>: [
+<span class="line-numbers"> 7</span>                <span class="string"><span class="delimiter">&quot;</span><span class="content">s3:Get*</span><span class="delimiter">&quot;</span></span>,
+<span class="line-numbers"> 8</span>                <span class="string"><span class="delimiter">&quot;</span><span class="content">s3:List*</span><span class="delimiter">&quot;</span></span>
+<span class="line-numbers"> 9</span>            ],
+<span class="line-numbers"><strong>10</strong></span>            <span class="key"><span class="delimiter">&quot;</span><span class="content">Resource</span><span class="delimiter">&quot;</span></span>: [
+<span class="line-numbers">11</span>                <span class="string"><span class="delimiter">&quot;</span><span class="content">arn:aws:s3:::elasticbeanstalk-*</span><span class="delimiter">&quot;</span></span>,
+<span class="line-numbers">12</span>                <span class="string"><span class="delimiter">&quot;</span><span class="content">arn:aws:s3:::elasticbeanstalk-*/*/system_files/*</span><span class="delimiter">&quot;</span></span>
+<span class="line-numbers">13</span>            ]
+<span class="line-numbers">14</span>        },
+<span class="line-numbers">15</span>        {
+<span class="line-numbers">16</span>            <span class="key"><span class="delimiter">&quot;</span><span class="content">Effect</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Allow</span><span class="delimiter">&quot;</span></span>,
+<span class="line-numbers">17</span>            <span class="key"><span class="delimiter">&quot;</span><span class="content">Action</span><span class="delimiter">&quot;</span></span>: [
+<span class="line-numbers">18</span>                <span class="string"><span class="delimiter">&quot;</span><span class="content">s3:Put*</span><span class="delimiter">&quot;</span></span>,
+<span class="line-numbers">19</span>                <span class="string"><span class="delimiter">&quot;</span><span class="content">s3:Get*</span><span class="delimiter">&quot;</span></span>,
+<span class="line-numbers"><strong>20</strong></span>                <span class="string"><span class="delimiter">&quot;</span><span class="content">s3:List*</span><span class="delimiter">&quot;</span></span>,
+<span class="line-numbers">21</span>                <span class="string"><span class="delimiter">&quot;</span><span class="content">s3:Delete*</span><span class="delimiter">&quot;</span></span>
+<span class="line-numbers">22</span>            ],
+<span class="line-numbers">23</span>            <span class="key"><span class="delimiter">&quot;</span><span class="content">Resource</span><span class="delimiter">&quot;</span></span>: [
+<span class="line-numbers">24</span>                <span class="string"><span class="delimiter">&quot;</span><span class="content">arn:aws:s3:::elasticbeanstalk-*</span><span class="delimiter">&quot;</span></span>,
+<span class="line-numbers">25</span>                <span class="string"><span class="delimiter">&quot;</span><span class="content">arn:aws:s3:::elasticbeanstalk-*/*/app_data/*</span><span class="delimiter">&quot;</span></span>
+<span class="line-numbers">26</span>            ]
+<span class="line-numbers">27</span>        }
+<span class="line-numbers">28</span>    ]
+<span class="line-numbers">29</span>}
+</pre></div>
+</div>
+ </figure></notextile></div>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>EC2 Instance from EB </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+</pre></td><td class="code"><pre><code class="json"><span class="line"><span class="p">{</span>
+</span><span class="line">    <span class="nt">&quot;Version&quot;</span><span class="p">:</span> <span class="s2">&quot;2012-10-17&quot;</span><span class="p">,</span>
+</span><span class="line">    <span class="nt">&quot;Statement&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span class="line">        <span class="p">{</span>
+</span><span class="line">            <span class="nt">&quot;Effect&quot;</span><span class="p">:</span> <span class="s2">&quot;Allow&quot;</span><span class="p">,</span>
+</span><span class="line">            <span class="nt">&quot;Action&quot;</span><span class="p">:</span> <span class="s2">&quot;s3:GetObject&quot;</span><span class="p">,</span>
+</span><span class="line">            <span class="nt">&quot;Resource&quot;</span><span class="p">:</span> <span class="s2">&quot;arn:aws:s3:::elasticbeanstalk-*/*/system_files/*&quot;</span>
+</span><span class="line">        <span class="p">},</span>
+</span><span class="line">        <span class="p">{</span>
+</span><span class="line">            <span class="nt">&quot;Effect&quot;</span><span class="p">:</span> <span class="s2">&quot;Allow&quot;</span><span class="p">,</span>
+</span><span class="line">            <span class="nt">&quot;Action&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span class="line">                <span class="s2">&quot;s3:PutObject&quot;</span><span class="p">,</span>
+</span><span class="line">                <span class="s2">&quot;s3:GetObject&quot;</span><span class="p">,</span>
+</span><span class="line">                <span class="s2">&quot;s3:DeleteObject&quot;</span>
+</span><span class="line">            <span class="p">],</span>
+</span><span class="line">            <span class="nt">&quot;Resource&quot;</span><span class="p">:</span> <span class="s2">&quot;arn:aws:s3:::elasticbeanstalk-*/*/app_data/*&quot;</span>
+</span><span class="line">        <span class="p">}</span>
+</span><span class="line">    <span class="p">]</span>
+</span><span class="line"><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>So if I use EB’s policy on ECS, it must report <code>access denied</code>, I try to find out some documents about this on aws, but failed. But I will continue verifying it.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Capistrano Deploy to Multiple Servers]]></title>
+    <link href="http://weilluo.github.io/blog/2017/04/15/capistrano-deploy-to-multiple-servers/"/>
+    <updated>2017-04-15T11:20:25+08:00</updated>
+    <id>http://weilluo.github.io/blog/2017/04/15/capistrano-deploy-to-multiple-servers</id>
+    <content type="html"><![CDATA[<p>The key <code>snippet</code> is below:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="n">role</span> <span class="ss">:app</span><span class="p">,</span> <span class="sx">%w{xx.xx.xx.xx xx.xx.xx.xx}</span><span class="p">,</span> <span class="ss">user</span><span class="p">:</span> <span class="s1">&#39;ubuntu&#39;</span><span class="p">,</span> <span class="ss">primary</span><span class="p">:</span> <span class="kp">true</span>
+</span><span class="line">
+</span><span class="line"><span class="n">set</span> <span class="ss">:pty</span><span class="p">,</span> <span class="kp">true</span>
+</span><span class="line">
+</span><span class="line"><span class="n">set</span> <span class="ss">:ssh_options</span><span class="p">,</span> <span class="p">{</span>
+</span><span class="line">  <span class="ss">forward_agent</span><span class="p">:</span> <span class="kp">true</span><span class="p">,</span>
+</span><span class="line">  <span class="ss">auth_methods</span><span class="p">:</span> <span class="o">[</span><span class="s2">&quot;publickey&quot;</span><span class="o">]</span><span class="p">,</span>
+</span><span class="line">  <span class="ss">keys</span><span class="p">:</span> <span class="sx">%w(~/.ssh/id_rsa_jenkins_deploy)</span>
+</span><span class="line"><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>The introduce of <a href="http://capistranorb.com/documentation/faq/why-does-something-work-in-my-ssh-session-but-not-in-capistrano/">pty</a>, and some expression of <a href="https://developer.github.com/guides/using-ssh-agent-forwarding/">forward_agent</a>.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Waiting for Dynamically Loaded Script]]></title>
@@ -1310,58 +1428,6 @@
 </ul>
 
 <p>这篇博客讲了直接使用无睡死的固件来刷机，<a href="http://bbs.app111.com/thread-640908-1-1.html">http://bbs.app111.com/thread-640908-1-1.html</a> ，下载好文章中给出的固件后，还是按照以上 <code>3.4</code> - <code>3.6</code> 的步骤来操作。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Functional Test in Ubuntu Server Use Rails]]></title>
-    <link href="http://weilluo.github.io/blog/2015/02/03/functional-test-in-ubuntu-server-use-rails/"/>
-    <updated>2015-02-03T09:34:44+08:00</updated>
-    <id>http://weilluo.github.io/blog/2015/02/03/functional-test-in-ubuntu-server-use-rails</id>
-    <content type="html"><![CDATA[<ul>
-  <li>install xfvb in ubuntu server</li>
-</ul>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-</pre></td><td class="code"><pre><code class="bash"><span class="line">sudo apt-get install xvfb
-</span><span class="line">sudo apt-get install xfonts-100dpi xfonts-75dpi xfonts-scalable xfonts-cyrillic
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<ul>
-  <li>run rspec</li>
-</ul>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="bash"><span class="line">xvfb-run -a -n <span class="m">99</span> bundle <span class="nb">exec </span>rspec spec
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Capybara::ElementNotFound: Unable to Find File Field “file”]]></title>
-    <link href="http://weilluo.github.io/blog/2015/01/19/capybara-elementnotfound-unable-to-find-file-field-file/"/>
-    <updated>2015-01-19T17:21:44+08:00</updated>
-    <id>http://weilluo.github.io/blog/2015/01/19/capybara-elementnotfound-unable-to-find-file-field-file</id>
-    <content type="html"><![CDATA[<p>Html code:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="html"><span class="line"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;tpBtn&quot;</span><span class="nt">&gt;</span>Upload File<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;file&quot;</span> <span class="na">name=</span><span class="s">&quot;file&quot;</span> <span class="na">id=</span><span class="s">&quot;resumefile&quot;</span> <span class="na">class=</span><span class="s">&quot;upload&quot;</span><span class="nt">/&gt;&lt;/div&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>Rspec code:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="n">attach_file</span><span class="p">(</span><span class="s1">&#39;resumefile&#39;</span><span class="p">,</span> <span class="n">file_path</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>And when we exec the spec, there will be an error, ‘Capybara::ElementNotFound: Unable to find file field “file”’, so we should do this:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="no">Capybara</span><span class="o">.</span><span class="n">ignore_hidden_elements</span> <span class="o">=</span> <span class="kp">false</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>Add above code into spec_helper.rb file.</p>
 ]]></content>
   </entry>
   

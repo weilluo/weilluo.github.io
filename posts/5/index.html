@@ -9,8 +9,10 @@
   <meta name="author" content="Wei Luo">
 
   
-  <meta name="description" content=" grab the 10 last records with a unique value 1
-@users = User.limit(10).distinct(:first_name).desc(:created_at).map(&amp;:first_name) ">
+  <meta name="description" content="install xfvb in ubuntu server 1
+2
+sudo apt-get install xvfb
+sudo apt-get install xfonts-100dpi xfonts-75dpi xfonts-scalable xfonts-cyrillic run &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -87,6 +89,104 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/02/03/functional-test-in-ubuntu-server-use-rails/">Functional Test in Ubuntu Server Use Rails</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-02-03T09:34:44+08:00'><span class='date'>2015-02-03</span> <span class='time'>9:34 am</span></time>
+        
+           | <a href="/blog/2015/02/03/functional-test-in-ubuntu-server-use-rails/#disqus_thread"
+             data-disqus-identifier="http://weilluo.github.io/blog/2015/02/03/functional-test-in-ubuntu-server-use-rails/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><ul>
+  <li>install xfvb in ubuntu server</li>
+</ul>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line">sudo apt-get install xvfb
+</span><span class="line">sudo apt-get install xfonts-100dpi xfonts-75dpi xfonts-scalable xfonts-cyrillic
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<ul>
+  <li>run rspec</li>
+</ul>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line">xvfb-run -a -n <span class="m">99</span> bundle <span class="nb">exec </span>rspec spec
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/01/19/capybara-elementnotfound-unable-to-find-file-field-file/">Capybara::ElementNotFound: Unable to Find File Field “file”</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-01-19T17:21:44+08:00'><span class='date'>2015-01-19</span> <span class='time'>5:21 pm</span></time>
+        
+           | <a href="/blog/2015/01/19/capybara-elementnotfound-unable-to-find-file-field-file/#disqus_thread"
+             data-disqus-identifier="http://weilluo.github.io/blog/2015/01/19/capybara-elementnotfound-unable-to-find-file-field-file/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Html code:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="html"><span class="line"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;tpBtn&quot;</span><span class="nt">&gt;</span>Upload File<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;file&quot;</span> <span class="na">name=</span><span class="s">&quot;file&quot;</span> <span class="na">id=</span><span class="s">&quot;resumefile&quot;</span> <span class="na">class=</span><span class="s">&quot;upload&quot;</span><span class="nt">/&gt;&lt;/div&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Rspec code:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="n">attach_file</span><span class="p">(</span><span class="s1">&#39;resumefile&#39;</span><span class="p">,</span> <span class="n">file_path</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>And when we exec the spec, there will be an error, ‘Capybara::ElementNotFound: Unable to find file field “file”’, so we should do this:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="no">Capybara</span><span class="o">.</span><span class="n">ignore_hidden_elements</span> <span class="o">=</span> <span class="kp">false</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Add above code into spec_helper.rb file.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -243,156 +343,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/11/21/how-to-use-chmod-in-unix-slash-linux/">How to Use Chmod in Unix/linux</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-11-21T10:16:00+08:00'><span class='date'>2014-11-21</span> <span class='time'>10:16 am</span></time>
-        
-           | <a href="/blog/2014/11/21/how-to-use-chmod-in-unix-slash-linux/#disqus_thread"
-             data-disqus-identifier="http://weilluo.github.io/blog/2014/11/21/how-to-use-chmod-in-unix-slash-linux/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2 id="file-permission-modify-command-chmod">File permission modify command: <em>chmod</em></h2>
-
-<ul>
-  <li>Usage: chmod XXX file
-  </li>
-</ul>
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="c"># XXX: owner/group(users in owner&#39;s group)/otherUsers</span>
-</span><span class="line">
-</span><span class="line"><span class="nv">x</span> <span class="o">=</span> 4: <span class="s1">&#39;read&#39;</span> permission
-</span><span class="line"><span class="nv">x</span> <span class="o">=</span> 2: <span class="s1">&#39;write&#39;</span> permission
-</span><span class="line"><span class="nv">x</span> <span class="o">=</span> 1: <span class="s1">&#39;exec&#39;</span> permission
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<ul>
-  <li>Example:</li>
-</ul>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-</pre></td><td class="code"><pre><code class="bash"><span class="line">sudo chmod <span class="m">600</span> file <span class="o">(</span>only owner has <span class="nb">read</span>, write permission<span class="o">)</span>
-</span><span class="line">sudo chmod <span class="m">644</span> file <span class="o">(</span>owner has <span class="nb">read </span>and write permission, group users and other users has only <span class="nb">read </span>permission<span class="o">)</span>
-</span><span class="line">
-</span><span class="line">sudo chmod <span class="m">700</span> file <span class="o">(</span>only owner has <span class="nb">read</span>, write and <span class="nb">exec </span>permission<span class="o">)</span>
-</span><span class="line">sudo chmod <span class="m">666</span> file <span class="o">(</span>everyone has <span class="nb">read</span>, write permission<span class="o">)</span>
-</span><span class="line">sudo chmod <span class="m">777</span> file <span class="o">(</span>everyone has <span class="nb">read</span>, write and <span class="nb">exec </span>permission<span class="o">)</span>
-</span><span class="line">
-</span><span class="line">sudo chmod go-x file <span class="o">(</span>cancel the <span class="nb">exec </span>permission of group and other users<span class="o">)</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/11/18/install-ruby-on-ubuntu/">Install Ruby on Ubuntu</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-11-18T10:30:40+08:00'><span class='date'>2014-11-18</span> <span class='time'>10:30 am</span></time>
-        
-           | <a href="/blog/2014/11/18/install-ruby-on-ubuntu/#disqus_thread"
-             data-disqus-identifier="http://weilluo.github.io/blog/2014/11/18/install-ruby-on-ubuntu/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><ul>
-  <li>一些依赖包：</li>
-</ul>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="bash"><span class="line">sudo apt-get install -y build-essential openssl libreadline6 libreadline6-dev curl zlib1g zlib1g-dev libyaml libxml2 libxslt autoconf libc6-dev ncurses-dev automake libtool bison pkg-config git-core subversion
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p><em>git-core和subversion可选</em></p>
-
-<ul>
-  <li>安装rvm, (参考：<a href="https://rvm.io/rvm/install">https://rvm.io/rvm/install</a>)</li>
-</ul>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-</pre></td><td class="code"><pre><code class="bash"><span class="line">gpg --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3
-</span><span class="line"><span class="se">\c</span>url -L get.rvm.io <span class="p">|</span> bash -s stable
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<ul>
-  <li>为rvm命令配置快捷方式</li>
-</ul>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="nb">source</span> ~/.rvm/scripts/rvm
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<ul>
-  <li>安装ruby</li>
-</ul>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-</pre></td><td class="code"><pre><code class="bash"><span class="line">rvm list known
-</span><span class="line">rvm install 2.0.0
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<ul>
-  <li>如果服务器是在国内，可选择将gem源换为taobao域名</li>
-</ul>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-</pre></td><td class="code"><pre><code class="bash"><span class="line">gem <span class="nb">source</span> -r https://rubygems.org/
-</span><span class="line">gem <span class="nb">source</span> --add http://ruby.taobao.org/
-</span><span class="line">gem <span class="nb">source</span> -l <span class="c"># 查看gems源</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/6">&larr; Older</a>
@@ -410,6 +360,14 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2017/04/15/s3-policy-on-ec2-having-changes-between-ecs-and-eb/">S3 Policy on EC2 Having Changes Between ECS and EB</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/04/15/capistrano-deploy-to-multiple-servers/">Capistrano Deploy to Multiple Servers</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2017/04/15/waiting-for-dynamically-loaded-script/">Waiting for Dynamically Loaded Script</a>
       </li>
     
@@ -421,25 +379,17 @@
         <a href="/blog/2016/02/05/add-a-user-to-admin-group-on-mac/">Add a User to Admin Group on Mac.</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2015/11/04/jenkins-email-notificaiton/">Jenkins Email Notificaiton</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/10/29/multiple-ssh-key-add-in-difference-github-account/">Multiple Ssh Key Add in Difference Github Account</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Categories</h1>
-  <div id="category-list"><li><a href='/blog/categories/aws/'>AWS (1)</a></li><li><a href='/blog/categories/css/'>CSS (1)</a></li><li><a href='/blog/categories/disqus/'>DISQUS (1)</a></li><li><a href='/blog/categories/es6/'>ES6 (1)</a></li><li><a href='/blog/categories/git/'>GIT (2)</a></li><li><a href='/blog/categories/javascript/'>JAVASCRIPT (2)</a></li><li><a href='/blog/categories/jenkins/'>JENKINS (1)</a></li><li><a href='/blog/categories/mac/'>MAC (2)</a></li><li><a href='/blog/categories/mongodb/'>MONGODB (1)</a></li><li><a href='/blog/categories/rails/'>RAILS (2)</a></li><li><a href='/blog/categories/ruby/'>RUBY (3)</a></li><li><a href='/blog/categories/shell/'>SHELL (2)</a></li><li><a href='/blog/categories/sinatra/'>SINATRA (1)</a></li><li><a href='/blog/categories/sublime/'>SUBLIME (1)</a></li><li><a href='/blog/categories/swap/'>SWAP (1)</a></li><li><a href='/blog/categories/test/'>TEST (1)</a></li><li><a href='/blog/categories/ubuntu/'>UBUNTU (2)</a></li><li><a href='/blog/categories/watchman/'>WATCHMAN (1)</a></li><li><a href='/blog/categories/shua-ji/'>刷机 (1)</a></li></div>
+  <div id="category-list"><li><a href='/blog/categories/aws/'>AWS (2)</a></li><li><a href='/blog/categories/css/'>CSS (1)</a></li><li><a href='/blog/categories/disqus/'>DISQUS (1)</a></li><li><a href='/blog/categories/es6/'>ES6 (1)</a></li><li><a href='/blog/categories/git/'>GIT (2)</a></li><li><a href='/blog/categories/javascript/'>JAVASCRIPT (2)</a></li><li><a href='/blog/categories/jenkins/'>JENKINS (1)</a></li><li><a href='/blog/categories/mac/'>MAC (2)</a></li><li><a href='/blog/categories/mongodb/'>MONGODB (1)</a></li><li><a href='/blog/categories/rails/'>RAILS (2)</a></li><li><a href='/blog/categories/ruby/'>RUBY (4)</a></li><li><a href='/blog/categories/shell/'>SHELL (2)</a></li><li><a href='/blog/categories/sinatra/'>SINATRA (1)</a></li><li><a href='/blog/categories/sublime/'>SUBLIME (1)</a></li><li><a href='/blog/categories/swap/'>SWAP (1)</a></li><li><a href='/blog/categories/test/'>TEST (1)</a></li><li><a href='/blog/categories/ubuntu/'>UBUNTU (2)</a></li><li><a href='/blog/categories/watchman/'>WATCHMAN (1)</a></li><li><a href='/blog/categories/shua-ji/'>刷机 (1)</a></li></div>
 </section>
 <section>
   <h1>
     <i class="fa fa-tags" aria-hidden="true"></i> Tags
   </h1>
-  <div id="tag-list"><li><a href='/blog/tags/aws/'>aws (1)</a></li><li><a href='/blog/tags/css/'>css (1)</a></li><li><a href='/blog/tags/disqus/'>disqus (1)</a></li><li><a href='/blog/tags/es6/'>es6 (1)</a></li><li><a href='/blog/tags/git/'>git (2)</a></li><li><a href='/blog/tags/javascript/'>javascript (2)</a></li><li><a href='/blog/tags/jenkins/'>jenkins (1)</a></li><li><a href='/blog/tags/mac/'>mac (2)</a></li><li><a href='/blog/tags/mongodb/'>mongodb (1)</a></li><li><a href='/blog/tags/rails/'>rails (2)</a></li><li><a href='/blog/tags/ruby/'>ruby (3)</a></li><li><a href='/blog/tags/shell/'>shell (2)</a></li><li><a href='/blog/tags/sinatra/'>sinatra (1)</a></li><li><a href='/blog/tags/sublime/'>sublime (1)</a></li><li><a href='/blog/tags/swap/'>swap (1)</a></li><li><a href='/blog/tags/test/'>test (1)</a></li><li><a href='/blog/tags/ubuntu/'>ubuntu (2)</a></li><li><a href='/blog/tags/watchman/'>watchman (1)</a></li><li><a href='/blog/tags/shua-ji/'>刷机 (1)</a></li></div>
+  <div id="tag-list"><li><a href='/blog/tags/aws/'>aws (2)</a></li><li><a href='/blog/tags/css/'>css (1)</a></li><li><a href='/blog/tags/disqus/'>disqus (1)</a></li><li><a href='/blog/tags/es6/'>es6 (1)</a></li><li><a href='/blog/tags/git/'>git (2)</a></li><li><a href='/blog/tags/javascript/'>javascript (2)</a></li><li><a href='/blog/tags/jenkins/'>jenkins (1)</a></li><li><a href='/blog/tags/mac/'>mac (2)</a></li><li><a href='/blog/tags/mongodb/'>mongodb (1)</a></li><li><a href='/blog/tags/rails/'>rails (2)</a></li><li><a href='/blog/tags/ruby/'>ruby (4)</a></li><li><a href='/blog/tags/shell/'>shell (2)</a></li><li><a href='/blog/tags/sinatra/'>sinatra (1)</a></li><li><a href='/blog/tags/sublime/'>sublime (1)</a></li><li><a href='/blog/tags/swap/'>swap (1)</a></li><li><a href='/blog/tags/test/'>test (1)</a></li><li><a href='/blog/tags/ubuntu/'>ubuntu (2)</a></li><li><a href='/blog/tags/watchman/'>watchman (1)</a></li><li><a href='/blog/tags/shua-ji/'>刷机 (1)</a></li></div>
 </section>
 
   

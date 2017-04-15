@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby | GUIDE]]></title>
   <link href="http://weilluo.github.io/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://weilluo.github.io/"/>
-  <updated>2017-04-15T11:18:23+08:00</updated>
+  <updated>2017-04-15T12:14:59+08:00</updated>
   <id>http://weilluo.github.io/</id>
   <author>
     <name><![CDATA[Wei Luo]]></name>
@@ -12,6 +12,37 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Capistrano Deploy to Multiple Servers]]></title>
+    <link href="http://weilluo.github.io/blog/2017/04/15/capistrano-deploy-to-multiple-servers/"/>
+    <updated>2017-04-15T11:20:25+08:00</updated>
+    <id>http://weilluo.github.io/blog/2017/04/15/capistrano-deploy-to-multiple-servers</id>
+    <content type="html"><![CDATA[<p>The key <code>snippet</code> is below:</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">role</span> <span class="ss">:app</span><span class="p">,</span> <span class="sx">%w{xx.xx.xx.xx xx.xx.xx.xx}</span><span class="p">,</span> <span class="ss">user</span><span class="p">:</span> <span class="err">‘</span><span class="n">ubuntu</span><span class="err">’</span><span class="p">,</span> <span class="ss">primary</span><span class="p">:</span> <span class="kp">true</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;set :pty, true&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">set</span> <span class="ss">:ssh_options</span><span class="p">,</span> <span class="p">{</span>
+</span><span class='line'>  <span class="ss">forward_agent</span><span class="p">:</span> <span class="kp">true</span><span class="p">,</span>
+</span><span class='line'>  <span class="ss">auth_methods</span><span class="p">:</span> <span class="o">[</span><span class="err">“</span><span class="n">publickey</span><span class="err">”</span><span class="o">]</span><span class="p">,</span>
+</span><span class='line'>  <span class="ss">keys</span><span class="p">:</span> <span class="sx">%w(~/.ssh/id_rsa_jenkins_deploy)</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>The introduce of <a href="http://capistranorb.com/documentation/faq/why-does-something-work-in-my-ssh-session-but-not-in-capistrano/">pty</a>, and some expression of <a href="https://developer.github.com/guides/using-ssh-agent-forwarding/">forward_agent</a>.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Different Between Include and Extend in Ruby]]></title>
