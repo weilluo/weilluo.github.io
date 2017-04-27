@@ -9,7 +9,28 @@
   <meta name="author" content="Wei Luo">
 
   
-  <meta name="description" content="Environment: AWS Beanstalk, 64bit Amazon Linux 2015.03 v1.4.1 running Ruby 2.1 (Passenger Standalone) Project: Rails The server had installed java-1. &hellip;">
+  <meta name="description" content="how to use class_attribuet: 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+require &#39;active_record&#39; class Base class_attribute :setting &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -86,6 +107,82 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/10/14/activerecord-class_attribute/">ActiveRecord, Class_attribute</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-10-14T11:51:44+08:00'><span class='date'>2015-10-14</span> <span class='time'>11:51 am</span></time>
+        
+           | <a href="/blog/2015/10/14/activerecord-class_attribute/#disqus_thread"
+             data-disqus-identifier="http://weilluo.github.io/blog/2015/10/14/activerecord-class_attribute/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>how to use class_attribuet:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="nb">require</span> <span class="s1">&#39;active_record&#39;</span>
+</span><span class="line">
+</span><span class="line"><span class="k">class</span> <span class="nc">Base</span>
+</span><span class="line">  <span class="n">class_attribute</span> <span class="ss">:setting</span>
+</span><span class="line"><span class="k">end</span>
+</span><span class="line">
+</span><span class="line"><span class="k">class</span> <span class="nc">Subclass</span> <span class="o">&lt;</span> <span class="no">Base</span>
+</span><span class="line"><span class="k">end</span>
+</span><span class="line">
+</span><span class="line"><span class="no">Base</span><span class="o">.</span><span class="n">setting</span> <span class="o">=</span> <span class="kp">true</span>
+</span><span class="line"><span class="nb">puts</span> <span class="no">Subclass</span><span class="o">.</span><span class="n">setting</span> <span class="c1"># =&gt; true</span>
+</span><span class="line"><span class="no">Subclass</span><span class="o">.</span><span class="n">setting</span> <span class="o">=</span> <span class="kp">false</span>
+</span><span class="line"><span class="nb">puts</span> <span class="no">Subclass</span><span class="o">.</span><span class="n">setting</span> <span class="c1"># =&gt; false</span>
+</span><span class="line"><span class="nb">puts</span> <span class="no">Base</span><span class="o">.</span><span class="n">setting</span> <span class="c1"># =&gt; true</span>
+</span><span class="line">
+</span><span class="line">
+</span><span class="line"><span class="n">base</span> <span class="o">=</span> <span class="no">Base</span><span class="o">.</span><span class="n">new</span>
+</span><span class="line"><span class="nb">puts</span> <span class="n">base</span><span class="o">.</span><span class="n">setting</span> <span class="c1"># =&gt; true</span>
+</span><span class="line"><span class="n">base</span><span class="o">.</span><span class="n">setting</span> <span class="o">=</span> <span class="kp">false</span>
+</span><span class="line"><span class="nb">puts</span> <span class="no">Base</span><span class="o">.</span><span class="n">setting</span> <span class="c1"># =&gt; true</span>
+</span><span class="line"><span class="nb">puts</span> <span class="n">base</span><span class="o">.</span><span class="n">setting</span> <span class="c1"># =&gt; false</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -351,50 +448,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/05/07/swap-space-for-aws-ubuntu-server/">Swap Space for Aws Ubuntu Server</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-05-07T13:20:52+08:00'><span class='date'>2015-05-07</span> <span class='time'>1:20 pm</span></time>
-        
-           | <a href="/blog/2015/05/07/swap-space-for-aws-ubuntu-server/#disqus_thread"
-             data-disqus-identifier="http://weilluo.github.io/blog/2015/05/07/swap-space-for-aws-ubuntu-server/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>It’s very <code>important</code>!!!</p>
-
-<p>Swap will auto release (or free) the unused memory.</p>
-
-<p>We setup an <code>jenkins</code> ci server, run functional test on firefox use xvfb. After some hours, the memory is almost full.</p>
-
-<p>So we add swap to our ci server.</p>
-
-<p>Example: <a href="https://www.digitalocean.com/community/tutorials/how-to-add-swap-on-ubuntu-14-04">https://www.digitalocean.com/community/tutorials/how-to-add-swap-on-ubuntu-14-04</a></p>
-
-<p>Reference:</p>
-
-<p><a href="http://stackoverflow.com/questions/29764181/jenkins-email-ext-plugin-pre-send-scripts">http://stackoverflow.com/questions/29764181/jenkins-email-ext-plugin-pre-send-scripts</a></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/4">&larr; Older</a>
@@ -412,6 +465,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2017/04/26/difference-between-config-and-run-in-angular/">Difference Between Config and Run in Angular</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2017/04/15/s3-policy-on-ec2-having-changes-between-ecs-and-eb/">S3 Policy on EC2 Having Changes Between ECS and EB</a>
       </li>
     
@@ -427,21 +484,17 @@
         <a href="/blog/2016/11/17/different-between-include-and-extend-in-ruby/">Different Between Include and Extend in Ruby</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2016/02/05/add-a-user-to-admin-group-on-mac/">Add a User to Admin Group on Mac.</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Categories</h1>
-  <div id="category-list"><li><a href='/blog/categories/aws/'>AWS (2)</a></li><li><a href='/blog/categories/css/'>CSS (1)</a></li><li><a href='/blog/categories/disqus/'>DISQUS (1)</a></li><li><a href='/blog/categories/es6/'>ES6 (1)</a></li><li><a href='/blog/categories/git/'>GIT (2)</a></li><li><a href='/blog/categories/javascript/'>JAVASCRIPT (2)</a></li><li><a href='/blog/categories/jenkins/'>JENKINS (1)</a></li><li><a href='/blog/categories/mac/'>MAC (2)</a></li><li><a href='/blog/categories/mongodb/'>MONGODB (1)</a></li><li><a href='/blog/categories/rails/'>RAILS (2)</a></li><li><a href='/blog/categories/ruby/'>RUBY (4)</a></li><li><a href='/blog/categories/shell/'>SHELL (2)</a></li><li><a href='/blog/categories/sinatra/'>SINATRA (1)</a></li><li><a href='/blog/categories/sublime/'>SUBLIME (1)</a></li><li><a href='/blog/categories/swap/'>SWAP (1)</a></li><li><a href='/blog/categories/test/'>TEST (1)</a></li><li><a href='/blog/categories/ubuntu/'>UBUNTU (2)</a></li><li><a href='/blog/categories/watchman/'>WATCHMAN (1)</a></li><li><a href='/blog/categories/shua-ji/'>刷机 (1)</a></li></div>
+  <div id="category-list"><li><a href='/blog/categories/angular/'>ANGULAR (1)</a></li><li><a href='/blog/categories/aws/'>AWS (2)</a></li><li><a href='/blog/categories/css/'>CSS (1)</a></li><li><a href='/blog/categories/disqus/'>DISQUS (1)</a></li><li><a href='/blog/categories/es6/'>ES6 (1)</a></li><li><a href='/blog/categories/git/'>GIT (2)</a></li><li><a href='/blog/categories/javascript/'>JAVASCRIPT (2)</a></li><li><a href='/blog/categories/jenkins/'>JENKINS (1)</a></li><li><a href='/blog/categories/mac/'>MAC (2)</a></li><li><a href='/blog/categories/mongodb/'>MONGODB (1)</a></li><li><a href='/blog/categories/rails/'>RAILS (2)</a></li><li><a href='/blog/categories/ruby/'>RUBY (4)</a></li><li><a href='/blog/categories/shell/'>SHELL (2)</a></li><li><a href='/blog/categories/sinatra/'>SINATRA (1)</a></li><li><a href='/blog/categories/sublime/'>SUBLIME (1)</a></li><li><a href='/blog/categories/swap/'>SWAP (1)</a></li><li><a href='/blog/categories/test/'>TEST (1)</a></li><li><a href='/blog/categories/ubuntu/'>UBUNTU (2)</a></li><li><a href='/blog/categories/watchman/'>WATCHMAN (1)</a></li><li><a href='/blog/categories/shua-ji/'>刷机 (1)</a></li></div>
 </section>
 <section>
   <h1>
     <i class="fa fa-tags" aria-hidden="true"></i> Tags
   </h1>
-  <div id="tag-list"><li><a href='/blog/tags/aws/'>aws (2)</a></li><li><a href='/blog/tags/css/'>css (1)</a></li><li><a href='/blog/tags/disqus/'>disqus (1)</a></li><li><a href='/blog/tags/es6/'>es6 (1)</a></li><li><a href='/blog/tags/git/'>git (2)</a></li><li><a href='/blog/tags/javascript/'>javascript (2)</a></li><li><a href='/blog/tags/jenkins/'>jenkins (1)</a></li><li><a href='/blog/tags/mac/'>mac (2)</a></li><li><a href='/blog/tags/mongodb/'>mongodb (1)</a></li><li><a href='/blog/tags/rails/'>rails (2)</a></li><li><a href='/blog/tags/ruby/'>ruby (4)</a></li><li><a href='/blog/tags/shell/'>shell (2)</a></li><li><a href='/blog/tags/sinatra/'>sinatra (1)</a></li><li><a href='/blog/tags/sublime/'>sublime (1)</a></li><li><a href='/blog/tags/swap/'>swap (1)</a></li><li><a href='/blog/tags/test/'>test (1)</a></li><li><a href='/blog/tags/ubuntu/'>ubuntu (2)</a></li><li><a href='/blog/tags/watchman/'>watchman (1)</a></li><li><a href='/blog/tags/shua-ji/'>刷机 (1)</a></li></div>
+  <div id="tag-list"><li><a href='/blog/tags/angular/'>angular (1)</a></li><li><a href='/blog/tags/aws/'>aws (2)</a></li><li><a href='/blog/tags/css/'>css (1)</a></li><li><a href='/blog/tags/disqus/'>disqus (1)</a></li><li><a href='/blog/tags/es6/'>es6 (1)</a></li><li><a href='/blog/tags/git/'>git (2)</a></li><li><a href='/blog/tags/javascript/'>javascript (2)</a></li><li><a href='/blog/tags/jenkins/'>jenkins (1)</a></li><li><a href='/blog/tags/mac/'>mac (2)</a></li><li><a href='/blog/tags/mongodb/'>mongodb (1)</a></li><li><a href='/blog/tags/rails/'>rails (2)</a></li><li><a href='/blog/tags/ruby/'>ruby (4)</a></li><li><a href='/blog/tags/shell/'>shell (2)</a></li><li><a href='/blog/tags/sinatra/'>sinatra (1)</a></li><li><a href='/blog/tags/sublime/'>sublime (1)</a></li><li><a href='/blog/tags/swap/'>swap (1)</a></li><li><a href='/blog/tags/test/'>test (1)</a></li><li><a href='/blog/tags/ubuntu/'>ubuntu (2)</a></li><li><a href='/blog/tags/watchman/'>watchman (1)</a></li><li><a href='/blog/tags/shua-ji/'>刷机 (1)</a></li></div>
 </section>
 
   

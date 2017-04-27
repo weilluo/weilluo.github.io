@@ -9,10 +9,7 @@
   <meta name="author" content="Wei Luo">
 
   
-  <meta name="description" content="install xfvb in ubuntu server 1
-2
-sudo apt-get install xvfb
-sudo apt-get install xfonts-100dpi xfonts-75dpi xfonts-scalable xfonts-cyrillic run &hellip;">
+  <meta name="description" content="经过艰辛的历程，终于将 iPhone4(GSM版) 成功降级； 使用工具 爱思，红雪，平台windows7 悲剧的报错 之前使用的是xp系统，结果出现写入 AppleLogo 失败，set Picture 0 failure…的报错，一直以为是手机硬件问题，纠结了半个多月。之后自己的 win7 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -89,6 +86,85 @@ sudo apt-get install xfonts-100dpi xfonts-75dpi xfonts-scalable xfonts-cyrillic 
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/02/09/iphone4-wu-shsh-cong-ios7-dot-1-2-jiang-ji-dao-ios6-dot-1-3/">iPhone4 无 SHSH 从 iOS7.1.2 降级到 iOS6.1.3</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-02-09T12:37:50+08:00'><span class='date'>2015-02-09</span> <span class='time'>12:37 pm</span></time>
+        
+           | <a href="/blog/2015/02/09/iphone4-wu-shsh-cong-ios7-dot-1-2-jiang-ji-dao-ios6-dot-1-3/#disqus_thread"
+             data-disqus-identifier="http://weilluo.github.io/blog/2015/02/09/iphone4-wu-shsh-cong-ios7-dot-1-2-jiang-ji-dao-ios6-dot-1-3/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2 id="iphone4gsm-">经过艰辛的历程，终于将 iPhone4(GSM版) 成功降级；</h2>
+
+<ul>
+  <li>使用工具</li>
+</ul>
+
+<p>爱思，红雪，平台windows7</p>
+
+<ul>
+  <li>悲剧的报错</li>
+</ul>
+
+<p>之前使用的是xp系统，结果出现写入 AppleLogo 失败，set Picture 0 failure…的报错，一直以为是手机硬件问题，纠结了半个多月。之后自己的 win7 电脑修好后，重新试了一下，竟然成功了。</p>
+
+<ul>
+  <li>
+    <p>刷机过程 <a href="http://bbs.i4.cn/thread-18856-1-1.html">http://bbs.i4.cn/thread-18856-1-1.html</a></p>
+
+    <ul>
+      <li>
+        <p>使用红雪或爱思助手等工具查看手机的ECID</p>
+      </li>
+      <li>
+        <p>找到对应 iOS 版本的 shsh 文件，打开文件，将 ECID 的改为自己手机的</p>
+      </li>
+      <li>
+        <p>将修改后的 shsh 文件上传到爱思服务器</p>
+      </li>
+      <li>
+        <p>使用爱思助手刷机，刷机前选中保持基带不升级</p>
+      </li>
+      <li>
+        <p>使用红雪进行越狱，越狱时一定选择 Deactive 选项，否则开机后手机无服务</p>
+      </li>
+      <li>
+        <p>每次关机后都必须使用红雪进行引导开机</p>
+      </li>
+      <li>
+        <p>如果手机锁屏后睡死，请在 Cydia 中添加威锋源(apt.weiphone.com)，再下载 insomnia pro 插件，保证锁屏系统不真正睡眠，但这样非常耗电。喜欢 iOS6 style 的朋友可以使用第二篇文章中的6.2.1的固件刷机，成功后不会出现睡死状况。</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>PS</p>
+  </li>
+</ul>
+
+<p>这篇博客讲了直接使用无睡死的固件来刷机，<a href="http://bbs.app111.com/thread-640908-1-1.html">http://bbs.app111.com/thread-640908-1-1.html</a> ，下载好文章中给出的固件后，还是按照以上 <code>3.4</code> - <code>3.6</code> 的步骤来操作。</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -290,59 +366,6 @@ sudo apt-get install xfonts-100dpi xfonts-75dpi xfonts-scalable xfonts-cyrillic 
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/12/04/set-prompt-string-in-shell-on-mac/">Set Prompt String in Shell on Mac</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-12-04T11:26:49+08:00'><span class='date'>2014-12-04</span> <span class='time'>11:26 am</span></time>
-        
-           | <a href="/blog/2014/12/04/set-prompt-string-in-shell-on-mac/#disqus_thread"
-             data-disqus-identifier="http://weilluo.github.io/blog/2014/12/04/set-prompt-string-in-shell-on-mac/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2 id="ps1">PS1</h2>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Custom Path </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="c"># echo $PS1</span>
-</span><span class="line"><span class="c"># \h:\W \u\$</span>
-</span><span class="line">
-</span><span class="line"><span class="nb">export </span><span class="nv">PS1</span><span class="o">=</span><span class="s1">&#39;$(whoami)@$(hostname):$(pwd)&#39;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Full Folder Path </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="nb">export </span><span class="nv">PS1</span><span class="o">=</span><span class="s1">&#39;$(pwd): &#39;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Current Folder Path </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="nb">export </span><span class="nv">PS1</span><span class="o">=</span><span class="s1">&#39;${PWD##*/}: &#39;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/6">&larr; Older</a>
@@ -360,6 +383,10 @@ sudo apt-get install xfonts-100dpi xfonts-75dpi xfonts-scalable xfonts-cyrillic 
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2017/04/26/difference-between-config-and-run-in-angular/">Difference Between Config and Run in Angular</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2017/04/15/s3-policy-on-ec2-having-changes-between-ecs-and-eb/">S3 Policy on EC2 Having Changes Between ECS and EB</a>
       </li>
     
@@ -375,21 +402,17 @@ sudo apt-get install xfonts-100dpi xfonts-75dpi xfonts-scalable xfonts-cyrillic 
         <a href="/blog/2016/11/17/different-between-include-and-extend-in-ruby/">Different Between Include and Extend in Ruby</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2016/02/05/add-a-user-to-admin-group-on-mac/">Add a User to Admin Group on Mac.</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Categories</h1>
-  <div id="category-list"><li><a href='/blog/categories/aws/'>AWS (2)</a></li><li><a href='/blog/categories/css/'>CSS (1)</a></li><li><a href='/blog/categories/disqus/'>DISQUS (1)</a></li><li><a href='/blog/categories/es6/'>ES6 (1)</a></li><li><a href='/blog/categories/git/'>GIT (2)</a></li><li><a href='/blog/categories/javascript/'>JAVASCRIPT (2)</a></li><li><a href='/blog/categories/jenkins/'>JENKINS (1)</a></li><li><a href='/blog/categories/mac/'>MAC (2)</a></li><li><a href='/blog/categories/mongodb/'>MONGODB (1)</a></li><li><a href='/blog/categories/rails/'>RAILS (2)</a></li><li><a href='/blog/categories/ruby/'>RUBY (4)</a></li><li><a href='/blog/categories/shell/'>SHELL (2)</a></li><li><a href='/blog/categories/sinatra/'>SINATRA (1)</a></li><li><a href='/blog/categories/sublime/'>SUBLIME (1)</a></li><li><a href='/blog/categories/swap/'>SWAP (1)</a></li><li><a href='/blog/categories/test/'>TEST (1)</a></li><li><a href='/blog/categories/ubuntu/'>UBUNTU (2)</a></li><li><a href='/blog/categories/watchman/'>WATCHMAN (1)</a></li><li><a href='/blog/categories/shua-ji/'>刷机 (1)</a></li></div>
+  <div id="category-list"><li><a href='/blog/categories/angular/'>ANGULAR (1)</a></li><li><a href='/blog/categories/aws/'>AWS (2)</a></li><li><a href='/blog/categories/css/'>CSS (1)</a></li><li><a href='/blog/categories/disqus/'>DISQUS (1)</a></li><li><a href='/blog/categories/es6/'>ES6 (1)</a></li><li><a href='/blog/categories/git/'>GIT (2)</a></li><li><a href='/blog/categories/javascript/'>JAVASCRIPT (2)</a></li><li><a href='/blog/categories/jenkins/'>JENKINS (1)</a></li><li><a href='/blog/categories/mac/'>MAC (2)</a></li><li><a href='/blog/categories/mongodb/'>MONGODB (1)</a></li><li><a href='/blog/categories/rails/'>RAILS (2)</a></li><li><a href='/blog/categories/ruby/'>RUBY (4)</a></li><li><a href='/blog/categories/shell/'>SHELL (2)</a></li><li><a href='/blog/categories/sinatra/'>SINATRA (1)</a></li><li><a href='/blog/categories/sublime/'>SUBLIME (1)</a></li><li><a href='/blog/categories/swap/'>SWAP (1)</a></li><li><a href='/blog/categories/test/'>TEST (1)</a></li><li><a href='/blog/categories/ubuntu/'>UBUNTU (2)</a></li><li><a href='/blog/categories/watchman/'>WATCHMAN (1)</a></li><li><a href='/blog/categories/shua-ji/'>刷机 (1)</a></li></div>
 </section>
 <section>
   <h1>
     <i class="fa fa-tags" aria-hidden="true"></i> Tags
   </h1>
-  <div id="tag-list"><li><a href='/blog/tags/aws/'>aws (2)</a></li><li><a href='/blog/tags/css/'>css (1)</a></li><li><a href='/blog/tags/disqus/'>disqus (1)</a></li><li><a href='/blog/tags/es6/'>es6 (1)</a></li><li><a href='/blog/tags/git/'>git (2)</a></li><li><a href='/blog/tags/javascript/'>javascript (2)</a></li><li><a href='/blog/tags/jenkins/'>jenkins (1)</a></li><li><a href='/blog/tags/mac/'>mac (2)</a></li><li><a href='/blog/tags/mongodb/'>mongodb (1)</a></li><li><a href='/blog/tags/rails/'>rails (2)</a></li><li><a href='/blog/tags/ruby/'>ruby (4)</a></li><li><a href='/blog/tags/shell/'>shell (2)</a></li><li><a href='/blog/tags/sinatra/'>sinatra (1)</a></li><li><a href='/blog/tags/sublime/'>sublime (1)</a></li><li><a href='/blog/tags/swap/'>swap (1)</a></li><li><a href='/blog/tags/test/'>test (1)</a></li><li><a href='/blog/tags/ubuntu/'>ubuntu (2)</a></li><li><a href='/blog/tags/watchman/'>watchman (1)</a></li><li><a href='/blog/tags/shua-ji/'>刷机 (1)</a></li></div>
+  <div id="tag-list"><li><a href='/blog/tags/angular/'>angular (1)</a></li><li><a href='/blog/tags/aws/'>aws (2)</a></li><li><a href='/blog/tags/css/'>css (1)</a></li><li><a href='/blog/tags/disqus/'>disqus (1)</a></li><li><a href='/blog/tags/es6/'>es6 (1)</a></li><li><a href='/blog/tags/git/'>git (2)</a></li><li><a href='/blog/tags/javascript/'>javascript (2)</a></li><li><a href='/blog/tags/jenkins/'>jenkins (1)</a></li><li><a href='/blog/tags/mac/'>mac (2)</a></li><li><a href='/blog/tags/mongodb/'>mongodb (1)</a></li><li><a href='/blog/tags/rails/'>rails (2)</a></li><li><a href='/blog/tags/ruby/'>ruby (4)</a></li><li><a href='/blog/tags/shell/'>shell (2)</a></li><li><a href='/blog/tags/sinatra/'>sinatra (1)</a></li><li><a href='/blog/tags/sublime/'>sublime (1)</a></li><li><a href='/blog/tags/swap/'>swap (1)</a></li><li><a href='/blog/tags/test/'>test (1)</a></li><li><a href='/blog/tags/ubuntu/'>ubuntu (2)</a></li><li><a href='/blog/tags/watchman/'>watchman (1)</a></li><li><a href='/blog/tags/shua-ji/'>刷机 (1)</a></li></div>
 </section>
 
   

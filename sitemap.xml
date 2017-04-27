@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>http://weilluo.github.io/blog/2017/04/26/difference-between-config-and-run-in-angular/</loc>
+<lastmod>2017-04-26T20:30:25+08:00</lastmod>
+</url>
+<url>
 <loc>http://weilluo.github.io/blog/2017/04/15/s3-policy-on-ec2-having-changes-between-ecs-and-eb/</loc>
 <lastmod>2017-04-15T11:47:12+08:00</lastmod>
 </url>
@@ -182,6 +186,9 @@
 <loc>http://weilluo.github.io/blog/categories/jenkins/</loc>
 </url>
 <url>
+<loc>http://weilluo.github.io/blog/categories/angular/</loc>
+</url>
+<url>
 <loc>http://weilluo.github.io/blog/tags/css/</loc>
 </url>
 <url>
@@ -303,5 +310,23 @@
 </url>
 <url>
 <loc>http://weilluo.github.io/blog/tags/s3/</loc>
+</url>
+<url>
+<loc>http://weilluo.github.io/blog/tags/angular/</loc>
+</url>
+<url>
+<loc>http://weilluo.github.io/posts/2/</loc>
+</url>
+<url>
+<loc>http://weilluo.github.io/posts/3/</loc>
+</url>
+<url>
+<loc>http://weilluo.github.io/posts/4/</loc>
+</url>
+<url>
+<loc>http://weilluo.github.io/posts/5/</loc>
+</url>
+<url>
+<loc>http://weilluo.github.io/posts/6/</loc>
 </url>
 </urlset>

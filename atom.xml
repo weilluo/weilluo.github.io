@@ -4,7 +4,7 @@
   <title><![CDATA[GUIDE]]></title>
   <link href="http://weilluo.github.io/atom.xml" rel="self"/>
   <link href="http://weilluo.github.io/"/>
-  <updated>2017-04-15T12:14:59+08:00</updated>
+  <updated>2017-04-27T10:12:45+08:00</updated>
   <id>http://weilluo.github.io/</id>
   <author>
     <name><![CDATA[Wei Luo]]></name>
@@ -12,6 +12,27 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Difference Between Config and Run in Angular]]></title>
+    <link href="http://weilluo.github.io/blog/2017/04/26/difference-between-config-and-run-in-angular/"/>
+    <updated>2017-04-26T20:30:25+08:00</updated>
+    <id>http://weilluo.github.io/blog/2017/04/26/difference-between-config-and-run-in-angular</id>
+    <content type="html"><![CDATA[<p>Configuration blocks and run blocks get executed at different points in the application bootstrap, and have different injection locals at their disposal. Here’s a summary of what you can find in the <a href="http://docs.angularjs.org/guide/module">AngularJS documentation</a>.</p>
+
+<p>Configuration blocks (registered with <code>module.config()</code>) get executed during provider registration, and can only be injected providers and constants (see <code>module.provider()</code> and <code>module.constant()</code>). This is typically where you would configure application-wide stuff, such as the $routeProvider. Stuff that needs to be configured before the services are created.</p>
+
+<p>Run blocks (registered with <code>module.run()</code>) get executed after the injector has all the providers. Now, all instances and constants can be injected. This is typically where you would configure services, <code>$rootScope</code>, events and so on.</p>
+
+<p>You can have multiple of either, and they are executed in the order they were registered to the module. Some people prefer to register a configuration block before every group of controllers to register the routes to these controller, for example.</p>
+
+<blockquote>
+  <p>Reference:</p>
+</blockquote>
+
+<p><a href="http://stackoverflow.com/questions/18123565/config-run-appctrl-where-to-put-routes">http://stackoverflow.com/questions/18123565/config-run-appctrl-where-to-put-routes</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[S3 Policy on EC2 Having Changes Between ECS and EB]]></title>
@@ -1372,62 +1393,6 @@
 </pre></td><td class="code"><pre><code class="bash"><span class="line">crontab -l <span class="c"># view the schedulers.</span>
 </span><span class="line">crontab -r <span class="c"># remove all schedulers.</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[iPhone4 无 SHSH 从 iOS7.1.2 降级到 iOS6.1.3]]></title>
-    <link href="http://weilluo.github.io/blog/2015/02/09/iphone4-wu-shsh-cong-ios7-dot-1-2-jiang-ji-dao-ios6-dot-1-3/"/>
-    <updated>2015-02-09T12:37:50+08:00</updated>
-    <id>http://weilluo.github.io/blog/2015/02/09/iphone4-wu-shsh-cong-ios7-dot-1-2-jiang-ji-dao-ios6-dot-1-3</id>
-    <content type="html"><![CDATA[<h2 id="iphone4gsm-">经过艰辛的历程，终于将 iPhone4(GSM版) 成功降级；</h2>
-
-<ul>
-  <li>使用工具</li>
-</ul>
-
-<p>爱思，红雪，平台windows7</p>
-
-<ul>
-  <li>悲剧的报错</li>
-</ul>
-
-<p>之前使用的是xp系统，结果出现写入 AppleLogo 失败，set Picture 0 failure…的报错，一直以为是手机硬件问题，纠结了半个多月。之后自己的 win7 电脑修好后，重新试了一下，竟然成功了。</p>
-
-<ul>
-  <li>
-    <p>刷机过程 <a href="http://bbs.i4.cn/thread-18856-1-1.html">http://bbs.i4.cn/thread-18856-1-1.html</a></p>
-
-    <ul>
-      <li>
-        <p>使用红雪或爱思助手等工具查看手机的ECID</p>
-      </li>
-      <li>
-        <p>找到对应 iOS 版本的 shsh 文件，打开文件，将 ECID 的改为自己手机的</p>
-      </li>
-      <li>
-        <p>将修改后的 shsh 文件上传到爱思服务器</p>
-      </li>
-      <li>
-        <p>使用爱思助手刷机，刷机前选中保持基带不升级</p>
-      </li>
-      <li>
-        <p>使用红雪进行越狱，越狱时一定选择 Deactive 选项，否则开机后手机无服务</p>
-      </li>
-      <li>
-        <p>每次关机后都必须使用红雪进行引导开机</p>
-      </li>
-      <li>
-        <p>如果手机锁屏后睡死，请在 Cydia 中添加威锋源(apt.weiphone.com)，再下载 insomnia pro 插件，保证锁屏系统不真正睡眠，但这样非常耗电。喜欢 iOS6 style 的朋友可以使用第二篇文章中的6.2.1的固件刷机，成功后不会出现睡死状况。</p>
-      </li>
-    </ul>
-  </li>
-  <li>
-    <p>PS</p>
-  </li>
-</ul>
-
-<p>这篇博客讲了直接使用无睡死的固件来刷机，<a href="http://bbs.app111.com/thread-640908-1-1.html">http://bbs.app111.com/thread-640908-1-1.html</a> ，下载好文章中给出的固件后，还是按照以上 <code>3.4</code> - <code>3.6</code> 的步骤来操作。</p>
 ]]></content>
   </entry>
   
