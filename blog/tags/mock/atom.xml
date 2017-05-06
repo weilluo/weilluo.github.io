@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: Mock | GUIDE]]></title>
+  <link href="http://weilluo.github.io/blog/tags/mock/atom.xml" rel="self"/>
+  <link href="http://weilluo.github.io/"/>
+  <updated>2017-05-06T16:03:30+08:00</updated>
+  <id>http://weilluo.github.io/</id>
+  <author>
+    <name><![CDATA[Wei Luo]]></name>
+    <email><![CDATA[luowei---010101@163.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Mock a Method When Test Express Api]]></title>
+    <link href="http://weilluo.github.io/blog/2017/05/06/mock-a-method-when-test-express-api/"/>
+    <updated>2017-05-06T15:08:16+08:00</updated>
+    <id>http://weilluo.github.io/blog/2017/05/06/mock-a-method-when-test-express-api</id>
+    <content type="html"><![CDATA[<p>I think many guys are using <code>express</code> as they backend service framework, there is a most important thing <code>Test</code>. We should write test for the apis that usually contains a lot of business logics.</p>
+
+<p>Today I want to show my experiences on writing test for express apis.</p>
+
+<p>Dependencies</p>
+
+<pre><code>"babel-register": "6.23.0",
+"chai": "3.5.0",
+"chai-as-promised": "6.0.0",
+"mocha": "3.3.0",
+"sinon": "2.2.0",
+"supertest": "3.0.0"
+</code></pre>
+
+<p>Makefile</p>
+
+<pre><code>TESTS = src/test/**/*.spec.js
+REPORTER = spec
+
+NODE_ENV = test
+
+tests:
+  @./node_modules/.bin/mocha \
+    --compilers js:babel-register \
+    --require src/test/test-helper.js \
+    --timeout 10000 \
+    --colors \
+    --reporter $(REPORTER) \
+    $(TESTS)
+
+.PHONY: tests
+</code></pre>
+
+<p>test-helper.js</p>
+
+<pre><code>import chai from 'chai';
+import chaiAsPromised from 'chai-as-promised';
+
+chai.use(chaiAsPromised);
+global.expect = chai.expect;
+</code></pre>
+
+<p>I use <code>supertest</code> to send a reqeust to api, here I supply one example, because it confuses me for a long time.</p>
+
+<h2 id="example">Example</h2>
+
+<p>Update roles api, it will check <code>current user</code> permission firstly</p>
+
+<blockquote>
+  <p>case 1, user have RoleUpdate permission
+case 2, user don’t have RoleUpdate permission</p>
+</blockquote>
+
+<pre><code>router.route('/:id/roles').put(hasPermission('RoleUpdate'), (req, res, next) =&gt; {
+  ...
+});
+
+export let hasPermission = (name) =&gt; {
+  return (req, res, next) =&gt; {
+    readPermission(req.currentUser)
+      .then(results =&gt; {
+        let permissions = results.map(result =&gt; result.name);
+        if (permissions.indexOf(name) === -1) {
+          return next(new PermissionError(`Sorry, You don't have ${name} permission`));
+        }
+        next();
+      })
+      .catch(err =&gt; next(err));
+  }
+};
+
+let readPermission = (username) =&gt; {
+  return Permisison.findByUser(username);
+};
+</code></pre>
+
+<p>In these two case, the directly thought is mock the <code>hasPermission</code> or export <code>readPermission</code> then mock him, but unfortunately, all of these solutions fail. Because it runs before the app starts.</p>
+
+<p>If we mock <code>Permisison.findByUser</code>, it can works well.</p>
+
+<pre><code>let sandbox = sinon.sandbox.create();
+
+case 1
+sandbox.stub(Permisison, 'findByUser').returns(RSVP.resolve([{ name: 'RoleUpdate' }]));
+...
+case 2
+sandbox.stub(Permisison, 'findByUser').returns(RSVP.resolve([]));
+</code></pre>
+]]></content>
+  </entry>
+  
+</feed>

@@ -9,7 +9,7 @@
   <meta name="author" content="Wei Luo">
 
   
-  <meta name="description" content="Configuration blocks and run blocks get executed at different points in the application bootstrap, and have different injection locals at their &hellip;">
+  <meta name="description" content="I think many guys are using express as they backend service framework, there is a most important thing Test. We should write test for the apis that &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -86,6 +86,125 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2017/05/06/mock-a-method-when-test-express-api/">Mock a Method When Test Express Api</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2017-05-06T15:08:16+08:00'><span class='date'>2017-05-06</span> <span class='time'>3:08 pm</span></time>
+        
+           | <a href="/blog/2017/05/06/mock-a-method-when-test-express-api/#disqus_thread"
+             data-disqus-identifier="http://weilluo.github.io/blog/2017/05/06/mock-a-method-when-test-express-api/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I think many guys are using <code>express</code> as they backend service framework, there is a most important thing <code>Test</code>. We should write test for the apis that usually contains a lot of business logics.</p>
+
+<p>Today I want to show my experiences on writing test for express apis.</p>
+
+<p>Dependencies</p>
+
+<pre><code>"babel-register": "6.23.0",
+"chai": "3.5.0",
+"chai-as-promised": "6.0.0",
+"mocha": "3.3.0",
+"sinon": "2.2.0",
+"supertest": "3.0.0"
+</code></pre>
+
+<p>Makefile</p>
+
+<pre><code>TESTS = src/test/**/*.spec.js
+REPORTER = spec
+
+NODE_ENV = test
+
+tests:
+  @./node_modules/.bin/mocha \
+    --compilers js:babel-register \
+    --require src/test/test-helper.js \
+    --timeout 10000 \
+    --colors \
+    --reporter $(REPORTER) \
+    $(TESTS)
+
+.PHONY: tests
+</code></pre>
+
+<p>test-helper.js</p>
+
+<pre><code>import chai from 'chai';
+import chaiAsPromised from 'chai-as-promised';
+
+chai.use(chaiAsPromised);
+global.expect = chai.expect;
+</code></pre>
+
+<p>I use <code>supertest</code> to send a reqeust to api, here I supply one example, because it confuses me for a long time.</p>
+
+<h2 id="example">Example</h2>
+
+<p>Update roles api, it will check <code>current user</code> permission firstly</p>
+
+<blockquote>
+  <p>case 1, user have RoleUpdate permission
+case 2, user don’t have RoleUpdate permission</p>
+</blockquote>
+
+<pre><code>router.route('/:id/roles').put(hasPermission('RoleUpdate'), (req, res, next) =&gt; {
+  ...
+});
+
+export let hasPermission = (name) =&gt; {
+  return (req, res, next) =&gt; {
+    readPermission(req.currentUser)
+      .then(results =&gt; {
+        let permissions = results.map(result =&gt; result.name);
+        if (permissions.indexOf(name) === -1) {
+          return next(new PermissionError(`Sorry, You don't have ${name} permission`));
+        }
+        next();
+      })
+      .catch(err =&gt; next(err));
+  }
+};
+
+let readPermission = (username) =&gt; {
+  return Permisison.findByUser(username);
+};
+</code></pre>
+
+<p>In these two case, the directly thought is mock the <code>hasPermission</code> or export <code>readPermission</code> then mock him, but unfortunately, all of these solutions fail. Because it runs before the app starts.</p>
+
+<p>If we mock <code>Permisison.findByUser</code>, it can works well.</p>
+
+<pre><code>let sandbox = sinon.sandbox.create();
+
+case 1
+sandbox.stub(Permisison, 'findByUser').returns(RSVP.resolve([{ name: 'RoleUpdate' }]));
+...
+case 2
+sandbox.stub(Permisison, 'findByUser').returns(RSVP.resolve([]));
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -434,69 +553,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2016/11/17/different-between-include-and-extend-in-ruby/">Different Between Include and Extend in Ruby</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2016-11-17T14:35:32+08:00'><span class='date'>2016-11-17</span> <span class='time'>2:35 pm</span></time>
-        
-           | <a href="/blog/2016/11/17/different-between-include-and-extend-in-ruby/#disqus_thread"
-             data-disqus-identifier="http://weilluo.github.io/blog/2016/11/17/different-between-include-and-extend-in-ruby/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class="bogus-wrapper"><notextile><figure class="code"><figcaption class="code-header"><span>Example </span></figcaption>
- <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"> 1</span><span class="keyword">module</span> <span class="class">AAA</span>
-<span class="line-numbers"> 2</span>  <span class="keyword">def</span> <span class="function">aaa</span>
-<span class="line-numbers"> 3</span>    puts <span class="string"><span class="delimiter">&quot;</span><span class="content">aaa</span><span class="delimiter">&quot;</span></span>
-<span class="line-numbers"> 4</span>  <span class="keyword">end</span>
-<span class="line-numbers"> 5</span>
-<span class="line-numbers"> 6</span>  <span class="keyword">def</span> <span class="predefined-constant">self</span>.<span class="function">bbb</span>
-<span class="line-numbers"> 7</span>    puts <span class="string"><span class="delimiter">&quot;</span><span class="content">bbb</span><span class="delimiter">&quot;</span></span>
-<span class="line-numbers"> 8</span>  <span class="keyword">end</span>
-<span class="line-numbers"> 9</span><span class="keyword">end</span>
-<span class="line-numbers"><strong>10</strong></span>
-<span class="line-numbers">11</span><span class="keyword">class</span> <span class="class">C1</span>
-<span class="line-numbers">12</span>  include <span class="constant">AAA</span>
-<span class="line-numbers">13</span><span class="keyword">end</span>
-<span class="line-numbers">14</span>
-<span class="line-numbers">15</span><span class="comment"># C1.bbb  # undefined method `bbb' for C1:Class</span>
-<span class="line-numbers">16</span><span class="comment"># C1.aaa  # undefined method `aaa' for C1:Class</span>
-<span class="line-numbers">17</span><span class="constant">C1</span>.new.aaa  <span class="comment"># aaa</span>
-<span class="line-numbers">18</span><span class="comment"># C1.new.bbb  # undefined method `bbb' for #&lt;C1:0x007ff1f414af08&gt;</span>
-<span class="line-numbers">19</span>
-<span class="line-numbers"><strong>20</strong></span><span class="keyword">class</span> <span class="class">C2</span>
-<span class="line-numbers">21</span>  extend <span class="constant">AAA</span>
-<span class="line-numbers">22</span><span class="keyword">end</span>
-<span class="line-numbers">23</span>
-<span class="line-numbers">24</span><span class="comment"># C2.bbb  # undefined method `bbb' for C2:Class</span>
-<span class="line-numbers">25</span><span class="constant">C2</span>.aaa  <span class="comment"># aaa</span>
-<span class="line-numbers">26</span><span class="comment"># C2.new.aaa  # undefined method `aaa' for #&lt;C2:0x007f86ea943298&gt;</span>
-<span class="line-numbers">27</span><span class="comment"># C2.new.bbb  # undefined method `bbb' for #&lt;C2:0x007fc463117270&gt;</span>
-</pre></div>
-</div>
- </figure></notextile></div>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -510,6 +566,10 @@
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2017/05/06/mock-a-method-when-test-express-api/">Mock a Method When Test Express Api</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2017/04/26/difference-between-config-and-run-in-angular/">Difference Between Config and Run in Angular</a>
@@ -527,21 +587,17 @@
         <a href="/blog/2017/04/15/waiting-for-dynamically-loaded-script/">Waiting for Dynamically Loaded Script</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2016/11/17/different-between-include-and-extend-in-ruby/">Different Between Include and Extend in Ruby</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Categories</h1>
-  <div id="category-list"><li><a href='/blog/categories/angular/'>ANGULAR (1)</a></li><li><a href='/blog/categories/aws/'>AWS (2)</a></li><li><a href='/blog/categories/css/'>CSS (1)</a></li><li><a href='/blog/categories/disqus/'>DISQUS (1)</a></li><li><a href='/blog/categories/es6/'>ES6 (1)</a></li><li><a href='/blog/categories/git/'>GIT (2)</a></li><li><a href='/blog/categories/javascript/'>JAVASCRIPT (2)</a></li><li><a href='/blog/categories/jenkins/'>JENKINS (1)</a></li><li><a href='/blog/categories/mac/'>MAC (2)</a></li><li><a href='/blog/categories/mongodb/'>MONGODB (1)</a></li><li><a href='/blog/categories/rails/'>RAILS (2)</a></li><li><a href='/blog/categories/ruby/'>RUBY (4)</a></li><li><a href='/blog/categories/shell/'>SHELL (2)</a></li><li><a href='/blog/categories/sinatra/'>SINATRA (1)</a></li><li><a href='/blog/categories/sublime/'>SUBLIME (1)</a></li><li><a href='/blog/categories/swap/'>SWAP (1)</a></li><li><a href='/blog/categories/test/'>TEST (1)</a></li><li><a href='/blog/categories/ubuntu/'>UBUNTU (2)</a></li><li><a href='/blog/categories/watchman/'>WATCHMAN (1)</a></li><li><a href='/blog/categories/shua-ji/'>刷机 (1)</a></li></div>
+  <div id="category-list"><li><a href='/blog/categories/angular/'>ANGULAR (1)</a></li><li><a href='/blog/categories/aws/'>AWS (2)</a></li><li><a href='/blog/categories/css/'>CSS (1)</a></li><li><a href='/blog/categories/disqus/'>DISQUS (1)</a></li><li><a href='/blog/categories/es6/'>ES6 (1)</a></li><li><a href='/blog/categories/git/'>GIT (2)</a></li><li><a href='/blog/categories/javascript/'>JAVASCRIPT (2)</a></li><li><a href='/blog/categories/jenkins/'>JENKINS (1)</a></li><li><a href='/blog/categories/mac/'>MAC (2)</a></li><li><a href='/blog/categories/mongodb/'>MONGODB (1)</a></li><li><a href='/blog/categories/rails/'>RAILS (2)</a></li><li><a href='/blog/categories/ruby/'>RUBY (4)</a></li><li><a href='/blog/categories/shell/'>SHELL (2)</a></li><li><a href='/blog/categories/sinatra/'>SINATRA (1)</a></li><li><a href='/blog/categories/sublime/'>SUBLIME (1)</a></li><li><a href='/blog/categories/swap/'>SWAP (1)</a></li><li><a href='/blog/categories/test/'>TEST (2)</a></li><li><a href='/blog/categories/ubuntu/'>UBUNTU (2)</a></li><li><a href='/blog/categories/watchman/'>WATCHMAN (1)</a></li><li><a href='/blog/categories/shua-ji/'>刷机 (1)</a></li></div>
 </section>
 <section>
   <h1>
     <i class="fa fa-tags" aria-hidden="true"></i> Tags
   </h1>
-  <div id="tag-list"><li><a href='/blog/tags/angular/'>angular (1)</a></li><li><a href='/blog/tags/aws/'>aws (2)</a></li><li><a href='/blog/tags/css/'>css (1)</a></li><li><a href='/blog/tags/disqus/'>disqus (1)</a></li><li><a href='/blog/tags/es6/'>es6 (1)</a></li><li><a href='/blog/tags/git/'>git (2)</a></li><li><a href='/blog/tags/javascript/'>javascript (2)</a></li><li><a href='/blog/tags/jenkins/'>jenkins (1)</a></li><li><a href='/blog/tags/mac/'>mac (2)</a></li><li><a href='/blog/tags/mongodb/'>mongodb (1)</a></li><li><a href='/blog/tags/rails/'>rails (2)</a></li><li><a href='/blog/tags/ruby/'>ruby (4)</a></li><li><a href='/blog/tags/shell/'>shell (2)</a></li><li><a href='/blog/tags/sinatra/'>sinatra (1)</a></li><li><a href='/blog/tags/sublime/'>sublime (1)</a></li><li><a href='/blog/tags/swap/'>swap (1)</a></li><li><a href='/blog/tags/test/'>test (1)</a></li><li><a href='/blog/tags/ubuntu/'>ubuntu (2)</a></li><li><a href='/blog/tags/watchman/'>watchman (1)</a></li><li><a href='/blog/tags/shua-ji/'>刷机 (1)</a></li></div>
+  <div id="tag-list"><li><a href='/blog/tags/angular/'>angular (1)</a></li><li><a href='/blog/tags/aws/'>aws (2)</a></li><li><a href='/blog/tags/css/'>css (1)</a></li><li><a href='/blog/tags/disqus/'>disqus (1)</a></li><li><a href='/blog/tags/es6/'>es6 (1)</a></li><li><a href='/blog/tags/git/'>git (2)</a></li><li><a href='/blog/tags/javascript/'>javascript (2)</a></li><li><a href='/blog/tags/jenkins/'>jenkins (1)</a></li><li><a href='/blog/tags/mac/'>mac (2)</a></li><li><a href='/blog/tags/mongodb/'>mongodb (1)</a></li><li><a href='/blog/tags/rails/'>rails (2)</a></li><li><a href='/blog/tags/ruby/'>ruby (4)</a></li><li><a href='/blog/tags/shell/'>shell (2)</a></li><li><a href='/blog/tags/sinatra/'>sinatra (1)</a></li><li><a href='/blog/tags/sublime/'>sublime (1)</a></li><li><a href='/blog/tags/swap/'>swap (1)</a></li><li><a href='/blog/tags/test/'>test (2)</a></li><li><a href='/blog/tags/ubuntu/'>ubuntu (2)</a></li><li><a href='/blog/tags/watchman/'>watchman (1)</a></li><li><a href='/blog/tags/shua-ji/'>刷机 (1)</a></li></div>
 </section>
 
   

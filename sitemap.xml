@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>http://weilluo.github.io/blog/2017/05/06/mock-a-method-when-test-express-api/</loc>
+<lastmod>2017-05-06T15:08:16+08:00</lastmod>
+</url>
+<url>
 <loc>http://weilluo.github.io/blog/2017/04/26/difference-between-config-and-run-in-angular/</loc>
 <lastmod>2017-04-26T20:30:25+08:00</lastmod>
 </url>
@@ -315,18 +319,9 @@
 <loc>http://weilluo.github.io/blog/tags/angular/</loc>
 </url>
 <url>
-<loc>http://weilluo.github.io/posts/2/</loc>
+<loc>http://weilluo.github.io/blog/tags/expressjs/</loc>
 </url>
 <url>
-<loc>http://weilluo.github.io/posts/3/</loc>
-</url>
-<url>
-<loc>http://weilluo.github.io/posts/4/</loc>
-</url>
-<url>
-<loc>http://weilluo.github.io/posts/5/</loc>
-</url>
-<url>
-<loc>http://weilluo.github.io/posts/6/</loc>
+<loc>http://weilluo.github.io/blog/tags/mock/</loc>
 </url>
 </urlset>
