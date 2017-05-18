@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Tag: Shell | GUIDE]]></title>
-  <link href="http://weilluo.github.io/blog/tags/shell/atom.xml" rel="self"/>
+  <title><![CDATA[Tag: Ps1 | GUIDE]]></title>
+  <link href="http://weilluo.github.io/blog/tags/ps1/atom.xml" rel="self"/>
   <link href="http://weilluo.github.io/"/>
   <updated>2017-05-18T15:19:49+08:00</updated>
   <id>http://weilluo.github.io/</id>
@@ -49,47 +49,6 @@
 </span><span class='line'><span class="nb">export </span><span class="nv">LSCOLORS</span><span class="o">=</span>ExFxBxDxCxegedabagacad
 </span><span class='line'><span class="nb">export </span><span class="nv">PS1</span><span class="o">=</span>”<span class="o">[</span><span class="se">\0</span>33<span class="o">[</span>36m<span class="o">]</span><span class="se">\u</span><span class="o">[</span><span class="se">\0</span>33<span class="o">[</span>m<span class="o">]</span>@<span class="o">[</span><span class="se">\0</span>33<span class="o">[</span>32m<span class="o">]</span><span class="se">\h</span>:<span class="o">[</span><span class="se">\0</span>33<span class="o">[</span>33<span class="p">;</span>1m<span class="o">]</span><span class="se">\W</span><span class="o">[</span><span class="se">\0</span>33<span class="o">[</span>m<span class="o">]</span><span class="nv">$ </span>“
 </span></code></pre></td></tr></table></div></figure></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[How to Use Chmod in Unix/linux]]></title>
-    <link href="http://weilluo.github.io/blog/2014/11/21/how-to-use-chmod-in-unix-slash-linux/"/>
-    <updated>2014-11-21T10:16:00+08:00</updated>
-    <id>http://weilluo.github.io/blog/2014/11/21/how-to-use-chmod-in-unix-slash-linux</id>
-    <content type="html"><![CDATA[<h2 id="file-permission-modify-command-chmod">File permission modify command: <em>chmod</em></h2>
-
-<ul>
-  <li>Usage: chmod XXX file
-  
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># XXX: owner/group(users in owner’s group)/otherUsers&lt;/li&gt;</span>
-</span><span class='line'>&lt;/ul&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;x <span class="o">=</span> 4: ‘read’ permission
-</span><span class='line'><span class="nv">x</span> <span class="o">=</span> 2: ‘write’ permission
-</span><span class='line'><span class="nv">x</span> <span class="o">=</span> 1: ‘exec’ permission
-</span></code></pre></td></tr></table></div></figure></p>
-
-<ul>
-  <li>Example:</li>
-</ul>
-
-<p>```bash
-sudo chmod 600 file (only owner has read, write permission)
-sudo chmod 644 file (owner has read and write permission, group users and other users has only read permission)</p>
-
-<p>sudo chmod 700 file (only owner has read, write and exec permission)
-sudo chmod 666 file (everyone has read, write permission)
-sudo chmod 777 file (everyone has read, write and exec permission)</p>
-
-<p>sudo chmod go-x file (cancel the exec permission of group and other users)
-```</p>
 ]]></content>
   </entry>
   

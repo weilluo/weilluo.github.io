@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Shell | GUIDE]]></title>
   <link href="http://weilluo.github.io/blog/categories/shell/atom.xml" rel="self"/>
   <link href="http://weilluo.github.io/"/>
-  <updated>2017-05-12T18:00:30+08:00</updated>
+  <updated>2017-05-18T15:19:49+08:00</updated>
   <id>http://weilluo.github.io/</id>
   <author>
     <name><![CDATA[Wei Luo]]></name>
@@ -39,6 +39,15 @@
 <p><figure class='code'><figcaption><span>Current Folder Path </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">export </span><span class="nv">PS1</span><span class="o">=</span>’<span class="k">${</span><span class="nv">PWD</span><span class="p">##*/</span><span class="k">}</span>: ‘
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p><figure class='code'><figcaption><span>Recommend Settings </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">export </span><span class="nv">CLICOLOR</span><span class="o">=</span>1
+</span><span class='line'><span class="nb">export </span><span class="nv">LSCOLORS</span><span class="o">=</span>ExFxBxDxCxegedabagacad
+</span><span class='line'><span class="nb">export </span><span class="nv">PS1</span><span class="o">=</span>”<span class="o">[</span><span class="se">\0</span>33<span class="o">[</span>36m<span class="o">]</span><span class="se">\u</span><span class="o">[</span><span class="se">\0</span>33<span class="o">[</span>m<span class="o">]</span>@<span class="o">[</span><span class="se">\0</span>33<span class="o">[</span>32m<span class="o">]</span><span class="se">\h</span>:<span class="o">[</span><span class="se">\0</span>33<span class="o">[</span>33<span class="p">;</span>1m<span class="o">]</span><span class="se">\W</span><span class="o">[</span><span class="se">\0</span>33<span class="o">[</span>m<span class="o">]</span><span class="nv">$ </span>“
 </span></code></pre></td></tr></table></div></figure></p>
 ]]></content>
   </entry>
