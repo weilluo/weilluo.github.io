@@ -9,7 +9,23 @@
   <meta name="author" content="Wei Luo">
 
   
-  <meta name="description" content="I think many guys are using express as they backend service framework, there is a most important thing Test. We should write test for the apis that &hellip;">
+  <meta name="description" content="Embrace async Before 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+let af = () =&gt; promise;
+let bf = () =&gt; promise; let cf = () =&gt; { return af().then &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -86,6 +102,159 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2017/06/02/nodejs-best-practices/">Nodejs Best Practices</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2017-06-02T10:28:04+08:00'><span class='date'>2017-06-02</span> <span class='time'>10:28 am</span></time>
+        
+           | <a href="/blog/2017/06/02/nodejs-best-practices/#disqus_thread"
+             data-disqus-identifier="http://weilluo.github.io/blog/2017/06/02/nodejs-best-practices/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2 id="embrace-async">Embrace async</h2>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Before </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+</pre></td><td class="code"><pre><code class="javascript"><span class="line"><span class="kd">let</span> <span class="nx">af</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">promise</span><span class="p">;</span>
+</span><span class="line"><span class="kd">let</span> <span class="nx">bf</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">promise</span><span class="p">;</span>
+</span><span class="line">
+</span><span class="line"><span class="kd">let</span> <span class="nx">cf</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span><span class="line">  <span class="k">return</span> <span class="nx">af</span><span class="p">().</span><span class="nx">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span><span class="line">    <span class="k">return</span> <span class="nx">bf</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="nx">result</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span><span class="line">      <span class="kd">let</span> <span class="nx">t</span> <span class="o">=</span> <span class="nx">result</span><span class="p">;</span>
+</span><span class="line">      <span class="k">return</span> <span class="p">...;</span>
+</span><span class="line">    <span class="p">})</span>
+</span><span class="line">  <span class="p">});</span>
+</span><span class="line"><span class="p">}</span>
+</span><span class="line">
+</span><span class="line"><span class="kd">let</span> <span class="nx">df</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span><span class="line">  <span class="nx">cf</span><span class="p">().</span><span class="nx">then</span><span class="p">().</span><span class="k">catch</span><span class="p">();</span>
+</span><span class="line"><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption class="code-header"><span>After </span></figcaption>
+ <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers">1</span>...
+<span class="line-numbers">2</span>let cf = async () =&gt; {
+<span class="line-numbers">3</span>  let r1 = await af();
+<span class="line-numbers">4</span>  let r2 = await bf();
+<span class="line-numbers">5</span>  <span class="keyword">return</span> ...;
+<span class="line-numbers">6</span>}
+<span class="line-numbers">7</span>...
+</pre></div>
+</div>
+ </figure></notextile></div>
+
+<blockquote>
+  <p>Now we need <code>babel</code> to compile this syntax</p>
+</blockquote>
+
+<h2 id="npm">NPM</h2>
+
+<ol>
+  <li>
+    <p>start project use <code>npm init</code></p>
+  </li>
+  <li>
+    <p>use <code>.npmrc</code></p>
+  </li>
+</ol>
+
+<div class="bogus-wrapper"><notextile><figure class="code"> <div class="CodeRay">
+  <div class="code"><pre>npm config set save=true
+npm config set save-exact=true
+</pre></div>
+</div>
+ </figure></notextile></div>
+
+<ol>
+  <li>add scripts to <code>package.json</code></li>
+</ol>
+
+<div class="bogus-wrapper"><notextile><figure class="code"> <div class="CodeRay">
+  <div class="code"><pre><span class="key"><span class="delimiter">&quot;</span><span class="content">scripts</span><span class="delimiter">&quot;</span></span>: {
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">debug</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">npm run es6 -- --nolazy --debug-brk=5858 src/server.js</span><span class="delimiter">&quot;</span></span>,
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">es6</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">node_modules/.bin/babel-node</span><span class="delimiter">&quot;</span></span>,
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">es6:watch</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">node_modules/.bin/babel-watch</span><span class="delimiter">&quot;</span></span>,
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">eslint</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">node_modules/.bin/eslint</span><span class="delimiter">&quot;</span></span>,
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">start</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">npm run es6:watch -- src/server.js</span><span class="delimiter">&quot;</span></span>,
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">start:prod</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">npm run es6 -- src/server.js</span><span class="delimiter">&quot;</span></span>,
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">test</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">npm run eslint -- </span><span class="char">\&quot;</span><span class="content">src/**/*.js</span><span class="char">\&quot;</span><span class="content"> &amp;&amp; make tests</span><span class="delimiter">&quot;</span></span>
+}
+</pre></div>
+</div>
+ </figure></notextile></div>
+
+<h2 id="style-guide">Style guide</h2>
+
+<p><code>ESlint</code>, <code>JSLint</code> and so on.</p>
+
+<h2 id="handle-errors-and-logging-important-messages">Handle errors and logging important messages</h2>
+
+<p>Some <code>syntax</code> like:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"> <div class="CodeRay">
+  <div class="code"><pre><span class="comment">// if use express</span>
+let errorCatch = (err, req, res, next) =&gt; {
+  logger.error(err.message, <span class="string"><span class="delimiter">&quot;</span><span class="char">\n</span><span class="delimiter">&quot;</span></span> + err.stack);
+  <span class="comment">// some logic ...</span>
+  res.status(err.code || <span class="integer">500</span>);
+  res.json({ <span class="key">error</span>: err.message });
+}
+</pre></div>
+</div>
+ </figure></notextile></div>
+
+<h2 id="process-management">Process management</h2>
+
+<ol>
+  <li>
+    <p>automatically restart app</p>
+  </li>
+  <li>
+    <p>cluster app</p>
+  </li>
+</ol>
+
+<h2 id="use-content-security-policy-in-web-application">Use <code>Content-Security-Policy</code> in web application</h2>
+
+<p>reduce XSS (Cross-Site scripting) risks on modern browsers, <a href="https://content-security-policy.com/">https://content-security-policy.com/</a>.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -414,145 +583,6 @@ sandbox.stub(Permisison, 'findByUser').returns(RSVP.resolve([]));
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2017/04/15/waiting-for-dynamically-loaded-script/">Waiting for Dynamically Loaded Script</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2017-04-15T09:37:54+08:00'><span class='date'>2017-04-15</span> <span class='time'>9:37 am</span></time>
-        
-           | <a href="/blog/2017/04/15/waiting-for-dynamically-loaded-script/#disqus_thread"
-             data-disqus-identifier="http://weilluo.github.io/blog/2017/04/15/waiting-for-dynamically-loaded-script/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Historically, <code>&lt;script&gt;</code> tags are full blocking, hence the second <code>&lt;script&gt;</code> tag can’t get encountered befored the former has finished parsing/excuting. Only problem might be that <code>modern</code> browsers tend to load scripts asynchronously and deferred. So to make sure order is correct, use it like this:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Snippet </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-</pre></td><td class="code"><pre><code class="html"><span class="line"><span class="nt">&lt;p&gt;</span>Loading jQuery<span class="nt">&lt;/p&gt;</span>
-</span><span class="line"><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&#39;text/javascript&#39;</span> <span class="na">async=</span><span class="s">false</span> <span class="na">defer=</span><span class="s">false</span> <span class="na">src=</span><span class="s">&#39;scripts/jquery/core/jquery-1.4.4.js&#39;</span><span class="nt">&gt;&lt;/script&gt;</span>
-</span><span class="line"><span class="nt">&lt;p&gt;</span>Using jQuery<span class="nt">&lt;/p&gt;</span>
-</span><span class="line"><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&#39;text/javascript&#39;</span><span class="nt">&gt;</span>
-</span><span class="line">    <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
-</span><span class="line">        <span class="p">...</span>
-</span><span class="line">    <span class="p">});</span>
-</span><span class="line"><span class="nt">&lt;/script&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<hr />
-
-<h3 id="plain-script-elements">Plain script elements</h3>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-</pre></td><td class="code"><pre><code class="html"><span class="line"><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;//other-domain.com/1.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
-</span><span class="line"><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;2.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p><strong>Spec says:</strong> Download together, execute in order after any pending CSS, block rendering until complete.</p>
-
-<p><strong>Browsers say:</strong> Yes sir!</p>
-
-<h3 id="defer">Defer</h3>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-</pre></td><td class="code"><pre><code class="html"><span class="line"><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;//other-domain.com/1.js&quot;</span> <span class="na">defer</span><span class="nt">&gt;&lt;/script&gt;</span>
-</span><span class="line"><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;2.js&quot;</span> <span class="na">defer</span><span class="nt">&gt;&lt;/script&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p><strong>Spec says:</strong> Download together, execute in order just before DOMContentLoaded. Ignore <code>defer</code> on scripts without <code>src</code>.</p>
-
-<p><strong>IE &lt; 10 says</strong>: I might execute 2.js halfway through the execution of 1.js. Isn’t that fun??</p>
-
-<p><strong>The <a href="http://caniuse.com/#search=defer">browsers in red</a> say</strong>: I have no idea what this <code>defer</code> thing is, I’m going to load the scripts as if it weren’t there.</p>
-
-<p><strong>Other browsers say:</strong> Ok, but I might not ignore <code>defer</code> on scripts without <code>src</code>.</p>
-
-<h3 id="async">Async</h3>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-</pre></td><td class="code"><pre><code class="html"><span class="line"><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;//other-domain.com/1.js&quot;</span> <span class="na">async</span><span class="nt">&gt;&lt;/script&gt;</span>
-</span><span class="line"><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;2.js&quot;</span> <span class="na">async</span><span class="nt">&gt;&lt;/script&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p><strong>Spec says:</strong> Download together, execute in whatever order they download in.</p>
-
-<p><strong>The <a href="http://caniuse.com/#search=defer">browsers in red</a> say</strong>: What’s <code>async</code>? I’m going to load the scripts as if it weren’t there..</p>
-
-<p><strong>Other browsers say:</strong> Yeah, ok.</p>
-
-<h3 id="async-false">Async false</h3>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-</pre></td><td class="code"><pre><code class="javascript"><span class="line"><span class="p">[</span>
-</span><span class="line">  <span class="s1">&#39;1.js&#39;</span><span class="p">,</span>
-</span><span class="line">  <span class="s1">&#39;2.js&#39;</span>
-</span><span class="line"><span class="p">].</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">src</span><span class="p">)</span> <span class="p">{</span>
-</span><span class="line">  <span class="kd">var</span> <span class="nx">script</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;script&#39;</span><span class="p">);</span>
-</span><span class="line">  <span class="nx">script</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="nx">src</span><span class="p">;</span>
-</span><span class="line">  <span class="nx">script</span><span class="p">.</span><span class="nx">async</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
-</span><span class="line">  <span class="nb">document</span><span class="p">.</span><span class="nx">head</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">script</span><span class="p">);</span>
-</span><span class="line"><span class="p">});</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p><strong>Spec says:</strong> Download together, execute in order as soon as all download.</p>
-
-<p><strong>Firefox &lt; 3.6, Opera says:</strong> I have no idea what this <code>async</code> thing is, but it just so happens I execute scripts added via JS in the order they’re added.</p>
-
-<p><strong>Safari 5.0 says:</strong>  I understand <code>async</code>, but don’t understand setting it to <code>false</code> with JS. I’ll execute your scripts as soon as they land, in whatever order.</p>
-
-<p><strong>IE &lt; 10 says:</strong> No idea about <code>async</code>, but there is a workaround using <code>onreadystatechange</code>.</p>
-
-<p><strong>The <a href="http://caniuse.com/#search=defer">browsers in red</a> say</strong>: I don’t understand this <code>async</code> thing, I’ll execute your scripts as soon as they land, in whatever order.</p>
-
-<p><strong>Everything else says:</strong> I’m your friend, we’re going to do this by the book.</p>
-
-<hr />
-
-<p>Reference:</p>
-
-<p><a href="http://stackoverflow.com/questions/7308908/waiting-for-dynamically-loaded-script">http://stackoverflow.com/questions/7308908/waiting-for-dynamically-loaded-script</a></p>
-
-<p><a href="https://www.html5rocks.com/en/tutorials/speed/script-loading/">https://www.html5rocks.com/en/tutorials/speed/script-loading</a></p>
-
-<p>Modern browsers only execute scripts asyncrounously or deferred if async and defer has been specified. <code>async=false</code> and <code>defer=false</code> is completely unnecessary in HTML. However, scripts that are dynamically created have async set to <code>true</code> by default, which is why you need the <code>async = false</code>.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -566,6 +596,10 @@ sandbox.stub(Permisison, 'findByUser').returns(RSVP.resolve([]));
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2017/06/02/nodejs-best-practices/">Nodejs Best Practices</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2017/05/06/mock-a-method-when-test-express-api/">Mock a Method When Test Express Api</a>
@@ -583,21 +617,17 @@ sandbox.stub(Permisison, 'findByUser').returns(RSVP.resolve([]));
         <a href="/blog/2017/04/15/capistrano-deploy-to-multiple-servers/">Capistrano Deploy to Multiple Servers</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2017/04/15/waiting-for-dynamically-loaded-script/">Waiting for Dynamically Loaded Script</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Categories</h1>
-  <div id="category-list"><li><a href='/blog/categories/angular/'>ANGULAR (1)</a></li><li><a href='/blog/categories/aws/'>AWS (2)</a></li><li><a href='/blog/categories/css/'>CSS (1)</a></li><li><a href='/blog/categories/disqus/'>DISQUS (1)</a></li><li><a href='/blog/categories/es6/'>ES6 (1)</a></li><li><a href='/blog/categories/git/'>GIT (2)</a></li><li><a href='/blog/categories/javascript/'>JAVASCRIPT (2)</a></li><li><a href='/blog/categories/jenkins/'>JENKINS (1)</a></li><li><a href='/blog/categories/mac/'>MAC (2)</a></li><li><a href='/blog/categories/mongodb/'>MONGODB (1)</a></li><li><a href='/blog/categories/rails/'>RAILS (2)</a></li><li><a href='/blog/categories/ruby/'>RUBY (4)</a></li><li><a href='/blog/categories/shell/'>SHELL (2)</a></li><li><a href='/blog/categories/sinatra/'>SINATRA (1)</a></li><li><a href='/blog/categories/sublime/'>SUBLIME (1)</a></li><li><a href='/blog/categories/swap/'>SWAP (1)</a></li><li><a href='/blog/categories/test/'>TEST (2)</a></li><li><a href='/blog/categories/ubuntu/'>UBUNTU (2)</a></li><li><a href='/blog/categories/watchman/'>WATCHMAN (1)</a></li><li><a href='/blog/categories/shua-ji/'>刷机 (1)</a></li></div>
+  <div id="category-list"><li><a href='/blog/categories/angular/'>ANGULAR (1)</a></li><li><a href='/blog/categories/aws/'>AWS (2)</a></li><li><a href='/blog/categories/css/'>CSS (1)</a></li><li><a href='/blog/categories/disqus/'>DISQUS (1)</a></li><li><a href='/blog/categories/es6/'>ES6 (1)</a></li><li><a href='/blog/categories/git/'>GIT (2)</a></li><li><a href='/blog/categories/javascript/'>JAVASCRIPT (2)</a></li><li><a href='/blog/categories/jenkins/'>JENKINS (1)</a></li><li><a href='/blog/categories/mac/'>MAC (2)</a></li><li><a href='/blog/categories/mongodb/'>MONGODB (1)</a></li><li><a href='/blog/categories/nodejs/'>NODEJS (1)</a></li><li><a href='/blog/categories/rails/'>RAILS (2)</a></li><li><a href='/blog/categories/ruby/'>RUBY (4)</a></li><li><a href='/blog/categories/shell/'>SHELL (2)</a></li><li><a href='/blog/categories/sinatra/'>SINATRA (1)</a></li><li><a href='/blog/categories/sublime/'>SUBLIME (1)</a></li><li><a href='/blog/categories/swap/'>SWAP (1)</a></li><li><a href='/blog/categories/test/'>TEST (2)</a></li><li><a href='/blog/categories/ubuntu/'>UBUNTU (2)</a></li><li><a href='/blog/categories/watchman/'>WATCHMAN (1)</a></li><li><a href='/blog/categories/shua-ji/'>刷机 (1)</a></li></div>
 </section>
 <section>
   <h1>
     <i class="fa fa-tags" aria-hidden="true"></i> Tags
   </h1>
-  <div id="tag-list"><li><a href='/blog/tags/angular/'>angular (1)</a></li><li><a href='/blog/tags/aws/'>aws (2)</a></li><li><a href='/blog/tags/css/'>css (1)</a></li><li><a href='/blog/tags/disqus/'>disqus (1)</a></li><li><a href='/blog/tags/es6/'>es6 (1)</a></li><li><a href='/blog/tags/git/'>git (2)</a></li><li><a href='/blog/tags/javascript/'>javascript (2)</a></li><li><a href='/blog/tags/jenkins/'>jenkins (1)</a></li><li><a href='/blog/tags/mac/'>mac (2)</a></li><li><a href='/blog/tags/mongodb/'>mongodb (1)</a></li><li><a href='/blog/tags/rails/'>rails (2)</a></li><li><a href='/blog/tags/ruby/'>ruby (4)</a></li><li><a href='/blog/tags/shell/'>shell (2)</a></li><li><a href='/blog/tags/sinatra/'>sinatra (1)</a></li><li><a href='/blog/tags/sublime/'>sublime (1)</a></li><li><a href='/blog/tags/swap/'>swap (1)</a></li><li><a href='/blog/tags/test/'>test (2)</a></li><li><a href='/blog/tags/ubuntu/'>ubuntu (2)</a></li><li><a href='/blog/tags/watchman/'>watchman (1)</a></li><li><a href='/blog/tags/shua-ji/'>刷机 (1)</a></li></div>
+  <div id="tag-list"><li><a href='/blog/tags/angular/'>angular (1)</a></li><li><a href='/blog/tags/aws/'>aws (2)</a></li><li><a href='/blog/tags/css/'>css (1)</a></li><li><a href='/blog/tags/disqus/'>disqus (1)</a></li><li><a href='/blog/tags/es6/'>es6 (1)</a></li><li><a href='/blog/tags/git/'>git (2)</a></li><li><a href='/blog/tags/javascript/'>javascript (2)</a></li><li><a href='/blog/tags/jenkins/'>jenkins (1)</a></li><li><a href='/blog/tags/mac/'>mac (2)</a></li><li><a href='/blog/tags/mongodb/'>mongodb (1)</a></li><li><a href='/blog/tags/nodejs/'>nodejs (1)</a></li><li><a href='/blog/tags/rails/'>rails (2)</a></li><li><a href='/blog/tags/ruby/'>ruby (4)</a></li><li><a href='/blog/tags/shell/'>shell (2)</a></li><li><a href='/blog/tags/sinatra/'>sinatra (1)</a></li><li><a href='/blog/tags/sublime/'>sublime (1)</a></li><li><a href='/blog/tags/swap/'>swap (1)</a></li><li><a href='/blog/tags/test/'>test (2)</a></li><li><a href='/blog/tags/ubuntu/'>ubuntu (2)</a></li><li><a href='/blog/tags/watchman/'>watchman (1)</a></li><li><a href='/blog/tags/shua-ji/'>刷机 (1)</a></li></div>
 </section>
 
   

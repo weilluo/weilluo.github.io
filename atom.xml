@@ -4,7 +4,7 @@
   <title><![CDATA[GUIDE]]></title>
   <link href="http://weilluo.github.io/atom.xml" rel="self"/>
   <link href="http://weilluo.github.io/"/>
-  <updated>2017-05-18T15:19:49+08:00</updated>
+  <updated>2017-06-02T12:15:14+08:00</updated>
   <id>http://weilluo.github.io/</id>
   <author>
     <name><![CDATA[Wei Luo]]></name>
@@ -12,6 +12,136 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Nodejs Best Practices]]></title>
+    <link href="http://weilluo.github.io/blog/2017/06/02/nodejs-best-practices/"/>
+    <updated>2017-06-02T10:28:04+08:00</updated>
+    <id>http://weilluo.github.io/blog/2017/06/02/nodejs-best-practices</id>
+    <content type="html"><![CDATA[<h2 id="embrace-async">Embrace async</h2>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Before </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+</pre></td><td class="code"><pre><code class="javascript"><span class="line"><span class="kd">let</span> <span class="nx">af</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">promise</span><span class="p">;</span>
+</span><span class="line"><span class="kd">let</span> <span class="nx">bf</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">promise</span><span class="p">;</span>
+</span><span class="line">
+</span><span class="line"><span class="kd">let</span> <span class="nx">cf</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span><span class="line">  <span class="k">return</span> <span class="nx">af</span><span class="p">().</span><span class="nx">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span><span class="line">    <span class="k">return</span> <span class="nx">bf</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="nx">result</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span><span class="line">      <span class="kd">let</span> <span class="nx">t</span> <span class="o">=</span> <span class="nx">result</span><span class="p">;</span>
+</span><span class="line">      <span class="k">return</span> <span class="p">...;</span>
+</span><span class="line">    <span class="p">})</span>
+</span><span class="line">  <span class="p">});</span>
+</span><span class="line"><span class="p">}</span>
+</span><span class="line">
+</span><span class="line"><span class="kd">let</span> <span class="nx">df</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span><span class="line">  <span class="nx">cf</span><span class="p">().</span><span class="nx">then</span><span class="p">().</span><span class="k">catch</span><span class="p">();</span>
+</span><span class="line"><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption class="code-header"><span>After </span></figcaption>
+ <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers">1</span>...
+<span class="line-numbers">2</span>let cf = async () =&gt; {
+<span class="line-numbers">3</span>  let r1 = await af();
+<span class="line-numbers">4</span>  let r2 = await bf();
+<span class="line-numbers">5</span>  <span class="keyword">return</span> ...;
+<span class="line-numbers">6</span>}
+<span class="line-numbers">7</span>...
+</pre></div>
+</div>
+ </figure></notextile></div>
+
+<blockquote>
+  <p>Now we need <code>babel</code> to compile this syntax</p>
+</blockquote>
+
+<h2 id="npm">NPM</h2>
+
+<ol>
+  <li>
+    <p>start project use <code>npm init</code></p>
+  </li>
+  <li>
+    <p>use <code>.npmrc</code></p>
+  </li>
+</ol>
+
+<div class="bogus-wrapper"><notextile><figure class="code"> <div class="CodeRay">
+  <div class="code"><pre>npm config set save=true
+npm config set save-exact=true
+</pre></div>
+</div>
+ </figure></notextile></div>
+
+<ol>
+  <li>add scripts to <code>package.json</code></li>
+</ol>
+
+<div class="bogus-wrapper"><notextile><figure class="code"> <div class="CodeRay">
+  <div class="code"><pre><span class="key"><span class="delimiter">&quot;</span><span class="content">scripts</span><span class="delimiter">&quot;</span></span>: {
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">debug</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">npm run es6 -- --nolazy --debug-brk=5858 src/server.js</span><span class="delimiter">&quot;</span></span>,
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">es6</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">node_modules/.bin/babel-node</span><span class="delimiter">&quot;</span></span>,
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">es6:watch</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">node_modules/.bin/babel-watch</span><span class="delimiter">&quot;</span></span>,
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">eslint</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">node_modules/.bin/eslint</span><span class="delimiter">&quot;</span></span>,
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">start</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">npm run es6:watch -- src/server.js</span><span class="delimiter">&quot;</span></span>,
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">start:prod</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">npm run es6 -- src/server.js</span><span class="delimiter">&quot;</span></span>,
+  <span class="key"><span class="delimiter">&quot;</span><span class="content">test</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">npm run eslint -- </span><span class="char">\&quot;</span><span class="content">src/**/*.js</span><span class="char">\&quot;</span><span class="content"> &amp;&amp; make tests</span><span class="delimiter">&quot;</span></span>
+}
+</pre></div>
+</div>
+ </figure></notextile></div>
+
+<h2 id="style-guide">Style guide</h2>
+
+<p><code>ESlint</code>, <code>JSLint</code> and so on.</p>
+
+<h2 id="handle-errors-and-logging-important-messages">Handle errors and logging important messages</h2>
+
+<p>Some <code>syntax</code> like:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"> <div class="CodeRay">
+  <div class="code"><pre><span class="comment">// if use express</span>
+let errorCatch = (err, req, res, next) =&gt; {
+  logger.error(err.message, <span class="string"><span class="delimiter">&quot;</span><span class="char">\n</span><span class="delimiter">&quot;</span></span> + err.stack);
+  <span class="comment">// some logic ...</span>
+  res.status(err.code || <span class="integer">500</span>);
+  res.json({ <span class="key">error</span>: err.message });
+}
+</pre></div>
+</div>
+ </figure></notextile></div>
+
+<h2 id="process-management">Process management</h2>
+
+<ol>
+  <li>
+    <p>automatically restart app</p>
+  </li>
+  <li>
+    <p>cluster app</p>
+  </li>
+</ol>
+
+<h2 id="use-content-security-policy-in-web-application">Use <code>Content-Security-Policy</code> in web application</h2>
+
+<p>reduce XSS (Cross-Site scripting) risks on modern browsers, <a href="https://content-security-policy.com/">https://content-security-policy.com/</a>.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Mock a Method When Test Express Api]]></title>
@@ -1422,38 +1552,6 @@ sandbox.stub(Permisison, 'findByUser').returns(RSVP.resolve([]));
 
 <p><a href="http://stackoverflow.com/questions/14801021/what-can-cause-a-cookie-not-to-be-set-on-the-client">http://stackoverflow.com/questions/14801021/what-can-cause-a-cookie-not-to-be-set-on-the-client</a>
 <a href="http://stackoverflow.com/questions/5078091/sinatra-response-set-cookie-doesnt-work">http://stackoverflow.com/questions/5078091/sinatra-response-set-cookie-doesnt-work</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Free Space on Mac.]]></title>
-    <link href="http://weilluo.github.io/blog/2015/04/10/free-space-on-mac/"/>
-    <updated>2015-04-10T13:19:53+08:00</updated>
-    <id>http://weilluo.github.io/blog/2015/04/10/free-space-on-mac</id>
-    <content type="html"><![CDATA[<ul>
-  <li>
-    <p>Use <code>sudo du -sh *</code> command to see the folder size in current folder.</p>
-  </li>
-  <li>
-    <p>I found <code>/Library/Application\ Support/Symantec/AntiVirus/</code> folder is very big, almost <code>51GB</code>, and the files in this folder are the backup about kind of daily job. Each of them is greater than <code>200M</code>.</p>
-  </li>
-</ul>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="c"># file list</span>
-</span><span class="line">...
-</span><span class="line">20150401.018   20150405.021   20150407.001   20150408.004   20150409.001   engine.mfst
-</span><span class="line">20150401.032   20150406.009   20150407.017   20150408.018   Signed
-</span><span class="line">20150402.001   20150406.032   20150407.057   20150408.035   SymAPComm.kext
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<ul>
-  <li>I use <code>sudo rm -rf ...</code> command to delete the old backup.</li>
-</ul>
 ]]></content>
   </entry>
   

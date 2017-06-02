@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Nodejs | GUIDE]]></title>
+  <link href="http://weilluo.github.io/blog/categories/nodejs/atom.xml" rel="self"/>
+  <link href="http://weilluo.github.io/"/>
+  <updated>2017-06-02T12:15:14+08:00</updated>
+  <id>http://weilluo.github.io/</id>
+  <author>
+    <name><![CDATA[Wei Luo]]></name>
+    <email><![CDATA[luowei---010101@163.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Nodejs Best Practices]]></title>
+    <link href="http://weilluo.github.io/blog/2017/06/02/nodejs-best-practices/"/>
+    <updated>2017-06-02T10:28:04+08:00</updated>
+    <id>http://weilluo.github.io/blog/2017/06/02/nodejs-best-practices</id>
+    <content type="html"><![CDATA[<h2 id="embrace-async">Embrace async</h2>
+
+<p><figure class='code'><figcaption><span>Before </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">let</span> <span class="nx">af</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&amp;</span><span class="nx">gt</span><span class="p">;</span> <span class="nx">promise</span><span class="p">;</span>
+</span><span class='line'><span class="kd">let</span> <span class="nx">bf</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&amp;</span><span class="nx">gt</span><span class="p">;</span> <span class="nx">promise</span><span class="p">;</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="kd">let</span> <span class="nx">cf</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&amp;</span><span class="nx">gt</span><span class="p">;</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">return</span> <span class="nx">af</span><span class="p">().</span><span class="nx">then</span><span class="p">(()</span> <span class="o">=&amp;</span><span class="nx">gt</span><span class="p">;</span> <span class="p">{</span>
+</span><span class='line'>    <span class="k">return</span> <span class="nx">bf</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="nx">result</span> <span class="o">=&amp;</span><span class="nx">gt</span><span class="p">;</span> <span class="p">{</span>
+</span><span class='line'>      <span class="kd">let</span> <span class="nx">t</span> <span class="o">=</span> <span class="nx">result</span><span class="p">;</span>
+</span><span class='line'>      <span class="k">return</span> <span class="err">…</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">})</span>
+</span><span class='line'>  <span class="p">});</span>
+</span><span class='line'><span class="p">}</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="kd">let</span> <span class="nx">df</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&amp;</span><span class="nx">gt</span><span class="p">;</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">cf</span><span class="p">().</span><span class="nx">then</span><span class="p">().</span><span class="k">catch</span><span class="p">();</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p><figure class='code'><figcaption class='code-header'><span>After </span></figcaption>
+ <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers">1</span><span class="error">…</span>
+<span class="line-numbers">2</span>let cf = async () =&amp;gt; {
+<span class="line-numbers">3</span>  let r1 = await af();
+<span class="line-numbers">4</span>  let r2 = await bf();
+<span class="line-numbers">5</span>  <span class="keyword">return</span> <span class="error">…</span>;
+<span class="line-numbers">6</span>}
+<span class="line-numbers">7</span><span class="error">…</span>
+</pre></div>
+</div>
+ </figure></p>
+
+<blockquote>
+  <p>Now we need <code>babel</code> to compile this syntax</p>
+</blockquote>
+
+<h2 id="npm">NPM</h2>
+
+<ol>
+  <li>
+    <p>start project use <code>npm init</code></p>
+  </li>
+  <li>
+    <p>use <code>.npmrc</code></p>
+  </li>
+</ol>
+
+<p><figure class='code'> <div class="CodeRay">
+  <div class="code"><pre>npm config set save=true
+npm config set save-exact=true
+</pre></div>
+</div>
+ </figure></p>
+
+<ol>
+  <li>add scripts to <code>package.json</code></li>
+</ol>
+
+<p><figure class='code'> <div class="CodeRay">
+  <div class="code"><pre><span class="error">“</span><span class="error">s</span><span class="error">c</span><span class="error">r</span><span class="error">i</span><span class="error">p</span><span class="error">t</span><span class="error">s</span><span class="error">”</span>: {
+  <span class="error">“</span><span class="error">d</span><span class="error">e</span><span class="error">b</span><span class="error">u</span><span class="error">g</span><span class="error">”</span>: <span class="error">“</span><span class="error">n</span><span class="error">p</span><span class="error">m</span> <span class="error">r</span><span class="error">u</span><span class="error">n</span> <span class="error">e</span><span class="error">s</span><span class="integer">6</span> <span class="error">–</span> <span class="error">–</span><span class="error">n</span><span class="error">o</span><span class="error">l</span><span class="error">a</span><span class="error">z</span><span class="error">y</span> <span class="error">–</span><span class="error">d</span><span class="error">e</span><span class="error">b</span><span class="error">u</span><span class="error">g</span><span class="error">-</span><span class="error">b</span><span class="error">r</span><span class="error">k</span><span class="error">=</span><span class="integer">5858</span> <span class="error">s</span><span class="error">r</span><span class="error">c</span><span class="error">/</span><span class="error">s</span><span class="error">e</span><span class="error">r</span><span class="error">v</span><span class="error">e</span><span class="error">r</span><span class="error">.</span><span class="error">j</span><span class="error">s</span><span class="error">”</span>,
+  <span class="error">“</span><span class="error">e</span><span class="error">s</span><span class="integer">6</span><span class="error">”</span>: <span class="error">“</span><span class="error">n</span><span class="error">o</span><span class="error">d</span><span class="error">e</span><span class="error">_</span><span class="error">m</span><span class="error">o</span><span class="error">d</span><span class="error">u</span><span class="error">l</span><span class="error">e</span><span class="error">s</span><span class="error">/</span><span class="error">.</span><span class="error">b</span><span class="error">i</span><span class="error">n</span><span class="error">/</span><span class="error">b</span><span class="error">a</span><span class="error">b</span><span class="error">e</span><span class="error">l</span><span class="error">-</span><span class="error">n</span><span class="error">o</span><span class="error">d</span><span class="error">e</span><span class="error">”</span>,
+  <span class="error">“</span><span class="error">e</span><span class="error">s</span><span class="integer">6</span>:<span class="error">w</span><span class="error">a</span><span class="error">t</span><span class="error">c</span><span class="error">h</span><span class="error">”</span>: <span class="error">“</span><span class="error">n</span><span class="error">o</span><span class="error">d</span><span class="error">e</span><span class="error">_</span><span class="error">m</span><span class="error">o</span><span class="error">d</span><span class="error">u</span><span class="error">l</span><span class="error">e</span><span class="error">s</span><span class="error">/</span><span class="error">.</span><span class="error">b</span><span class="error">i</span><span class="error">n</span><span class="error">/</span><span class="error">b</span><span class="error">a</span><span class="error">b</span><span class="error">e</span><span class="error">l</span><span class="error">-</span><span class="error">w</span><span class="error">a</span><span class="error">t</span><span class="error">c</span><span class="error">h</span><span class="error">”</span>,
+  <span class="error">“</span><span class="error">e</span><span class="error">s</span><span class="error">l</span><span class="error">i</span><span class="error">n</span><span class="error">t</span><span class="error">”</span>: <span class="error">“</span><span class="error">n</span><span class="error">o</span><span class="error">d</span><span class="error">e</span><span class="error">_</span><span class="error">m</span><span class="error">o</span><span class="error">d</span><span class="error">u</span><span class="error">l</span><span class="error">e</span><span class="error">s</span><span class="error">/</span><span class="error">.</span><span class="error">b</span><span class="error">i</span><span class="error">n</span><span class="error">/</span><span class="error">e</span><span class="error">s</span><span class="error">l</span><span class="error">i</span><span class="error">n</span><span class="error">t</span><span class="error">”</span>,
+  <span class="error">“</span><span class="error">s</span><span class="error">t</span><span class="error">a</span><span class="error">r</span><span class="error">t</span><span class="error">”</span>: <span class="error">“</span><span class="error">n</span><span class="error">p</span><span class="error">m</span> <span class="error">r</span><span class="error">u</span><span class="error">n</span> <span class="error">e</span><span class="error">s</span><span class="integer">6</span>:<span class="error">w</span><span class="error">a</span><span class="error">t</span><span class="error">c</span><span class="error">h</span> <span class="error">–</span> <span class="error">s</span><span class="error">r</span><span class="error">c</span><span class="error">/</span><span class="error">s</span><span class="error">e</span><span class="error">r</span><span class="error">v</span><span class="error">e</span><span class="error">r</span><span class="error">.</span><span class="error">j</span><span class="error">s</span><span class="error">”</span>,
+  <span class="error">“</span><span class="error">s</span><span class="error">t</span><span class="error">a</span><span class="error">r</span><span class="error">t</span>:<span class="error">p</span><span class="error">r</span><span class="error">o</span><span class="error">d</span><span class="error">”</span>: <span class="error">“</span><span class="error">n</span><span class="error">p</span><span class="error">m</span> <span class="error">r</span><span class="error">u</span><span class="error">n</span> <span class="error">e</span><span class="error">s</span><span class="integer">6</span> <span class="error">–</span> <span class="error">s</span><span class="error">r</span><span class="error">c</span><span class="error">/</span><span class="error">s</span><span class="error">e</span><span class="error">r</span><span class="error">v</span><span class="error">e</span><span class="error">r</span><span class="error">.</span><span class="error">j</span><span class="error">s</span><span class="error">”</span>,
+  <span class="error">“</span><span class="error">t</span><span class="error">e</span><span class="error">s</span><span class="error">t</span><span class="error">”</span>: <span class="error">“</span><span class="error">n</span><span class="error">p</span><span class="error">m</span> <span class="error">r</span><span class="error">u</span><span class="error">n</span> <span class="error">e</span><span class="error">s</span><span class="error">l</span><span class="error">i</span><span class="error">n</span><span class="error">t</span> <span class="error">–</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">src/&lt;em&gt;*/&lt;/em&gt;.js</span><span class="delimiter">&quot;</span></span> <span class="error">&amp;</span><span class="error">a</span><span class="error">m</span><span class="error">p</span><span class="error">;</span><span class="error">&amp;</span><span class="error">a</span><span class="error">m</span><span class="error">p</span><span class="error">;</span> <span class="error">m</span><span class="error">a</span><span class="error">k</span><span class="error">e</span> <span class="error">t</span><span class="error">e</span><span class="error">s</span><span class="error">t</span><span class="error">s</span><span class="error">”</span>
+}
+</pre></div>
+</div>
+ </figure></p>
+
+<h2 id="style-guide">Style guide</h2>
+
+<p><code>ESlint</code>, <code>JSLint</code> and so on.</p>
+
+<h2 id="handle-errors-and-logging-important-messages">Handle errors and logging important messages</h2>
+
+<p>Some <code>syntax</code> like:</p>
+
+<p><figure class='code'> <div class="CodeRay">
+  <div class="code"><pre><span class="comment">// if use express</span>
+let errorCatch = (err, req, res, next) =&amp;gt; {
+  logger.error(err.message, <span class="error">“</span><span class="error">\</span>n<span class="error">”</span> + err.stack);
+  <span class="comment">// some logic …</span>
+  res.status(err.code || <span class="integer">500</span>);
+  res.json({ <span class="key">error</span>: err.message });
+}
+</pre></div>
+</div>
+ </figure></p>
+
+<h2 id="process-management">Process management</h2>
+
+<ol>
+  <li>
+    <p>automatically restart app</p>
+  </li>
+  <li>
+    <p>cluster app</p>
+  </li>
+</ol>
+
+<h2 id="use-content-security-policy-in-web-application">Use <code>Content-Security-Policy</code> in web application</h2>
+
+<p>reduce XSS (Cross-Site scripting) risks on modern browsers, <a href="https://content-security-policy.com/">https://content-security-policy.com/</a>.</p>
+]]></content>
+  </entry>
+  
+</feed>
