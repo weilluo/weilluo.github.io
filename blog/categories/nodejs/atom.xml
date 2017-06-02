@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Nodejs | GUIDE]]></title>
   <link href="http://weilluo.github.io/blog/categories/nodejs/atom.xml" rel="self"/>
   <link href="http://weilluo.github.io/"/>
-  <updated>2017-06-02T12:15:14+08:00</updated>
+  <updated>2017-06-02T12:18:14+08:00</updated>
   <id>http://weilluo.github.io/</id>
   <author>
     <name><![CDATA[Wei Luo]]></name>
@@ -72,14 +72,14 @@
 
 <h2 id="npm">NPM</h2>
 
-<ol>
+<ul>
   <li>
     <p>start project use <code>npm init</code></p>
   </li>
   <li>
     <p>use <code>.npmrc</code></p>
   </li>
-</ol>
+</ul>
 
 <p><figure class='code'> <div class="CodeRay">
   <div class="code"><pre>npm config set save=true
@@ -88,9 +88,9 @@ npm config set save-exact=true
 </div>
  </figure></p>
 
-<ol>
+<ul>
   <li>add scripts to <code>package.json</code></li>
-</ol>
+</ul>
 
 <p><figure class='code'> <div class="CodeRay">
   <div class="code"><pre><span class="error">“</span><span class="error">s</span><span class="error">c</span><span class="error">r</span><span class="error">i</span><span class="error">p</span><span class="error">t</span><span class="error">s</span><span class="error">”</span>: {
@@ -128,14 +128,14 @@ let errorCatch = (err, req, res, next) =&amp;gt; {
 
 <h2 id="process-management">Process management</h2>
 
-<ol>
+<ul>
   <li>
     <p>automatically restart app</p>
   </li>
   <li>
     <p>cluster app</p>
   </li>
-</ol>
+</ul>
 
 <h2 id="use-content-security-policy-in-web-application">Use <code>Content-Security-Policy</code> in web application</h2>
 
