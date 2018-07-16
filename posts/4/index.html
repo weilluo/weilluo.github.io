@@ -9,19 +9,7 @@
   <meta name="author" content="Wei Luo">
 
   
-  <meta name="description" content="User Preference: 1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-{ "color_scheme": "Packages/Theme - Cobalt2/cobalt2.tmTheme", "font_face": "Yahei Consolas Hybrid", " &hellip;">
+  <meta name="description" content="Reference: http://stackoverflow.com/questions/1338728/delete-commits-from-a-branch-in-git Careful: git reset --hard WILL DELETE YOUR WORKING &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -98,6 +86,64 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/06/30/delete-commits-from-a-branch-in-git/">Delete Commits From a Branch in Git</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-06-30T17:34:07+08:00'><span class='date'>2015-06-30</span> <span class='time'>5:34 pm</span></time>
+        
+           | <a href="/blog/2015/06/30/delete-commits-from-a-branch-in-git/#disqus_thread"
+             data-disqus-identifier="http://weilluo.github.io/blog/2015/06/30/delete-commits-from-a-branch-in-git/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Reference: <a href="http://stackoverflow.com/questions/1338728/delete-commits-from-a-branch-in-git">http://stackoverflow.com/questions/1338728/delete-commits-from-a-branch-in-git</a></p>
+
+<p><strong>Careful</strong>: <code>git reset --hard</code> WILL DELETE YOUR WORKING DIRECTORY CHANGES. Be sure to <strong>stash any local changes you want to keep</strong> before running this command.</p>
+
+<p>Assuming you are sitting on that commit, then this command will wack it…</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">git reset --hard HEAD~1</span></code></pre></td></tr></table></div></figure></notextile></div>
+<p>The <code>HEAD~1</code> means the commit before head.</p>
+
+<p>Or, you could look at the output of <code>git log</code>, find the commit id of the commit you want to back up to, and then do this:</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">git reset --hard &lt;sha1-commit-id&gt;</span></code></pre></td></tr></table></div></figure></notextile></div>
+<hr />
+<p>If you already pushed it, you will need to do a force push to get rid of it…</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">git push origin HEAD --force</span></code></pre></td></tr></table></div></figure></notextile></div>
+<p><strong>However</strong>, if others may have pulled it, then you would be better off starting a new branch. Because when they pull, it will just merge it into their work, and you will get it pushed back up again.</p>
+
+<p>If you already pushed, it may be better to use <code>git revert</code>, to create a “mirror image” commit that will undo the changes. However, both commits will both be in the log.</p>
+
+<hr />
+
+<p>FYI – <code>git reset --hard HEAD</code> is great if you want to get rid of WORK IN PROGRESS. It will reset you back to the most recent commit, and erase all the changes in your working tree and index.</p>
+
+<hr />
+
+<p>Lastly, if you need to find a commit that you “deleted”, it is typically present in <code>git reflog</code> unless you have garbage collected your repository.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -317,91 +363,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/04/17/what-can-cause-a-cookie-not-to-be-set-on-the-client/">What Can Cause a Cookie Not to Be Set on the Client?</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-04-17T10:11:06+08:00'><span class='date'>2015-04-17</span> <span class='time'>10:11 am</span></time>
-        
-           | <a href="/blog/2015/04/17/what-can-cause-a-cookie-not-to-be-set-on-the-client/#disqus_thread"
-             data-disqus-identifier="http://weilluo.github.io/blog/2015/04/17/what-can-cause-a-cookie-not-to-be-set-on-the-client/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2 id="issues">Issues</h2>
-
-<p>I use ember at cliend, and start on localhost:4200; sinatra at server, start on localhost:9292.</p>
-
-<p>Then I use <code>response.set_cookie()</code> to store user info, but I cannot see cookie setted just now on <code>chrome console -&gt; resource -&gt; cookies -&gt; localhost</code>.</p>
-
-<p>cliend code:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-</pre></td><td class="code"><pre><code class="javascript"><span class="line"><span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
-</span><span class="line">  <span class="nx">url</span><span class="o">:</span> <span class="nx">http</span><span class="o">:</span><span class="c1">//localhost:9292/user</span>
-</span><span class="line"><span class="p">})</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>cliend code:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="n">response</span><span class="o">.</span><span class="n">set_cookie</span><span class="p">(</span><span class="s1">&#39;Cookie-Name&#39;</span><span class="p">,</span>
-</span><span class="line">          <span class="ss">:value</span> <span class="o">=&gt;</span> <span class="n">value</span><span class="p">,</span>
-</span><span class="line">          <span class="ss">:expires</span> <span class="o">=&gt;</span> <span class="no">Time</span><span class="o">.</span><span class="n">now</span> <span class="o">+</span> <span class="mi">3600</span> <span class="o">*</span> <span class="mi">24</span> <span class="o">*</span> <span class="mi">14</span><span class="p">,</span>
-</span><span class="line">          <span class="ss">:domain</span> <span class="o">=&gt;</span> <span class="vi">@domain</span><span class="p">,</span>
-</span><span class="line">          <span class="ss">:path</span> <span class="o">=&gt;</span> <span class="s1">&#39;/&#39;</span><span class="p">,</span>
-</span><span class="line">          <span class="ss">:httponly</span> <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h2 id="solution">Solution</h2>
-
-<p>Option in ajax:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-</pre></td><td class="code"><pre><code class="javascript"><span class="line"><span class="nx">xhrFields</span><span class="o">:</span> <span class="p">{</span>
-</span><span class="line">  <span class="nx">withCredentials</span><span class="o">:</span> <span class="kc">true</span>
-</span><span class="line"><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>Response header in sinatra, <code>Access-Control-Allow-Credentials: true</code>, <code>Access-Control-Allow-Origin: http://localhost:4200</code></p>
-
-<h2 id="important">Important</h2>
-
-<p>Don’t set localhost as a domain for your cookies because you need to set it to “” or FALSE</p>
-
-<h2 id="reference">Reference</h2>
-
-<p><a href="http://stackoverflow.com/questions/14801021/what-can-cause-a-cookie-not-to-be-set-on-the-client">http://stackoverflow.com/questions/14801021/what-can-cause-a-cookie-not-to-be-set-on-the-client</a>
-<a href="http://stackoverflow.com/questions/5078091/sinatra-response-set-cookie-doesnt-work">http://stackoverflow.com/questions/5078091/sinatra-response-set-cookie-doesnt-work</a></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/5">&larr; Older</a>
@@ -419,6 +380,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2018/02/07/angular-aot/">Angular Need Aot</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2017/06/02/nodejs-best-practices/">Nodejs Best Practices</a>
       </li>
     
@@ -434,21 +399,17 @@
         <a href="/blog/2017/04/15/s3-policy-on-ec2-having-changes-between-ecs-and-eb/">S3 Policy on EC2 Having Changes Between ECS and EB</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2017/04/15/capistrano-deploy-to-multiple-servers/">Capistrano Deploy to Multiple Servers</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Categories</h1>
-  <div id="category-list"><li><a href='/blog/categories/angular/'>ANGULAR (1)</a></li><li><a href='/blog/categories/aws/'>AWS (2)</a></li><li><a href='/blog/categories/css/'>CSS (1)</a></li><li><a href='/blog/categories/disqus/'>DISQUS (1)</a></li><li><a href='/blog/categories/es6/'>ES6 (1)</a></li><li><a href='/blog/categories/git/'>GIT (2)</a></li><li><a href='/blog/categories/javascript/'>JAVASCRIPT (2)</a></li><li><a href='/blog/categories/jenkins/'>JENKINS (1)</a></li><li><a href='/blog/categories/mac/'>MAC (2)</a></li><li><a href='/blog/categories/mongodb/'>MONGODB (1)</a></li><li><a href='/blog/categories/nodejs/'>NODEJS (1)</a></li><li><a href='/blog/categories/rails/'>RAILS (2)</a></li><li><a href='/blog/categories/ruby/'>RUBY (4)</a></li><li><a href='/blog/categories/shell/'>SHELL (2)</a></li><li><a href='/blog/categories/sinatra/'>SINATRA (1)</a></li><li><a href='/blog/categories/sublime/'>SUBLIME (1)</a></li><li><a href='/blog/categories/swap/'>SWAP (1)</a></li><li><a href='/blog/categories/test/'>TEST (2)</a></li><li><a href='/blog/categories/ubuntu/'>UBUNTU (2)</a></li><li><a href='/blog/categories/watchman/'>WATCHMAN (1)</a></li><li><a href='/blog/categories/shua-ji/'>刷机 (1)</a></li></div>
+  <div id="category-list"><li><a href='/blog/categories/angular/'>ANGULAR (1)</a></li><li><a href='/blog/categories/aws/'>AWS (2)</a></li><li><a href='/blog/categories/css/'>CSS (1)</a></li><li><a href='/blog/categories/disqus/'>DISQUS (1)</a></li><li><a href='/blog/categories/es6/'>ES6 (1)</a></li><li><a href='/blog/categories/git/'>GIT (2)</a></li><li><a href='/blog/categories/javascript/'>JAVASCRIPT (2)</a></li><li><a href='/blog/categories/jenkins/'>JENKINS (1)</a></li><li><a href='/blog/categories/mac/'>MAC (2)</a></li><li><a href='/blog/categories/mongodb/'>MONGODB (1)</a></li><li><a href='/blog/categories/nodejs/'>NODEJS (1)</a></li><li><a href='/blog/categories/rails/'>RAILS (2)</a></li><li><a href='/blog/categories/react/'>REACT (1)</a></li><li><a href='/blog/categories/ruby/'>RUBY (4)</a></li><li><a href='/blog/categories/shell/'>SHELL (2)</a></li><li><a href='/blog/categories/sinatra/'>SINATRA (1)</a></li><li><a href='/blog/categories/sublime/'>SUBLIME (1)</a></li><li><a href='/blog/categories/swap/'>SWAP (1)</a></li><li><a href='/blog/categories/test/'>TEST (2)</a></li><li><a href='/blog/categories/ubuntu/'>UBUNTU (2)</a></li><li><a href='/blog/categories/watchman/'>WATCHMAN (1)</a></li><li><a href='/blog/categories/shua-ji/'>刷机 (1)</a></li></div>
 </section>
 <section>
   <h1>
     <i class="fa fa-tags" aria-hidden="true"></i> Tags
   </h1>
-  <div id="tag-list"><li><a href='/blog/tags/angular/'>angular (1)</a></li><li><a href='/blog/tags/aws/'>aws (2)</a></li><li><a href='/blog/tags/css/'>css (1)</a></li><li><a href='/blog/tags/disqus/'>disqus (1)</a></li><li><a href='/blog/tags/es6/'>es6 (1)</a></li><li><a href='/blog/tags/git/'>git (2)</a></li><li><a href='/blog/tags/javascript/'>javascript (2)</a></li><li><a href='/blog/tags/jenkins/'>jenkins (1)</a></li><li><a href='/blog/tags/mac/'>mac (2)</a></li><li><a href='/blog/tags/mongodb/'>mongodb (1)</a></li><li><a href='/blog/tags/nodejs/'>nodejs (1)</a></li><li><a href='/blog/tags/rails/'>rails (2)</a></li><li><a href='/blog/tags/ruby/'>ruby (4)</a></li><li><a href='/blog/tags/shell/'>shell (2)</a></li><li><a href='/blog/tags/sinatra/'>sinatra (1)</a></li><li><a href='/blog/tags/sublime/'>sublime (1)</a></li><li><a href='/blog/tags/swap/'>swap (1)</a></li><li><a href='/blog/tags/test/'>test (2)</a></li><li><a href='/blog/tags/ubuntu/'>ubuntu (2)</a></li><li><a href='/blog/tags/watchman/'>watchman (1)</a></li><li><a href='/blog/tags/shua-ji/'>刷机 (1)</a></li></div>
+  <div id="tag-list"><li><a href='/blog/tags/angular/'>angular (1)</a></li><li><a href='/blog/tags/aws/'>aws (2)</a></li><li><a href='/blog/tags/css/'>css (1)</a></li><li><a href='/blog/tags/disqus/'>disqus (1)</a></li><li><a href='/blog/tags/es6/'>es6 (1)</a></li><li><a href='/blog/tags/git/'>git (2)</a></li><li><a href='/blog/tags/javascript/'>javascript (2)</a></li><li><a href='/blog/tags/jenkins/'>jenkins (1)</a></li><li><a href='/blog/tags/mac/'>mac (2)</a></li><li><a href='/blog/tags/mongodb/'>mongodb (1)</a></li><li><a href='/blog/tags/nodejs/'>nodejs (1)</a></li><li><a href='/blog/tags/rails/'>rails (2)</a></li><li><a href='/blog/tags/react/'>react (1)</a></li><li><a href='/blog/tags/ruby/'>ruby (4)</a></li><li><a href='/blog/tags/shell/'>shell (2)</a></li><li><a href='/blog/tags/sinatra/'>sinatra (1)</a></li><li><a href='/blog/tags/sublime/'>sublime (1)</a></li><li><a href='/blog/tags/swap/'>swap (1)</a></li><li><a href='/blog/tags/test/'>test (2)</a></li><li><a href='/blog/tags/ubuntu/'>ubuntu (2)</a></li><li><a href='/blog/tags/watchman/'>watchman (1)</a></li><li><a href='/blog/tags/shua-ji/'>刷机 (1)</a></li></div>
 </section>
 
   
@@ -457,7 +418,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2017 - Wei Luo -
+  Copyright &copy; 2018 - Wei Luo -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

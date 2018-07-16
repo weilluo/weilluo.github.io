@@ -1,0 +1,910 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Angular Need Aot - GUIDE</title>
+  <meta name="author" content="Wei Luo">
+
+  
+  <meta name="description" content="Compare with React and Vue React JSX Before 1const element = (
+2 &lt;h1 className=&quot;greeting&quot;&gt;
+3 Hello, world!
+4 &lt;/h1&gt;
+5); After 1 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://weilluo.github.io/blog/2018/02/07/angular-aot/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="GUIDE" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+<!-- https://github.com/dongweiming/octopress-wp_cumulus_for_tagcloud -->
+<link rel="stylesheet" type="text/css" href="/stylesheets/calendar.css">
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript" src="/javascripts/swfobject.js"></script>
+<script type="text/javascript" src="/javascripts/tagcumulus.js"></script>
+<script type="text/javascript" src="/javascripts/calendar.js"></script>
+
+<!-- font awesome -->
+<link rel="stylesheet" type="text/css" href="/stylesheets/font-awesome.min.css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">GUIDE</a></h1>
+  
+    <h2>The road ahead will be long and our climb will be steep</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation">
+<ul class="subscription" data-subscription="rss">
+  <li>
+    <!-- <a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a> -->
+    <a href="/atom.xml" title="subscribe via RSS">
+      <i class="fa fa-rss" aria-hidden="true"></i>
+    </a>
+  </li>
+  
+</ul>
+
+
+
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="weilluo.github.io">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+
+
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/changelog">News Log</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Angular Need Aot</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2018-02-07T14:02:05+08:00'><span class='date'>2018-02-07</span> <span class='time'>2:02 pm</span></time>
+        
+           | <a href="#disqus_thread"
+             data-disqus-identifier="http://weilluo.github.io">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h2 id="compare-with-react-and-vue">Compare with React and Vue</h2>
+
+<ul>
+  <li>React JSX</li>
+</ul>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption class="code-header"><span>Before </span></figcaption>
+ <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers">1</span>const element = (
+<span class="line-numbers">2</span>  <span class="tag">&lt;h1</span> <span class="attribute-name">className</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">greeting</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+<span class="line-numbers">3</span>    Hello, world!
+<span class="line-numbers">4</span>  <span class="tag">&lt;/h1&gt;</span>
+<span class="line-numbers">5</span>);
+</pre></div>
+</div>
+ </figure></notextile></div>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>After </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+</pre></td><td class="code"><pre><code class="javascript"><span class="line"><span class="kr">const</span> <span class="nx">element</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span>
+</span><span class="line">  <span class="s1">&#39;h1&#39;</span><span class="p">,</span>
+</span><span class="line">  <span class="p">{</span><span class="nx">className</span><span class="o">:</span> <span class="s1">&#39;greeting&#39;</span><span class="p">},</span>
+</span><span class="line">  <span class="s1">&#39;Hello, world!&#39;</span>
+</span><span class="line"><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<ul>
+  <li>Vue Template</li>
+</ul>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption class="code-header"><span>Before </span></figcaption>
+ <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> 1</span><span class="tag">&lt;div&gt;</span>
+<span class="line-numbers"> 2</span>  <span class="tag">&lt;h1&gt;</span>I'm a template!<span class="tag">&lt;/h1&gt;</span>
+<span class="line-numbers"> 3</span>  <span class="tag">&lt;p</span> <span class="attribute-name">v-if</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">message</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+<span class="line-numbers"> 4</span>    
+<span class="line-numbers"> 5</span>  <span class="tag">&lt;/p&gt;</span>
+<span class="line-numbers"> 6</span>  <span class="tag">&lt;p</span> <span class="attribute-name">v-else</span><span class="tag">&gt;</span>
+<span class="line-numbers"> 7</span>    No message.
+<span class="line-numbers"> 8</span>  <span class="tag">&lt;/p&gt;</span>
+<span class="line-numbers"> 9</span><span class="tag">&lt;/div&gt;</span>
+</pre></div>
+</div>
+ </figure></notextile></div>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>After </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+</pre></td><td class="code"><pre><code class="javascript"><span class="line"><span class="kd">function</span> <span class="nx">anonymous</span><span class="p">()</span> <span class="p">{</span>
+</span><span class="line">  <span class="kd">with</span><span class="p">(</span><span class="k">this</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">    <span class="k">return</span> <span class="nx">_h</span><span class="p">(</span>
+</span><span class="line">      <span class="s1">&#39;div&#39;</span><span class="p">,</span>
+</span><span class="line">      <span class="p">[</span>
+</span><span class="line">        <span class="nx">_h</span><span class="p">(</span><span class="s1">&#39;h1&#39;</span><span class="p">,[</span><span class="s2">&quot;I&#39;m a template!&quot;</span><span class="p">]),</span>
+</span><span class="line">        <span class="p">(</span><span class="nx">message</span><span class="p">)</span> <span class="o">?</span>
+</span><span class="line">          <span class="nx">_h</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">,[</span><span class="nx">_s</span><span class="p">(</span><span class="nx">message</span><span class="p">)])</span> <span class="o">:</span>
+</span><span class="line">          <span class="nx">_h</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">,[</span><span class="s2">&quot;No message.&quot;</span><span class="p">])</span>
+</span><span class="line">      <span class="p">]</span>
+</span><span class="line">    <span class="p">)</span>
+</span><span class="line">  <span class="p">}</span>
+</span><span class="line"><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<ul>
+  <li>Angular 2 Template</li>
+</ul>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption class="code-header"><span>Before </span></figcaption>
+ <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers">1</span><span class="tag">&lt;h1&gt;</span><span class="tag">&lt;/h1&gt;</span>
+<span class="line-numbers">2</span><span class="tag">&lt;ul&gt;</span>
+<span class="line-numbers">3</span>  <span class="tag">&lt;li</span> <span class="error">*</span><span class="attribute-name">ngFor</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">let name of names</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>Hello <span class="tag">&lt;/li&gt;</span>
+<span class="line-numbers">4</span><span class="tag">&lt;/ul&gt;</span>
+</pre></div>
+</div>
+ </figure></notextile></div>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>After </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+<span class="line-number">37</span>
+<span class="line-number">38</span>
+<span class="line-number">39</span>
+<span class="line-number">40</span>
+<span class="line-number">41</span>
+<span class="line-number">42</span>
+<span class="line-number">43</span>
+<span class="line-number">44</span>
+<span class="line-number">45</span>
+<span class="line-number">46</span>
+<span class="line-number">47</span>
+<span class="line-number">48</span>
+<span class="line-number">49</span>
+<span class="line-number">50</span>
+<span class="line-number">51</span>
+<span class="line-number">52</span>
+<span class="line-number">53</span>
+<span class="line-number">54</span>
+<span class="line-number">55</span>
+<span class="line-number">56</span>
+<span class="line-number">57</span>
+<span class="line-number">58</span>
+<span class="line-number">59</span>
+<span class="line-number">60</span>
+<span class="line-number">61</span>
+<span class="line-number">62</span>
+<span class="line-number">63</span>
+<span class="line-number">64</span>
+<span class="line-number">65</span>
+<span class="line-number">66</span>
+<span class="line-number">67</span>
+<span class="line-number">68</span>
+<span class="line-number">69</span>
+<span class="line-number">70</span>
+<span class="line-number">71</span>
+<span class="line-number">72</span>
+<span class="line-number">73</span>
+<span class="line-number">74</span>
+<span class="line-number">75</span>
+<span class="line-number">76</span>
+<span class="line-number">77</span>
+<span class="line-number">78</span>
+<span class="line-number">79</span>
+<span class="line-number">80</span>
+<span class="line-number">81</span>
+<span class="line-number">82</span>
+<span class="line-number">83</span>
+<span class="line-number">84</span>
+<span class="line-number">85</span>
+<span class="line-number">86</span>
+<span class="line-number">87</span>
+<span class="line-number">88</span>
+<span class="line-number">89</span>
+<span class="line-number">90</span>
+<span class="line-number">91</span>
+<span class="line-number">92</span>
+<span class="line-number">93</span>
+<span class="line-number">94</span>
+<span class="line-number">95</span>
+<span class="line-number">96</span>
+<span class="line-number">97</span>
+<span class="line-number">98</span>
+<span class="line-number">99</span>
+<span class="line-number">100</span>
+<span class="line-number">101</span>
+<span class="line-number">102</span>
+<span class="line-number">103</span>
+<span class="line-number">104</span>
+<span class="line-number">105</span>
+<span class="line-number">106</span>
+<span class="line-number">107</span>
+<span class="line-number">108</span>
+<span class="line-number">109</span>
+<span class="line-number">110</span>
+<span class="line-number">111</span>
+<span class="line-number">112</span>
+<span class="line-number">113</span>
+<span class="line-number">114</span>
+<span class="line-number">115</span>
+<span class="line-number">116</span>
+<span class="line-number">117</span>
+<span class="line-number">118</span>
+<span class="line-number">119</span>
+<span class="line-number">120</span>
+<span class="line-number">121</span>
+<span class="line-number">122</span>
+<span class="line-number">123</span>
+<span class="line-number">124</span>
+<span class="line-number">125</span>
+<span class="line-number">126</span>
+<span class="line-number">127</span>
+<span class="line-number">128</span>
+<span class="line-number">129</span>
+<span class="line-number">130</span>
+<span class="line-number">131</span>
+<span class="line-number">132</span>
+<span class="line-number">133</span>
+<span class="line-number">134</span>
+<span class="line-number">135</span>
+<span class="line-number">136</span>
+<span class="line-number">137</span>
+<span class="line-number">138</span>
+<span class="line-number">139</span>
+<span class="line-number">140</span>
+<span class="line-number">141</span>
+<span class="line-number">142</span>
+<span class="line-number">143</span>
+<span class="line-number">144</span>
+<span class="line-number">145</span>
+<span class="line-number">146</span>
+<span class="line-number">147</span>
+<span class="line-number">148</span>
+<span class="line-number">149</span>
+<span class="line-number">150</span>
+<span class="line-number">151</span>
+<span class="line-number">152</span>
+<span class="line-number">153</span>
+<span class="line-number">154</span>
+<span class="line-number">155</span>
+<span class="line-number">156</span>
+<span class="line-number">157</span>
+<span class="line-number">158</span>
+<span class="line-number">159</span>
+<span class="line-number">160</span>
+<span class="line-number">161</span>
+<span class="line-number">162</span>
+<span class="line-number">163</span>
+<span class="line-number">164</span>
+<span class="line-number">165</span>
+<span class="line-number">166</span>
+<span class="line-number">167</span>
+<span class="line-number">168</span>
+<span class="line-number">169</span>
+<span class="line-number">170</span>
+<span class="line-number">171</span>
+<span class="line-number">172</span>
+<span class="line-number">173</span>
+<span class="line-number">174</span>
+<span class="line-number">175</span>
+<span class="line-number">176</span>
+<span class="line-number">177</span>
+<span class="line-number">178</span>
+<span class="line-number">179</span>
+<span class="line-number">180</span>
+<span class="line-number">181</span>
+<span class="line-number">182</span>
+<span class="line-number">183</span>
+</pre></td><td class="code"><pre><code class="javascript"><span class="line"><span class="cm">/**</span>
+</span><span class="line"><span class="cm"> * @fileoverview This file is generated by the Angular 2 template compiler.</span>
+</span><span class="line"><span class="cm"> * Do not edit.</span>
+</span><span class="line"><span class="cm"> * @suppress {suspiciousCode,uselessCode,missingProperties}</span>
+</span><span class="line"><span class="cm"> */</span>
+</span><span class="line"> <span class="cm">/* tslint:disable */</span>
+</span><span class="line">
+</span><span class="line"><span class="kr">import</span> <span class="o">*</span> <span class="nx">as</span> <span class="nx">import0</span> <span class="nx">from</span> <span class="s1">&#39;./app.component&#39;</span><span class="p">;</span>
+</span><span class="line"><span class="kr">import</span> <span class="o">*</span> <span class="nx">as</span> <span class="nx">import1</span> <span class="nx">from</span> <span class="s1">&#39;@angular/core/src/linker/view&#39;</span><span class="p">;</span>
+</span><span class="line"><span class="kr">import</span> <span class="o">*</span> <span class="nx">as</span> <span class="nx">import2</span> <span class="nx">from</span> <span class="s1">&#39;@angular/core/src/render/api&#39;</span><span class="p">;</span>
+</span><span class="line"><span class="kr">import</span> <span class="o">*</span> <span class="nx">as</span> <span class="nx">import3</span> <span class="nx">from</span> <span class="s1">&#39;@angular/core/src/linker/view_utils&#39;</span><span class="p">;</span>
+</span><span class="line"><span class="kr">import</span> <span class="o">*</span> <span class="nx">as</span> <span class="nx">import4</span> <span class="nx">from</span> <span class="s1">&#39;@angular/core/src/metadata/view&#39;</span><span class="p">;</span>
+</span><span class="line"><span class="kr">import</span> <span class="o">*</span> <span class="nx">as</span> <span class="nx">import5</span> <span class="nx">from</span> <span class="s1">&#39;@angular/core/src/linker/view_type&#39;</span><span class="p">;</span>
+</span><span class="line"><span class="kr">import</span> <span class="o">*</span> <span class="nx">as</span> <span class="nx">import6</span> <span class="nx">from</span> <span class="s1">&#39;@angular/core/src/change_detection/change_detection&#39;</span><span class="p">;</span>
+</span><span class="line"><span class="kr">import</span> <span class="o">*</span> <span class="nx">as</span> <span class="nx">import7</span> <span class="nx">from</span> <span class="s1">&#39;@angular/core/src/linker/component_factory&#39;</span><span class="p">;</span>
+</span><span class="line"><span class="kr">import</span> <span class="o">*</span> <span class="nx">as</span> <span class="nx">import8</span> <span class="nx">from</span> <span class="s1">&#39;./app.component.css.shim&#39;</span><span class="p">;</span>
+</span><span class="line"><span class="kr">import</span> <span class="o">*</span> <span class="nx">as</span> <span class="nx">import9</span> <span class="nx">from</span> <span class="s1">&#39;@angular/core/src/linker/query_list&#39;</span><span class="p">;</span>
+</span><span class="line"><span class="kr">import</span> <span class="o">*</span> <span class="nx">as</span> <span class="nx">import10</span> <span class="nx">from</span> <span class="s1">&#39;@angular/core/src/linker/view_container&#39;</span><span class="p">;</span>
+</span><span class="line"><span class="kr">import</span> <span class="o">*</span> <span class="nx">as</span> <span class="nx">import11</span> <span class="nx">from</span> <span class="s1">&#39;../../node_modules/@angular/common/src/directives/ng_for.ngfactory&#39;</span><span class="p">;</span>
+</span><span class="line"><span class="kr">import</span> <span class="o">*</span> <span class="nx">as</span> <span class="nx">import12</span> <span class="nx">from</span> <span class="s1">&#39;@angular/core/src/linker/template_ref&#39;</span><span class="p">;</span>
+</span><span class="line"><span class="kr">import</span> <span class="o">*</span> <span class="nx">as</span> <span class="nx">import13</span> <span class="nx">from</span> <span class="s1">&#39;@angular/core/src/change_detection/differs/iterable_differs&#39;</span><span class="p">;</span>
+</span><span class="line"><span class="kr">import</span> <span class="o">*</span> <span class="nx">as</span> <span class="nx">import14</span> <span class="nx">from</span> <span class="s1">&#39;@angular/common/src/directives/ng_for&#39;</span><span class="p">;</span>
+</span><span class="line"><span class="kr">export</span> <span class="kr">class</span> <span class="nx">Wrapper_AppComponent</span> <span class="p">{</span>
+</span><span class="line">  <span class="cm">/*private*/</span> <span class="nx">_eventHandler</span><span class="o">:</span><span class="nb">Function</span><span class="p">;</span>
+</span><span class="line">  <span class="nx">context</span><span class="o">:</span><span class="nx">import0</span><span class="p">.</span><span class="nx">AppComponent</span><span class="p">;</span>
+</span><span class="line">  <span class="cm">/*private*/</span> <span class="nx">_changed</span><span class="o">:</span><span class="kr">boolean</span><span class="p">;</span>
+</span><span class="line">  <span class="nx">constructor</span><span class="p">()</span> <span class="p">{</span>
+</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">_changed</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">context</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">import0</span><span class="p">.</span><span class="nx">AppComponent</span><span class="p">();</span>
+</span><span class="line">  <span class="p">}</span>
+</span><span class="line">  <span class="nx">ngOnDetach</span><span class="p">(</span><span class="nx">view</span><span class="o">:</span><span class="nx">import1</span><span class="p">.</span><span class="nx">AppView</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="p">,</span><span class="nx">componentView</span><span class="o">:</span><span class="nx">import1</span><span class="p">.</span><span class="nx">AppView</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="p">,</span><span class="nx">el</span><span class="o">:</span><span class="nx">any</span><span class="p">)</span><span class="o">:</span><span class="k">void</span> <span class="p">{</span>
+</span><span class="line">  <span class="p">}</span>
+</span><span class="line">  <span class="nx">ngOnDestroy</span><span class="p">()</span><span class="o">:</span><span class="k">void</span> <span class="p">{</span>
+</span><span class="line">  <span class="p">}</span>
+</span><span class="line">  <span class="nx">ngDoCheck</span><span class="p">(</span><span class="nx">view</span><span class="o">:</span><span class="nx">import1</span><span class="p">.</span><span class="nx">AppView</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="p">,</span><span class="nx">el</span><span class="o">:</span><span class="nx">any</span><span class="p">,</span><span class="nx">throwOnChange</span><span class="o">:</span><span class="kr">boolean</span><span class="p">)</span><span class="o">:</span><span class="kr">boolean</span> <span class="p">{</span>
+</span><span class="line">    <span class="kd">var</span> <span class="nx">changed</span><span class="o">:</span><span class="nx">any</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_changed</span><span class="p">;</span>
+</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">_changed</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+</span><span class="line">    <span class="k">return</span> <span class="nx">changed</span><span class="p">;</span>
+</span><span class="line">  <span class="p">}</span>
+</span><span class="line">  <span class="nx">checkHost</span><span class="p">(</span><span class="nx">view</span><span class="o">:</span><span class="nx">import1</span><span class="p">.</span><span class="nx">AppView</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="p">,</span><span class="nx">componentView</span><span class="o">:</span><span class="nx">import1</span><span class="p">.</span><span class="nx">AppView</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="p">,</span><span class="nx">el</span><span class="o">:</span><span class="nx">any</span><span class="p">,</span><span class="nx">throwOnChange</span><span class="o">:</span><span class="kr">boolean</span><span class="p">)</span><span class="o">:</span><span class="k">void</span> <span class="p">{</span>
+</span><span class="line">  <span class="p">}</span>
+</span><span class="line">  <span class="nx">handleEvent</span><span class="p">(</span><span class="nx">eventName</span><span class="o">:</span><span class="nx">string</span><span class="p">,</span><span class="nx">$event</span><span class="o">:</span><span class="nx">any</span><span class="p">)</span><span class="o">:</span><span class="kr">boolean</span> <span class="p">{</span>
+</span><span class="line">    <span class="kd">var</span> <span class="nx">result</span><span class="o">:</span><span class="kr">boolean</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+</span><span class="line">    <span class="k">return</span> <span class="nx">result</span><span class="p">;</span>
+</span><span class="line">  <span class="p">}</span>
+</span><span class="line">  <span class="nx">subscribe</span><span class="p">(</span><span class="nx">view</span><span class="o">:</span><span class="nx">import1</span><span class="p">.</span><span class="nx">AppView</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="p">,</span><span class="nx">_eventHandler</span><span class="o">:</span><span class="nx">any</span><span class="p">)</span><span class="o">:</span><span class="k">void</span> <span class="p">{</span>
+</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">_eventHandler</span> <span class="o">=</span> <span class="nx">_eventHandler</span><span class="p">;</span>
+</span><span class="line">  <span class="p">}</span>
+</span><span class="line"><span class="p">}</span>
+</span><span class="line"><span class="kd">var</span> <span class="nx">renderType_AppComponent_Host</span><span class="o">:</span><span class="nx">import2</span><span class="p">.</span><span class="nx">RenderComponentType</span> <span class="o">=</span> <span class="nx">import3</span><span class="p">.</span><span class="nx">createRenderComponentType</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="nx">import4</span><span class="p">.</span><span class="nx">ViewEncapsulation</span><span class="p">.</span><span class="nx">None</span><span class="p">,([]</span> <span class="nx">as</span> <span class="nx">any</span><span class="p">[]),{});</span>
+</span><span class="line"><span class="kr">class</span> <span class="nx">View_AppComponent_Host0</span> <span class="kr">extends</span> <span class="nx">import1</span><span class="p">.</span><span class="nx">AppView</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span> <span class="p">{</span>
+</span><span class="line">  <span class="nx">_el_0</span><span class="o">:</span><span class="nx">any</span><span class="p">;</span>
+</span><span class="line">  <span class="nx">compView_0</span><span class="o">:</span><span class="nx">import1</span><span class="p">.</span><span class="nx">AppView</span><span class="o">&lt;</span><span class="nx">import0</span><span class="p">.</span><span class="nx">AppComponent</span><span class="o">&gt;</span><span class="p">;</span>
+</span><span class="line">  <span class="nx">_AppComponent_0_3</span><span class="o">:</span><span class="nx">Wrapper_AppComponent</span><span class="p">;</span>
+</span><span class="line">  <span class="nx">constructor</span><span class="p">(</span><span class="nx">viewUtils</span><span class="o">:</span><span class="nx">import3</span><span class="p">.</span><span class="nx">ViewUtils</span><span class="p">,</span><span class="nx">parentView</span><span class="o">:</span><span class="nx">import1</span><span class="p">.</span><span class="nx">AppView</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="p">,</span><span class="nx">parentIndex</span><span class="o">:</span><span class="nx">number</span><span class="p">,</span><span class="nx">parentElement</span><span class="o">:</span><span class="nx">any</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">    <span class="kr">super</span><span class="p">(</span><span class="nx">View_AppComponent_Host0</span><span class="p">,</span><span class="nx">renderType_AppComponent_Host</span><span class="p">,</span><span class="nx">import5</span><span class="p">.</span><span class="nx">ViewType</span><span class="p">.</span><span class="nx">HOST</span><span class="p">,</span><span class="nx">viewUtils</span><span class="p">,</span><span class="nx">parentView</span><span class="p">,</span><span class="nx">parentIndex</span><span class="p">,</span><span class="nx">parentElement</span><span class="p">,</span><span class="nx">import6</span><span class="p">.</span><span class="nx">ChangeDetectorStatus</span><span class="p">.</span><span class="nx">CheckAlways</span><span class="p">);</span>
+</span><span class="line">  <span class="p">}</span>
+</span><span class="line">  <span class="nx">createInternal</span><span class="p">(</span><span class="nx">rootSelector</span><span class="o">:</span><span class="nx">string</span><span class="p">)</span><span class="o">:</span><span class="nx">import7</span><span class="p">.</span><span class="nx">ComponentRef</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span> <span class="p">{</span>
+</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">_el_0</span> <span class="o">=</span> <span class="nx">import3</span><span class="p">.</span><span class="nx">selectOrCreateRenderHostElement</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">renderer</span><span class="p">,</span><span class="s1">&#39;app-root&#39;</span><span class="p">,</span><span class="nx">import3</span><span class="p">.</span><span class="nx">EMPTY_INLINE_ARRAY</span><span class="p">,</span><span class="nx">rootSelector</span><span class="p">,(</span><span class="kc">null</span> <span class="nx">as</span> <span class="nx">any</span><span class="p">));</span>
+</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">compView_0</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">View_AppComponent0</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">viewUtils</span><span class="p">,</span><span class="k">this</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="k">this</span><span class="p">.</span><span class="nx">_el_0</span><span class="p">);</span>
+</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">_AppComponent_0_3</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Wrapper_AppComponent</span><span class="p">();</span>
+</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">compView_0</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_AppComponent_0_3</span><span class="p">.</span><span class="nx">context</span><span class="p">);</span>
+</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">init</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_el_0</span><span class="p">,((</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="k">this</span><span class="p">.</span><span class="nx">renderer</span><span class="p">).</span><span class="nx">directRenderer</span><span class="o">?</span> <span class="p">(</span><span class="kc">null</span> <span class="nx">as</span> <span class="nx">any</span><span class="p">)</span><span class="o">:</span> <span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">_el_0</span><span class="p">]),(</span><span class="kc">null</span> <span class="nx">as</span> <span class="nx">any</span><span class="p">));</span>
+</span><span class="line">    <span class="k">return</span> <span class="k">new</span> <span class="nx">import7</span><span class="p">.</span><span class="nx">ComponentRef_</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="k">this</span><span class="p">,</span><span class="k">this</span><span class="p">.</span><span class="nx">_el_0</span><span class="p">,</span><span class="k">this</span><span class="p">.</span><span class="nx">_AppComponent_0_3</span><span class="p">.</span><span class="nx">context</span><span class="p">);</span>
+</span><span class="line">  <span class="p">}</span>
+</span><span class="line">  <span class="nx">injectorGetInternal</span><span class="p">(</span><span class="nx">token</span><span class="o">:</span><span class="nx">any</span><span class="p">,</span><span class="nx">requestNodeIndex</span><span class="o">:</span><span class="nx">number</span><span class="p">,</span><span class="nx">notFoundResult</span><span class="o">:</span><span class="nx">any</span><span class="p">)</span><span class="o">:</span><span class="nx">any</span> <span class="p">{</span>
+</span><span class="line">    <span class="k">if</span> <span class="p">(((</span><span class="nx">token</span> <span class="o">===</span> <span class="nx">import0</span><span class="p">.</span><span class="nx">AppComponent</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="mi">0</span> <span class="o">===</span> <span class="nx">requestNodeIndex</span><span class="p">)))</span> <span class="p">{</span> <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_AppComponent_0_3</span><span class="p">.</span><span class="nx">context</span><span class="p">;</span> <span class="p">}</span>
+</span><span class="line">    <span class="k">return</span> <span class="nx">notFoundResult</span><span class="p">;</span>
+</span><span class="line">  <span class="p">}</span>
+</span><span class="line">  <span class="nx">detectChangesInternal</span><span class="p">(</span><span class="nx">throwOnChange</span><span class="o">:</span><span class="kr">boolean</span><span class="p">)</span><span class="o">:</span><span class="k">void</span> <span class="p">{</span>
+</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">_AppComponent_0_3</span><span class="p">.</span><span class="nx">ngDoCheck</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="k">this</span><span class="p">.</span><span class="nx">_el_0</span><span class="p">,</span><span class="nx">throwOnChange</span><span class="p">);</span>
+</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">compView_0</span><span class="p">.</span><span class="nx">detectChanges</span><span class="p">(</span><span class="nx">throwOnChange</span><span class="p">);</span>
+</span><span class="line">  <span class="p">}</span>
+</span><span class="line">  <span class="nx">destroyInternal</span><span class="p">()</span><span class="o">:</span><span class="k">void</span> <span class="p">{</span>
+</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">compView_0</span><span class="p">.</span><span class="nx">destroy</span><span class="p">();</span>
+</span><span class="line">  <span class="p">}</span>
+</span><span class="line">  <span class="nx">visitRootNodesInternal</span><span class="p">(</span><span class="nx">cb</span><span class="o">:</span><span class="nx">any</span><span class="p">,</span><span class="nx">ctx</span><span class="o">:</span><span class="nx">any</span><span class="p">)</span><span class="o">:</span><span class="k">void</span> <span class="p">{</span>
+</span><span class="line">    <span class="nx">cb</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_el_0</span><span class="p">,</span><span class="nx">ctx</span><span class="p">);</span>
+</span><span class="line">  <span class="p">}</span>
+</span><span class="line"><span class="p">}</span>
+</span><span class="line"><span class="kr">export</span> <span class="kr">const</span> <span class="nx">AppComponentNgFactory</span><span class="o">:</span><span class="nx">import7</span><span class="p">.</span><span class="nx">ComponentFactory</span><span class="o">&lt;</span><span class="nx">import0</span><span class="p">.</span><span class="nx">AppComponent</span><span class="o">&gt;</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">import7</span><span class="p">.</span><span class="nx">ComponentFactory</span><span class="o">&lt;</span><span class="nx">import0</span><span class="p">.</span><span class="nx">AppComponent</span><span class="o">&gt;</span><span class="p">(</span><span class="s1">&#39;app-root&#39;</span><span class="p">,</span><span class="nx">View_AppComponent_Host0</span><span class="p">,</span><span class="nx">import0</span><span class="p">.</span><span class="nx">AppComponent</span><span class="p">);</span>
+</span><span class="line"><span class="kr">const</span> <span class="nx">styles_AppComponent</span><span class="o">:</span><span class="nx">any</span><span class="p">[]</span> <span class="o">=</span> <span class="p">[</span><span class="nx">import8</span><span class="p">.</span><span class="nx">styles</span><span class="p">];</span>
+</span><span class="line"><span class="kd">var</span> <span class="nx">renderType_AppComponent</span><span class="o">:</span><span class="nx">import2</span><span class="p">.</span><span class="nx">RenderComponentType</span> <span class="o">=</span> <span class="nx">import3</span><span class="p">.</span><span class="nx">createRenderComponentType</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="nx">import4</span><span class="p">.</span><span class="nx">ViewEncapsulation</span><span class="p">.</span><span class="nx">Emulated</span><span class="p">,</span><span class="nx">styles_AppComponent</span><span class="p">,{});</span>
+</span><span class="line"><span class="kr">export</span> <span class="kr">class</span> <span class="nx">View_AppComponent0</span> <span class="kr">extends</span> <span class="nx">import1</span><span class="p">.</span><span class="nx">AppView</span><span class="o">&lt;</span><span class="nx">import0</span><span class="p">.</span><span class="nx">AppComponent</span><span class="o">&gt;</span> <span class="p">{</span>
+</span><span class="line">  <span class="nx">_viewQuery_someThing_0</span><span class="o">:</span><span class="nx">import9</span><span class="p">.</span><span class="nx">QueryList</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="p">;</span>
+</span><span class="line">  <span class="nx">_el_0</span><span class="o">:</span><span class="nx">any</span><span class="p">;</span>
+</span><span class="line">  <span class="nx">_text_1</span><span class="o">:</span><span class="nx">any</span><span class="p">;</span>
+</span><span class="line">  <span class="nx">_text_2</span><span class="o">:</span><span class="nx">any</span><span class="p">;</span>
+</span><span class="line">  <span class="nx">_el_3</span><span class="o">:</span><span class="nx">any</span><span class="p">;</span>
+</span><span class="line">  <span class="nx">_text_4</span><span class="o">:</span><span class="nx">any</span><span class="p">;</span>
+</span><span class="line">  <span class="nx">_anchor_5</span><span class="o">:</span><span class="nx">any</span><span class="p">;</span>
+</span><span class="line">  <span class="cm">/*private*/</span> <span class="nx">_vc_5</span><span class="o">:</span><span class="nx">import10</span><span class="p">.</span><span class="nx">ViewContainer</span><span class="p">;</span>
+</span><span class="line">  <span class="nx">_TemplateRef_5_5</span><span class="o">:</span><span class="nx">any</span><span class="p">;</span>
+</span><span class="line">  <span class="nx">_NgFor_5_6</span><span class="o">:</span><span class="nx">import11</span><span class="p">.</span><span class="nx">Wrapper_NgFor</span><span class="p">;</span>
+</span><span class="line">  <span class="nx">_text_6</span><span class="o">:</span><span class="nx">any</span><span class="p">;</span>
+</span><span class="line">  <span class="nx">_text_7</span><span class="o">:</span><span class="nx">any</span><span class="p">;</span>
+</span><span class="line">  <span class="cm">/*private*/</span> <span class="nx">_expr_12</span><span class="o">:</span><span class="nx">any</span><span class="p">;</span>
+</span><span class="line">  <span class="nx">constructor</span><span class="p">(</span><span class="nx">viewUtils</span><span class="o">:</span><span class="nx">import3</span><span class="p">.</span><span class="nx">ViewUtils</span><span class="p">,</span><span class="nx">parentView</span><span class="o">:</span><span class="nx">import1</span><span class="p">.</span><span class="nx">AppView</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="p">,</span><span class="nx">parentIndex</span><span class="o">:</span><span class="nx">number</span><span class="p">,</span><span class="nx">parentElement</span><span class="o">:</span><span class="nx">any</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">    <span class="kr">super</span><span class="p">(</span><span class="nx">View_AppComponent0</span><span class="p">,</span><span class="nx">renderType_AppComponent</span><span class="p">,</span><span class="nx">import5</span><span class="p">.</span><span class="nx">ViewType</span><span class="p">.</span><span class="nx">COMPONENT</span><span class="p">,</span><span class="nx">viewUtils</span><span class="p">,</span><span class="nx">parentView</span><span class="p">,</span><span class="nx">parentIndex</span><span class="p">,</span><span class="nx">parentElement</span><span class="p">,</span><span class="nx">import6</span><span class="p">.</span><span class="nx">ChangeDetectorStatus</span><span class="p">.</span><span class="nx">CheckAlways</span><span class="p">);</span>
+</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">_expr_12</span> <span class="o">=</span> <span class="nx">import6</span><span class="p">.</span><span class="nx">UNINITIALIZED</span><span class="p">;</span>
+</span><span class="line">  <span class="p">}</span>
+</span><span class="line">  <span class="nx">createInternal</span><span class="p">(</span><span class="nx">rootSelector</span><span class="o">:</span><span class="nx">string</span><span class="p">)</span><span class="o">:</span><span class="nx">import7</span><span class="p">.</span><span class="nx">ComponentRef</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span> <span class="p">{</span>
+</span><span class="line">    <span class="kr">const</span> <span class="nx">parentRenderNode</span><span class="o">:</span><span class="nx">any</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">renderer</span><span class="p">.</span><span class="nx">createViewRoot</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">parentElement</span><span class="p">);</span>
+</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">_viewQuery_someThing_0</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">import9</span><span class="p">.</span><span class="nx">QueryList</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="p">();</span>
+</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">_el_0</span> <span class="o">=</span> <span class="nx">import3</span><span class="p">.</span><span class="nx">createRenderElement</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">renderer</span><span class="p">,</span><span class="nx">parentRenderNode</span><span class="p">,</span><span class="s1">&#39;h1&#39;</span><span class="p">,</span><span class="nx">import3</span><span class="p">.</span><span class="nx">EMPTY_INLINE_ARRAY</span><span class="p">,(</span><span class="kc">null</span> <span class="nx">as</span> <span class="nx">any</span><span class="p">));</span>
+</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">_text_1</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">renderer</span><span class="p">.</span><span class="nx">createText</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_el_0</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">,(</span><span class="kc">null</span> <span class="nx">as</span> <span class="nx">any</span><span class="p">));</span>
+</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">_text_2</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">renderer</span><span class="p">.</span><span class="nx">createText</span><span class="p">(</span><span class="nx">parentRenderNode</span><span class="p">,</span><span class="s1">&#39;\n&#39;</span><span class="p">,(</span><span class="kc">null</span> <span class="nx">as</span> <span class="nx">any</span><span class="p">));</span>
+</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">_el_3</span> <span class="o">=</span> <span class="nx">import3</span><span class="p">.</span><span class="nx">createRenderElement</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">renderer</span><span class="p">,</span><span class="nx">parentRenderNode</span><span class="p">,</span><span class="s1">&#39;ul&#39;</span><span class="p">,</span><span class="nx">import3</span><span class="p">.</span><span class="nx">EMPTY_INLINE_ARRAY</span><span class="p">,(</span><span class="kc">null</span> <span class="nx">as</span> <span class="nx">any</span><span class="p">));</span>
+</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">_text_4</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">renderer</span><span class="p">.</span><span class="nx">createText</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_el_3</span><span class="p">,</span><span class="s1">&#39;\n  &#39;</span><span class="p">,(</span><span class="kc">null</span> <span class="nx">as</span> <span class="nx">any</span><span class="p">));</span>
+</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">_anchor_5</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">renderer</span><span class="p">.</span><span class="nx">createTemplateAnchor</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_el_3</span><span class="p">,(</span><span class="kc">null</span> <span class="nx">as</span> <span class="nx">any</span><span class="p">));</span>
+</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">_vc_5</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">import10</span><span class="p">.</span><span class="nx">ViewContainer</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="k">this</span><span class="p">,</span><span class="k">this</span><span class="p">.</span><span class="nx">_anchor_5</span><span class="p">);</span>
+</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">_TemplateRef_5_5</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">import12</span><span class="p">.</span><span class="nx">TemplateRef_</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="k">this</span><span class="p">.</span><span class="nx">_anchor_5</span><span class="p">);</span>
+</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">_NgFor_5_6</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">import11</span><span class="p">.</span><span class="nx">Wrapper_NgFor</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_vc_5</span><span class="p">.</span><span class="nx">vcRef</span><span class="p">,</span><span class="k">this</span><span class="p">.</span><span class="nx">_TemplateRef_5_5</span><span class="p">,</span><span class="k">this</span><span class="p">.</span><span class="nx">parentView</span><span class="p">.</span><span class="nx">injectorGet</span><span class="p">(</span><span class="nx">import13</span><span class="p">.</span><span class="nx">IterableDiffers</span><span class="p">,</span><span class="k">this</span><span class="p">.</span><span class="nx">parentIndex</span><span class="p">),</span><span class="k">this</span><span class="p">.</span><span class="nx">ref</span><span class="p">);</span>
+</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">_text_6</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">renderer</span><span class="p">.</span><span class="nx">createText</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_el_3</span><span class="p">,</span><span class="s1">&#39;\n&#39;</span><span class="p">,(</span><span class="kc">null</span> <span class="nx">as</span> <span class="nx">any</span><span class="p">));</span>
+</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">_text_7</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">renderer</span><span class="p">.</span><span class="nx">createText</span><span class="p">(</span><span class="nx">parentRenderNode</span><span class="p">,</span><span class="s1">&#39;\n&#39;</span><span class="p">,(</span><span class="kc">null</span> <span class="nx">as</span> <span class="nx">any</span><span class="p">));</span>
+</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">_viewQuery_someThing_0</span><span class="p">.</span><span class="nx">reset</span><span class="p">(([]</span> <span class="nx">as</span> <span class="nx">any</span><span class="p">[]));</span>
+</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">context</span><span class="p">.</span><span class="nx">someElement</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_viewQuery_someThing_0</span><span class="p">.</span><span class="nx">first</span><span class="p">;</span>
+</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">init</span><span class="p">((</span><span class="kc">null</span> <span class="nx">as</span> <span class="nx">any</span><span class="p">),((</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="k">this</span><span class="p">.</span><span class="nx">renderer</span><span class="p">).</span><span class="nx">directRenderer</span><span class="o">?</span> <span class="p">(</span><span class="kc">null</span> <span class="nx">as</span> <span class="nx">any</span><span class="p">)</span><span class="o">:</span> <span class="p">[</span>
+</span><span class="line">      <span class="k">this</span><span class="p">.</span><span class="nx">_el_0</span><span class="p">,</span>
+</span><span class="line">      <span class="k">this</span><span class="p">.</span><span class="nx">_text_1</span><span class="p">,</span>
+</span><span class="line">      <span class="k">this</span><span class="p">.</span><span class="nx">_text_2</span><span class="p">,</span>
+</span><span class="line">      <span class="k">this</span><span class="p">.</span><span class="nx">_el_3</span><span class="p">,</span>
+</span><span class="line">      <span class="k">this</span><span class="p">.</span><span class="nx">_text_4</span><span class="p">,</span>
+</span><span class="line">      <span class="k">this</span><span class="p">.</span><span class="nx">_anchor_5</span><span class="p">,</span>
+</span><span class="line">      <span class="k">this</span><span class="p">.</span><span class="nx">_text_6</span><span class="p">,</span>
+</span><span class="line">      <span class="k">this</span><span class="p">.</span><span class="nx">_text_7</span>
+</span><span class="line">    <span class="p">]</span>
+</span><span class="line">    <span class="p">),(</span><span class="kc">null</span> <span class="nx">as</span> <span class="nx">any</span><span class="p">));</span>
+</span><span class="line">    <span class="k">return</span> <span class="p">(</span><span class="kc">null</span> <span class="nx">as</span> <span class="nx">any</span><span class="p">);</span>
+</span><span class="line">  <span class="p">}</span>
+</span><span class="line">  <span class="nx">injectorGetInternal</span><span class="p">(</span><span class="nx">token</span><span class="o">:</span><span class="nx">any</span><span class="p">,</span><span class="nx">requestNodeIndex</span><span class="o">:</span><span class="nx">number</span><span class="p">,</span><span class="nx">notFoundResult</span><span class="o">:</span><span class="nx">any</span><span class="p">)</span><span class="o">:</span><span class="nx">any</span> <span class="p">{</span>
+</span><span class="line">    <span class="k">if</span> <span class="p">(((</span><span class="nx">token</span> <span class="o">===</span> <span class="nx">import12</span><span class="p">.</span><span class="nx">TemplateRef</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="mi">5</span> <span class="o">===</span> <span class="nx">requestNodeIndex</span><span class="p">)))</span> <span class="p">{</span> <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_TemplateRef_5_5</span><span class="p">;</span> <span class="p">}</span>
+</span><span class="line">    <span class="k">if</span> <span class="p">(((</span><span class="nx">token</span> <span class="o">===</span> <span class="nx">import14</span><span class="p">.</span><span class="nx">NgFor</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="mi">5</span> <span class="o">===</span> <span class="nx">requestNodeIndex</span><span class="p">)))</span> <span class="p">{</span> <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_NgFor_5_6</span><span class="p">.</span><span class="nx">context</span><span class="p">;</span> <span class="p">}</span>
+</span><span class="line">    <span class="k">return</span> <span class="nx">notFoundResult</span><span class="p">;</span>
+</span><span class="line">  <span class="p">}</span>
+</span><span class="line">  <span class="nx">detectChangesInternal</span><span class="p">(</span><span class="nx">throwOnChange</span><span class="o">:</span><span class="kr">boolean</span><span class="p">)</span><span class="o">:</span><span class="k">void</span> <span class="p">{</span>
+</span><span class="line">    <span class="kr">const</span> <span class="nx">currVal_5_0_0</span><span class="o">:</span><span class="nx">any</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">context</span><span class="p">.</span><span class="nx">names</span><span class="p">;</span>
+</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">_NgFor_5_6</span><span class="p">.</span><span class="nx">check_ngForOf</span><span class="p">(</span><span class="nx">currVal_5_0_0</span><span class="p">,</span><span class="nx">throwOnChange</span><span class="p">,</span><span class="kc">false</span><span class="p">);</span>
+</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">_NgFor_5_6</span><span class="p">.</span><span class="nx">ngDoCheck</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="k">this</span><span class="p">.</span><span class="nx">_anchor_5</span><span class="p">,</span><span class="nx">throwOnChange</span><span class="p">);</span>
+</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">_vc_5</span><span class="p">.</span><span class="nx">detectChangesInNestedViews</span><span class="p">(</span><span class="nx">throwOnChange</span><span class="p">);</span>
+</span><span class="line">    <span class="kr">const</span> <span class="nx">currVal_12</span><span class="o">:</span><span class="nx">any</span> <span class="o">=</span> <span class="nx">import3</span><span class="p">.</span><span class="nx">inlineInterpolate</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">,</span><span class="k">this</span><span class="p">.</span><span class="nx">context</span><span class="p">.</span><span class="nx">title</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+</span><span class="line">    <span class="k">if</span> <span class="p">(</span><span class="nx">import3</span><span class="p">.</span><span class="nx">checkBinding</span><span class="p">(</span><span class="nx">throwOnChange</span><span class="p">,</span><span class="k">this</span><span class="p">.</span><span class="nx">_expr_12</span><span class="p">,</span><span class="nx">currVal_12</span><span class="p">))</span> <span class="p">{</span>
+</span><span class="line">      <span class="k">this</span><span class="p">.</span><span class="nx">renderer</span><span class="p">.</span><span class="nx">setText</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_text_1</span><span class="p">,</span><span class="nx">currVal_12</span><span class="p">);</span>
+</span><span class="line">      <span class="k">this</span><span class="p">.</span><span class="nx">_expr_12</span> <span class="o">=</span> <span class="nx">currVal_12</span><span class="p">;</span>
+</span><span class="line">    <span class="p">}</span>
+</span><span class="line">  <span class="p">}</span>
+</span><span class="line">  <span class="nx">destroyInternal</span><span class="p">()</span><span class="o">:</span><span class="k">void</span> <span class="p">{</span>
+</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">_vc_5</span><span class="p">.</span><span class="nx">destroyNestedViews</span><span class="p">();</span>
+</span><span class="line">  <span class="p">}</span>
+</span><span class="line">  <span class="nx">createEmbeddedViewInternal</span><span class="p">(</span><span class="nx">nodeIndex</span><span class="o">:</span><span class="nx">number</span><span class="p">)</span><span class="o">:</span><span class="nx">import1</span><span class="p">.</span><span class="nx">AppView</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span> <span class="p">{</span>
+</span><span class="line">    <span class="k">if</span> <span class="p">((</span><span class="nx">nodeIndex</span> <span class="o">==</span> <span class="mi">5</span><span class="p">))</span> <span class="p">{</span> <span class="k">return</span> <span class="k">new</span> <span class="nx">View_AppComponent1</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">viewUtils</span><span class="p">,</span><span class="k">this</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="k">this</span><span class="p">.</span><span class="nx">_anchor_5</span><span class="p">,</span><span class="k">this</span><span class="p">.</span><span class="nx">_vc_5</span><span class="p">);</span> <span class="p">}</span>
+</span><span class="line">    <span class="k">return</span> <span class="p">(</span><span class="kc">null</span> <span class="nx">as</span> <span class="nx">any</span><span class="p">);</span>
+</span><span class="line">  <span class="p">}</span>
+</span><span class="line"><span class="p">}</span>
+</span><span class="line"><span class="kr">class</span> <span class="nx">View_AppComponent1</span> <span class="kr">extends</span> <span class="nx">import1</span><span class="p">.</span><span class="nx">AppView</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span> <span class="p">{</span>
+</span><span class="line">  <span class="nx">_el_0</span><span class="o">:</span><span class="nx">any</span><span class="p">;</span>
+</span><span class="line">  <span class="nx">_text_1</span><span class="o">:</span><span class="nx">any</span><span class="p">;</span>
+</span><span class="line">  <span class="cm">/*private*/</span> <span class="nx">_expr_2</span><span class="o">:</span><span class="nx">any</span><span class="p">;</span>
+</span><span class="line">  <span class="nx">constructor</span><span class="p">(</span><span class="nx">viewUtils</span><span class="o">:</span><span class="nx">import3</span><span class="p">.</span><span class="nx">ViewUtils</span><span class="p">,</span><span class="nx">parentView</span><span class="o">:</span><span class="nx">import1</span><span class="p">.</span><span class="nx">AppView</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="p">,</span><span class="nx">parentIndex</span><span class="o">:</span><span class="nx">number</span><span class="p">,</span><span class="nx">parentElement</span><span class="o">:</span><span class="nx">any</span><span class="p">,</span><span class="nx">declaredViewContainer</span><span class="o">:</span><span class="nx">import10</span><span class="p">.</span><span class="nx">ViewContainer</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="line">    <span class="kr">super</span><span class="p">(</span><span class="nx">View_AppComponent1</span><span class="p">,</span><span class="nx">renderType_AppComponent</span><span class="p">,</span><span class="nx">import5</span><span class="p">.</span><span class="nx">ViewType</span><span class="p">.</span><span class="nx">EMBEDDED</span><span class="p">,</span><span class="nx">viewUtils</span><span class="p">,</span><span class="nx">parentView</span><span class="p">,</span><span class="nx">parentIndex</span><span class="p">,</span><span class="nx">parentElement</span><span class="p">,</span><span class="nx">import6</span><span class="p">.</span><span class="nx">ChangeDetectorStatus</span><span class="p">.</span><span class="nx">CheckAlways</span><span class="p">,</span><span class="nx">declaredViewContainer</span><span class="p">);</span>
+</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">_expr_2</span> <span class="o">=</span> <span class="nx">import6</span><span class="p">.</span><span class="nx">UNINITIALIZED</span><span class="p">;</span>
+</span><span class="line">  <span class="p">}</span>
+</span><span class="line">  <span class="nx">createInternal</span><span class="p">(</span><span class="nx">rootSelector</span><span class="o">:</span><span class="nx">string</span><span class="p">)</span><span class="o">:</span><span class="nx">import7</span><span class="p">.</span><span class="nx">ComponentRef</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span> <span class="p">{</span>
+</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">_el_0</span> <span class="o">=</span> <span class="nx">import3</span><span class="p">.</span><span class="nx">createRenderElement</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">renderer</span><span class="p">,(</span><span class="kc">null</span> <span class="nx">as</span> <span class="nx">any</span><span class="p">),</span><span class="s1">&#39;li&#39;</span><span class="p">,</span><span class="nx">import3</span><span class="p">.</span><span class="nx">EMPTY_INLINE_ARRAY</span><span class="p">,(</span><span class="kc">null</span> <span class="nx">as</span> <span class="nx">any</span><span class="p">));</span>
+</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">_text_1</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">renderer</span><span class="p">.</span><span class="nx">createText</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_el_0</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">,(</span><span class="kc">null</span> <span class="nx">as</span> <span class="nx">any</span><span class="p">));</span>
+</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">init</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_el_0</span><span class="p">,((</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="k">this</span><span class="p">.</span><span class="nx">renderer</span><span class="p">).</span><span class="nx">directRenderer</span><span class="o">?</span> <span class="p">(</span><span class="kc">null</span> <span class="nx">as</span> <span class="nx">any</span><span class="p">)</span><span class="o">:</span> <span class="p">[</span>
+</span><span class="line">      <span class="k">this</span><span class="p">.</span><span class="nx">_el_0</span><span class="p">,</span>
+</span><span class="line">      <span class="k">this</span><span class="p">.</span><span class="nx">_text_1</span>
+</span><span class="line">    <span class="p">]</span>
+</span><span class="line">    <span class="p">),(</span><span class="kc">null</span> <span class="nx">as</span> <span class="nx">any</span><span class="p">));</span>
+</span><span class="line">    <span class="k">return</span> <span class="p">(</span><span class="kc">null</span> <span class="nx">as</span> <span class="nx">any</span><span class="p">);</span>
+</span><span class="line">  <span class="p">}</span>
+</span><span class="line">  <span class="nx">detectChangesInternal</span><span class="p">(</span><span class="nx">throwOnChange</span><span class="o">:</span><span class="kr">boolean</span><span class="p">)</span><span class="o">:</span><span class="k">void</span> <span class="p">{</span>
+</span><span class="line">    <span class="kr">const</span> <span class="nx">currVal_2</span><span class="o">:</span><span class="nx">any</span> <span class="o">=</span> <span class="nx">import3</span><span class="p">.</span><span class="nx">inlineInterpolate</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;Hello &#39;</span><span class="p">,</span><span class="k">this</span><span class="p">.</span><span class="nx">context</span><span class="p">.</span><span class="nx">$implicit</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+</span><span class="line">    <span class="k">if</span> <span class="p">(</span><span class="nx">import3</span><span class="p">.</span><span class="nx">checkBinding</span><span class="p">(</span><span class="nx">throwOnChange</span><span class="p">,</span><span class="k">this</span><span class="p">.</span><span class="nx">_expr_2</span><span class="p">,</span><span class="nx">currVal_2</span><span class="p">))</span> <span class="p">{</span>
+</span><span class="line">      <span class="k">this</span><span class="p">.</span><span class="nx">renderer</span><span class="p">.</span><span class="nx">setText</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_text_1</span><span class="p">,</span><span class="nx">currVal_2</span><span class="p">);</span>
+</span><span class="line">      <span class="k">this</span><span class="p">.</span><span class="nx">_expr_2</span> <span class="o">=</span> <span class="nx">currVal_2</span><span class="p">;</span>
+</span><span class="line">    <span class="p">}</span>
+</span><span class="line">  <span class="p">}</span>
+</span><span class="line">  <span class="nx">visitRootNodesInternal</span><span class="p">(</span><span class="nx">cb</span><span class="o">:</span><span class="nx">any</span><span class="p">,</span><span class="nx">ctx</span><span class="o">:</span><span class="nx">any</span><span class="p">)</span><span class="o">:</span><span class="k">void</span> <span class="p">{</span>
+</span><span class="line">    <span class="nx">cb</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_el_0</span><span class="p">,</span><span class="nx">ctx</span><span class="p">);</span>
+</span><span class="line">  <span class="p">}</span>
+</span><span class="line"><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>That’s one reason that <code>Angular</code> use aot compiler.</p>
+
+<h2 id="improve-itself">Improve itself</h2>
+
+<p><em>The Angular Ahead-of-Time (AOT) compiler converts your Angular HTML and TypeScript code into efficient JavaScript code during the build phase before the browser downloads and runs that code.</em></p>
+
+<ul>
+  <li>
+    <p>Just-in-Time 编译模式开发流程</p>
+
+    <ul>
+      <li>
+        <p>使用 TypeScript 开发 Angular 应用</p>
+
+        <ul>
+          <li>
+            <p>运行 tsc 编译 TypeScript 代码</p>
+          </li>
+          <li>
+            <p>使用 Webpack 或 Gulp 等其他工具构建项目，如代码压缩、合并等</p>
+          </li>
+          <li>
+            <p>部署应用</p>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <p>应用部署后，当用户通过浏览器访问我们应用的时候，她将经历以下步骤(非严格 CSP)：</p>
+
+        <ul>
+          <li>
+            <p>下载应用相关的资源，如 JavaScript 文件、图片、样式资源</p>
+          </li>
+          <li>
+            <p>Angular 启动</p>
+          </li>
+          <li>
+            <p>Angular 进入 JiT 编译模式，开始编译我们应用中的指令或组件，生成相应的 JavaScript 代码</p>
+          </li>
+          <li>
+            <p>应用完成渲染</p>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Ahead-Of-Time 编译模式开发流程</p>
+
+    <ul>
+      <li>
+        <p>使用 TypeScript 开发 Angular 应用</p>
+
+        <ul>
+          <li>
+            <p>运行 ngc 编译应用程序</p>
+          </li>
+          <li>
+            <p>使用 Angular Compiler 编译模板，一般输出 TypeScript 代码</p>
+          </li>
+          <li>
+            <p>运行 tsc 编译 TypeScript 代码</p>
+          </li>
+          <li>
+            <p>使用 Webpack 或 Gulp 等其他工具构建项目，如代码压缩、合并等</p>
+          </li>
+          <li>
+            <p>部署应用</p>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <p>应用部署后，相比于 JIT 编译模式，在 AOT 模式下用户访问我们的应用，只需经历以下步骤：</p>
+
+        <ul>
+          <li>
+            <p>下载应用相关的资源，如 JavaScript 文件、图片、样式资源</p>
+          </li>
+          <li>
+            <p>Angular 启动</p>
+          </li>
+          <li>
+            <p>应用完成渲染</p>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="refrences">Refrences</h2>
+
+<p><a href="https://segmentfault.com/a/1190000008739157">https://segmentfault.com/a/1190000008739157</a></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Wei Luo</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2018-02-07T14:02:05+08:00'><span class='date'>2018-02-07</span> <span class='time'>2:02 pm</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/react/'>REACT</a>
+  
+</span>
+
+
+      
+
+<span class="tags">
+  
+    <a class='tag' href='/blog/tags/angular/'>angular</a>, <a class='tag' href='/blog/tags/aot/'>aot</a>, <a class='tag' href='/blog/tags/react/'>react</a>, <a class='tag' href='/blog/tags/vue/'>vue</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2017/06/02/nodejs-best-practices/" title="Previous Post: nodejs best practices">&laquo; nodejs best practices</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2018/02/07/angular-aot/">Angular Need Aot</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/06/02/nodejs-best-practices/">Nodejs Best Practices</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/05/06/mock-a-method-when-test-express-api/">Mock a Method When Test Express Api</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/04/26/difference-between-config-and-run-in-angular/">Difference Between Config and Run in Angular</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/04/15/s3-policy-on-ec2-having-changes-between-ecs-and-eb/">S3 Policy on EC2 Having Changes Between ECS and EB</a>
+      </li>
+    
+  </ul>
+</section>
+<section>
+  <h1>Categories</h1>
+  <div id="category-list"><li><a href='/blog/categories/angular/'>ANGULAR (1)</a></li><li><a href='/blog/categories/aws/'>AWS (2)</a></li><li><a href='/blog/categories/css/'>CSS (1)</a></li><li><a href='/blog/categories/disqus/'>DISQUS (1)</a></li><li><a href='/blog/categories/es6/'>ES6 (1)</a></li><li><a href='/blog/categories/git/'>GIT (2)</a></li><li><a href='/blog/categories/javascript/'>JAVASCRIPT (2)</a></li><li><a href='/blog/categories/jenkins/'>JENKINS (1)</a></li><li><a href='/blog/categories/mac/'>MAC (2)</a></li><li><a href='/blog/categories/mongodb/'>MONGODB (1)</a></li><li><a href='/blog/categories/nodejs/'>NODEJS (1)</a></li><li><a href='/blog/categories/rails/'>RAILS (2)</a></li><li><a href='/blog/categories/react/'>REACT (1)</a></li><li><a href='/blog/categories/ruby/'>RUBY (4)</a></li><li><a href='/blog/categories/shell/'>SHELL (2)</a></li><li><a href='/blog/categories/sinatra/'>SINATRA (1)</a></li><li><a href='/blog/categories/sublime/'>SUBLIME (1)</a></li><li><a href='/blog/categories/swap/'>SWAP (1)</a></li><li><a href='/blog/categories/test/'>TEST (2)</a></li><li><a href='/blog/categories/ubuntu/'>UBUNTU (2)</a></li><li><a href='/blog/categories/watchman/'>WATCHMAN (1)</a></li><li><a href='/blog/categories/shua-ji/'>刷机 (1)</a></li></div>
+</section>
+<section>
+  <h1>
+    <i class="fa fa-tags" aria-hidden="true"></i> Tags
+  </h1>
+  <div id="tag-list"><li><a href='/blog/tags/angular/'>angular (1)</a></li><li><a href='/blog/tags/aws/'>aws (2)</a></li><li><a href='/blog/tags/css/'>css (1)</a></li><li><a href='/blog/tags/disqus/'>disqus (1)</a></li><li><a href='/blog/tags/es6/'>es6 (1)</a></li><li><a href='/blog/tags/git/'>git (2)</a></li><li><a href='/blog/tags/javascript/'>javascript (2)</a></li><li><a href='/blog/tags/jenkins/'>jenkins (1)</a></li><li><a href='/blog/tags/mac/'>mac (2)</a></li><li><a href='/blog/tags/mongodb/'>mongodb (1)</a></li><li><a href='/blog/tags/nodejs/'>nodejs (1)</a></li><li><a href='/blog/tags/rails/'>rails (2)</a></li><li><a href='/blog/tags/react/'>react (1)</a></li><li><a href='/blog/tags/ruby/'>ruby (4)</a></li><li><a href='/blog/tags/shell/'>shell (2)</a></li><li><a href='/blog/tags/sinatra/'>sinatra (1)</a></li><li><a href='/blog/tags/sublime/'>sublime (1)</a></li><li><a href='/blog/tags/swap/'>swap (1)</a></li><li><a href='/blog/tags/test/'>test (2)</a></li><li><a href='/blog/tags/ubuntu/'>ubuntu (2)</a></li><li><a href='/blog/tags/watchman/'>watchman (1)</a></li><li><a href='/blog/tags/shua-ji/'>刷机 (1)</a></li></div>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2018 - Wei Luo -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+<p id="back-top">
+  <a href="#top"><span></span>Back to Top</a>
+</p>
+<style type="text/css">
+  #back-top {
+    position: fixed;
+    bottom: 50px;
+    right: 30px;
+    display: none;
+  }
+
+  #back-top a {
+    width: 40px;
+    display: block;
+    text-align: center;
+    font: 9px Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #bbb;
+
+    /* transition */
+    -webkit-transition: 1s;
+    -moz-transition: 1s;
+    transition: 1s;
+  }
+
+  /* arrow icon (span tag) */
+  #back-top span {
+    width: 40px;
+    height: 40px;
+    display: block;
+    margin-bottom: 7px;
+    background: #ddd url(/images/up-arrow.png) no-repeat center center;
+    background-size: 40px 40px;
+
+    /* rounded corners */
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+
+    /* transition */
+    -webkit-transition: 1s;
+    -moz-transition: 1s;
+    transition: 1s;
+  }
+
+  @media only screen and (min-width: 768px) {
+    #back-top span {
+      width: 60px;
+      height: 60px;
+      background-size: 60px 60px;
+      -webkit-border-radius: 10px;
+      -moz-border-radius: 10px;
+      border-radius: 10px
+    }
+    #back-top a {
+      width: 60px;
+      font-size: 10px
+    }
+  }
+  @media only screen and (min-width: 960px) {
+    #back-top span {
+      width: 80px;
+      height: 80px;
+      background-size: 80px 80px;
+      -webkit-border-radius: 15px;
+      -moz-border-radius: 15px;
+      border-radius: 15px
+    }
+    #back-top a {
+      width: 80px;
+      font-size: 11px;
+    }
+  }
+</style>
+<script type="text/javascript">
+  $(document).ready(function(){
+    // hide #back-top first
+    // $("#back-top").hide();
+
+    // fade in #back-top
+    $(function () {
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 100) {
+                $('#back-top').fadeIn();
+            } else {
+                $('#back-top').fadeOut();
+            }
+        });
+
+        // scroll body to 0px on click
+        $('#back-top a').click(function () {
+            $('body,html').animate({
+                scrollTop: 0
+            }, 800);
+            return false;
+        });
+    });
+  });
+</script>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'luoguanzhong';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://weilluo.github.io/blog/2018/02/07/angular-aot/';
+        var disqus_url = 'http://weilluo.github.io/blog/2018/02/07/angular-aot/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
