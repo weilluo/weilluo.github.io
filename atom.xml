@@ -4,7 +4,7 @@
   <title><![CDATA[GUIDE]]></title>
   <link href="http://weilluo.github.io/atom.xml" rel="self"/>
   <link href="http://weilluo.github.io/"/>
-  <updated>2018-09-19T17:40:50+08:00</updated>
+  <updated>2018-09-19T18:00:51+08:00</updated>
   <id>http://weilluo.github.io/</id>
   <author>
     <name><![CDATA[Wei Luo]]></name>
@@ -42,7 +42,8 @@
 </div>
  </figure></notextile></div>
 <!--more-->
-<p>### 2. 全局，function 的形参，局部变量</p>
+
+<h3 id="function--1">2. 全局，function 的形参，局部变量</h3>
 
 <blockquote><p>function 的局部变量优先级最高，然后是形参，最后是全局变量</p></blockquote>
 
