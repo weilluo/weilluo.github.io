@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Disqus | GUIDE]]></title>
   <link href="http://weilluo.github.io/blog/categories/disqus/atom.xml" rel="self"/>
   <link href="http://weilluo.github.io/"/>
-  <updated>2018-07-16T13:29:02+08:00</updated>
+  <updated>2018-09-19T17:40:50+08:00</updated>
   <id>http://weilluo.github.io/</id>
   <author>
     <name><![CDATA[Wei Luo]]></name>
@@ -18,7 +18,9 @@
     <link href="http://weilluo.github.io/blog/2015/10/14/disqus-example/"/>
     <updated>2015-10-14T18:05:18+08:00</updated>
     <id>http://weilluo.github.io/blog/2015/10/14/disqus-example</id>
-    <content type="html"><![CDATA[<p>```html
+    <content type="html"><![CDATA[<p>This is the codes:
+<!--more-->
+```html
 &lt;!DOCTYPE HTML&gt;</p>
 <html>
 <head>

@@ -4,7 +4,7 @@
   <title><![CDATA[GUIDE]]></title>
   <link href="http://weilluo.github.io/atom.xml" rel="self"/>
   <link href="http://weilluo.github.io/"/>
-  <updated>2018-07-16T13:29:02+08:00</updated>
+  <updated>2018-09-19T17:40:50+08:00</updated>
   <id>http://weilluo.github.io/</id>
   <author>
     <name><![CDATA[Wei Luo]]></name>
@@ -14,10 +14,91 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Javascript 参数的优先级]]></title>
+    <link href="http://weilluo.github.io/blog/2018/09/19/javascript-priority-of-params/"/>
+    <updated>2018-09-19T15:08:37+08:00</updated>
+    <id>http://weilluo.github.io/blog/2018/09/19/javascript-priority-of-params</id>
+    <content type="html"><![CDATA[<h3 id="function-">1. 全局，function 内</h3>
+
+<blockquote><p>function 内变量使用 var，重名时，局部变量的优先级更高</p></blockquote>
+
+<div class="bogus-wrapper"><notextile><figure class="code"> <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> 1</span><span class="keyword">var</span> a1 = <span class="integer">1</span>;
+<span class="line-numbers"> 2</span>(<span class="keyword">function</span>() {
+<span class="line-numbers"> 3</span>    a1 = <span class="integer">2</span>;
+<span class="line-numbers"> 4</span>    console.log(a1);  <span class="comment">// 2</span>
+<span class="line-numbers"> 5</span>})();
+<span class="line-numbers"> 6</span>console.log(a1);  <span class="comment">// 2</span>
+<span class="line-numbers"> 7</span>
+<span class="line-numbers"> 8</span><span class="keyword">var</span> a2 = <span class="integer">1</span>, a3 = <span class="integer">1</span>;
+<span class="line-numbers"> 9</span>(<span class="keyword">function</span>() {
+<span class="line-numbers"><strong>10</strong></span>    <span class="keyword">var</span> a2 = <span class="integer">2</span>, a3;
+<span class="line-numbers">11</span>    console.log(a2);  <span class="comment">// 2</span>
+<span class="line-numbers">12</span>    console.log(a3);  <span class="comment">// undefined</span>
+<span class="line-numbers">13</span>})();
+<span class="line-numbers">14</span>console.log(a2);  <span class="comment">// 1</span>
+<span class="line-numbers">15</span>console.log(a3);  <span class="comment">// 1</span>
+</pre></div>
+</div>
+ </figure></notextile></div>
+<!--more-->
+<p>### 2. 全局，function 的形参，局部变量</p>
+
+<blockquote><p>function 的局部变量优先级最高，然后是形参，最后是全局变量</p></blockquote>
+
+<div class="bogus-wrapper"><notextile><figure class="code"> <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> 1</span><span class="keyword">var</span> a1 = <span class="integer">1</span>;
+<span class="line-numbers"> 2</span>(<span class="keyword">function</span>(a1) {
+<span class="line-numbers"> 3</span>    console.log(a1);  <span class="comment">// 2</span>
+<span class="line-numbers"> 4</span>})();
+<span class="line-numbers"> 5</span>console.log(a1);  <span class="comment">// 1</span>
+<span class="line-numbers"> 6</span>
+<span class="line-numbers"> 7</span><span class="keyword">var</span> a2 = <span class="integer">1</span>;
+<span class="line-numbers"> 8</span>(<span class="keyword">function</span>(a2) {
+<span class="line-numbers"> 9</span>    a2 = <span class="integer">3</span>
+<span class="line-numbers"><strong>10</strong></span>    console.log(a2);  <span class="comment">// 3</span>
+<span class="line-numbers">11</span>})(<span class="integer">2</span>);
+<span class="line-numbers">12</span>console.log(a2);  <span class="comment">// 1</span>
+<span class="line-numbers">13</span>
+<span class="line-numbers">14</span><span class="keyword">var</span> a3 = <span class="integer">1</span>, a4 = <span class="integer">1</span>;
+<span class="line-numbers">15</span>(<span class="keyword">function</span>(a3, a4) {
+<span class="line-numbers">16</span>    <span class="keyword">var</span> a3, a4 = <span class="integer">3</span>
+<span class="line-numbers">17</span>    console.log(a3);  <span class="comment">// 22</span>
+<span class="line-numbers">18</span>    console.log(a4);  <span class="comment">// 3</span>
+<span class="line-numbers">19</span>})(<span class="integer">22</span>, <span class="integer">33</span>)
+<span class="line-numbers"><strong>20</strong></span>console.log(a3);  <span class="comment">// 1</span>
+<span class="line-numbers">21</span>console.log(a4);  <span class="comment">// 1</span>
+</pre></div>
+</div>
+ </figure></notextile></div>
+
+<h3 id="var--function-">3. var 和 function 的前置</h3>
+
+<blockquote><p>使用 var 和 function 定义的变量和函数，运行时会前置，率先执行；<br />但是 var 定义并赋值一个变量时，只会把定义前置。</p></blockquote>
+
+<div class="bogus-wrapper"><notextile><figure class="code"> <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> 1</span>(<span class="keyword">function</span>() {
+<span class="line-numbers"> 2</span>    console.log(a1);  <span class="comment">// undefined</span>
+<span class="line-numbers"> 3</span>    console.log(a2);  <span class="comment">// ƒ a2() {}</span>
+<span class="line-numbers"> 4</span>    <span class="keyword">var</span> a1;
+<span class="line-numbers"> 5</span>    <span class="keyword">function</span> <span class="function">a2</span>() {}
+<span class="line-numbers"> 6</span>})()
+<span class="line-numbers"> 7</span>
+<span class="line-numbers"> 8</span>(<span class="keyword">function</span>() {
+<span class="line-numbers"> 9</span>    console.log(a1);  <span class="comment">// undefined</span>
+<span class="line-numbers"><strong>10</strong></span>    <span class="keyword">var</span> a1 = <span class="integer">1</span>;
+<span class="line-numbers">11</span>})()
+</pre></div>
+</div>
+ </figure></notextile></div>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Angular Need Aot]]></title>
-    <link href="http://weilluo.github.io/blog/2018/02/07/angular-aot/"/>
-    <updated>2018-02-07T14:02:05+08:00</updated>
-    <id>http://weilluo.github.io/blog/2018/02/07/angular-aot</id>
+    <link href="http://weilluo.github.io/blog/2017/06/07/angular-aot/"/>
+    <updated>2017-06-07T14:02:05+08:00</updated>
+    <id>http://weilluo.github.io/blog/2017/06/07/angular-aot</id>
     <content type="html"><![CDATA[<h2 id="compare-with-react-and-vue">Compare with React and Vue</h2>
 
 <ul>
@@ -47,7 +128,7 @@
 </span><span class="line">  <span class="s1">&#39;Hello, world!&#39;</span>
 </span><span class="line"><span class="p">);</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
-
+<!--more-->
 <ul>
   <li>Vue Template</li>
 </ul>
@@ -614,7 +695,7 @@
 </span><span class="line">  <span class="nx">cf</span><span class="p">().</span><span class="nx">then</span><span class="p">().</span><span class="k">catch</span><span class="p">();</span>
 </span><span class="line"><span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
-
+<!--more-->
 <div class="bogus-wrapper"><notextile><figure class="code"><figcaption class="code-header"><span>After </span></figcaption>
  <div class="CodeRay">
   <div class="code"><pre><span class="line-numbers">1</span>...
@@ -712,9 +793,9 @@ let errorCatch = (err, req, res, next) =&gt; {
     <id>http://weilluo.github.io/blog/2017/05/06/mock-a-method-when-test-express-api</id>
     <content type="html"><![CDATA[<p>I think many guys are using <code>express</code> as they backend service framework, there is a most important thing <code>Test</code>. We should write test for the apis that usually contains a lot of business logics.</p>
 
-<p>Today I want to show my experiences on writing test for express apis.</p>
-
-<p>Dependencies</p>
+<p>Today I want to show my experiences on writing test for express apis.
+<!--more-->
+Dependencies</p>
 
 <pre><code>"babel-register": "6.23.0",
 "chai": "3.5.0",
@@ -806,9 +887,9 @@ sandbox.stub(Permisison, 'findByUser').returns(RSVP.resolve([]));
     <link href="http://weilluo.github.io/blog/2017/04/26/difference-between-config-and-run-in-angular/"/>
     <updated>2017-04-26T20:30:25+08:00</updated>
     <id>http://weilluo.github.io/blog/2017/04/26/difference-between-config-and-run-in-angular</id>
-    <content type="html"><![CDATA[<p>Configuration blocks and run blocks get executed at different points in the application bootstrap, and have different injection locals at their disposal. Here’s a summary of what you can find in the <a href="http://docs.angularjs.org/guide/module">AngularJS documentation</a>.</p>
-
-<p>Configuration blocks (registered with <code>module.config()</code>) get executed during provider registration, and can only be injected providers and constants (see <code>module.provider()</code> and <code>module.constant()</code>). This is typically where you would configure application-wide stuff, such as the $routeProvider. Stuff that needs to be configured before the services are created.</p>
+    <content type="html"><![CDATA[<p>Configuration blocks and run blocks get executed at different points in the application bootstrap, and have different injection locals at their disposal. Here’s a summary of what you can find in the <a href="http://docs.angularjs.org/guide/module">AngularJS documentation</a>.
+<!--more-->
+Configuration blocks (registered with <code>module.config()</code>) get executed during provider registration, and can only be injected providers and constants (see <code>module.provider()</code> and <code>module.constant()</code>). This is typically where you would configure application-wide stuff, such as the $routeProvider. Stuff that needs to be configured before the services are created.</p>
 
 <p>Run blocks (registered with <code>module.run()</code>) get executed after the injector has all the providers. Now, all instances and constants can be injected. This is typically where you would configure services, <code>$rootScope</code>, events and so on.</p>
 
@@ -827,8 +908,8 @@ sandbox.stub(Permisison, 'findByUser').returns(RSVP.resolve([]));
     <link href="http://weilluo.github.io/blog/2017/04/15/s3-policy-on-ec2-having-changes-between-ecs-and-eb/"/>
     <updated>2017-04-15T11:47:12+08:00</updated>
     <id>http://weilluo.github.io/blog/2017/04/15/s3-policy-on-ec2-having-changes-between-ecs-and-eb</id>
-    <content type="html"><![CDATA[<p>We can see the title, and below is the different policy:</p>
-
+    <content type="html"><![CDATA[<p>We can see the title, and below is the different policy:
+<!--more--></p>
 <div class="bogus-wrapper"><notextile><figure class="code"><figcaption class="code-header"><span>EC2 Instance from ECS </span></figcaption>
  <div class="CodeRay">
   <div class="code"><pre><span class="line-numbers"> 1</span>{
@@ -941,122 +1022,6 @@ sandbox.stub(Permisison, 'findByUser').returns(RSVP.resolve([]));
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Waiting for Dynamically Loaded Script]]></title>
-    <link href="http://weilluo.github.io/blog/2017/04/15/waiting-for-dynamically-loaded-script/"/>
-    <updated>2017-04-15T09:37:54+08:00</updated>
-    <id>http://weilluo.github.io/blog/2017/04/15/waiting-for-dynamically-loaded-script</id>
-    <content type="html"><![CDATA[<p>Historically, <code>&lt;script&gt;</code> tags are full blocking, hence the second <code>&lt;script&gt;</code> tag can’t get encountered befored the former has finished parsing/excuting. Only problem might be that <code>modern</code> browsers tend to load scripts asynchronously and deferred. So to make sure order is correct, use it like this:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Snippet </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-</pre></td><td class="code"><pre><code class="html"><span class="line"><span class="nt">&lt;p&gt;</span>Loading jQuery<span class="nt">&lt;/p&gt;</span>
-</span><span class="line"><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&#39;text/javascript&#39;</span> <span class="na">async=</span><span class="s">false</span> <span class="na">defer=</span><span class="s">false</span> <span class="na">src=</span><span class="s">&#39;scripts/jquery/core/jquery-1.4.4.js&#39;</span><span class="nt">&gt;&lt;/script&gt;</span>
-</span><span class="line"><span class="nt">&lt;p&gt;</span>Using jQuery<span class="nt">&lt;/p&gt;</span>
-</span><span class="line"><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&#39;text/javascript&#39;</span><span class="nt">&gt;</span>
-</span><span class="line">    <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
-</span><span class="line">        <span class="p">...</span>
-</span><span class="line">    <span class="p">});</span>
-</span><span class="line"><span class="nt">&lt;/script&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<hr />
-
-<h3 id="plain-script-elements">Plain script elements</h3>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-</pre></td><td class="code"><pre><code class="html"><span class="line"><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;//other-domain.com/1.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
-</span><span class="line"><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;2.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p><strong>Spec says:</strong> Download together, execute in order after any pending CSS, block rendering until complete.</p>
-
-<p><strong>Browsers say:</strong> Yes sir!</p>
-
-<h3 id="defer">Defer</h3>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-</pre></td><td class="code"><pre><code class="html"><span class="line"><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;//other-domain.com/1.js&quot;</span> <span class="na">defer</span><span class="nt">&gt;&lt;/script&gt;</span>
-</span><span class="line"><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;2.js&quot;</span> <span class="na">defer</span><span class="nt">&gt;&lt;/script&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p><strong>Spec says:</strong> Download together, execute in order just before DOMContentLoaded. Ignore <code>defer</code> on scripts without <code>src</code>.</p>
-
-<p><strong>IE &lt; 10 says</strong>: I might execute 2.js halfway through the execution of 1.js. Isn’t that fun??</p>
-
-<p><strong>The <a href="http://caniuse.com/#search=defer">browsers in red</a> say</strong>: I have no idea what this <code>defer</code> thing is, I’m going to load the scripts as if it weren’t there.</p>
-
-<p><strong>Other browsers say:</strong> Ok, but I might not ignore <code>defer</code> on scripts without <code>src</code>.</p>
-
-<h3 id="async">Async</h3>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-</pre></td><td class="code"><pre><code class="html"><span class="line"><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;//other-domain.com/1.js&quot;</span> <span class="na">async</span><span class="nt">&gt;&lt;/script&gt;</span>
-</span><span class="line"><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;2.js&quot;</span> <span class="na">async</span><span class="nt">&gt;&lt;/script&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p><strong>Spec says:</strong> Download together, execute in whatever order they download in.</p>
-
-<p><strong>The <a href="http://caniuse.com/#search=defer">browsers in red</a> say</strong>: What’s <code>async</code>? I’m going to load the scripts as if it weren’t there..</p>
-
-<p><strong>Other browsers say:</strong> Yeah, ok.</p>
-
-<h3 id="async-false">Async false</h3>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-</pre></td><td class="code"><pre><code class="javascript"><span class="line"><span class="p">[</span>
-</span><span class="line">  <span class="s1">&#39;1.js&#39;</span><span class="p">,</span>
-</span><span class="line">  <span class="s1">&#39;2.js&#39;</span>
-</span><span class="line"><span class="p">].</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">src</span><span class="p">)</span> <span class="p">{</span>
-</span><span class="line">  <span class="kd">var</span> <span class="nx">script</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;script&#39;</span><span class="p">);</span>
-</span><span class="line">  <span class="nx">script</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="nx">src</span><span class="p">;</span>
-</span><span class="line">  <span class="nx">script</span><span class="p">.</span><span class="nx">async</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
-</span><span class="line">  <span class="nb">document</span><span class="p">.</span><span class="nx">head</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">script</span><span class="p">);</span>
-</span><span class="line"><span class="p">});</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p><strong>Spec says:</strong> Download together, execute in order as soon as all download.</p>
-
-<p><strong>Firefox &lt; 3.6, Opera says:</strong> I have no idea what this <code>async</code> thing is, but it just so happens I execute scripts added via JS in the order they’re added.</p>
-
-<p><strong>Safari 5.0 says:</strong>  I understand <code>async</code>, but don’t understand setting it to <code>false</code> with JS. I’ll execute your scripts as soon as they land, in whatever order.</p>
-
-<p><strong>IE &lt; 10 says:</strong> No idea about <code>async</code>, but there is a workaround using <code>onreadystatechange</code>.</p>
-
-<p><strong>The <a href="http://caniuse.com/#search=defer">browsers in red</a> say</strong>: I don’t understand this <code>async</code> thing, I’ll execute your scripts as soon as they land, in whatever order.</p>
-
-<p><strong>Everything else says:</strong> I’m your friend, we’re going to do this by the book.</p>
-
-<hr />
-
-<p>Reference:</p>
-
-<p><a href="http://stackoverflow.com/questions/7308908/waiting-for-dynamically-loaded-script">http://stackoverflow.com/questions/7308908/waiting-for-dynamically-loaded-script</a></p>
-
-<p><a href="https://www.html5rocks.com/en/tutorials/speed/script-loading/">https://www.html5rocks.com/en/tutorials/speed/script-loading</a></p>
-
-<p>Modern browsers only execute scripts asyncrounously or deferred if async and defer has been specified. <code>async=false</code> and <code>defer=false</code> is completely unnecessary in HTML. However, scripts that are dynamically created have async set to <code>true</code> by default, which is why you need the <code>async = false</code>.</p>
-]]></content>
-  </entry>
-  
-  <entry>
     <title type="html"><![CDATA[Different Between Include and Extend in Ruby]]></title>
     <link href="http://weilluo.github.io/blog/2016/11/17/different-between-include-and-extend-in-ruby/"/>
     <updated>2016-11-17T14:35:32+08:00</updated>
@@ -1103,9 +1068,9 @@ sandbox.stub(Permisison, 'findByUser').returns(RSVP.resolve([]));
     <id>http://weilluo.github.io/blog/2016/02/05/add-a-user-to-admin-group-on-mac</id>
     <content type="html"><![CDATA[<h2 id="issus">Issus</h2>
 
-<p>Many software will apply the <code>admin</code> permission to possibly use some system tools, so I try to add my account to admin group.</p>
-
-<h2 id="solution">Solution</h2>
+<p>Many software will apply the <code>admin</code> permission to possibly use some system tools, so I try to add my account to admin group.
+<!--more-->
+## Solution</p>
 
 <ul>
   <li>
@@ -1146,10 +1111,6 @@ sandbox.stub(Permisison, 'findByUser').returns(RSVP.resolve([]));
 </pre></td><td class="code"><pre><code class="bash"><span class="line">sudo su
 </span><span class="line">dseditgroup -o edit -a wluo -t user admin
 </span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h2 id="references">References</h2>
-
-<p><a href="http://www.techradar.com/how-to/computing/apple/how-to-use-os-x-boot-options-to-troubleshoot-your-mac-1305645">http://www.techradar.com/how-to/computing/apple/how-to-use-os-x-boot-options-to-troubleshoot-your-mac-1305645</a></p>
 ]]></content>
   </entry>
   
@@ -1168,9 +1129,9 @@ sandbox.stub(Permisison, 'findByUser').returns(RSVP.resolve([]));
 
 <p>So we want to ignore sending email by this case. As we know, the<code> email-ext</code> plugin can help us. we should write <code>pre-send scripts</code>, but we don’t know how to write them.</p>
 
-<p>How do I write a script to cancel sending email when failure output message contains a specified error message?</p>
-
-<p><em>Solution</em>:</p>
+<p>How do I write a script to cancel sending email when failure output message contains a specified error message?
+<!--more-->
+<em>Solution</em>:</p>
 
 <p>My <code>groovy</code> script in email-ext plugin pre-send-script is:</p>
 
@@ -1293,9 +1254,9 @@ sandbox.stub(Permisison, 'findByUser').returns(RSVP.resolve([]));
 
 <p>Seconed computer: I have added another <code>id_ras.pub</code> to <code>luoguanzhong</code> account.</p>
 
-<p>I want push <code>luoguanzhong</code>’s project on first computer.</p>
-
-<h2 id="resolve">Resolve</h2>
+<p>I want push <code>luoguanzhong</code>’s project on first computer.
+<!--more-->
+## Resolve</p>
 
 <ul>
   <li>config the <code>~/.ssh/config</code>.</li>
@@ -1340,9 +1301,9 @@ sandbox.stub(Permisison, 'findByUser').returns(RSVP.resolve([]));
 
 <p>There are <a href="https://en.wikipedia.org/wiki/ECMAScript#Versions">released versions</a> of <code>ECMAScript</code>.</p>
 
-<p>Other little languages compile into javascript, such as <a href="http://coffeescript.org/">CoffeeScript</a>, <a href="http://www.typescriptlang.org/">TypeScript</a>.</p>
-
-<h2 id="new-features">New features</h2>
+<p>Other little languages compile into javascript, such as <a href="http://coffeescript.org/">CoffeeScript</a>, <a href="http://www.typescriptlang.org/">TypeScript</a>.
+<!--more-->
+## New features</p>
 
 <ul>
   <li>Constants</li>
@@ -1682,7 +1643,9 @@ sandbox.stub(Permisison, 'findByUser').returns(RSVP.resolve([]));
     <link href="http://weilluo.github.io/blog/2015/10/14/disqus-example/"/>
     <updated>2015-10-14T18:05:18+08:00</updated>
     <id>http://weilluo.github.io/blog/2015/10/14/disqus-example</id>
-    <content type="html"><![CDATA[<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+    <content type="html"><![CDATA[<p>This is the codes:
+<!--more--></p>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
@@ -1797,8 +1760,8 @@ sandbox.stub(Permisison, 'findByUser').returns(RSVP.resolve([]));
     <link href="http://weilluo.github.io/blog/2015/10/14/activerecord-class_attribute/"/>
     <updated>2015-10-14T11:51:44+08:00</updated>
     <id>http://weilluo.github.io/blog/2015/10/14/activerecord-class_attribute</id>
-    <content type="html"><![CDATA[<p>how to use class_attribuet:</p>
-
+    <content type="html"><![CDATA[<p>how to use class_attribuet:
+<!--more--></p>
 <div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
@@ -1859,9 +1822,9 @@ sandbox.stub(Permisison, 'findByUser').returns(RSVP.resolve([]));
 <p>There are to issuses:</p>
 
 <ul>
-  <li>gem install rjb, can’t find the floder /usr/lib/jvm/jre/include</li>
+  <li>gem install rjb, can’t find the floder /usr/lib/jvm/jre/include
+<!--more--></li>
 </ul>
-
 <div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
@@ -1895,41 +1858,6 @@ sandbox.stub(Permisison, 'findByUser').returns(RSVP.resolve([]));
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Delete Commits From a Branch in Git]]></title>
-    <link href="http://weilluo.github.io/blog/2015/06/30/delete-commits-from-a-branch-in-git/"/>
-    <updated>2015-06-30T17:34:07+08:00</updated>
-    <id>http://weilluo.github.io/blog/2015/06/30/delete-commits-from-a-branch-in-git</id>
-    <content type="html"><![CDATA[<p>Reference: <a href="http://stackoverflow.com/questions/1338728/delete-commits-from-a-branch-in-git">http://stackoverflow.com/questions/1338728/delete-commits-from-a-branch-in-git</a></p>
-
-<p><strong>Careful</strong>: <code>git reset --hard</code> WILL DELETE YOUR WORKING DIRECTORY CHANGES. Be sure to <strong>stash any local changes you want to keep</strong> before running this command.</p>
-
-<p>Assuming you are sitting on that commit, then this command will wack it…</p>
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">git reset --hard HEAD~1</span></code></pre></td></tr></table></div></figure></notextile></div>
-<p>The <code>HEAD~1</code> means the commit before head.</p>
-
-<p>Or, you could look at the output of <code>git log</code>, find the commit id of the commit you want to back up to, and then do this:</p>
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">git reset --hard &lt;sha1-commit-id&gt;</span></code></pre></td></tr></table></div></figure></notextile></div>
-<hr />
-<p>If you already pushed it, you will need to do a force push to get rid of it…</p>
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">git push origin HEAD --force</span></code></pre></td></tr></table></div></figure></notextile></div>
-<p><strong>However</strong>, if others may have pulled it, then you would be better off starting a new branch. Because when they pull, it will just merge it into their work, and you will get it pushed back up again.</p>
-
-<p>If you already pushed, it may be better to use <code>git revert</code>, to create a “mirror image” commit that will undo the changes. However, both commits will both be in the log.</p>
-
-<hr />
-
-<p>FYI – <code>git reset --hard HEAD</code> is great if you want to get rid of WORK IN PROGRESS. It will reset you back to the most recent commit, and erase all the changes in your working tree and index.</p>
-
-<hr />
-
-<p>Lastly, if you need to find a commit that you “deleted”, it is typically present in <code>git reflog</code> unless you have garbage collected your repository.</p>
-]]></content>
-  </entry>
-  
-  <entry>
     <title type="html"><![CDATA[My Sublime Custom Config]]></title>
     <link href="http://weilluo.github.io/blog/2015/06/29/my-sublime-custom-config/"/>
     <updated>2015-06-29T21:13:46+08:00</updated>
@@ -1950,17 +1878,35 @@ sandbox.stub(Permisison, 'findByUser').returns(RSVP.resolve([]));
 <span class="line-number">10</span>
 <span class="line-number">11</span>
 <span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
 </pre></td><td class="code"><pre><code class=""><span class="line">{
-</span><span class="line">  "color_scheme": "Packages/Theme - Cobalt2/cobalt2.tmTheme",
-</span><span class="line">  "font_face": "Yahei Consolas Hybrid",
-</span><span class="line">  "font_size": 12,
-</span><span class="line">  "save_on_focus_lost": true,
-</span><span class="line">  "tab_size": 2,
-</span><span class="line">  "theme": "Cobalt2.sublime-theme",
-</span><span class="line">  "translate_tabs_to_spaces": true,
-</span><span class="line">  "trim_trailing_white_space_on_save": true,
-</span><span class="line">  // "tmp/*.tmp" is for ember-cli project
-</span><span class="line">  "folder_exclude_patterns": [".svn", ".git", ".hg", "CVS", "tmp/*.tmp"]
+</span><span class="line">	"color_scheme": "Packages/Oceanic Next Color Scheme/Oceanic Next.tmTheme",
+</span><span class="line">	"folder_exclude_patterns":
+</span><span class="line">	[
+</span><span class="line">		".svn",
+</span><span class="line">		".git",
+</span><span class="line">		".hg",
+</span><span class="line">		"CVS",
+</span><span class="line">		"tmp/*.tmp"
+</span><span class="line">	],
+</span><span class="line">	"font_size": 12,
+</span><span class="line">	"ignored_packages":
+</span><span class="line">	[
+</span><span class="line">		"Vintage"
+</span><span class="line">	],
+</span><span class="line">	"save_on_focus_lost": false,
+</span><span class="line">	"tab_size": 4,
+</span><span class="line">	"theme": "Seti.sublime-theme",
+</span><span class="line">	"translate_tabs_to_spaces": true,
+</span><span class="line">	"trim_trailing_white_space_on_save": true
 </span><span class="line">}</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <ul>
@@ -2039,19 +1985,115 @@ sandbox.stub(Permisison, 'findByUser').returns(RSVP.resolve([]));
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Setup JDK Environment]]></title>
-    <link href="http://weilluo.github.io/blog/2015/05/06/setup-jdk-environment/"/>
-    <updated>2015-05-06T10:13:40+08:00</updated>
-    <id>http://weilluo.github.io/blog/2015/05/06/setup-jdk-environment</id>
-    <content type="html"><![CDATA[<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+    <title type="html"><![CDATA[What Can Cause a Cookie Not to Be Set on the Client?]]></title>
+    <link href="http://weilluo.github.io/blog/2015/04/17/what-can-cause-a-cookie-not-to-be-set-on-the-client/"/>
+    <updated>2015-04-17T10:11:06+08:00</updated>
+    <id>http://weilluo.github.io/blog/2015/04/17/what-can-cause-a-cookie-not-to-be-set-on-the-client</id>
+    <content type="html"><![CDATA[<h2 id="issues">Issues</h2>
+
+<p>I use ember at cliend, and start on localhost:4200; sinatra at server, start on localhost:9292.</p>
+
+<p>Then I use <code>response.set_cookie()</code> to store user info, but I cannot see cookie setted just now on <code>chrome console -&gt; resource -&gt; cookies -&gt; localhost</code>.</p>
+
+<p>cliend code:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class="javascript"><span class="line"><span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+</span><span class="line">  <span class="nx">url</span><span class="o">:</span> <span class="nx">http</span><span class="o">:</span><span class="c1">//localhost:9292/user</span>
+</span><span class="line"><span class="p">})</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>cliend code:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
-</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="c"># set jdk environment</span>
-</span><span class="line"><span class="nb">export </span><span class="nv">JAVA_HOME</span><span class="o">=</span><span class="s2">&quot;/home/jenkins/Development/jdk1.8.0_40&quot;</span>
-</span><span class="line"><span class="nb">export </span><span class="nv">CLASSPATH</span><span class="o">=</span><span class="s2">&quot;.:$JAVA_HOME/lib/:$JAVA_HOME/jre/lib:$CLASSPATH&quot;</span>
-</span><span class="line"><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;$JAVA_HOME/bin:$JAVA_HOME/jre/bin:$PATH&quot;</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="n">response</span><span class="o">.</span><span class="n">set_cookie</span><span class="p">(</span><span class="s1">&#39;Cookie-Name&#39;</span><span class="p">,</span>
+</span><span class="line">          <span class="ss">:value</span> <span class="o">=&gt;</span> <span class="n">value</span><span class="p">,</span>
+</span><span class="line">          <span class="ss">:expires</span> <span class="o">=&gt;</span> <span class="no">Time</span><span class="o">.</span><span class="n">now</span> <span class="o">+</span> <span class="mi">3600</span> <span class="o">*</span> <span class="mi">24</span> <span class="o">*</span> <span class="mi">14</span><span class="p">,</span>
+</span><span class="line">          <span class="ss">:domain</span> <span class="o">=&gt;</span> <span class="vi">@domain</span><span class="p">,</span>
+</span><span class="line">          <span class="ss">:path</span> <span class="o">=&gt;</span> <span class="s1">&#39;/&#39;</span><span class="p">,</span>
+</span><span class="line">          <span class="ss">:httponly</span> <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">)</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="solution">Solution</h2>
+
+<p>Option in ajax:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class="javascript"><span class="line"><span class="nx">xhrFields</span><span class="o">:</span> <span class="p">{</span>
+</span><span class="line">  <span class="nx">withCredentials</span><span class="o">:</span> <span class="kc">true</span>
+</span><span class="line"><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Response header in sinatra, <code>Access-Control-Allow-Credentials: true</code>, <code>Access-Control-Allow-Origin: http://localhost:4200</code></p>
+
+<h2 id="important">Important</h2>
+
+<p>Don’t set localhost as a domain for your cookies because you need to set it to “” or FALSE</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[iPhone4 无 SHSH 从 iOS7.1.2 降级到 iOS6.1.3]]></title>
+    <link href="http://weilluo.github.io/blog/2015/02/09/iphone4-wu-shsh-cong-ios7-dot-1-2-jiang-ji-dao-ios6-dot-1-3/"/>
+    <updated>2015-02-09T12:37:50+08:00</updated>
+    <id>http://weilluo.github.io/blog/2015/02/09/iphone4-wu-shsh-cong-ios7-dot-1-2-jiang-ji-dao-ios6-dot-1-3</id>
+    <content type="html"><![CDATA[<h2 id="iphone4gsm-">经过艰辛的历程，终于将 iPhone4(GSM版) 成功降级；</h2>
+
+<ul>
+  <li>使用工具</li>
+</ul>
+
+<p>爱思，红雪，平台windows7</p>
+
+<ul>
+  <li>悲剧的报错</li>
+</ul>
+
+<p>之前使用的是xp系统，结果出现写入 AppleLogo 失败，set Picture 0 failure…的报错，一直以为是手机硬件问题，纠结了半个多月。之后自己的 win7 电脑修好后，重新试了一下，竟然成功了。</p>
+
+<ul>
+  <li>
+    <p>刷机过程 <a href="http://bbs.i4.cn/thread-18856-1-1.html">http://bbs.i4.cn/thread-18856-1-1.html</a></p>
+
+    <ul>
+      <li>
+        <p>使用红雪或爱思助手等工具查看手机的ECID</p>
+      </li>
+      <li>
+        <p>找到对应 iOS 版本的 shsh 文件，打开文件，将 ECID 的改为自己手机的</p>
+      </li>
+      <li>
+        <p>将修改后的 shsh 文件上传到爱思服务器</p>
+      </li>
+      <li>
+        <p>使用爱思助手刷机，刷机前选中保持基带不升级</p>
+      </li>
+      <li>
+        <p>使用红雪进行越狱，越狱时一定选择 Deactive 选项，否则开机后手机无服务</p>
+      </li>
+      <li>
+        <p>每次关机后都必须使用红雪进行引导开机</p>
+      </li>
+      <li>
+        <p>如果手机锁屏后睡死，请在 Cydia 中添加威锋源(apt.weiphone.com)，再下载 insomnia pro 插件，保证锁屏系统不真正睡眠，但这样非常耗电。喜欢 iOS6 style 的朋友可以使用第二篇文章中的6.2.1的固件刷机，成功后不会出现睡死状况。</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>PS</p>
+  </li>
+</ul>
+
+<p>这篇博客讲了直接使用无睡死的固件来刷机，<a href="http://bbs.app111.com/thread-640908-1-1.html">http://bbs.app111.com/thread-640908-1-1.html</a> ，下载好文章中给出的固件后，还是按照以上 <code>3.4</code> - <code>3.6</code> 的步骤来操作。</p>
 ]]></content>
   </entry>
   

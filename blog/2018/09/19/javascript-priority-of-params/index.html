@@ -5,32 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>ActiveRecord, Class_attribute - GUIDE</title>
+  <title>Javascript 参数的优先级 - GUIDE</title>
   <meta name="author" content="Wei Luo">
 
   
-  <meta name="description" content="how to use class_attribuet: 1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-require &#39;active_record&#39; class Base class_attribute :setting &hellip;">
+  <meta name="description" content="1. 全局，function 内 function 内变量使用 var，重名时，局部变量的优先级更高 1var a1 = 1; 2(function() { 3 a1 = 2; 4 console.log(a1); // 2 5})(); 6console.log(a1); // 2 7 8var &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -39,7 +18,7 @@ require &#39;active_record&#39; class Base class_attribute :setting &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://weilluo.github.io/blog/2015/10/14/activerecord-class_attribute/">
+  <link rel="canonical" href="http://weilluo.github.io/blog/2018/09/19/javascript-priority-of-params/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="GUIDE" type="application/atom+xml">
@@ -110,7 +89,7 @@ require &#39;active_record&#39; class Base class_attribute :setting &hellip;">
   
   <header>
     
-      <h1 class="entry-title">ActiveRecord, Class_attribute</h1>
+      <h1 class="entry-title">Javascript 参数的优先级</h1>
     
     
       <p class="meta">
@@ -119,7 +98,7 @@ require &#39;active_record&#39; class Base class_attribute :setting &hellip;">
 
 
 
-<time class='entry-date' datetime='2015-10-14T11:51:44+08:00'><span class='date'>2015-10-14</span> <span class='time'>11:51 am</span></time>
+<time class='entry-date' datetime='2018-09-19T15:08:37+08:00'><span class='date'>2018-09-19</span> <span class='time'>3:08 pm</span></time>
         
            | <a href="#disqus_thread"
              data-disqus-identifier="http://weilluo.github.io">Comments</a>
@@ -129,51 +108,79 @@ require &#39;active_record&#39; class Base class_attribute :setting &hellip;">
   </header>
 
 
-<div class="entry-content"><p>how to use class_attribuet:
-<!--more--></p>
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-<span class="line-number">18</span>
-<span class="line-number">19</span>
-<span class="line-number">20</span>
-<span class="line-number">21</span>
-</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="nb">require</span> <span class="s1">&#39;active_record&#39;</span>
-</span><span class="line">
-</span><span class="line"><span class="k">class</span> <span class="nc">Base</span>
-</span><span class="line">  <span class="n">class_attribute</span> <span class="ss">:setting</span>
-</span><span class="line"><span class="k">end</span>
-</span><span class="line">
-</span><span class="line"><span class="k">class</span> <span class="nc">Subclass</span> <span class="o">&lt;</span> <span class="no">Base</span>
-</span><span class="line"><span class="k">end</span>
-</span><span class="line">
-</span><span class="line"><span class="no">Base</span><span class="o">.</span><span class="n">setting</span> <span class="o">=</span> <span class="kp">true</span>
-</span><span class="line"><span class="nb">puts</span> <span class="no">Subclass</span><span class="o">.</span><span class="n">setting</span> <span class="c1"># =&gt; true</span>
-</span><span class="line"><span class="no">Subclass</span><span class="o">.</span><span class="n">setting</span> <span class="o">=</span> <span class="kp">false</span>
-</span><span class="line"><span class="nb">puts</span> <span class="no">Subclass</span><span class="o">.</span><span class="n">setting</span> <span class="c1"># =&gt; false</span>
-</span><span class="line"><span class="nb">puts</span> <span class="no">Base</span><span class="o">.</span><span class="n">setting</span> <span class="c1"># =&gt; true</span>
-</span><span class="line">
-</span><span class="line">
-</span><span class="line"><span class="n">base</span> <span class="o">=</span> <span class="no">Base</span><span class="o">.</span><span class="n">new</span>
-</span><span class="line"><span class="nb">puts</span> <span class="n">base</span><span class="o">.</span><span class="n">setting</span> <span class="c1"># =&gt; true</span>
-</span><span class="line"><span class="n">base</span><span class="o">.</span><span class="n">setting</span> <span class="o">=</span> <span class="kp">false</span>
-</span><span class="line"><span class="nb">puts</span> <span class="no">Base</span><span class="o">.</span><span class="n">setting</span> <span class="c1"># =&gt; true</span>
-</span><span class="line"><span class="nb">puts</span> <span class="n">base</span><span class="o">.</span><span class="n">setting</span> <span class="c1"># =&gt; false</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<div class="entry-content"><h3 id="function-">1. 全局，function 内</h3>
+
+<blockquote><p>function 内变量使用 var，重名时，局部变量的优先级更高</p></blockquote>
+
+<div class="bogus-wrapper"><notextile><figure class="code"> <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> 1</span><span class="keyword">var</span> a1 = <span class="integer">1</span>;
+<span class="line-numbers"> 2</span>(<span class="keyword">function</span>() {
+<span class="line-numbers"> 3</span>    a1 = <span class="integer">2</span>;
+<span class="line-numbers"> 4</span>    console.log(a1);  <span class="comment">// 2</span>
+<span class="line-numbers"> 5</span>})();
+<span class="line-numbers"> 6</span>console.log(a1);  <span class="comment">// 2</span>
+<span class="line-numbers"> 7</span>
+<span class="line-numbers"> 8</span><span class="keyword">var</span> a2 = <span class="integer">1</span>, a3 = <span class="integer">1</span>;
+<span class="line-numbers"> 9</span>(<span class="keyword">function</span>() {
+<span class="line-numbers"><strong>10</strong></span>    <span class="keyword">var</span> a2 = <span class="integer">2</span>, a3;
+<span class="line-numbers">11</span>    console.log(a2);  <span class="comment">// 2</span>
+<span class="line-numbers">12</span>    console.log(a3);  <span class="comment">// undefined</span>
+<span class="line-numbers">13</span>})();
+<span class="line-numbers">14</span>console.log(a2);  <span class="comment">// 1</span>
+<span class="line-numbers">15</span>console.log(a3);  <span class="comment">// 1</span>
+</pre></div>
+</div>
+ </figure></notextile></div>
+<!--more-->
+<p>### 2. 全局，function 的形参，局部变量</p>
+
+<blockquote><p>function 的局部变量优先级最高，然后是形参，最后是全局变量</p></blockquote>
+
+<div class="bogus-wrapper"><notextile><figure class="code"> <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> 1</span><span class="keyword">var</span> a1 = <span class="integer">1</span>;
+<span class="line-numbers"> 2</span>(<span class="keyword">function</span>(a1) {
+<span class="line-numbers"> 3</span>    console.log(a1);  <span class="comment">// 2</span>
+<span class="line-numbers"> 4</span>})();
+<span class="line-numbers"> 5</span>console.log(a1);  <span class="comment">// 1</span>
+<span class="line-numbers"> 6</span>
+<span class="line-numbers"> 7</span><span class="keyword">var</span> a2 = <span class="integer">1</span>;
+<span class="line-numbers"> 8</span>(<span class="keyword">function</span>(a2) {
+<span class="line-numbers"> 9</span>    a2 = <span class="integer">3</span>
+<span class="line-numbers"><strong>10</strong></span>    console.log(a2);  <span class="comment">// 3</span>
+<span class="line-numbers">11</span>})(<span class="integer">2</span>);
+<span class="line-numbers">12</span>console.log(a2);  <span class="comment">// 1</span>
+<span class="line-numbers">13</span>
+<span class="line-numbers">14</span><span class="keyword">var</span> a3 = <span class="integer">1</span>, a4 = <span class="integer">1</span>;
+<span class="line-numbers">15</span>(<span class="keyword">function</span>(a3, a4) {
+<span class="line-numbers">16</span>    <span class="keyword">var</span> a3, a4 = <span class="integer">3</span>
+<span class="line-numbers">17</span>    console.log(a3);  <span class="comment">// 22</span>
+<span class="line-numbers">18</span>    console.log(a4);  <span class="comment">// 3</span>
+<span class="line-numbers">19</span>})(<span class="integer">22</span>, <span class="integer">33</span>)
+<span class="line-numbers"><strong>20</strong></span>console.log(a3);  <span class="comment">// 1</span>
+<span class="line-numbers">21</span>console.log(a4);  <span class="comment">// 1</span>
+</pre></div>
+</div>
+ </figure></notextile></div>
+
+<h3 id="var--function-">3. var 和 function 的前置</h3>
+
+<blockquote><p>使用 var 和 function 定义的变量和函数，运行时会前置，率先执行；<br />但是 var 定义并赋值一个变量时，只会把定义前置。</p></blockquote>
+
+<div class="bogus-wrapper"><notextile><figure class="code"> <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> 1</span>(<span class="keyword">function</span>() {
+<span class="line-numbers"> 2</span>    console.log(a1);  <span class="comment">// undefined</span>
+<span class="line-numbers"> 3</span>    console.log(a2);  <span class="comment">// ƒ a2() {}</span>
+<span class="line-numbers"> 4</span>    <span class="keyword">var</span> a1;
+<span class="line-numbers"> 5</span>    <span class="keyword">function</span> <span class="function">a2</span>() {}
+<span class="line-numbers"> 6</span>})()
+<span class="line-numbers"> 7</span>
+<span class="line-numbers"> 8</span>(<span class="keyword">function</span>() {
+<span class="line-numbers"> 9</span>    console.log(a1);  <span class="comment">// undefined</span>
+<span class="line-numbers"><strong>10</strong></span>    <span class="keyword">var</span> a1 = <span class="integer">1</span>;
+<span class="line-numbers">11</span>})()
+</pre></div>
+</div>
+ </figure></notextile></div>
 </div>
 
 
@@ -189,23 +196,17 @@ require &#39;active_record&#39; class Base class_attribute :setting &hellip;">
 
 
 
-<time class='entry-date' datetime='2015-10-14T11:51:44+08:00'><span class='date'>2015-10-14</span> <span class='time'>11:51 am</span></time>
+<time class='entry-date' datetime='2018-09-19T15:08:37+08:00'><span class='date'>2018-09-19</span> <span class='time'>3:08 pm</span></time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/ruby/'>RUBY</a>
+    <a class='category' href='/blog/categories/javascript/'>JAVASCRIPT</a>
   
 </span>
 
 
       
-
-<span class="tags">
-  
-    <a class='tag' href='/blog/tags/ruby/'>ruby</a>
-  
-</span>
 
 
     </p>
@@ -219,10 +220,8 @@ require &#39;active_record&#39; class Base class_attribute :setting &hellip;">
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2015/07/22/aws-beanstalk-ruby-passenger/" title="Previous Post: AWS Beanstalk ruby passenger, solutions of rjb installing and 504 Gateway-Timeout">&laquo; AWS Beanstalk ruby passenger, solutions of rjb installing and 504 Gateway-Timeout</a>
+        <a class="basic-alignment left" href="/blog/2017/06/07/angular-aot/" title="Previous Post: angular need aot">&laquo; angular need aot</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2015/10/14/disqus-example/" title="Next Post: DISQUS Example">DISQUS Example &raquo;</a>
       
     </p>
   </footer>
@@ -395,8 +394,8 @@ require &#39;active_record&#39; class Base class_attribute :setting &hellip;">
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://weilluo.github.io/blog/2015/10/14/activerecord-class_attribute/';
-        var disqus_url = 'http://weilluo.github.io/blog/2015/10/14/activerecord-class_attribute/';
+        var disqus_identifier = 'http://weilluo.github.io/blog/2018/09/19/javascript-priority-of-params/';
+        var disqus_url = 'http://weilluo.github.io/blog/2018/09/19/javascript-priority-of-params/';
         var disqus_script = 'embed.js';
       
     (function () {

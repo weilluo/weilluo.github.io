@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Sinatra | GUIDE]]></title>
   <link href="http://weilluo.github.io/blog/tags/sinatra/atom.xml" rel="self"/>
   <link href="http://weilluo.github.io/"/>
-  <updated>2018-07-16T13:29:02+08:00</updated>
+  <updated>2018-09-19T17:40:50+08:00</updated>
   <id>http://weilluo.github.io/</id>
   <author>
     <name><![CDATA[Wei Luo]]></name>
@@ -58,11 +58,6 @@ xhrFields: {
 <h2 id="important">Important</h2>
 
 <p>Don’t set localhost as a domain for your cookies because you need to set it to “” or FALSE</p>
-
-<h2 id="reference">Reference</h2>
-
-<p><a href="http://stackoverflow.com/questions/14801021/what-can-cause-a-cookie-not-to-be-set-on-the-client">http://stackoverflow.com/questions/14801021/what-can-cause-a-cookie-not-to-be-set-on-the-client</a>
-<a href="http://stackoverflow.com/questions/5078091/sinatra-response-set-cookie-doesnt-work">http://stackoverflow.com/questions/5078091/sinatra-response-set-cookie-doesnt-work</a></p>
 ]]></content>
   </entry>
   

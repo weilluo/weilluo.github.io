@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Nodejs | GUIDE]]></title>
   <link href="http://weilluo.github.io/blog/categories/nodejs/atom.xml" rel="self"/>
   <link href="http://weilluo.github.io/"/>
-  <updated>2018-07-16T13:29:02+08:00</updated>
+  <updated>2018-09-19T17:40:50+08:00</updated>
   <id>http://weilluo.github.io/</id>
   <author>
     <name><![CDATA[Wei Luo]]></name>
@@ -51,9 +51,9 @@
 </span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="kd">let</span> <span class="nx">df</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&amp;</span><span class="nx">gt</span><span class="p">;</span> <span class="p">{</span>
 </span><span class='line'>  <span class="nx">cf</span><span class="p">().</span><span class="nx">then</span><span class="p">().</span><span class="k">catch</span><span class="p">();</span>
 </span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure></p>
-
-<p><figure class='code'><figcaption class='code-header'><span>After </span></figcaption>
+</span></code></pre></td></tr></table></div></figure>
+<!--more-->
+<figure class='code'><figcaption class='code-header'><span>After </span></figcaption>
  <div class="CodeRay">
   <div class="code"><pre><span class="line-numbers">1</span><span class="error">…</span>
 <span class="line-numbers">2</span>let cf = async () =&amp;gt; {

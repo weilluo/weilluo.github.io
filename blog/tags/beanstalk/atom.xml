@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Beanstalk | GUIDE]]></title>
   <link href="http://weilluo.github.io/blog/tags/beanstalk/atom.xml" rel="self"/>
   <link href="http://weilluo.github.io/"/>
-  <updated>2018-07-16T13:29:02+08:00</updated>
+  <updated>2018-09-19T17:40:50+08:00</updated>
   <id>http://weilluo.github.io/</id>
   <author>
     <name><![CDATA[Wei Luo]]></name>
@@ -27,20 +27,21 @@
 <p>There are to issuses:</p>
 
 <ul>
-  <li>gem install rjb, can’t find the floder /usr/lib/jvm/jre/include</li>
-</ul>
-
-<p><code>
+  <li>
+    <p>gem install rjb, can’t find the floder /usr/lib/jvm/jre/include
+<!--more-->
+<code>
 # we should install java-1.7.0-openjdk-devel
 packages:
-  yum:
-      git: []
-        java-1.7.0-openjdk-devel: []
+yum:
+    git: []
+      java-1.7.0-openjdk-devel: []
 ...
 </code></p>
-
-<ul>
-  <li>504 Gateway-Timeout, when the request invoke some method depend <code>RJB</code></li>
+  </li>
+  <li>
+    <p>504 Gateway-Timeout, when the request invoke some method depend <code>RJB</code></p>
+  </li>
 </ul>
 
 <p>I had found a paragraph: <a href="http://xsen.iteye.com/blog/440675">http://xsen.iteye.com/blog/440675</a></p>

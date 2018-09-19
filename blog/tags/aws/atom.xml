@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Aws | GUIDE]]></title>
   <link href="http://weilluo.github.io/blog/tags/aws/atom.xml" rel="self"/>
   <link href="http://weilluo.github.io/"/>
-  <updated>2018-07-16T13:29:02+08:00</updated>
+  <updated>2018-09-19T17:40:50+08:00</updated>
   <id>http://weilluo.github.io/</id>
   <author>
     <name><![CDATA[Wei Luo]]></name>
@@ -18,9 +18,9 @@
     <link href="http://weilluo.github.io/blog/2017/04/15/s3-policy-on-ec2-having-changes-between-ecs-and-eb/"/>
     <updated>2017-04-15T11:47:12+08:00</updated>
     <id>http://weilluo.github.io/blog/2017/04/15/s3-policy-on-ec2-having-changes-between-ecs-and-eb</id>
-    <content type="html"><![CDATA[<p>We can see the title, and below is the different policy:</p>
-
-<p><figure class='code'><figcaption class='code-header'><span>EC2 Instance from ECS </span></figcaption>
+    <content type="html"><![CDATA[<p>We can see the title, and below is the different policy:
+<!--more-->
+<figure class='code'><figcaption class='code-header'><span>EC2 Instance from ECS </span></figcaption>
  <div class="CodeRay">
   <div class="code"><pre><span class="line-numbers"> 1</span>{
 <span class="line-numbers"> 2</span>    <span class="error">“</span><span class="error">V</span><span class="error">e</span><span class="error">r</span><span class="error">s</span><span class="error">i</span><span class="error">o</span><span class="error">n</span><span class="error">”</span>: <span class="error">“</span><span class="integer">2012</span><span class="integer">-10</span><span class="integer">-17</span><span class="error">”</span>,
@@ -114,20 +114,21 @@
 <p>There are to issuses:</p>
 
 <ul>
-  <li>gem install rjb, can’t find the floder /usr/lib/jvm/jre/include</li>
-</ul>
-
-<p><code>
+  <li>
+    <p>gem install rjb, can’t find the floder /usr/lib/jvm/jre/include
+<!--more-->
+<code>
 # we should install java-1.7.0-openjdk-devel
 packages:
-  yum:
-      git: []
-        java-1.7.0-openjdk-devel: []
+yum:
+    git: []
+      java-1.7.0-openjdk-devel: []
 ...
 </code></p>
-
-<ul>
-  <li>504 Gateway-Timeout, when the request invoke some method depend <code>RJB</code></li>
+  </li>
+  <li>
+    <p>504 Gateway-Timeout, when the request invoke some method depend <code>RJB</code></p>
+  </li>
 </ul>
 
 <p>I had found a paragraph: <a href="http://xsen.iteye.com/blog/440675">http://xsen.iteye.com/blog/440675</a></p>

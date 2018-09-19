@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Git | GUIDE]]></title>
   <link href="http://weilluo.github.io/blog/categories/git/atom.xml" rel="self"/>
   <link href="http://weilluo.github.io/"/>
-  <updated>2018-07-16T13:29:02+08:00</updated>
+  <updated>2018-09-19T17:40:50+08:00</updated>
   <id>http://weilluo.github.io/</id>
   <author>
     <name><![CDATA[Wei Luo]]></name>
@@ -24,9 +24,9 @@
 
 <p>Seconed computer: I have added another <code>id_ras.pub</code> to <code>luoguanzhong</code> account.</p>
 
-<p>I want push <code>luoguanzhong</code>’s project on first computer.</p>
-
-<h2 id="resolve">Resolve</h2>
+<p>I want push <code>luoguanzhong</code>’s project on first computer.
+<!--more-->
+## Resolve</p>
 
 <ul>
   <li>config the <code>~/.ssh/config</code>.</li>
@@ -50,44 +50,6 @@ Host lgz.github.com
     <p>use <code>ssh -T git@lgz.github.com</code> to verify.</p>
   </li>
 </ul>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Delete Commits From a Branch in Git]]></title>
-    <link href="http://weilluo.github.io/blog/2015/06/30/delete-commits-from-a-branch-in-git/"/>
-    <updated>2015-06-30T17:34:07+08:00</updated>
-    <id>http://weilluo.github.io/blog/2015/06/30/delete-commits-from-a-branch-in-git</id>
-    <content type="html"><![CDATA[<p>Reference: <a href="http://stackoverflow.com/questions/1338728/delete-commits-from-a-branch-in-git">http://stackoverflow.com/questions/1338728/delete-commits-from-a-branch-in-git</a></p>
-
-<p><strong>Careful</strong>: <code>git reset --hard</code> WILL DELETE YOUR WORKING DIRECTORY CHANGES. Be sure to <strong>stash any local changes you want to keep</strong> before running this command.</p>
-
-<p>Assuming you are sitting on that commit, then this command will wack it…
-<code>
-git reset --hard HEAD~1
-</code>
-The <code>HEAD~1</code> means the commit before head.</p>
-
-<p>Or, you could look at the output of <code>git log</code>, find the commit id of the commit you want to back up to, and then do this:
-<code>
-git reset --hard &lt;sha1-commit-id&gt;
-</code>
-***
-If you already pushed it, you will need to do a force push to get rid of it…
-<code>
-git push origin HEAD --force
-</code>
-<strong>However</strong>, if others may have pulled it, then you would be better off starting a new branch. Because when they pull, it will just merge it into their work, and you will get it pushed back up again.</p>
-
-<p>If you already pushed, it may be better to use <code>git revert</code>, to create a “mirror image” commit that will undo the changes. However, both commits will both be in the log.</p>
-
-<hr />
-
-<p>FYI – <code>git reset --hard HEAD</code> is great if you want to get rid of WORK IN PROGRESS. It will reset you back to the most recent commit, and erase all the changes in your working tree and index.</p>
-
-<hr />
-
-<p>Lastly, if you need to find a commit that you “deleted”, it is typically present in <code>git reflog</code> unless you have garbage collected your repository.</p>
 ]]></content>
   </entry>
   

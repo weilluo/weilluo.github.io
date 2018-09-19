@@ -117,37 +117,13 @@
 
 <p>Seconed computer: I have added another <code>id_ras.pub</code> to <code>luoguanzhong</code> account.</p>
 
-<p>I want push <code>luoguanzhong</code>’s project on first computer.</p>
-
-<h2 id="resolve">Resolve</h2>
-
-<ul>
-  <li>config the <code>~/.ssh/config</code>.</li>
-</ul>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-</pre></td><td class="code"><pre><code class="bash"><span class="line">Host lgz.github.com
-</span><span class="line">  HostName github.com
-</span><span class="line">  User git
-</span><span class="line">  IdentityFile ~/.ssh/id_rsa_office
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<ul>
-  <li>
-    <p>replace git remote origin from <code>git@github.com/luoguanzhong/xxx.git</code> to <code>git@lgz.github.com/luoguanzhong/xxx.git</code></p>
-  </li>
-  <li>
-    <p>then I can push <code>xxx</code> project on First computer.</p>
-  </li>
-  <li>
-    <p>use <code>ssh -T git@lgz.github.com</code> to verify.</p>
-  </li>
-</ul>
+<p>I want push <code>luoguanzhong</code>’s project on first computer.
 </div>
   
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/10/29/multiple-ssh-key-add-in-difference-github-account/">Read on &rarr;</a>
+    </footer>
   
 
 
@@ -187,342 +163,13 @@
 
 <p>There are <a href="https://en.wikipedia.org/wiki/ECMAScript#Versions">released versions</a> of <code>ECMAScript</code>.</p>
 
-<p>Other little languages compile into javascript, such as <a href="http://coffeescript.org/">CoffeeScript</a>, <a href="http://www.typescriptlang.org/">TypeScript</a>.</p>
-
-<h2 id="new-features">New features</h2>
-
-<ul>
-  <li>Constants</li>
-</ul>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption class="code-header"><span>ECMAScript 6 </span></figcaption>
- <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers">1</span>const PI = <span class="float">3.14</span>
-<span class="line-numbers">2</span>PI &gt; <span class="float">3.0</span>
-</pre></div>
-</div>
- </figure></notextile></div>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>ECMAScript 5 </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-</pre></td><td class="code"><pre><code class="javascript"><span class="line"><span class="c1">//  only in ES5 through the help of object properties</span>
-</span><span class="line"><span class="c1">//  and only in global context and not in a block scope</span>
-</span><span class="line"><span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">global</span> <span class="o">===</span> <span class="s2">&quot;object&quot;</span> <span class="o">?</span> <span class="nx">global</span> <span class="o">:</span> <span class="nb">window</span><span class="p">,</span> <span class="s2">&quot;PI&quot;</span><span class="p">,</span> <span class="p">{</span>
-</span><span class="line">    <span class="nx">value</span><span class="o">:</span>        <span class="mf">3.141593</span><span class="p">,</span>
-</span><span class="line">    <span class="nx">enumerable</span><span class="o">:</span>   <span class="kc">true</span><span class="p">,</span>
-</span><span class="line">    <span class="nx">writable</span><span class="o">:</span>     <span class="kc">false</span><span class="p">,</span>
-</span><span class="line">    <span class="nx">configurable</span><span class="o">:</span> <span class="kc">false</span>
-</span><span class="line"><span class="p">})</span>
-</span><span class="line"><span class="nx">PI</span> <span class="o">&gt;</span> <span class="mf">3.0</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<ul>
-  <li>Arrow Functions</li>
-</ul>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption class="code-header"><span>ECMAScript 6 </span></figcaption>
- <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers">1</span>odds  = evens.map(v =&gt; v + <span class="integer">1</span>)
-<span class="line-numbers">2</span>pairs = evens.map(v =&gt; ({ <span class="key">even</span>: v, <span class="key">odd</span>: v + <span class="integer">1</span> }))
-<span class="line-numbers">3</span>nums  = evens.map((v, i) =&gt; v + i)
-</pre></div>
-</div>
- </figure></notextile></div>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>ECMAScript 5 </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-</pre></td><td class="code"><pre><code class="javascript"><span class="line"><span class="nx">odds</span>  <span class="o">=</span> <span class="nx">evens</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">v</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span> <span class="p">});</span>
-</span><span class="line"><span class="nx">pairs</span> <span class="o">=</span> <span class="nx">evens</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="p">{</span> <span class="nx">even</span><span class="o">:</span> <span class="nx">v</span><span class="p">,</span> <span class="nx">odd</span><span class="o">:</span> <span class="nx">v</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">};</span> <span class="p">});</span>
-</span><span class="line"><span class="nx">nums</span>  <span class="o">=</span> <span class="nx">evens</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">v</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">v</span> <span class="o">+</span> <span class="nx">i</span><span class="p">;</span> <span class="p">});</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<ul>
-  <li>Default Parameter Values</li>
-</ul>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption class="code-header"><span>ECMAScript 6 </span></figcaption>
- <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers">1</span><span class="keyword">function</span> <span class="function">f</span> (x, y = <span class="integer">7</span>, z = <span class="integer">42</span>) {
-<span class="line-numbers">2</span>    <span class="keyword">return</span> x + y + z
-<span class="line-numbers">3</span>}
-<span class="line-numbers">4</span>f(<span class="integer">1</span>) === <span class="integer">50</span>
-</pre></div>
-</div>
- </figure></notextile></div>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>ECMAScript 5 </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-</pre></td><td class="code"><pre><code class="javascript"><span class="line"><span class="kd">function</span> <span class="nx">f</span> <span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">z</span><span class="p">)</span> <span class="p">{</span>
-</span><span class="line">    <span class="k">if</span> <span class="p">(</span><span class="nx">y</span> <span class="o">===</span> <span class="kc">undefined</span><span class="p">)</span>
-</span><span class="line">        <span class="nx">y</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
-</span><span class="line">    <span class="k">if</span> <span class="p">(</span><span class="nx">z</span> <span class="o">===</span> <span class="kc">undefined</span><span class="p">)</span>
-</span><span class="line">        <span class="nx">z</span> <span class="o">=</span> <span class="mi">42</span><span class="p">;</span>
-</span><span class="line">    <span class="k">return</span> <span class="nx">x</span> <span class="o">+</span> <span class="nx">y</span> <span class="o">+</span> <span class="nx">z</span><span class="p">;</span>
-</span><span class="line"><span class="p">};</span>
-</span><span class="line"><span class="nx">f</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">===</span> <span class="mi">50</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<ul>
-  <li>Enhanced Object Properties</li>
-</ul>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption class="code-header"><span>ECMAScript 6 </span></figcaption>
- <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"> 1</span><span class="comment">// Property Shorthand</span>
-<span class="line-numbers"> 2</span>obj = { x, y }
-<span class="line-numbers"> 3</span>
-<span class="line-numbers"> 4</span><span class="comment">// Computed Property Names</span>
-<span class="line-numbers"> 5</span>obj = {
-<span class="line-numbers"> 6</span>    <span class="key">foo</span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">bar</span><span class="delimiter">&quot;</span></span>,
-<span class="line-numbers"> 7</span>    [ <span class="string"><span class="delimiter">&quot;</span><span class="content">prop_</span><span class="delimiter">&quot;</span></span> + foo() ]: <span class="integer">42</span>
-<span class="line-numbers"> 8</span>}
-<span class="line-numbers"> 9</span>
-<span class="line-numbers"><strong>10</strong></span><span class="comment">// Method Properties</span>
-<span class="line-numbers">11</span>obj = {
-<span class="line-numbers">12</span>    foo (a, b) {
-<span class="line-numbers">13</span>        <span class="error">…</span>
-<span class="line-numbers">14</span>    },
-<span class="line-numbers">15</span>    bar (x, y) {
-<span class="line-numbers">16</span>        <span class="error">…</span>
-<span class="line-numbers">17</span>    },
-<span class="line-numbers">18</span>    *quux (x, y) {
-<span class="line-numbers">19</span>        <span class="error">…</span>
-<span class="line-numbers"><strong>20</strong></span>    }
-<span class="line-numbers">21</span>}
-</pre></div>
-</div>
- </figure></notextile></div>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>ECMAScript 5 </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-<span class="line-number">18</span>
-<span class="line-number">19</span>
-</pre></td><td class="code"><pre><code class="javascript"><span class="line"><span class="c1">// Property Shorthand</span>
-</span><span class="line"><span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">x</span><span class="o">:</span> <span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="o">:</span> <span class="nx">y</span> <span class="p">};</span>
-</span><span class="line">
-</span><span class="line"><span class="c1">// Computed Property Names</span>
-</span><span class="line"><span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
-</span><span class="line">    <span class="nx">foo</span><span class="o">:</span> <span class="s2">&quot;bar&quot;</span>
-</span><span class="line"><span class="p">};</span>
-</span><span class="line"><span class="nx">obj</span><span class="p">[</span> <span class="s2">&quot;prop_&quot;</span> <span class="o">+</span> <span class="nx">foo</span><span class="p">()</span> <span class="p">]</span> <span class="o">=</span> <span class="mi">42</span><span class="p">;</span>
-</span><span class="line">
-</span><span class="line"><span class="c1">// Method Properties</span>
-</span><span class="line"><span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
-</span><span class="line">    <span class="nx">foo</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
-</span><span class="line">        <span class="err">…</span>
-</span><span class="line">    <span class="p">},</span>
-</span><span class="line">    <span class="nx">bar</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
-</span><span class="line">        <span class="err">…</span>
-</span><span class="line">    <span class="p">},</span>
-</span><span class="line">    <span class="c1">//  quux: no equivalent in ES5</span>
-</span><span class="line"><span class="p">};</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<ul>
-  <li>Modules</li>
-</ul>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption class="code-header"><span>ECMAScript 6 </span></figcaption>
- <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"> 1</span><span class="comment">//  lib/math.js</span>
-<span class="line-numbers"> 2</span><span class="reserved">export</span> <span class="keyword">function</span> <span class="function">sum</span> (x, y) { <span class="keyword">return</span> x + y }
-<span class="line-numbers"> 3</span><span class="reserved">export</span> <span class="keyword">var</span> pi = <span class="float">3.141593</span>
-<span class="line-numbers"> 4</span>
-<span class="line-numbers"> 5</span><span class="comment">//  someApp.js</span>
-<span class="line-numbers"> 6</span><span class="reserved">import</span> * as math from <span class="string"><span class="delimiter">&quot;</span><span class="content">lib/math</span><span class="delimiter">&quot;</span></span>
-<span class="line-numbers"> 7</span>console.log(<span class="string"><span class="delimiter">&quot;</span><span class="content">2π = </span><span class="delimiter">&quot;</span></span> + math.sum(math.pi, math.pi))
-<span class="line-numbers"> 8</span>
-<span class="line-numbers"> 9</span><span class="comment">//  otherApp.js</span>
-<span class="line-numbers"><strong>10</strong></span><span class="reserved">import</span> { sum, pi } from <span class="string"><span class="delimiter">&quot;</span><span class="content">lib/math</span><span class="delimiter">&quot;</span></span>
-<span class="line-numbers">11</span>console.log(<span class="string"><span class="delimiter">&quot;</span><span class="content">2π = </span><span class="delimiter">&quot;</span></span> + sum(pi, pi))
-</pre></div>
-</div>
- </figure></notextile></div>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>ECMAScript 5 </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-</pre></td><td class="code"><pre><code class="javascript"><span class="line"><span class="c1">//  lib/math.js</span>
-</span><span class="line"><span class="nx">LibMath</span> <span class="o">=</span> <span class="p">{};</span>
-</span><span class="line"><span class="nx">LibMath</span><span class="p">.</span><span class="nx">sum</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">x</span> <span class="o">+</span> <span class="nx">y</span> <span class="p">};</span>
-</span><span class="line"><span class="nx">LibMath</span><span class="p">.</span><span class="nx">pi</span> <span class="o">=</span> <span class="mf">3.141593</span><span class="p">;</span>
-</span><span class="line">
-</span><span class="line"><span class="c1">//  someApp.js</span>
-</span><span class="line"><span class="kd">var</span> <span class="nx">math</span> <span class="o">=</span> <span class="nx">LibMath</span><span class="p">;</span>
-</span><span class="line"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;2π = &quot;</span> <span class="o">+</span> <span class="nx">math</span><span class="p">.</span><span class="nx">sum</span><span class="p">(</span><span class="nx">math</span><span class="p">.</span><span class="nx">pi</span><span class="p">,</span> <span class="nx">math</span><span class="p">.</span><span class="nx">pi</span><span class="p">));</span>
-</span><span class="line">
-</span><span class="line"><span class="c1">//  otherApp.js</span>
-</span><span class="line"><span class="kd">var</span> <span class="nx">sum</span> <span class="o">=</span> <span class="nx">LibMath</span><span class="p">.</span><span class="nx">sum</span><span class="p">,</span> <span class="nx">pi</span> <span class="o">=</span> <span class="nx">LibMath</span><span class="p">.</span><span class="nx">pi</span><span class="p">;</span>
-</span><span class="line"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;2π = &quot;</span> <span class="o">+</span> <span class="nx">sum</span><span class="p">(</span><span class="nx">pi</span><span class="p">,</span> <span class="nx">pi</span><span class="p">));</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<ul>
-  <li>Classes</li>
-</ul>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption class="code-header"><span>ECMAScript 6 </span></figcaption>
- <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"> 1</span><span class="reserved">class</span> Shape {
-<span class="line-numbers"> 2</span>    constructor (id, x, y) {
-<span class="line-numbers"> 3</span>        <span class="local-variable">this</span>.id = id
-<span class="line-numbers"> 4</span>        <span class="local-variable">this</span>.move(x, y)
-<span class="line-numbers"> 5</span>    }
-<span class="line-numbers"> 6</span>    move (x, y) {
-<span class="line-numbers"> 7</span>        <span class="local-variable">this</span>.x = x
-<span class="line-numbers"> 8</span>        <span class="local-variable">this</span>.y = y
-<span class="line-numbers"> 9</span>    }
-<span class="line-numbers"><strong>10</strong></span>}
-</pre></div>
-</div>
- </figure></notextile></div>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>ECMAScript 5 </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-</pre></td><td class="code"><pre><code class="javascript"><span class="line"><span class="kd">var</span> <span class="nx">Shape</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">id</span><span class="p">,</span> <span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
-</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">id</span> <span class="o">=</span> <span class="nx">id</span><span class="p">;</span>
-</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">move</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">);</span>
-</span><span class="line"><span class="p">};</span>
-</span><span class="line"><span class="nx">Shape</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">move</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
-</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="nx">x</span><span class="p">;</span>
-</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">y</span> <span class="o">=</span> <span class="nx">y</span><span class="p">;</span>
-</span><span class="line"><span class="p">};</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<ul>
-  <li>Generator Functions</li>
-</ul>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption class="code-header"><span>ECMAScript 6 </span></figcaption>
- <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"> 1</span><span class="keyword">function</span>* idMaker(){
-<span class="line-numbers"> 2</span>  <span class="keyword">var</span> index = <span class="integer">0</span>;
-<span class="line-numbers"> 3</span>  <span class="keyword">while</span>(index &lt; <span class="integer">3</span>)
-<span class="line-numbers"> 4</span>    yield index++;
-<span class="line-numbers"> 5</span>}
-<span class="line-numbers"> 6</span>
-<span class="line-numbers"> 7</span><span class="keyword">var</span> gen = idMaker();
-<span class="line-numbers"> 8</span>
-<span class="line-numbers"> 9</span>console.log(gen.next().value); <span class="comment">// 0</span>
-<span class="line-numbers"><strong>10</strong></span>console.log(gen.next().value); <span class="comment">// 1</span>
-<span class="line-numbers">11</span>console.log(gen.next().value); <span class="comment">// 2</span>
-<span class="line-numbers">12</span>console.log(gen.next().value); <span class="comment">// undefined</span>
-</pre></div>
-</div>
- </figure></notextile></div>
-
-<ul>
-  <li>Spread operator</li>
-</ul>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption class="code-header"><span>ECMAScript 6 </span></figcaption>
- <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"> 1</span><span class="keyword">function</span> <span class="function">add</span>(a, b) {
-<span class="line-numbers"> 2</span>  <span class="keyword">return</span> a + b;
-<span class="line-numbers"> 3</span>}
-<span class="line-numbers"> 4</span>
-<span class="line-numbers"> 5</span>let nums = [<span class="integer">5</span>, <span class="integer">4</span>];
-<span class="line-numbers"> 6</span>
-<span class="line-numbers"> 7</span>console.log(add(...nums));
-<span class="line-numbers"> 8</span>
-<span class="line-numbers"> 9</span>let foo = <span class="string"><span class="delimiter">&quot;</span><span class="content">foo</span><span class="delimiter">&quot;</span></span>
-<span class="line-numbers"><strong>10</strong></span>let chars = [ ...str ] <span class="comment">// [ &quot;f&quot;, &quot;o&quot;, &quot;o&quot; ]</span>
-</pre></div>
-</div>
- </figure></notextile></div>
-
-<ul>
-  <li>Proxying</li>
-</ul>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption class="code-header"><span>ECMAScript 6 </span></figcaption>
- <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"> 1</span>let target = {
-<span class="line-numbers"> 2</span>    <span class="key">foo</span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Welcome, foo</span><span class="delimiter">&quot;</span></span>
-<span class="line-numbers"> 3</span>}
-<span class="line-numbers"> 4</span>let proxy = <span class="keyword">new</span> Proxy(target, {
-<span class="line-numbers"> 5</span>    get (receiver, name) {
-<span class="line-numbers"> 6</span>        <span class="keyword">return</span> name <span class="keyword">in</span> receiver ? receiver[name] : <span class="error">`</span>Hello, <span class="predefined">$</span>{name}<span class="error">`</span>
-<span class="line-numbers"> 7</span>    }
-<span class="line-numbers"> 8</span>})
-<span class="line-numbers"> 9</span>proxy.foo   === <span class="string"><span class="delimiter">&quot;</span><span class="content">Welcome, foo</span><span class="delimiter">&quot;</span></span>
-<span class="line-numbers"><strong>10</strong></span>proxy.world === <span class="string"><span class="delimiter">&quot;</span><span class="content">Hello, world</span><span class="delimiter">&quot;</span></span>
-</pre></div>
-</div>
- </figure></notextile></div>
-
-<ul>
-  <li>Map and Set Data-Structure</li>
-</ul>
-
-<p>To see more, we could visit, <a href="http://es6-features.org/#Constants">ECMAScript 6 — New Features: Overview &amp; Comparison</a></p>
-
-<h2 id="compile">Compile</h2>
-
-<p>Compile ES6 to ES5.</p>
-
-<p>Why need <code>compile</code>? because the <a href="http://kangax.github.io/compat-table/es6/">browser support of ES6</a> isn’t enough.</p>
-
-<ul>
-  <li><a href="https://babeljs.io/">Babel</a></li>
-</ul>
-
-<p><code>Babel</code> is a new name of <code>ES6to5</code>. It can integrate with many js / node frameworks.</p>
-
-<h2 id="conclusion">Conclusion</h2>
-
-<p>OK, let’s start ES6 now!!!</p>
+<p>Other little languages compile into javascript, such as <a href="http://coffeescript.org/">CoffeeScript</a>, <a href="http://www.typescriptlang.org/">TypeScript</a>.
 </div>
   
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/10/19/es6introduction/">Read on &rarr;</a>
+    </footer>
   
 
 
@@ -552,115 +199,13 @@
   </header>
 
 
-  <div class="entry-content"><div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-<span class="line-number">18</span>
-<span class="line-number">19</span>
-<span class="line-number">20</span>
-<span class="line-number">21</span>
-<span class="line-number">22</span>
-<span class="line-number">23</span>
-<span class="line-number">24</span>
-<span class="line-number">25</span>
-<span class="line-number">26</span>
-<span class="line-number">27</span>
-<span class="line-number">28</span>
-<span class="line-number">29</span>
-<span class="line-number">30</span>
-<span class="line-number">31</span>
-<span class="line-number">32</span>
-<span class="line-number">33</span>
-<span class="line-number">34</span>
-<span class="line-number">35</span>
-<span class="line-number">36</span>
-<span class="line-number">37</span>
-<span class="line-number">38</span>
-<span class="line-number">39</span>
-<span class="line-number">40</span>
-<span class="line-number">41</span>
-<span class="line-number">42</span>
-<span class="line-number">43</span>
-<span class="line-number">44</span>
-<span class="line-number">45</span>
-<span class="line-number">46</span>
-<span class="line-number">47</span>
-<span class="line-number">48</span>
-<span class="line-number">49</span>
-<span class="line-number">50</span>
-<span class="line-number">51</span>
-<span class="line-number">52</span>
-<span class="line-number">53</span>
-</pre></td><td class="code"><pre><code class="html"><span class="line"><span class="cp">&lt;!DOCTYPE HTML&gt;</span>
-</span><span class="line"><span class="nt">&lt;html&gt;</span>
-</span><span class="line"><span class="nt">&lt;head&gt;</span>
-</span><span class="line">  <span class="nt">&lt;title&gt;</span>Disqus AJAX Test Site<span class="nt">&lt;/title&gt;</span>
-</span><span class="line"><span class="nt">&lt;/head&gt;</span>
-</span><span class="line"><span class="nt">&lt;body&gt;</span>
-</span><span class="line"><span class="nt">&lt;div&gt;</span>
-</span><span class="line">    <span class="nt">&lt;pre&gt;</span>
-</span><span class="line">        cklasnclkasnclanclasnclkasnclascasc
-</span><span class="line">        ascnknascklnaskcnaskc
-</span><span class="line">        nalcknlakscnlask
-</span><span class="line">    <span class="nt">&lt;/pre&gt;</span>
-</span><span class="line"><span class="nt">&lt;/div&gt;</span>
-</span><span class="line">
-</span><span class="line"><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;disqus_thread&quot;</span><span class="nt">&gt;&lt;/div&gt;</span>
-</span><span class="line">
-</span><span class="line"><span class="nt">&lt;button</span> <span class="na">onclick=</span><span class="s">&quot;reset(&#39;newid1&#39;, &#39;http://example.com/unique-path-to-article1/&#39;, &#39;Article Title 2&#39;, &#39;en&#39;);&quot;</span><span class="nt">&gt;</span>Load article 1 (English)<span class="nt">&lt;/button&gt;</span>
-</span><span class="line"><span class="nt">&lt;button</span> <span class="na">onclick=</span><span class="s">&quot;reset(&#39;newid2&#39;, &#39;http://example.com/unique-path-to-article2/&#39;, &#39;Article Title 2&#39;, &#39;fr&#39;);&quot;</span><span class="nt">&gt;</span>Load article 2 (Franch)<span class="nt">&lt;/button&gt;</span>
-</span><span class="line"><span class="nt">&lt;button</span> <span class="na">onclick=</span><span class="s">&quot;reset(&#39;newid3&#39;, &#39;http://example.com/unique-path-to-article3/&#39;, &#39;Article Title 3&#39;, &#39;zh&#39;);&quot;</span><span class="nt">&gt;</span>Load article 3 (Chinese)<span class="nt">&lt;/button&gt;</span>
-</span><span class="line"><span class="nt">&lt;button</span> <span class="na">onclick=</span><span class="s">&quot;reset(&#39;newid4&#39;, &#39;http://example.com/unique-path-to-article4/&#39;, &#39;Article Title 4&#39;, &#39;ru&#39;);&quot;</span><span class="nt">&gt;</span>Load article 4 (Russian)<span class="nt">&lt;/button&gt;</span>
-</span><span class="line">
-</span><span class="line"><span class="c">&lt;!-- &lt;div id=&quot;disqus_thread&quot;&gt;&lt;/div&gt; --&gt;</span>
-</span><span class="line"><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>
-</span><span class="line">    <span class="cm">/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */</span>
-</span><span class="line">    <span class="kd">var</span> <span class="nx">disqus_shortname</span> <span class="o">=</span> <span class="s1">&#39;example&#39;</span><span class="p">;</span>
-</span><span class="line">    <span class="kd">var</span> <span class="nx">disqus_identifier</span> <span class="o">=</span> <span class="s1">&#39;newid1&#39;</span><span class="p">;</span>
-</span><span class="line">    <span class="kd">var</span> <span class="nx">disqus_url</span> <span class="o">=</span> <span class="s1">&#39;http://example.com/unique-path-to-article-1/&#39;</span><span class="p">;</span>
-</span><span class="line">  <span class="kd">var</span> <span class="nx">disqus_config</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">language</span> <span class="o">=</span> <span class="s2">&quot;en&quot;</span><span class="p">;</span>
-</span><span class="line">  <span class="p">};</span>
-</span><span class="line">    <span class="cm">/* * * DON&#39;T EDIT BELOW THIS LINE * * */</span>
-</span><span class="line">    <span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-</span><span class="line">        <span class="kd">var</span> <span class="nx">dsq</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;script&#39;</span><span class="p">);</span> <span class="nx">dsq</span><span class="p">.</span><span class="nx">type</span> <span class="o">=</span> <span class="s1">&#39;text/javascript&#39;</span><span class="p">;</span> <span class="nx">dsq</span><span class="p">.</span><span class="nx">async</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
-</span><span class="line">        <span class="nx">dsq</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="s1">&#39;http://&#39;</span> <span class="o">+</span> <span class="nx">disqus_shortname</span> <span class="o">+</span> <span class="s1">&#39;.disqus.com/embed.js&#39;</span><span class="p">;</span>
-</span><span class="line">        <span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;head&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">||</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]).</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">dsq</span><span class="p">);</span>
-</span><span class="line">    <span class="p">})();</span>
-</span><span class="line">    <span class="cm">/* * * Disqus Reset Function * * */</span>
-</span><span class="line">    <span class="kd">var</span> <span class="nx">reset</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">newIdentifier</span><span class="p">,</span> <span class="nx">newUrl</span><span class="p">,</span> <span class="nx">newTitle</span><span class="p">,</span> <span class="nx">newLanguage</span><span class="p">)</span> <span class="p">{</span>
-</span><span class="line">        <span class="nx">DISQUS</span><span class="p">.</span><span class="nx">reset</span><span class="p">({</span>
-</span><span class="line">            <span class="nx">reload</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-</span><span class="line">            <span class="nx">config</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-</span><span class="line">                <span class="k">this</span><span class="p">.</span><span class="nx">page</span><span class="p">.</span><span class="nx">identifier</span> <span class="o">=</span> <span class="nx">newIdentifier</span><span class="p">;</span>
-</span><span class="line">                <span class="k">this</span><span class="p">.</span><span class="nx">page</span><span class="p">.</span><span class="nx">url</span> <span class="o">=</span> <span class="nx">newUrl</span><span class="p">;</span>
-</span><span class="line">                <span class="k">this</span><span class="p">.</span><span class="nx">page</span><span class="p">.</span><span class="nx">title</span> <span class="o">=</span> <span class="nx">newTitle</span><span class="p">;</span>
-</span><span class="line">                <span class="k">this</span><span class="p">.</span><span class="nx">language</span> <span class="o">=</span> <span class="nx">newLanguage</span><span class="p">;</span>
-</span><span class="line">            <span class="p">}</span>
-</span><span class="line">        <span class="p">});</span>
-</span><span class="line">    <span class="p">};</span>
-</span><span class="line"><span class="nt">&lt;/script&gt;</span>
-</span><span class="line"><span class="nt">&lt;noscript&gt;</span>Please enable JavaScript to view the <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://disqus.com/?ref_noscript&quot;</span><span class="nt">&gt;</span>comments powered by Disqus.<span class="nt">&lt;/a&gt;&lt;/noscript&gt;</span>
-</span><span class="line"><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://disqus.com&quot;</span> <span class="na">class=</span><span class="s">&quot;dsq-brlink&quot;</span><span class="nt">&gt;</span>blog comments powered by <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;logo-disqus&quot;</span><span class="nt">&gt;</span>Disqus<span class="nt">&lt;/span&gt;&lt;/a&gt;</span>
-</span><span class="line"><span class="nt">&lt;/body&gt;</span>
-</span><span class="line"><span class="nt">&lt;/html&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+  <div class="entry-content"><p>This is the codes:
 </div>
   
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/10/14/disqus-example/">Read on &rarr;</a>
+    </footer>
   
 
 
@@ -690,53 +235,13 @@
   </header>
 
 
-  <div class="entry-content"><p>how to use class_attribuet:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-<span class="line-number">18</span>
-<span class="line-number">19</span>
-<span class="line-number">20</span>
-<span class="line-number">21</span>
-</pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="nb">require</span> <span class="s1">&#39;active_record&#39;</span>
-</span><span class="line">
-</span><span class="line"><span class="k">class</span> <span class="nc">Base</span>
-</span><span class="line">  <span class="n">class_attribute</span> <span class="ss">:setting</span>
-</span><span class="line"><span class="k">end</span>
-</span><span class="line">
-</span><span class="line"><span class="k">class</span> <span class="nc">Subclass</span> <span class="o">&lt;</span> <span class="no">Base</span>
-</span><span class="line"><span class="k">end</span>
-</span><span class="line">
-</span><span class="line"><span class="no">Base</span><span class="o">.</span><span class="n">setting</span> <span class="o">=</span> <span class="kp">true</span>
-</span><span class="line"><span class="nb">puts</span> <span class="no">Subclass</span><span class="o">.</span><span class="n">setting</span> <span class="c1"># =&gt; true</span>
-</span><span class="line"><span class="no">Subclass</span><span class="o">.</span><span class="n">setting</span> <span class="o">=</span> <span class="kp">false</span>
-</span><span class="line"><span class="nb">puts</span> <span class="no">Subclass</span><span class="o">.</span><span class="n">setting</span> <span class="c1"># =&gt; false</span>
-</span><span class="line"><span class="nb">puts</span> <span class="no">Base</span><span class="o">.</span><span class="n">setting</span> <span class="c1"># =&gt; true</span>
-</span><span class="line">
-</span><span class="line">
-</span><span class="line"><span class="n">base</span> <span class="o">=</span> <span class="no">Base</span><span class="o">.</span><span class="n">new</span>
-</span><span class="line"><span class="nb">puts</span> <span class="n">base</span><span class="o">.</span><span class="n">setting</span> <span class="c1"># =&gt; true</span>
-</span><span class="line"><span class="n">base</span><span class="o">.</span><span class="n">setting</span> <span class="o">=</span> <span class="kp">false</span>
-</span><span class="line"><span class="nb">puts</span> <span class="no">Base</span><span class="o">.</span><span class="n">setting</span> <span class="c1"># =&gt; true</span>
-</span><span class="line"><span class="nb">puts</span> <span class="n">base</span><span class="o">.</span><span class="n">setting</span> <span class="c1"># =&gt; false</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+  <div class="entry-content"><p>how to use class_attribuet:
 </div>
   
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/10/14/activerecord-class_attribute/">Read on &rarr;</a>
+    </footer>
   
 
 
@@ -775,40 +280,13 @@
 <p>There are to issuses:</p>
 
 <ul>
-  <li>gem install rjb, can’t find the floder /usr/lib/jvm/jre/include</li>
-</ul>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-</pre></td><td class="code"><pre><code class=""><span class="line"># we should install java-1.7.0-openjdk-devel
-</span><span class="line">packages:
-</span><span class="line">  yum:
-</span><span class="line">      git: []
-</span><span class="line">        java-1.7.0-openjdk-devel: []
-</span><span class="line">...</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<ul>
-  <li>504 Gateway-Timeout, when the request invoke some method depend <code>RJB</code></li>
-</ul>
-
-<p>I had found a paragraph: <a href="http://xsen.iteye.com/blog/440675">http://xsen.iteye.com/blog/440675</a></p>
-
-<p>The <code>Reason</code> is <code>rjb</code>, he said, and the solution is, in，passenger_ruby配置项下添加一行设置:</p>
-
-<ul>
-  <li>if using nginx, add this code in passenger_ruby config, <code>rails_spawn_method conservative;</code></li>
-  <li>if using apache, add this code in PassengerRuby config, <code>RailsSpawnMethod conservative</code></li>
-</ul>
-
-<p>and I found s syntax code used for AWS Beanstalk, that is <a href="https://gist.github.com/luoguanzhong/bb684c59dfbe9ae02022">https://gist.github.com/luoguanzhong/bb684c59dfbe9ae02022</a>.</p>
-
-<p><strong>Summary</strong>：You should login the server and see where the package install, and which it install. This could be help you quickly find the right solution.</p>
+  <li>gem install rjb, can’t find the floder /usr/lib/jvm/jre/include
 </div>
   
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/07/22/aws-beanstalk-ruby-passenger/">Read on &rarr;</a>
+    </footer>
   
 
 
@@ -831,7 +309,11 @@
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2018/02/07/angular-aot/">Angular Need Aot</a>
+        <a href="/blog/2018/09/19/javascript-priority-of-params/">Javascript 参数的优先级</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/06/07/angular-aot/">Angular Need Aot</a>
       </li>
     
       <li class="post">
@@ -846,21 +328,17 @@
         <a href="/blog/2017/04/26/difference-between-config-and-run-in-angular/">Difference Between Config and Run in Angular</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2017/04/15/s3-policy-on-ec2-having-changes-between-ecs-and-eb/">S3 Policy on EC2 Having Changes Between ECS and EB</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Categories</h1>
-  <div id="category-list"><li><a href='/blog/categories/angular/'>ANGULAR (1)</a></li><li><a href='/blog/categories/aws/'>AWS (2)</a></li><li><a href='/blog/categories/css/'>CSS (1)</a></li><li><a href='/blog/categories/disqus/'>DISQUS (1)</a></li><li><a href='/blog/categories/es6/'>ES6 (1)</a></li><li><a href='/blog/categories/git/'>GIT (2)</a></li><li><a href='/blog/categories/javascript/'>JAVASCRIPT (2)</a></li><li><a href='/blog/categories/jenkins/'>JENKINS (1)</a></li><li><a href='/blog/categories/mac/'>MAC (2)</a></li><li><a href='/blog/categories/mongodb/'>MONGODB (1)</a></li><li><a href='/blog/categories/nodejs/'>NODEJS (1)</a></li><li><a href='/blog/categories/rails/'>RAILS (2)</a></li><li><a href='/blog/categories/react/'>REACT (1)</a></li><li><a href='/blog/categories/ruby/'>RUBY (4)</a></li><li><a href='/blog/categories/shell/'>SHELL (2)</a></li><li><a href='/blog/categories/sinatra/'>SINATRA (1)</a></li><li><a href='/blog/categories/sublime/'>SUBLIME (1)</a></li><li><a href='/blog/categories/swap/'>SWAP (1)</a></li><li><a href='/blog/categories/test/'>TEST (2)</a></li><li><a href='/blog/categories/ubuntu/'>UBUNTU (2)</a></li><li><a href='/blog/categories/watchman/'>WATCHMAN (1)</a></li><li><a href='/blog/categories/shua-ji/'>刷机 (1)</a></li></div>
+  <div id="category-list"><li><a href='/blog/categories/angular/'>ANGULAR (1)</a></li><li><a href='/blog/categories/aws/'>AWS (2)</a></li><li><a href='/blog/categories/disqus/'>DISQUS (1)</a></li><li><a href='/blog/categories/es6/'>ES6 (1)</a></li><li><a href='/blog/categories/git/'>GIT (1)</a></li><li><a href='/blog/categories/javascript/'>JAVASCRIPT (2)</a></li><li><a href='/blog/categories/jenkins/'>JENKINS (1)</a></li><li><a href='/blog/categories/mac/'>MAC (1)</a></li><li><a href='/blog/categories/nodejs/'>NODEJS (1)</a></li><li><a href='/blog/categories/rails/'>RAILS (1)</a></li><li><a href='/blog/categories/react/'>REACT (1)</a></li><li><a href='/blog/categories/ruby/'>RUBY (3)</a></li><li><a href='/blog/categories/shell/'>SHELL (2)</a></li><li><a href='/blog/categories/sinatra/'>SINATRA (1)</a></li><li><a href='/blog/categories/sublime/'>SUBLIME (1)</a></li><li><a href='/blog/categories/swap/'>SWAP (1)</a></li><li><a href='/blog/categories/test/'>TEST (2)</a></li><li><a href='/blog/categories/ubuntu/'>UBUNTU (1)</a></li><li><a href='/blog/categories/watchman/'>WATCHMAN (1)</a></li><li><a href='/blog/categories/shua-ji/'>刷机 (1)</a></li></div>
 </section>
 <section>
   <h1>
     <i class="fa fa-tags" aria-hidden="true"></i> Tags
   </h1>
-  <div id="tag-list"><li><a href='/blog/tags/angular/'>angular (1)</a></li><li><a href='/blog/tags/aws/'>aws (2)</a></li><li><a href='/blog/tags/css/'>css (1)</a></li><li><a href='/blog/tags/disqus/'>disqus (1)</a></li><li><a href='/blog/tags/es6/'>es6 (1)</a></li><li><a href='/blog/tags/git/'>git (2)</a></li><li><a href='/blog/tags/javascript/'>javascript (2)</a></li><li><a href='/blog/tags/jenkins/'>jenkins (1)</a></li><li><a href='/blog/tags/mac/'>mac (2)</a></li><li><a href='/blog/tags/mongodb/'>mongodb (1)</a></li><li><a href='/blog/tags/nodejs/'>nodejs (1)</a></li><li><a href='/blog/tags/rails/'>rails (2)</a></li><li><a href='/blog/tags/react/'>react (1)</a></li><li><a href='/blog/tags/ruby/'>ruby (4)</a></li><li><a href='/blog/tags/shell/'>shell (2)</a></li><li><a href='/blog/tags/sinatra/'>sinatra (1)</a></li><li><a href='/blog/tags/sublime/'>sublime (1)</a></li><li><a href='/blog/tags/swap/'>swap (1)</a></li><li><a href='/blog/tags/test/'>test (2)</a></li><li><a href='/blog/tags/ubuntu/'>ubuntu (2)</a></li><li><a href='/blog/tags/watchman/'>watchman (1)</a></li><li><a href='/blog/tags/shua-ji/'>刷机 (1)</a></li></div>
+  <div id="tag-list"><li><a href='/blog/tags/angular/'>angular (1)</a></li><li><a href='/blog/tags/aws/'>aws (2)</a></li><li><a href='/blog/tags/disqus/'>disqus (1)</a></li><li><a href='/blog/tags/es6/'>es6 (1)</a></li><li><a href='/blog/tags/git/'>git (1)</a></li><li><a href='/blog/tags/javascript/'>javascript (2)</a></li><li><a href='/blog/tags/jenkins/'>jenkins (1)</a></li><li><a href='/blog/tags/mac/'>mac (1)</a></li><li><a href='/blog/tags/nodejs/'>nodejs (1)</a></li><li><a href='/blog/tags/rails/'>rails (1)</a></li><li><a href='/blog/tags/react/'>react (1)</a></li><li><a href='/blog/tags/ruby/'>ruby (3)</a></li><li><a href='/blog/tags/shell/'>shell (2)</a></li><li><a href='/blog/tags/sinatra/'>sinatra (1)</a></li><li><a href='/blog/tags/sublime/'>sublime (1)</a></li><li><a href='/blog/tags/swap/'>swap (1)</a></li><li><a href='/blog/tags/test/'>test (2)</a></li><li><a href='/blog/tags/ubuntu/'>ubuntu (1)</a></li><li><a href='/blog/tags/watchman/'>watchman (1)</a></li><li><a href='/blog/tags/shua-ji/'>刷机 (1)</a></li></div>
 </section>
 
   

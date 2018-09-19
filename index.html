@@ -9,11 +9,7 @@
   <meta name="author" content="Wei Luo">
 
   
-  <meta name="description" content="Compare with React and Vue React JSX Before 1const element = (
-2 &lt;h1 className=&quot;greeting&quot;&gt;
-3 Hello, world!
-4 &lt;/h1&gt;
-5); After 1 &hellip;">
+  <meta name="description" content="1. 全局，function 内 function 内变量使用 var，重名时，局部变量的优先级更高 1var a1 = 1; 2(function() { 3 a1 = 2; 4 console.log(a1); // 2 5})(); 6console.log(a1); // 2 7 8var &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -96,7 +92,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2018/02/07/angular-aot/">Angular Need Aot</a></h1>
+      <h1 class="entry-title"><a href="/blog/2018/09/19/javascript-priority-of-params/">Javascript 参数的优先级</a></h1>
     
     
       <p class="meta">
@@ -105,10 +101,68 @@
 
 
 
-<time class='entry-date' datetime='2018-02-07T14:02:05+08:00'><span class='date'>2018-02-07</span> <span class='time'>2:02 pm</span></time>
+<time class='entry-date' datetime='2018-09-19T15:08:37+08:00'><span class='date'>2018-09-19</span> <span class='time'>3:08 pm</span></time>
         
-           | <a href="/blog/2018/02/07/angular-aot/#disqus_thread"
-             data-disqus-identifier="http://weilluo.github.io/blog/2018/02/07/angular-aot/">Comments</a>
+           | <a href="/blog/2018/09/19/javascript-priority-of-params/#disqus_thread"
+             data-disqus-identifier="http://weilluo.github.io/blog/2018/09/19/javascript-priority-of-params/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h3 id="function-">1. 全局，function 内</h3>
+
+<blockquote><p>function 内变量使用 var，重名时，局部变量的优先级更高</p></blockquote>
+
+<div class="bogus-wrapper"><notextile><figure class="code"> <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> 1</span><span class="keyword">var</span> a1 = <span class="integer">1</span>;
+<span class="line-numbers"> 2</span>(<span class="keyword">function</span>() {
+<span class="line-numbers"> 3</span>    a1 = <span class="integer">2</span>;
+<span class="line-numbers"> 4</span>    console.log(a1);  <span class="comment">// 2</span>
+<span class="line-numbers"> 5</span>})();
+<span class="line-numbers"> 6</span>console.log(a1);  <span class="comment">// 2</span>
+<span class="line-numbers"> 7</span>
+<span class="line-numbers"> 8</span><span class="keyword">var</span> a2 = <span class="integer">1</span>, a3 = <span class="integer">1</span>;
+<span class="line-numbers"> 9</span>(<span class="keyword">function</span>() {
+<span class="line-numbers"><strong>10</strong></span>    <span class="keyword">var</span> a2 = <span class="integer">2</span>, a3;
+<span class="line-numbers">11</span>    console.log(a2);  <span class="comment">// 2</span>
+<span class="line-numbers">12</span>    console.log(a3);  <span class="comment">// undefined</span>
+<span class="line-numbers">13</span>})();
+<span class="line-numbers">14</span>console.log(a2);  <span class="comment">// 1</span>
+<span class="line-numbers">15</span>console.log(a3);  <span class="comment">// 1</span>
+</pre></div>
+</div>
+ </figure></notextile></div>
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2018/09/19/javascript-priority-of-params/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2017/06/07/angular-aot/">Angular Need Aot</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2017-06-07T14:02:05+08:00'><span class='date'>2017-06-07</span> <span class='time'>2:02 pm</span></time>
+        
+           | <a href="/blog/2017/06/07/angular-aot/#disqus_thread"
+             data-disqus-identifier="http://weilluo.github.io/blog/2017/06/07/angular-aot/">Comments</a>
         
       </p>
     
@@ -144,533 +198,12 @@
 </span><span class="line">  <span class="s1">&#39;Hello, world!&#39;</span>
 </span><span class="line"><span class="p">);</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<ul>
-  <li>Vue Template</li>
-</ul>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption class="code-header"><span>Before </span></figcaption>
- <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"> 1</span><span class="tag">&lt;div&gt;</span>
-<span class="line-numbers"> 2</span>  <span class="tag">&lt;h1&gt;</span>I'm a template!<span class="tag">&lt;/h1&gt;</span>
-<span class="line-numbers"> 3</span>  <span class="tag">&lt;p</span> <span class="attribute-name">v-if</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">message</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
-<span class="line-numbers"> 4</span>    
-<span class="line-numbers"> 5</span>  <span class="tag">&lt;/p&gt;</span>
-<span class="line-numbers"> 6</span>  <span class="tag">&lt;p</span> <span class="attribute-name">v-else</span><span class="tag">&gt;</span>
-<span class="line-numbers"> 7</span>    No message.
-<span class="line-numbers"> 8</span>  <span class="tag">&lt;/p&gt;</span>
-<span class="line-numbers"> 9</span><span class="tag">&lt;/div&gt;</span>
-</pre></div>
-</div>
- </figure></notextile></div>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>After </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-</pre></td><td class="code"><pre><code class="javascript"><span class="line"><span class="kd">function</span> <span class="nx">anonymous</span><span class="p">()</span> <span class="p">{</span>
-</span><span class="line">  <span class="kd">with</span><span class="p">(</span><span class="k">this</span><span class="p">)</span> <span class="p">{</span>
-</span><span class="line">    <span class="k">return</span> <span class="nx">_h</span><span class="p">(</span>
-</span><span class="line">      <span class="s1">&#39;div&#39;</span><span class="p">,</span>
-</span><span class="line">      <span class="p">[</span>
-</span><span class="line">        <span class="nx">_h</span><span class="p">(</span><span class="s1">&#39;h1&#39;</span><span class="p">,[</span><span class="s2">&quot;I&#39;m a template!&quot;</span><span class="p">]),</span>
-</span><span class="line">        <span class="p">(</span><span class="nx">message</span><span class="p">)</span> <span class="o">?</span>
-</span><span class="line">          <span class="nx">_h</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">,[</span><span class="nx">_s</span><span class="p">(</span><span class="nx">message</span><span class="p">)])</span> <span class="o">:</span>
-</span><span class="line">          <span class="nx">_h</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">,[</span><span class="s2">&quot;No message.&quot;</span><span class="p">])</span>
-</span><span class="line">      <span class="p">]</span>
-</span><span class="line">    <span class="p">)</span>
-</span><span class="line">  <span class="p">}</span>
-</span><span class="line"><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<ul>
-  <li>Angular 2 Template</li>
-</ul>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption class="code-header"><span>Before </span></figcaption>
- <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers">1</span><span class="tag">&lt;h1&gt;</span><span class="tag">&lt;/h1&gt;</span>
-<span class="line-numbers">2</span><span class="tag">&lt;ul&gt;</span>
-<span class="line-numbers">3</span>  <span class="tag">&lt;li</span> <span class="error">*</span><span class="attribute-name">ngFor</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">let name of names</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>Hello <span class="tag">&lt;/li&gt;</span>
-<span class="line-numbers">4</span><span class="tag">&lt;/ul&gt;</span>
-</pre></div>
-</div>
- </figure></notextile></div>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>After </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-<span class="line-number">18</span>
-<span class="line-number">19</span>
-<span class="line-number">20</span>
-<span class="line-number">21</span>
-<span class="line-number">22</span>
-<span class="line-number">23</span>
-<span class="line-number">24</span>
-<span class="line-number">25</span>
-<span class="line-number">26</span>
-<span class="line-number">27</span>
-<span class="line-number">28</span>
-<span class="line-number">29</span>
-<span class="line-number">30</span>
-<span class="line-number">31</span>
-<span class="line-number">32</span>
-<span class="line-number">33</span>
-<span class="line-number">34</span>
-<span class="line-number">35</span>
-<span class="line-number">36</span>
-<span class="line-number">37</span>
-<span class="line-number">38</span>
-<span class="line-number">39</span>
-<span class="line-number">40</span>
-<span class="line-number">41</span>
-<span class="line-number">42</span>
-<span class="line-number">43</span>
-<span class="line-number">44</span>
-<span class="line-number">45</span>
-<span class="line-number">46</span>
-<span class="line-number">47</span>
-<span class="line-number">48</span>
-<span class="line-number">49</span>
-<span class="line-number">50</span>
-<span class="line-number">51</span>
-<span class="line-number">52</span>
-<span class="line-number">53</span>
-<span class="line-number">54</span>
-<span class="line-number">55</span>
-<span class="line-number">56</span>
-<span class="line-number">57</span>
-<span class="line-number">58</span>
-<span class="line-number">59</span>
-<span class="line-number">60</span>
-<span class="line-number">61</span>
-<span class="line-number">62</span>
-<span class="line-number">63</span>
-<span class="line-number">64</span>
-<span class="line-number">65</span>
-<span class="line-number">66</span>
-<span class="line-number">67</span>
-<span class="line-number">68</span>
-<span class="line-number">69</span>
-<span class="line-number">70</span>
-<span class="line-number">71</span>
-<span class="line-number">72</span>
-<span class="line-number">73</span>
-<span class="line-number">74</span>
-<span class="line-number">75</span>
-<span class="line-number">76</span>
-<span class="line-number">77</span>
-<span class="line-number">78</span>
-<span class="line-number">79</span>
-<span class="line-number">80</span>
-<span class="line-number">81</span>
-<span class="line-number">82</span>
-<span class="line-number">83</span>
-<span class="line-number">84</span>
-<span class="line-number">85</span>
-<span class="line-number">86</span>
-<span class="line-number">87</span>
-<span class="line-number">88</span>
-<span class="line-number">89</span>
-<span class="line-number">90</span>
-<span class="line-number">91</span>
-<span class="line-number">92</span>
-<span class="line-number">93</span>
-<span class="line-number">94</span>
-<span class="line-number">95</span>
-<span class="line-number">96</span>
-<span class="line-number">97</span>
-<span class="line-number">98</span>
-<span class="line-number">99</span>
-<span class="line-number">100</span>
-<span class="line-number">101</span>
-<span class="line-number">102</span>
-<span class="line-number">103</span>
-<span class="line-number">104</span>
-<span class="line-number">105</span>
-<span class="line-number">106</span>
-<span class="line-number">107</span>
-<span class="line-number">108</span>
-<span class="line-number">109</span>
-<span class="line-number">110</span>
-<span class="line-number">111</span>
-<span class="line-number">112</span>
-<span class="line-number">113</span>
-<span class="line-number">114</span>
-<span class="line-number">115</span>
-<span class="line-number">116</span>
-<span class="line-number">117</span>
-<span class="line-number">118</span>
-<span class="line-number">119</span>
-<span class="line-number">120</span>
-<span class="line-number">121</span>
-<span class="line-number">122</span>
-<span class="line-number">123</span>
-<span class="line-number">124</span>
-<span class="line-number">125</span>
-<span class="line-number">126</span>
-<span class="line-number">127</span>
-<span class="line-number">128</span>
-<span class="line-number">129</span>
-<span class="line-number">130</span>
-<span class="line-number">131</span>
-<span class="line-number">132</span>
-<span class="line-number">133</span>
-<span class="line-number">134</span>
-<span class="line-number">135</span>
-<span class="line-number">136</span>
-<span class="line-number">137</span>
-<span class="line-number">138</span>
-<span class="line-number">139</span>
-<span class="line-number">140</span>
-<span class="line-number">141</span>
-<span class="line-number">142</span>
-<span class="line-number">143</span>
-<span class="line-number">144</span>
-<span class="line-number">145</span>
-<span class="line-number">146</span>
-<span class="line-number">147</span>
-<span class="line-number">148</span>
-<span class="line-number">149</span>
-<span class="line-number">150</span>
-<span class="line-number">151</span>
-<span class="line-number">152</span>
-<span class="line-number">153</span>
-<span class="line-number">154</span>
-<span class="line-number">155</span>
-<span class="line-number">156</span>
-<span class="line-number">157</span>
-<span class="line-number">158</span>
-<span class="line-number">159</span>
-<span class="line-number">160</span>
-<span class="line-number">161</span>
-<span class="line-number">162</span>
-<span class="line-number">163</span>
-<span class="line-number">164</span>
-<span class="line-number">165</span>
-<span class="line-number">166</span>
-<span class="line-number">167</span>
-<span class="line-number">168</span>
-<span class="line-number">169</span>
-<span class="line-number">170</span>
-<span class="line-number">171</span>
-<span class="line-number">172</span>
-<span class="line-number">173</span>
-<span class="line-number">174</span>
-<span class="line-number">175</span>
-<span class="line-number">176</span>
-<span class="line-number">177</span>
-<span class="line-number">178</span>
-<span class="line-number">179</span>
-<span class="line-number">180</span>
-<span class="line-number">181</span>
-<span class="line-number">182</span>
-<span class="line-number">183</span>
-</pre></td><td class="code"><pre><code class="javascript"><span class="line"><span class="cm">/**</span>
-</span><span class="line"><span class="cm"> * @fileoverview This file is generated by the Angular 2 template compiler.</span>
-</span><span class="line"><span class="cm"> * Do not edit.</span>
-</span><span class="line"><span class="cm"> * @suppress {suspiciousCode,uselessCode,missingProperties}</span>
-</span><span class="line"><span class="cm"> */</span>
-</span><span class="line"> <span class="cm">/* tslint:disable */</span>
-</span><span class="line">
-</span><span class="line"><span class="kr">import</span> <span class="o">*</span> <span class="nx">as</span> <span class="nx">import0</span> <span class="nx">from</span> <span class="s1">&#39;./app.component&#39;</span><span class="p">;</span>
-</span><span class="line"><span class="kr">import</span> <span class="o">*</span> <span class="nx">as</span> <span class="nx">import1</span> <span class="nx">from</span> <span class="s1">&#39;@angular/core/src/linker/view&#39;</span><span class="p">;</span>
-</span><span class="line"><span class="kr">import</span> <span class="o">*</span> <span class="nx">as</span> <span class="nx">import2</span> <span class="nx">from</span> <span class="s1">&#39;@angular/core/src/render/api&#39;</span><span class="p">;</span>
-</span><span class="line"><span class="kr">import</span> <span class="o">*</span> <span class="nx">as</span> <span class="nx">import3</span> <span class="nx">from</span> <span class="s1">&#39;@angular/core/src/linker/view_utils&#39;</span><span class="p">;</span>
-</span><span class="line"><span class="kr">import</span> <span class="o">*</span> <span class="nx">as</span> <span class="nx">import4</span> <span class="nx">from</span> <span class="s1">&#39;@angular/core/src/metadata/view&#39;</span><span class="p">;</span>
-</span><span class="line"><span class="kr">import</span> <span class="o">*</span> <span class="nx">as</span> <span class="nx">import5</span> <span class="nx">from</span> <span class="s1">&#39;@angular/core/src/linker/view_type&#39;</span><span class="p">;</span>
-</span><span class="line"><span class="kr">import</span> <span class="o">*</span> <span class="nx">as</span> <span class="nx">import6</span> <span class="nx">from</span> <span class="s1">&#39;@angular/core/src/change_detection/change_detection&#39;</span><span class="p">;</span>
-</span><span class="line"><span class="kr">import</span> <span class="o">*</span> <span class="nx">as</span> <span class="nx">import7</span> <span class="nx">from</span> <span class="s1">&#39;@angular/core/src/linker/component_factory&#39;</span><span class="p">;</span>
-</span><span class="line"><span class="kr">import</span> <span class="o">*</span> <span class="nx">as</span> <span class="nx">import8</span> <span class="nx">from</span> <span class="s1">&#39;./app.component.css.shim&#39;</span><span class="p">;</span>
-</span><span class="line"><span class="kr">import</span> <span class="o">*</span> <span class="nx">as</span> <span class="nx">import9</span> <span class="nx">from</span> <span class="s1">&#39;@angular/core/src/linker/query_list&#39;</span><span class="p">;</span>
-</span><span class="line"><span class="kr">import</span> <span class="o">*</span> <span class="nx">as</span> <span class="nx">import10</span> <span class="nx">from</span> <span class="s1">&#39;@angular/core/src/linker/view_container&#39;</span><span class="p">;</span>
-</span><span class="line"><span class="kr">import</span> <span class="o">*</span> <span class="nx">as</span> <span class="nx">import11</span> <span class="nx">from</span> <span class="s1">&#39;../../node_modules/@angular/common/src/directives/ng_for.ngfactory&#39;</span><span class="p">;</span>
-</span><span class="line"><span class="kr">import</span> <span class="o">*</span> <span class="nx">as</span> <span class="nx">import12</span> <span class="nx">from</span> <span class="s1">&#39;@angular/core/src/linker/template_ref&#39;</span><span class="p">;</span>
-</span><span class="line"><span class="kr">import</span> <span class="o">*</span> <span class="nx">as</span> <span class="nx">import13</span> <span class="nx">from</span> <span class="s1">&#39;@angular/core/src/change_detection/differs/iterable_differs&#39;</span><span class="p">;</span>
-</span><span class="line"><span class="kr">import</span> <span class="o">*</span> <span class="nx">as</span> <span class="nx">import14</span> <span class="nx">from</span> <span class="s1">&#39;@angular/common/src/directives/ng_for&#39;</span><span class="p">;</span>
-</span><span class="line"><span class="kr">export</span> <span class="kr">class</span> <span class="nx">Wrapper_AppComponent</span> <span class="p">{</span>
-</span><span class="line">  <span class="cm">/*private*/</span> <span class="nx">_eventHandler</span><span class="o">:</span><span class="nb">Function</span><span class="p">;</span>
-</span><span class="line">  <span class="nx">context</span><span class="o">:</span><span class="nx">import0</span><span class="p">.</span><span class="nx">AppComponent</span><span class="p">;</span>
-</span><span class="line">  <span class="cm">/*private*/</span> <span class="nx">_changed</span><span class="o">:</span><span class="kr">boolean</span><span class="p">;</span>
-</span><span class="line">  <span class="nx">constructor</span><span class="p">()</span> <span class="p">{</span>
-</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">_changed</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
-</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">context</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">import0</span><span class="p">.</span><span class="nx">AppComponent</span><span class="p">();</span>
-</span><span class="line">  <span class="p">}</span>
-</span><span class="line">  <span class="nx">ngOnDetach</span><span class="p">(</span><span class="nx">view</span><span class="o">:</span><span class="nx">import1</span><span class="p">.</span><span class="nx">AppView</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="p">,</span><span class="nx">componentView</span><span class="o">:</span><span class="nx">import1</span><span class="p">.</span><span class="nx">AppView</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="p">,</span><span class="nx">el</span><span class="o">:</span><span class="nx">any</span><span class="p">)</span><span class="o">:</span><span class="k">void</span> <span class="p">{</span>
-</span><span class="line">  <span class="p">}</span>
-</span><span class="line">  <span class="nx">ngOnDestroy</span><span class="p">()</span><span class="o">:</span><span class="k">void</span> <span class="p">{</span>
-</span><span class="line">  <span class="p">}</span>
-</span><span class="line">  <span class="nx">ngDoCheck</span><span class="p">(</span><span class="nx">view</span><span class="o">:</span><span class="nx">import1</span><span class="p">.</span><span class="nx">AppView</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="p">,</span><span class="nx">el</span><span class="o">:</span><span class="nx">any</span><span class="p">,</span><span class="nx">throwOnChange</span><span class="o">:</span><span class="kr">boolean</span><span class="p">)</span><span class="o">:</span><span class="kr">boolean</span> <span class="p">{</span>
-</span><span class="line">    <span class="kd">var</span> <span class="nx">changed</span><span class="o">:</span><span class="nx">any</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_changed</span><span class="p">;</span>
-</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">_changed</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
-</span><span class="line">    <span class="k">return</span> <span class="nx">changed</span><span class="p">;</span>
-</span><span class="line">  <span class="p">}</span>
-</span><span class="line">  <span class="nx">checkHost</span><span class="p">(</span><span class="nx">view</span><span class="o">:</span><span class="nx">import1</span><span class="p">.</span><span class="nx">AppView</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="p">,</span><span class="nx">componentView</span><span class="o">:</span><span class="nx">import1</span><span class="p">.</span><span class="nx">AppView</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="p">,</span><span class="nx">el</span><span class="o">:</span><span class="nx">any</span><span class="p">,</span><span class="nx">throwOnChange</span><span class="o">:</span><span class="kr">boolean</span><span class="p">)</span><span class="o">:</span><span class="k">void</span> <span class="p">{</span>
-</span><span class="line">  <span class="p">}</span>
-</span><span class="line">  <span class="nx">handleEvent</span><span class="p">(</span><span class="nx">eventName</span><span class="o">:</span><span class="nx">string</span><span class="p">,</span><span class="nx">$event</span><span class="o">:</span><span class="nx">any</span><span class="p">)</span><span class="o">:</span><span class="kr">boolean</span> <span class="p">{</span>
-</span><span class="line">    <span class="kd">var</span> <span class="nx">result</span><span class="o">:</span><span class="kr">boolean</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
-</span><span class="line">    <span class="k">return</span> <span class="nx">result</span><span class="p">;</span>
-</span><span class="line">  <span class="p">}</span>
-</span><span class="line">  <span class="nx">subscribe</span><span class="p">(</span><span class="nx">view</span><span class="o">:</span><span class="nx">import1</span><span class="p">.</span><span class="nx">AppView</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="p">,</span><span class="nx">_eventHandler</span><span class="o">:</span><span class="nx">any</span><span class="p">)</span><span class="o">:</span><span class="k">void</span> <span class="p">{</span>
-</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">_eventHandler</span> <span class="o">=</span> <span class="nx">_eventHandler</span><span class="p">;</span>
-</span><span class="line">  <span class="p">}</span>
-</span><span class="line"><span class="p">}</span>
-</span><span class="line"><span class="kd">var</span> <span class="nx">renderType_AppComponent_Host</span><span class="o">:</span><span class="nx">import2</span><span class="p">.</span><span class="nx">RenderComponentType</span> <span class="o">=</span> <span class="nx">import3</span><span class="p">.</span><span class="nx">createRenderComponentType</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="nx">import4</span><span class="p">.</span><span class="nx">ViewEncapsulation</span><span class="p">.</span><span class="nx">None</span><span class="p">,([]</span> <span class="nx">as</span> <span class="nx">any</span><span class="p">[]),{});</span>
-</span><span class="line"><span class="kr">class</span> <span class="nx">View_AppComponent_Host0</span> <span class="kr">extends</span> <span class="nx">import1</span><span class="p">.</span><span class="nx">AppView</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span> <span class="p">{</span>
-</span><span class="line">  <span class="nx">_el_0</span><span class="o">:</span><span class="nx">any</span><span class="p">;</span>
-</span><span class="line">  <span class="nx">compView_0</span><span class="o">:</span><span class="nx">import1</span><span class="p">.</span><span class="nx">AppView</span><span class="o">&lt;</span><span class="nx">import0</span><span class="p">.</span><span class="nx">AppComponent</span><span class="o">&gt;</span><span class="p">;</span>
-</span><span class="line">  <span class="nx">_AppComponent_0_3</span><span class="o">:</span><span class="nx">Wrapper_AppComponent</span><span class="p">;</span>
-</span><span class="line">  <span class="nx">constructor</span><span class="p">(</span><span class="nx">viewUtils</span><span class="o">:</span><span class="nx">import3</span><span class="p">.</span><span class="nx">ViewUtils</span><span class="p">,</span><span class="nx">parentView</span><span class="o">:</span><span class="nx">import1</span><span class="p">.</span><span class="nx">AppView</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="p">,</span><span class="nx">parentIndex</span><span class="o">:</span><span class="nx">number</span><span class="p">,</span><span class="nx">parentElement</span><span class="o">:</span><span class="nx">any</span><span class="p">)</span> <span class="p">{</span>
-</span><span class="line">    <span class="kr">super</span><span class="p">(</span><span class="nx">View_AppComponent_Host0</span><span class="p">,</span><span class="nx">renderType_AppComponent_Host</span><span class="p">,</span><span class="nx">import5</span><span class="p">.</span><span class="nx">ViewType</span><span class="p">.</span><span class="nx">HOST</span><span class="p">,</span><span class="nx">viewUtils</span><span class="p">,</span><span class="nx">parentView</span><span class="p">,</span><span class="nx">parentIndex</span><span class="p">,</span><span class="nx">parentElement</span><span class="p">,</span><span class="nx">import6</span><span class="p">.</span><span class="nx">ChangeDetectorStatus</span><span class="p">.</span><span class="nx">CheckAlways</span><span class="p">);</span>
-</span><span class="line">  <span class="p">}</span>
-</span><span class="line">  <span class="nx">createInternal</span><span class="p">(</span><span class="nx">rootSelector</span><span class="o">:</span><span class="nx">string</span><span class="p">)</span><span class="o">:</span><span class="nx">import7</span><span class="p">.</span><span class="nx">ComponentRef</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span> <span class="p">{</span>
-</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">_el_0</span> <span class="o">=</span> <span class="nx">import3</span><span class="p">.</span><span class="nx">selectOrCreateRenderHostElement</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">renderer</span><span class="p">,</span><span class="s1">&#39;app-root&#39;</span><span class="p">,</span><span class="nx">import3</span><span class="p">.</span><span class="nx">EMPTY_INLINE_ARRAY</span><span class="p">,</span><span class="nx">rootSelector</span><span class="p">,(</span><span class="kc">null</span> <span class="nx">as</span> <span class="nx">any</span><span class="p">));</span>
-</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">compView_0</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">View_AppComponent0</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">viewUtils</span><span class="p">,</span><span class="k">this</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="k">this</span><span class="p">.</span><span class="nx">_el_0</span><span class="p">);</span>
-</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">_AppComponent_0_3</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Wrapper_AppComponent</span><span class="p">();</span>
-</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">compView_0</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_AppComponent_0_3</span><span class="p">.</span><span class="nx">context</span><span class="p">);</span>
-</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">init</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_el_0</span><span class="p">,((</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="k">this</span><span class="p">.</span><span class="nx">renderer</span><span class="p">).</span><span class="nx">directRenderer</span><span class="o">?</span> <span class="p">(</span><span class="kc">null</span> <span class="nx">as</span> <span class="nx">any</span><span class="p">)</span><span class="o">:</span> <span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">_el_0</span><span class="p">]),(</span><span class="kc">null</span> <span class="nx">as</span> <span class="nx">any</span><span class="p">));</span>
-</span><span class="line">    <span class="k">return</span> <span class="k">new</span> <span class="nx">import7</span><span class="p">.</span><span class="nx">ComponentRef_</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="k">this</span><span class="p">,</span><span class="k">this</span><span class="p">.</span><span class="nx">_el_0</span><span class="p">,</span><span class="k">this</span><span class="p">.</span><span class="nx">_AppComponent_0_3</span><span class="p">.</span><span class="nx">context</span><span class="p">);</span>
-</span><span class="line">  <span class="p">}</span>
-</span><span class="line">  <span class="nx">injectorGetInternal</span><span class="p">(</span><span class="nx">token</span><span class="o">:</span><span class="nx">any</span><span class="p">,</span><span class="nx">requestNodeIndex</span><span class="o">:</span><span class="nx">number</span><span class="p">,</span><span class="nx">notFoundResult</span><span class="o">:</span><span class="nx">any</span><span class="p">)</span><span class="o">:</span><span class="nx">any</span> <span class="p">{</span>
-</span><span class="line">    <span class="k">if</span> <span class="p">(((</span><span class="nx">token</span> <span class="o">===</span> <span class="nx">import0</span><span class="p">.</span><span class="nx">AppComponent</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="mi">0</span> <span class="o">===</span> <span class="nx">requestNodeIndex</span><span class="p">)))</span> <span class="p">{</span> <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_AppComponent_0_3</span><span class="p">.</span><span class="nx">context</span><span class="p">;</span> <span class="p">}</span>
-</span><span class="line">    <span class="k">return</span> <span class="nx">notFoundResult</span><span class="p">;</span>
-</span><span class="line">  <span class="p">}</span>
-</span><span class="line">  <span class="nx">detectChangesInternal</span><span class="p">(</span><span class="nx">throwOnChange</span><span class="o">:</span><span class="kr">boolean</span><span class="p">)</span><span class="o">:</span><span class="k">void</span> <span class="p">{</span>
-</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">_AppComponent_0_3</span><span class="p">.</span><span class="nx">ngDoCheck</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="k">this</span><span class="p">.</span><span class="nx">_el_0</span><span class="p">,</span><span class="nx">throwOnChange</span><span class="p">);</span>
-</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">compView_0</span><span class="p">.</span><span class="nx">detectChanges</span><span class="p">(</span><span class="nx">throwOnChange</span><span class="p">);</span>
-</span><span class="line">  <span class="p">}</span>
-</span><span class="line">  <span class="nx">destroyInternal</span><span class="p">()</span><span class="o">:</span><span class="k">void</span> <span class="p">{</span>
-</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">compView_0</span><span class="p">.</span><span class="nx">destroy</span><span class="p">();</span>
-</span><span class="line">  <span class="p">}</span>
-</span><span class="line">  <span class="nx">visitRootNodesInternal</span><span class="p">(</span><span class="nx">cb</span><span class="o">:</span><span class="nx">any</span><span class="p">,</span><span class="nx">ctx</span><span class="o">:</span><span class="nx">any</span><span class="p">)</span><span class="o">:</span><span class="k">void</span> <span class="p">{</span>
-</span><span class="line">    <span class="nx">cb</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_el_0</span><span class="p">,</span><span class="nx">ctx</span><span class="p">);</span>
-</span><span class="line">  <span class="p">}</span>
-</span><span class="line"><span class="p">}</span>
-</span><span class="line"><span class="kr">export</span> <span class="kr">const</span> <span class="nx">AppComponentNgFactory</span><span class="o">:</span><span class="nx">import7</span><span class="p">.</span><span class="nx">ComponentFactory</span><span class="o">&lt;</span><span class="nx">import0</span><span class="p">.</span><span class="nx">AppComponent</span><span class="o">&gt;</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">import7</span><span class="p">.</span><span class="nx">ComponentFactory</span><span class="o">&lt;</span><span class="nx">import0</span><span class="p">.</span><span class="nx">AppComponent</span><span class="o">&gt;</span><span class="p">(</span><span class="s1">&#39;app-root&#39;</span><span class="p">,</span><span class="nx">View_AppComponent_Host0</span><span class="p">,</span><span class="nx">import0</span><span class="p">.</span><span class="nx">AppComponent</span><span class="p">);</span>
-</span><span class="line"><span class="kr">const</span> <span class="nx">styles_AppComponent</span><span class="o">:</span><span class="nx">any</span><span class="p">[]</span> <span class="o">=</span> <span class="p">[</span><span class="nx">import8</span><span class="p">.</span><span class="nx">styles</span><span class="p">];</span>
-</span><span class="line"><span class="kd">var</span> <span class="nx">renderType_AppComponent</span><span class="o">:</span><span class="nx">import2</span><span class="p">.</span><span class="nx">RenderComponentType</span> <span class="o">=</span> <span class="nx">import3</span><span class="p">.</span><span class="nx">createRenderComponentType</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="nx">import4</span><span class="p">.</span><span class="nx">ViewEncapsulation</span><span class="p">.</span><span class="nx">Emulated</span><span class="p">,</span><span class="nx">styles_AppComponent</span><span class="p">,{});</span>
-</span><span class="line"><span class="kr">export</span> <span class="kr">class</span> <span class="nx">View_AppComponent0</span> <span class="kr">extends</span> <span class="nx">import1</span><span class="p">.</span><span class="nx">AppView</span><span class="o">&lt;</span><span class="nx">import0</span><span class="p">.</span><span class="nx">AppComponent</span><span class="o">&gt;</span> <span class="p">{</span>
-</span><span class="line">  <span class="nx">_viewQuery_someThing_0</span><span class="o">:</span><span class="nx">import9</span><span class="p">.</span><span class="nx">QueryList</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="p">;</span>
-</span><span class="line">  <span class="nx">_el_0</span><span class="o">:</span><span class="nx">any</span><span class="p">;</span>
-</span><span class="line">  <span class="nx">_text_1</span><span class="o">:</span><span class="nx">any</span><span class="p">;</span>
-</span><span class="line">  <span class="nx">_text_2</span><span class="o">:</span><span class="nx">any</span><span class="p">;</span>
-</span><span class="line">  <span class="nx">_el_3</span><span class="o">:</span><span class="nx">any</span><span class="p">;</span>
-</span><span class="line">  <span class="nx">_text_4</span><span class="o">:</span><span class="nx">any</span><span class="p">;</span>
-</span><span class="line">  <span class="nx">_anchor_5</span><span class="o">:</span><span class="nx">any</span><span class="p">;</span>
-</span><span class="line">  <span class="cm">/*private*/</span> <span class="nx">_vc_5</span><span class="o">:</span><span class="nx">import10</span><span class="p">.</span><span class="nx">ViewContainer</span><span class="p">;</span>
-</span><span class="line">  <span class="nx">_TemplateRef_5_5</span><span class="o">:</span><span class="nx">any</span><span class="p">;</span>
-</span><span class="line">  <span class="nx">_NgFor_5_6</span><span class="o">:</span><span class="nx">import11</span><span class="p">.</span><span class="nx">Wrapper_NgFor</span><span class="p">;</span>
-</span><span class="line">  <span class="nx">_text_6</span><span class="o">:</span><span class="nx">any</span><span class="p">;</span>
-</span><span class="line">  <span class="nx">_text_7</span><span class="o">:</span><span class="nx">any</span><span class="p">;</span>
-</span><span class="line">  <span class="cm">/*private*/</span> <span class="nx">_expr_12</span><span class="o">:</span><span class="nx">any</span><span class="p">;</span>
-</span><span class="line">  <span class="nx">constructor</span><span class="p">(</span><span class="nx">viewUtils</span><span class="o">:</span><span class="nx">import3</span><span class="p">.</span><span class="nx">ViewUtils</span><span class="p">,</span><span class="nx">parentView</span><span class="o">:</span><span class="nx">import1</span><span class="p">.</span><span class="nx">AppView</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="p">,</span><span class="nx">parentIndex</span><span class="o">:</span><span class="nx">number</span><span class="p">,</span><span class="nx">parentElement</span><span class="o">:</span><span class="nx">any</span><span class="p">)</span> <span class="p">{</span>
-</span><span class="line">    <span class="kr">super</span><span class="p">(</span><span class="nx">View_AppComponent0</span><span class="p">,</span><span class="nx">renderType_AppComponent</span><span class="p">,</span><span class="nx">import5</span><span class="p">.</span><span class="nx">ViewType</span><span class="p">.</span><span class="nx">COMPONENT</span><span class="p">,</span><span class="nx">viewUtils</span><span class="p">,</span><span class="nx">parentView</span><span class="p">,</span><span class="nx">parentIndex</span><span class="p">,</span><span class="nx">parentElement</span><span class="p">,</span><span class="nx">import6</span><span class="p">.</span><span class="nx">ChangeDetectorStatus</span><span class="p">.</span><span class="nx">CheckAlways</span><span class="p">);</span>
-</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">_expr_12</span> <span class="o">=</span> <span class="nx">import6</span><span class="p">.</span><span class="nx">UNINITIALIZED</span><span class="p">;</span>
-</span><span class="line">  <span class="p">}</span>
-</span><span class="line">  <span class="nx">createInternal</span><span class="p">(</span><span class="nx">rootSelector</span><span class="o">:</span><span class="nx">string</span><span class="p">)</span><span class="o">:</span><span class="nx">import7</span><span class="p">.</span><span class="nx">ComponentRef</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span> <span class="p">{</span>
-</span><span class="line">    <span class="kr">const</span> <span class="nx">parentRenderNode</span><span class="o">:</span><span class="nx">any</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">renderer</span><span class="p">.</span><span class="nx">createViewRoot</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">parentElement</span><span class="p">);</span>
-</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">_viewQuery_someThing_0</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">import9</span><span class="p">.</span><span class="nx">QueryList</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="p">();</span>
-</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">_el_0</span> <span class="o">=</span> <span class="nx">import3</span><span class="p">.</span><span class="nx">createRenderElement</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">renderer</span><span class="p">,</span><span class="nx">parentRenderNode</span><span class="p">,</span><span class="s1">&#39;h1&#39;</span><span class="p">,</span><span class="nx">import3</span><span class="p">.</span><span class="nx">EMPTY_INLINE_ARRAY</span><span class="p">,(</span><span class="kc">null</span> <span class="nx">as</span> <span class="nx">any</span><span class="p">));</span>
-</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">_text_1</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">renderer</span><span class="p">.</span><span class="nx">createText</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_el_0</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">,(</span><span class="kc">null</span> <span class="nx">as</span> <span class="nx">any</span><span class="p">));</span>
-</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">_text_2</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">renderer</span><span class="p">.</span><span class="nx">createText</span><span class="p">(</span><span class="nx">parentRenderNode</span><span class="p">,</span><span class="s1">&#39;\n&#39;</span><span class="p">,(</span><span class="kc">null</span> <span class="nx">as</span> <span class="nx">any</span><span class="p">));</span>
-</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">_el_3</span> <span class="o">=</span> <span class="nx">import3</span><span class="p">.</span><span class="nx">createRenderElement</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">renderer</span><span class="p">,</span><span class="nx">parentRenderNode</span><span class="p">,</span><span class="s1">&#39;ul&#39;</span><span class="p">,</span><span class="nx">import3</span><span class="p">.</span><span class="nx">EMPTY_INLINE_ARRAY</span><span class="p">,(</span><span class="kc">null</span> <span class="nx">as</span> <span class="nx">any</span><span class="p">));</span>
-</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">_text_4</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">renderer</span><span class="p">.</span><span class="nx">createText</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_el_3</span><span class="p">,</span><span class="s1">&#39;\n  &#39;</span><span class="p">,(</span><span class="kc">null</span> <span class="nx">as</span> <span class="nx">any</span><span class="p">));</span>
-</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">_anchor_5</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">renderer</span><span class="p">.</span><span class="nx">createTemplateAnchor</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_el_3</span><span class="p">,(</span><span class="kc">null</span> <span class="nx">as</span> <span class="nx">any</span><span class="p">));</span>
-</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">_vc_5</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">import10</span><span class="p">.</span><span class="nx">ViewContainer</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="k">this</span><span class="p">,</span><span class="k">this</span><span class="p">.</span><span class="nx">_anchor_5</span><span class="p">);</span>
-</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">_TemplateRef_5_5</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">import12</span><span class="p">.</span><span class="nx">TemplateRef_</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="k">this</span><span class="p">.</span><span class="nx">_anchor_5</span><span class="p">);</span>
-</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">_NgFor_5_6</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">import11</span><span class="p">.</span><span class="nx">Wrapper_NgFor</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_vc_5</span><span class="p">.</span><span class="nx">vcRef</span><span class="p">,</span><span class="k">this</span><span class="p">.</span><span class="nx">_TemplateRef_5_5</span><span class="p">,</span><span class="k">this</span><span class="p">.</span><span class="nx">parentView</span><span class="p">.</span><span class="nx">injectorGet</span><span class="p">(</span><span class="nx">import13</span><span class="p">.</span><span class="nx">IterableDiffers</span><span class="p">,</span><span class="k">this</span><span class="p">.</span><span class="nx">parentIndex</span><span class="p">),</span><span class="k">this</span><span class="p">.</span><span class="nx">ref</span><span class="p">);</span>
-</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">_text_6</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">renderer</span><span class="p">.</span><span class="nx">createText</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_el_3</span><span class="p">,</span><span class="s1">&#39;\n&#39;</span><span class="p">,(</span><span class="kc">null</span> <span class="nx">as</span> <span class="nx">any</span><span class="p">));</span>
-</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">_text_7</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">renderer</span><span class="p">.</span><span class="nx">createText</span><span class="p">(</span><span class="nx">parentRenderNode</span><span class="p">,</span><span class="s1">&#39;\n&#39;</span><span class="p">,(</span><span class="kc">null</span> <span class="nx">as</span> <span class="nx">any</span><span class="p">));</span>
-</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">_viewQuery_someThing_0</span><span class="p">.</span><span class="nx">reset</span><span class="p">(([]</span> <span class="nx">as</span> <span class="nx">any</span><span class="p">[]));</span>
-</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">context</span><span class="p">.</span><span class="nx">someElement</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_viewQuery_someThing_0</span><span class="p">.</span><span class="nx">first</span><span class="p">;</span>
-</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">init</span><span class="p">((</span><span class="kc">null</span> <span class="nx">as</span> <span class="nx">any</span><span class="p">),((</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="k">this</span><span class="p">.</span><span class="nx">renderer</span><span class="p">).</span><span class="nx">directRenderer</span><span class="o">?</span> <span class="p">(</span><span class="kc">null</span> <span class="nx">as</span> <span class="nx">any</span><span class="p">)</span><span class="o">:</span> <span class="p">[</span>
-</span><span class="line">      <span class="k">this</span><span class="p">.</span><span class="nx">_el_0</span><span class="p">,</span>
-</span><span class="line">      <span class="k">this</span><span class="p">.</span><span class="nx">_text_1</span><span class="p">,</span>
-</span><span class="line">      <span class="k">this</span><span class="p">.</span><span class="nx">_text_2</span><span class="p">,</span>
-</span><span class="line">      <span class="k">this</span><span class="p">.</span><span class="nx">_el_3</span><span class="p">,</span>
-</span><span class="line">      <span class="k">this</span><span class="p">.</span><span class="nx">_text_4</span><span class="p">,</span>
-</span><span class="line">      <span class="k">this</span><span class="p">.</span><span class="nx">_anchor_5</span><span class="p">,</span>
-</span><span class="line">      <span class="k">this</span><span class="p">.</span><span class="nx">_text_6</span><span class="p">,</span>
-</span><span class="line">      <span class="k">this</span><span class="p">.</span><span class="nx">_text_7</span>
-</span><span class="line">    <span class="p">]</span>
-</span><span class="line">    <span class="p">),(</span><span class="kc">null</span> <span class="nx">as</span> <span class="nx">any</span><span class="p">));</span>
-</span><span class="line">    <span class="k">return</span> <span class="p">(</span><span class="kc">null</span> <span class="nx">as</span> <span class="nx">any</span><span class="p">);</span>
-</span><span class="line">  <span class="p">}</span>
-</span><span class="line">  <span class="nx">injectorGetInternal</span><span class="p">(</span><span class="nx">token</span><span class="o">:</span><span class="nx">any</span><span class="p">,</span><span class="nx">requestNodeIndex</span><span class="o">:</span><span class="nx">number</span><span class="p">,</span><span class="nx">notFoundResult</span><span class="o">:</span><span class="nx">any</span><span class="p">)</span><span class="o">:</span><span class="nx">any</span> <span class="p">{</span>
-</span><span class="line">    <span class="k">if</span> <span class="p">(((</span><span class="nx">token</span> <span class="o">===</span> <span class="nx">import12</span><span class="p">.</span><span class="nx">TemplateRef</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="mi">5</span> <span class="o">===</span> <span class="nx">requestNodeIndex</span><span class="p">)))</span> <span class="p">{</span> <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_TemplateRef_5_5</span><span class="p">;</span> <span class="p">}</span>
-</span><span class="line">    <span class="k">if</span> <span class="p">(((</span><span class="nx">token</span> <span class="o">===</span> <span class="nx">import14</span><span class="p">.</span><span class="nx">NgFor</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="mi">5</span> <span class="o">===</span> <span class="nx">requestNodeIndex</span><span class="p">)))</span> <span class="p">{</span> <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_NgFor_5_6</span><span class="p">.</span><span class="nx">context</span><span class="p">;</span> <span class="p">}</span>
-</span><span class="line">    <span class="k">return</span> <span class="nx">notFoundResult</span><span class="p">;</span>
-</span><span class="line">  <span class="p">}</span>
-</span><span class="line">  <span class="nx">detectChangesInternal</span><span class="p">(</span><span class="nx">throwOnChange</span><span class="o">:</span><span class="kr">boolean</span><span class="p">)</span><span class="o">:</span><span class="k">void</span> <span class="p">{</span>
-</span><span class="line">    <span class="kr">const</span> <span class="nx">currVal_5_0_0</span><span class="o">:</span><span class="nx">any</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">context</span><span class="p">.</span><span class="nx">names</span><span class="p">;</span>
-</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">_NgFor_5_6</span><span class="p">.</span><span class="nx">check_ngForOf</span><span class="p">(</span><span class="nx">currVal_5_0_0</span><span class="p">,</span><span class="nx">throwOnChange</span><span class="p">,</span><span class="kc">false</span><span class="p">);</span>
-</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">_NgFor_5_6</span><span class="p">.</span><span class="nx">ngDoCheck</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="k">this</span><span class="p">.</span><span class="nx">_anchor_5</span><span class="p">,</span><span class="nx">throwOnChange</span><span class="p">);</span>
-</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">_vc_5</span><span class="p">.</span><span class="nx">detectChangesInNestedViews</span><span class="p">(</span><span class="nx">throwOnChange</span><span class="p">);</span>
-</span><span class="line">    <span class="kr">const</span> <span class="nx">currVal_12</span><span class="o">:</span><span class="nx">any</span> <span class="o">=</span> <span class="nx">import3</span><span class="p">.</span><span class="nx">inlineInterpolate</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">,</span><span class="k">this</span><span class="p">.</span><span class="nx">context</span><span class="p">.</span><span class="nx">title</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
-</span><span class="line">    <span class="k">if</span> <span class="p">(</span><span class="nx">import3</span><span class="p">.</span><span class="nx">checkBinding</span><span class="p">(</span><span class="nx">throwOnChange</span><span class="p">,</span><span class="k">this</span><span class="p">.</span><span class="nx">_expr_12</span><span class="p">,</span><span class="nx">currVal_12</span><span class="p">))</span> <span class="p">{</span>
-</span><span class="line">      <span class="k">this</span><span class="p">.</span><span class="nx">renderer</span><span class="p">.</span><span class="nx">setText</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_text_1</span><span class="p">,</span><span class="nx">currVal_12</span><span class="p">);</span>
-</span><span class="line">      <span class="k">this</span><span class="p">.</span><span class="nx">_expr_12</span> <span class="o">=</span> <span class="nx">currVal_12</span><span class="p">;</span>
-</span><span class="line">    <span class="p">}</span>
-</span><span class="line">  <span class="p">}</span>
-</span><span class="line">  <span class="nx">destroyInternal</span><span class="p">()</span><span class="o">:</span><span class="k">void</span> <span class="p">{</span>
-</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">_vc_5</span><span class="p">.</span><span class="nx">destroyNestedViews</span><span class="p">();</span>
-</span><span class="line">  <span class="p">}</span>
-</span><span class="line">  <span class="nx">createEmbeddedViewInternal</span><span class="p">(</span><span class="nx">nodeIndex</span><span class="o">:</span><span class="nx">number</span><span class="p">)</span><span class="o">:</span><span class="nx">import1</span><span class="p">.</span><span class="nx">AppView</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span> <span class="p">{</span>
-</span><span class="line">    <span class="k">if</span> <span class="p">((</span><span class="nx">nodeIndex</span> <span class="o">==</span> <span class="mi">5</span><span class="p">))</span> <span class="p">{</span> <span class="k">return</span> <span class="k">new</span> <span class="nx">View_AppComponent1</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">viewUtils</span><span class="p">,</span><span class="k">this</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="k">this</span><span class="p">.</span><span class="nx">_anchor_5</span><span class="p">,</span><span class="k">this</span><span class="p">.</span><span class="nx">_vc_5</span><span class="p">);</span> <span class="p">}</span>
-</span><span class="line">    <span class="k">return</span> <span class="p">(</span><span class="kc">null</span> <span class="nx">as</span> <span class="nx">any</span><span class="p">);</span>
-</span><span class="line">  <span class="p">}</span>
-</span><span class="line"><span class="p">}</span>
-</span><span class="line"><span class="kr">class</span> <span class="nx">View_AppComponent1</span> <span class="kr">extends</span> <span class="nx">import1</span><span class="p">.</span><span class="nx">AppView</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span> <span class="p">{</span>
-</span><span class="line">  <span class="nx">_el_0</span><span class="o">:</span><span class="nx">any</span><span class="p">;</span>
-</span><span class="line">  <span class="nx">_text_1</span><span class="o">:</span><span class="nx">any</span><span class="p">;</span>
-</span><span class="line">  <span class="cm">/*private*/</span> <span class="nx">_expr_2</span><span class="o">:</span><span class="nx">any</span><span class="p">;</span>
-</span><span class="line">  <span class="nx">constructor</span><span class="p">(</span><span class="nx">viewUtils</span><span class="o">:</span><span class="nx">import3</span><span class="p">.</span><span class="nx">ViewUtils</span><span class="p">,</span><span class="nx">parentView</span><span class="o">:</span><span class="nx">import1</span><span class="p">.</span><span class="nx">AppView</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="p">,</span><span class="nx">parentIndex</span><span class="o">:</span><span class="nx">number</span><span class="p">,</span><span class="nx">parentElement</span><span class="o">:</span><span class="nx">any</span><span class="p">,</span><span class="nx">declaredViewContainer</span><span class="o">:</span><span class="nx">import10</span><span class="p">.</span><span class="nx">ViewContainer</span><span class="p">)</span> <span class="p">{</span>
-</span><span class="line">    <span class="kr">super</span><span class="p">(</span><span class="nx">View_AppComponent1</span><span class="p">,</span><span class="nx">renderType_AppComponent</span><span class="p">,</span><span class="nx">import5</span><span class="p">.</span><span class="nx">ViewType</span><span class="p">.</span><span class="nx">EMBEDDED</span><span class="p">,</span><span class="nx">viewUtils</span><span class="p">,</span><span class="nx">parentView</span><span class="p">,</span><span class="nx">parentIndex</span><span class="p">,</span><span class="nx">parentElement</span><span class="p">,</span><span class="nx">import6</span><span class="p">.</span><span class="nx">ChangeDetectorStatus</span><span class="p">.</span><span class="nx">CheckAlways</span><span class="p">,</span><span class="nx">declaredViewContainer</span><span class="p">);</span>
-</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">_expr_2</span> <span class="o">=</span> <span class="nx">import6</span><span class="p">.</span><span class="nx">UNINITIALIZED</span><span class="p">;</span>
-</span><span class="line">  <span class="p">}</span>
-</span><span class="line">  <span class="nx">createInternal</span><span class="p">(</span><span class="nx">rootSelector</span><span class="o">:</span><span class="nx">string</span><span class="p">)</span><span class="o">:</span><span class="nx">import7</span><span class="p">.</span><span class="nx">ComponentRef</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span> <span class="p">{</span>
-</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">_el_0</span> <span class="o">=</span> <span class="nx">import3</span><span class="p">.</span><span class="nx">createRenderElement</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">renderer</span><span class="p">,(</span><span class="kc">null</span> <span class="nx">as</span> <span class="nx">any</span><span class="p">),</span><span class="s1">&#39;li&#39;</span><span class="p">,</span><span class="nx">import3</span><span class="p">.</span><span class="nx">EMPTY_INLINE_ARRAY</span><span class="p">,(</span><span class="kc">null</span> <span class="nx">as</span> <span class="nx">any</span><span class="p">));</span>
-</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">_text_1</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">renderer</span><span class="p">.</span><span class="nx">createText</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_el_0</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">,(</span><span class="kc">null</span> <span class="nx">as</span> <span class="nx">any</span><span class="p">));</span>
-</span><span class="line">    <span class="k">this</span><span class="p">.</span><span class="nx">init</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_el_0</span><span class="p">,((</span><span class="o">&lt;</span><span class="nx">any</span><span class="o">&gt;</span><span class="k">this</span><span class="p">.</span><span class="nx">renderer</span><span class="p">).</span><span class="nx">directRenderer</span><span class="o">?</span> <span class="p">(</span><span class="kc">null</span> <span class="nx">as</span> <span class="nx">any</span><span class="p">)</span><span class="o">:</span> <span class="p">[</span>
-</span><span class="line">      <span class="k">this</span><span class="p">.</span><span class="nx">_el_0</span><span class="p">,</span>
-</span><span class="line">      <span class="k">this</span><span class="p">.</span><span class="nx">_text_1</span>
-</span><span class="line">    <span class="p">]</span>
-</span><span class="line">    <span class="p">),(</span><span class="kc">null</span> <span class="nx">as</span> <span class="nx">any</span><span class="p">));</span>
-</span><span class="line">    <span class="k">return</span> <span class="p">(</span><span class="kc">null</span> <span class="nx">as</span> <span class="nx">any</span><span class="p">);</span>
-</span><span class="line">  <span class="p">}</span>
-</span><span class="line">  <span class="nx">detectChangesInternal</span><span class="p">(</span><span class="nx">throwOnChange</span><span class="o">:</span><span class="kr">boolean</span><span class="p">)</span><span class="o">:</span><span class="k">void</span> <span class="p">{</span>
-</span><span class="line">    <span class="kr">const</span> <span class="nx">currVal_2</span><span class="o">:</span><span class="nx">any</span> <span class="o">=</span> <span class="nx">import3</span><span class="p">.</span><span class="nx">inlineInterpolate</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;Hello &#39;</span><span class="p">,</span><span class="k">this</span><span class="p">.</span><span class="nx">context</span><span class="p">.</span><span class="nx">$implicit</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
-</span><span class="line">    <span class="k">if</span> <span class="p">(</span><span class="nx">import3</span><span class="p">.</span><span class="nx">checkBinding</span><span class="p">(</span><span class="nx">throwOnChange</span><span class="p">,</span><span class="k">this</span><span class="p">.</span><span class="nx">_expr_2</span><span class="p">,</span><span class="nx">currVal_2</span><span class="p">))</span> <span class="p">{</span>
-</span><span class="line">      <span class="k">this</span><span class="p">.</span><span class="nx">renderer</span><span class="p">.</span><span class="nx">setText</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_text_1</span><span class="p">,</span><span class="nx">currVal_2</span><span class="p">);</span>
-</span><span class="line">      <span class="k">this</span><span class="p">.</span><span class="nx">_expr_2</span> <span class="o">=</span> <span class="nx">currVal_2</span><span class="p">;</span>
-</span><span class="line">    <span class="p">}</span>
-</span><span class="line">  <span class="p">}</span>
-</span><span class="line">  <span class="nx">visitRootNodesInternal</span><span class="p">(</span><span class="nx">cb</span><span class="o">:</span><span class="nx">any</span><span class="p">,</span><span class="nx">ctx</span><span class="o">:</span><span class="nx">any</span><span class="p">)</span><span class="o">:</span><span class="k">void</span> <span class="p">{</span>
-</span><span class="line">    <span class="nx">cb</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_el_0</span><span class="p">,</span><span class="nx">ctx</span><span class="p">);</span>
-</span><span class="line">  <span class="p">}</span>
-</span><span class="line"><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>That’s one reason that <code>Angular</code> use aot compiler.</p>
-
-<h2 id="improve-itself">Improve itself</h2>
-
-<p><em>The Angular Ahead-of-Time (AOT) compiler converts your Angular HTML and TypeScript code into efficient JavaScript code during the build phase before the browser downloads and runs that code.</em></p>
-
-<ul>
-  <li>
-    <p>Just-in-Time 编译模式开发流程</p>
-
-    <ul>
-      <li>
-        <p>使用 TypeScript 开发 Angular 应用</p>
-
-        <ul>
-          <li>
-            <p>运行 tsc 编译 TypeScript 代码</p>
-          </li>
-          <li>
-            <p>使用 Webpack 或 Gulp 等其他工具构建项目，如代码压缩、合并等</p>
-          </li>
-          <li>
-            <p>部署应用</p>
-          </li>
-        </ul>
-      </li>
-      <li>
-        <p>应用部署后，当用户通过浏览器访问我们应用的时候，她将经历以下步骤(非严格 CSP)：</p>
-
-        <ul>
-          <li>
-            <p>下载应用相关的资源，如 JavaScript 文件、图片、样式资源</p>
-          </li>
-          <li>
-            <p>Angular 启动</p>
-          </li>
-          <li>
-            <p>Angular 进入 JiT 编译模式，开始编译我们应用中的指令或组件，生成相应的 JavaScript 代码</p>
-          </li>
-          <li>
-            <p>应用完成渲染</p>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>
-    <p>Ahead-Of-Time 编译模式开发流程</p>
-
-    <ul>
-      <li>
-        <p>使用 TypeScript 开发 Angular 应用</p>
-
-        <ul>
-          <li>
-            <p>运行 ngc 编译应用程序</p>
-          </li>
-          <li>
-            <p>使用 Angular Compiler 编译模板，一般输出 TypeScript 代码</p>
-          </li>
-          <li>
-            <p>运行 tsc 编译 TypeScript 代码</p>
-          </li>
-          <li>
-            <p>使用 Webpack 或 Gulp 等其他工具构建项目，如代码压缩、合并等</p>
-          </li>
-          <li>
-            <p>部署应用</p>
-          </li>
-        </ul>
-      </li>
-      <li>
-        <p>应用部署后，相比于 JIT 编译模式，在 AOT 模式下用户访问我们的应用，只需经历以下步骤：</p>
-
-        <ul>
-          <li>
-            <p>下载应用相关的资源，如 JavaScript 文件、图片、样式资源</p>
-          </li>
-          <li>
-            <p>Angular 启动</p>
-          </li>
-          <li>
-            <p>应用完成渲染</p>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-</ul>
-
-<h2 id="refrences">Refrences</h2>
-
-<p><a href="https://segmentfault.com/a/1190000008739157">https://segmentfault.com/a/1190000008739157</a></p>
 </div>
   
+  
+    <footer>
+      <a rel="full-article" href="/blog/2017/06/07/angular-aot/">Read on &rarr;</a>
+    </footer>
   
 
 
@@ -734,96 +267,12 @@
 </span><span class="line">  <span class="nx">cf</span><span class="p">().</span><span class="nx">then</span><span class="p">().</span><span class="k">catch</span><span class="p">();</span>
 </span><span class="line"><span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption class="code-header"><span>After </span></figcaption>
- <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers">1</span>...
-<span class="line-numbers">2</span>let cf = async () =&gt; {
-<span class="line-numbers">3</span>  let r1 = await af();
-<span class="line-numbers">4</span>  let r2 = await bf();
-<span class="line-numbers">5</span>  <span class="keyword">return</span> ...;
-<span class="line-numbers">6</span>}
-<span class="line-numbers">7</span>...
-</pre></div>
-</div>
- </figure></notextile></div>
-
-<blockquote>
-  <p>Now we need <code>babel</code> to compile this syntax</p>
-</blockquote>
-
-<h2 id="npm">NPM</h2>
-
-<ul>
-  <li>
-    <p>start project use <code>npm init</code></p>
-  </li>
-  <li>
-    <p>use <code>.npmrc</code></p>
-  </li>
-</ul>
-
-<div class="bogus-wrapper"><notextile><figure class="code"> <div class="CodeRay">
-  <div class="code"><pre>npm config set save=true
-npm config set save-exact=true
-</pre></div>
-</div>
- </figure></notextile></div>
-
-<ul>
-  <li>add scripts to <code>package.json</code></li>
-</ul>
-
-<div class="bogus-wrapper"><notextile><figure class="code"> <div class="CodeRay">
-  <div class="code"><pre><span class="key"><span class="delimiter">&quot;</span><span class="content">scripts</span><span class="delimiter">&quot;</span></span>: {
-  <span class="key"><span class="delimiter">&quot;</span><span class="content">debug</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">npm run es6 -- --nolazy --debug-brk=5858 src/server.js</span><span class="delimiter">&quot;</span></span>,
-  <span class="key"><span class="delimiter">&quot;</span><span class="content">es6</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">node_modules/.bin/babel-node</span><span class="delimiter">&quot;</span></span>,
-  <span class="key"><span class="delimiter">&quot;</span><span class="content">es6:watch</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">node_modules/.bin/babel-watch</span><span class="delimiter">&quot;</span></span>,
-  <span class="key"><span class="delimiter">&quot;</span><span class="content">eslint</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">node_modules/.bin/eslint</span><span class="delimiter">&quot;</span></span>,
-  <span class="key"><span class="delimiter">&quot;</span><span class="content">start</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">npm run es6:watch -- src/server.js</span><span class="delimiter">&quot;</span></span>,
-  <span class="key"><span class="delimiter">&quot;</span><span class="content">start:prod</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">npm run es6 -- src/server.js</span><span class="delimiter">&quot;</span></span>,
-  <span class="key"><span class="delimiter">&quot;</span><span class="content">test</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">npm run eslint -- </span><span class="char">\&quot;</span><span class="content">src/**/*.js</span><span class="char">\&quot;</span><span class="content"> &amp;&amp; make tests</span><span class="delimiter">&quot;</span></span>
-}
-</pre></div>
-</div>
- </figure></notextile></div>
-
-<h2 id="style-guide">Style guide</h2>
-
-<p><code>ESlint</code>, <code>JSLint</code> and so on.</p>
-
-<h2 id="handle-errors-and-logging-important-messages">Handle errors and logging important messages</h2>
-
-<p>Some <code>syntax</code> like:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"> <div class="CodeRay">
-  <div class="code"><pre><span class="comment">// if use express</span>
-let errorCatch = (err, req, res, next) =&gt; {
-  logger.error(err.message, <span class="string"><span class="delimiter">&quot;</span><span class="char">\n</span><span class="delimiter">&quot;</span></span> + err.stack);
-  <span class="comment">// some logic ...</span>
-  res.status(err.code || <span class="integer">500</span>);
-  res.json({ <span class="key">error</span>: err.message });
-}
-</pre></div>
-</div>
- </figure></notextile></div>
-
-<h2 id="process-management">Process management</h2>
-
-<ul>
-  <li>
-    <p>automatically restart app</p>
-  </li>
-  <li>
-    <p>cluster app</p>
-  </li>
-</ul>
-
-<h2 id="use-content-security-policy-in-web-application">Use <code>Content-Security-Policy</code> in web application</h2>
-
-<p>reduce XSS (Cross-Site scripting) risks on modern browsers, <a href="https://content-security-policy.com/">https://content-security-policy.com/</a>.</p>
 </div>
   
+  
+    <footer>
+      <a rel="full-article" href="/blog/2017/06/02/nodejs-best-practices/">Read on &rarr;</a>
+    </footer>
   
 
 
@@ -855,94 +304,13 @@ let errorCatch = (err, req, res, next) =&gt; {
 
   <div class="entry-content"><p>I think many guys are using <code>express</code> as they backend service framework, there is a most important thing <code>Test</code>. We should write test for the apis that usually contains a lot of business logics.</p>
 
-<p>Today I want to show my experiences on writing test for express apis.</p>
-
-<p>Dependencies</p>
-
-<pre><code>"babel-register": "6.23.0",
-"chai": "3.5.0",
-"chai-as-promised": "6.0.0",
-"mocha": "3.3.0",
-"sinon": "2.2.0",
-"supertest": "3.0.0"
-</code></pre>
-
-<p>Makefile</p>
-
-<pre><code>TESTS = src/test/**/*.spec.js
-REPORTER = spec
-
-NODE_ENV = test
-
-tests:
-  @./node_modules/.bin/mocha \
-    --compilers js:babel-register \
-    --require src/test/test-helper.js \
-    --timeout 10000 \
-    --colors \
-    --reporter $(REPORTER) \
-    $(TESTS)
-
-.PHONY: tests
-</code></pre>
-
-<p>test-helper.js</p>
-
-<pre><code>import chai from 'chai';
-import chaiAsPromised from 'chai-as-promised';
-
-chai.use(chaiAsPromised);
-global.expect = chai.expect;
-</code></pre>
-
-<p>I use <code>supertest</code> to send a reqeust to api, here I supply one example, because it confuses me for a long time.</p>
-
-<h2 id="example">Example</h2>
-
-<p>Update roles api, it will check <code>current user</code> permission firstly</p>
-
-<blockquote>
-  <p>case 1, user have RoleUpdate permission
-case 2, user don’t have RoleUpdate permission</p>
-</blockquote>
-
-<pre><code>router.route('/:id/roles').put(hasPermission('RoleUpdate'), (req, res, next) =&gt; {
-  ...
-});
-
-export let hasPermission = (name) =&gt; {
-  return (req, res, next) =&gt; {
-    readPermission(req.currentUser)
-      .then(results =&gt; {
-        let permissions = results.map(result =&gt; result.name);
-        if (permissions.indexOf(name) === -1) {
-          return next(new PermissionError(`Sorry, You don't have ${name} permission`));
-        }
-        next();
-      })
-      .catch(err =&gt; next(err));
-  }
-};
-
-let readPermission = (username) =&gt; {
-  return Permisison.findByUser(username);
-};
-</code></pre>
-
-<p>In these two case, the directly thought is mock the <code>hasPermission</code> or export <code>readPermission</code> then mock him, but unfortunately, all of these solutions fail. Because it runs before the app starts.</p>
-
-<p>If we mock <code>Permisison.findByUser</code>, it can works well.</p>
-
-<pre><code>let sandbox = sinon.sandbox.create();
-
-case 1
-sandbox.stub(Permisison, 'findByUser').returns(RSVP.resolve([{ name: 'RoleUpdate' }]));
-...
-case 2
-sandbox.stub(Permisison, 'findByUser').returns(RSVP.resolve([]));
-</code></pre>
+<p>Today I want to show my experiences on writing test for express apis.
 </div>
   
+  
+    <footer>
+      <a rel="full-article" href="/blog/2017/05/06/mock-a-method-when-test-express-api/">Read on &rarr;</a>
+    </footer>
   
 
 
@@ -972,131 +340,13 @@ sandbox.stub(Permisison, 'findByUser').returns(RSVP.resolve([]));
   </header>
 
 
-  <div class="entry-content"><p>Configuration blocks and run blocks get executed at different points in the application bootstrap, and have different injection locals at their disposal. Here’s a summary of what you can find in the <a href="http://docs.angularjs.org/guide/module">AngularJS documentation</a>.</p>
-
-<p>Configuration blocks (registered with <code>module.config()</code>) get executed during provider registration, and can only be injected providers and constants (see <code>module.provider()</code> and <code>module.constant()</code>). This is typically where you would configure application-wide stuff, such as the $routeProvider. Stuff that needs to be configured before the services are created.</p>
-
-<p>Run blocks (registered with <code>module.run()</code>) get executed after the injector has all the providers. Now, all instances and constants can be injected. This is typically where you would configure services, <code>$rootScope</code>, events and so on.</p>
-
-<p>You can have multiple of either, and they are executed in the order they were registered to the module. Some people prefer to register a configuration block before every group of controllers to register the routes to these controller, for example.</p>
-
-<blockquote>
-  <p>Reference:</p>
-</blockquote>
-
-<p><a href="http://stackoverflow.com/questions/18123565/config-run-appctrl-where-to-put-routes">http://stackoverflow.com/questions/18123565/config-run-appctrl-where-to-put-routes</a></p>
+  <div class="entry-content"><p>Configuration blocks and run blocks get executed at different points in the application bootstrap, and have different injection locals at their disposal. Here’s a summary of what you can find in the <a href="http://docs.angularjs.org/guide/module">AngularJS documentation</a>.
 </div>
   
   
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2017/04/15/s3-policy-on-ec2-having-changes-between-ecs-and-eb/">S3 Policy on EC2 Having Changes Between ECS and EB</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2017-04-15T11:47:12+08:00'><span class='date'>2017-04-15</span> <span class='time'>11:47 am</span></time>
-        
-           | <a href="/blog/2017/04/15/s3-policy-on-ec2-having-changes-between-ecs-and-eb/#disqus_thread"
-             data-disqus-identifier="http://weilluo.github.io/blog/2017/04/15/s3-policy-on-ec2-having-changes-between-ecs-and-eb/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>We can see the title, and below is the different policy:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption class="code-header"><span>EC2 Instance from ECS </span></figcaption>
- <div class="CodeRay">
-  <div class="code"><pre><span class="line-numbers"> 1</span>{
-<span class="line-numbers"> 2</span>    <span class="key"><span class="delimiter">&quot;</span><span class="content">Version</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">2012-10-17</span><span class="delimiter">&quot;</span></span>,
-<span class="line-numbers"> 3</span>    <span class="key"><span class="delimiter">&quot;</span><span class="content">Statement</span><span class="delimiter">&quot;</span></span>: [
-<span class="line-numbers"> 4</span>        {
-<span class="line-numbers"> 5</span>            <span class="key"><span class="delimiter">&quot;</span><span class="content">Effect</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Allow</span><span class="delimiter">&quot;</span></span>,
-<span class="line-numbers"> 6</span>            <span class="key"><span class="delimiter">&quot;</span><span class="content">Action</span><span class="delimiter">&quot;</span></span>: [
-<span class="line-numbers"> 7</span>                <span class="string"><span class="delimiter">&quot;</span><span class="content">s3:Get*</span><span class="delimiter">&quot;</span></span>,
-<span class="line-numbers"> 8</span>                <span class="string"><span class="delimiter">&quot;</span><span class="content">s3:List*</span><span class="delimiter">&quot;</span></span>
-<span class="line-numbers"> 9</span>            ],
-<span class="line-numbers"><strong>10</strong></span>            <span class="key"><span class="delimiter">&quot;</span><span class="content">Resource</span><span class="delimiter">&quot;</span></span>: [
-<span class="line-numbers">11</span>                <span class="string"><span class="delimiter">&quot;</span><span class="content">arn:aws:s3:::elasticbeanstalk-*</span><span class="delimiter">&quot;</span></span>,
-<span class="line-numbers">12</span>                <span class="string"><span class="delimiter">&quot;</span><span class="content">arn:aws:s3:::elasticbeanstalk-*/*/system_files/*</span><span class="delimiter">&quot;</span></span>
-<span class="line-numbers">13</span>            ]
-<span class="line-numbers">14</span>        },
-<span class="line-numbers">15</span>        {
-<span class="line-numbers">16</span>            <span class="key"><span class="delimiter">&quot;</span><span class="content">Effect</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Allow</span><span class="delimiter">&quot;</span></span>,
-<span class="line-numbers">17</span>            <span class="key"><span class="delimiter">&quot;</span><span class="content">Action</span><span class="delimiter">&quot;</span></span>: [
-<span class="line-numbers">18</span>                <span class="string"><span class="delimiter">&quot;</span><span class="content">s3:Put*</span><span class="delimiter">&quot;</span></span>,
-<span class="line-numbers">19</span>                <span class="string"><span class="delimiter">&quot;</span><span class="content">s3:Get*</span><span class="delimiter">&quot;</span></span>,
-<span class="line-numbers"><strong>20</strong></span>                <span class="string"><span class="delimiter">&quot;</span><span class="content">s3:List*</span><span class="delimiter">&quot;</span></span>,
-<span class="line-numbers">21</span>                <span class="string"><span class="delimiter">&quot;</span><span class="content">s3:Delete*</span><span class="delimiter">&quot;</span></span>
-<span class="line-numbers">22</span>            ],
-<span class="line-numbers">23</span>            <span class="key"><span class="delimiter">&quot;</span><span class="content">Resource</span><span class="delimiter">&quot;</span></span>: [
-<span class="line-numbers">24</span>                <span class="string"><span class="delimiter">&quot;</span><span class="content">arn:aws:s3:::elasticbeanstalk-*</span><span class="delimiter">&quot;</span></span>,
-<span class="line-numbers">25</span>                <span class="string"><span class="delimiter">&quot;</span><span class="content">arn:aws:s3:::elasticbeanstalk-*/*/app_data/*</span><span class="delimiter">&quot;</span></span>
-<span class="line-numbers">26</span>            ]
-<span class="line-numbers">27</span>        }
-<span class="line-numbers">28</span>    ]
-<span class="line-numbers">29</span>}
-</pre></div>
-</div>
- </figure></notextile></div>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>EC2 Instance from EB </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-<span class="line-number">18</span>
-<span class="line-number">19</span>
-</pre></td><td class="code"><pre><code class="json"><span class="line"><span class="p">{</span>
-</span><span class="line">    <span class="nt">&quot;Version&quot;</span><span class="p">:</span> <span class="s2">&quot;2012-10-17&quot;</span><span class="p">,</span>
-</span><span class="line">    <span class="nt">&quot;Statement&quot;</span><span class="p">:</span> <span class="p">[</span>
-</span><span class="line">        <span class="p">{</span>
-</span><span class="line">            <span class="nt">&quot;Effect&quot;</span><span class="p">:</span> <span class="s2">&quot;Allow&quot;</span><span class="p">,</span>
-</span><span class="line">            <span class="nt">&quot;Action&quot;</span><span class="p">:</span> <span class="s2">&quot;s3:GetObject&quot;</span><span class="p">,</span>
-</span><span class="line">            <span class="nt">&quot;Resource&quot;</span><span class="p">:</span> <span class="s2">&quot;arn:aws:s3:::elasticbeanstalk-*/*/system_files/*&quot;</span>
-</span><span class="line">        <span class="p">},</span>
-</span><span class="line">        <span class="p">{</span>
-</span><span class="line">            <span class="nt">&quot;Effect&quot;</span><span class="p">:</span> <span class="s2">&quot;Allow&quot;</span><span class="p">,</span>
-</span><span class="line">            <span class="nt">&quot;Action&quot;</span><span class="p">:</span> <span class="p">[</span>
-</span><span class="line">                <span class="s2">&quot;s3:PutObject&quot;</span><span class="p">,</span>
-</span><span class="line">                <span class="s2">&quot;s3:GetObject&quot;</span><span class="p">,</span>
-</span><span class="line">                <span class="s2">&quot;s3:DeleteObject&quot;</span>
-</span><span class="line">            <span class="p">],</span>
-</span><span class="line">            <span class="nt">&quot;Resource&quot;</span><span class="p">:</span> <span class="s2">&quot;arn:aws:s3:::elasticbeanstalk-*/*/app_data/*&quot;</span>
-</span><span class="line">        <span class="p">}</span>
-</span><span class="line">    <span class="p">]</span>
-</span><span class="line"><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>So if I use EB’s policy on ECS, it must report <code>access denied</code>, I try to find out some documents about this on aws, but failed. But I will continue verifying it.</p>
-</div>
-  
+    <footer>
+      <a rel="full-article" href="/blog/2017/04/26/difference-between-config-and-run-in-angular/">Read on &rarr;</a>
+    </footer>
   
 
 
@@ -1117,7 +367,11 @@ sandbox.stub(Permisison, 'findByUser').returns(RSVP.resolve([]));
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2018/02/07/angular-aot/">Angular Need Aot</a>
+        <a href="/blog/2018/09/19/javascript-priority-of-params/">Javascript 参数的优先级</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/06/07/angular-aot/">Angular Need Aot</a>
       </li>
     
       <li class="post">
@@ -1132,21 +386,17 @@ sandbox.stub(Permisison, 'findByUser').returns(RSVP.resolve([]));
         <a href="/blog/2017/04/26/difference-between-config-and-run-in-angular/">Difference Between Config and Run in Angular</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2017/04/15/s3-policy-on-ec2-having-changes-between-ecs-and-eb/">S3 Policy on EC2 Having Changes Between ECS and EB</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Categories</h1>
-  <div id="category-list"><li><a href='/blog/categories/angular/'>ANGULAR (1)</a></li><li><a href='/blog/categories/aws/'>AWS (2)</a></li><li><a href='/blog/categories/css/'>CSS (1)</a></li><li><a href='/blog/categories/disqus/'>DISQUS (1)</a></li><li><a href='/blog/categories/es6/'>ES6 (1)</a></li><li><a href='/blog/categories/git/'>GIT (2)</a></li><li><a href='/blog/categories/javascript/'>JAVASCRIPT (2)</a></li><li><a href='/blog/categories/jenkins/'>JENKINS (1)</a></li><li><a href='/blog/categories/mac/'>MAC (2)</a></li><li><a href='/blog/categories/mongodb/'>MONGODB (1)</a></li><li><a href='/blog/categories/nodejs/'>NODEJS (1)</a></li><li><a href='/blog/categories/rails/'>RAILS (2)</a></li><li><a href='/blog/categories/react/'>REACT (1)</a></li><li><a href='/blog/categories/ruby/'>RUBY (4)</a></li><li><a href='/blog/categories/shell/'>SHELL (2)</a></li><li><a href='/blog/categories/sinatra/'>SINATRA (1)</a></li><li><a href='/blog/categories/sublime/'>SUBLIME (1)</a></li><li><a href='/blog/categories/swap/'>SWAP (1)</a></li><li><a href='/blog/categories/test/'>TEST (2)</a></li><li><a href='/blog/categories/ubuntu/'>UBUNTU (2)</a></li><li><a href='/blog/categories/watchman/'>WATCHMAN (1)</a></li><li><a href='/blog/categories/shua-ji/'>刷机 (1)</a></li></div>
+  <div id="category-list"><li><a href='/blog/categories/angular/'>ANGULAR (1)</a></li><li><a href='/blog/categories/aws/'>AWS (2)</a></li><li><a href='/blog/categories/disqus/'>DISQUS (1)</a></li><li><a href='/blog/categories/es6/'>ES6 (1)</a></li><li><a href='/blog/categories/git/'>GIT (1)</a></li><li><a href='/blog/categories/javascript/'>JAVASCRIPT (2)</a></li><li><a href='/blog/categories/jenkins/'>JENKINS (1)</a></li><li><a href='/blog/categories/mac/'>MAC (1)</a></li><li><a href='/blog/categories/nodejs/'>NODEJS (1)</a></li><li><a href='/blog/categories/rails/'>RAILS (1)</a></li><li><a href='/blog/categories/react/'>REACT (1)</a></li><li><a href='/blog/categories/ruby/'>RUBY (3)</a></li><li><a href='/blog/categories/shell/'>SHELL (2)</a></li><li><a href='/blog/categories/sinatra/'>SINATRA (1)</a></li><li><a href='/blog/categories/sublime/'>SUBLIME (1)</a></li><li><a href='/blog/categories/swap/'>SWAP (1)</a></li><li><a href='/blog/categories/test/'>TEST (2)</a></li><li><a href='/blog/categories/ubuntu/'>UBUNTU (1)</a></li><li><a href='/blog/categories/watchman/'>WATCHMAN (1)</a></li><li><a href='/blog/categories/shua-ji/'>刷机 (1)</a></li></div>
 </section>
 <section>
   <h1>
     <i class="fa fa-tags" aria-hidden="true"></i> Tags
   </h1>
-  <div id="tag-list"><li><a href='/blog/tags/angular/'>angular (1)</a></li><li><a href='/blog/tags/aws/'>aws (2)</a></li><li><a href='/blog/tags/css/'>css (1)</a></li><li><a href='/blog/tags/disqus/'>disqus (1)</a></li><li><a href='/blog/tags/es6/'>es6 (1)</a></li><li><a href='/blog/tags/git/'>git (2)</a></li><li><a href='/blog/tags/javascript/'>javascript (2)</a></li><li><a href='/blog/tags/jenkins/'>jenkins (1)</a></li><li><a href='/blog/tags/mac/'>mac (2)</a></li><li><a href='/blog/tags/mongodb/'>mongodb (1)</a></li><li><a href='/blog/tags/nodejs/'>nodejs (1)</a></li><li><a href='/blog/tags/rails/'>rails (2)</a></li><li><a href='/blog/tags/react/'>react (1)</a></li><li><a href='/blog/tags/ruby/'>ruby (4)</a></li><li><a href='/blog/tags/shell/'>shell (2)</a></li><li><a href='/blog/tags/sinatra/'>sinatra (1)</a></li><li><a href='/blog/tags/sublime/'>sublime (1)</a></li><li><a href='/blog/tags/swap/'>swap (1)</a></li><li><a href='/blog/tags/test/'>test (2)</a></li><li><a href='/blog/tags/ubuntu/'>ubuntu (2)</a></li><li><a href='/blog/tags/watchman/'>watchman (1)</a></li><li><a href='/blog/tags/shua-ji/'>刷机 (1)</a></li></div>
+  <div id="tag-list"><li><a href='/blog/tags/angular/'>angular (1)</a></li><li><a href='/blog/tags/aws/'>aws (2)</a></li><li><a href='/blog/tags/disqus/'>disqus (1)</a></li><li><a href='/blog/tags/es6/'>es6 (1)</a></li><li><a href='/blog/tags/git/'>git (1)</a></li><li><a href='/blog/tags/javascript/'>javascript (2)</a></li><li><a href='/blog/tags/jenkins/'>jenkins (1)</a></li><li><a href='/blog/tags/mac/'>mac (1)</a></li><li><a href='/blog/tags/nodejs/'>nodejs (1)</a></li><li><a href='/blog/tags/rails/'>rails (1)</a></li><li><a href='/blog/tags/react/'>react (1)</a></li><li><a href='/blog/tags/ruby/'>ruby (3)</a></li><li><a href='/blog/tags/shell/'>shell (2)</a></li><li><a href='/blog/tags/sinatra/'>sinatra (1)</a></li><li><a href='/blog/tags/sublime/'>sublime (1)</a></li><li><a href='/blog/tags/swap/'>swap (1)</a></li><li><a href='/blog/tags/test/'>test (2)</a></li><li><a href='/blog/tags/ubuntu/'>ubuntu (1)</a></li><li><a href='/blog/tags/watchman/'>watchman (1)</a></li><li><a href='/blog/tags/shua-ji/'>刷机 (1)</a></li></div>
 </section>
 
   

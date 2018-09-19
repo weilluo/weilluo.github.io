@@ -9,16 +9,8 @@
   <meta name="author" content="Wei Luo">
 
   
-  <meta name="description" content="The key snippet is below: 1
-2
-3
-4
-5
-6
-7
-8
-9
-role :app, %w{xx.xx.xx.xx xx.xx.xx.xx}, user: &#39;ubuntu&#39;, primary: true set :pty, true set : &hellip;">
+  <meta name="description" content="We can see the title, and below is the different policy:
+">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -101,6 +93,42 @@ role :app, %w{xx.xx.xx.xx xx.xx.xx.xx}, user: &#39;ubuntu&#39;, primary: true se
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2017/04/15/s3-policy-on-ec2-having-changes-between-ecs-and-eb/">S3 Policy on EC2 Having Changes Between ECS and EB</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2017-04-15T11:47:12+08:00'><span class='date'>2017-04-15</span> <span class='time'>11:47 am</span></time>
+        
+           | <a href="/blog/2017/04/15/s3-policy-on-ec2-having-changes-between-ecs-and-eb/#disqus_thread"
+             data-disqus-identifier="http://weilluo.github.io/blog/2017/04/15/s3-policy-on-ec2-having-changes-between-ecs-and-eb/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>We can see the title, and below is the different policy:
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2017/04/15/s3-policy-on-ec2-having-changes-between-ecs-and-eb/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2017/04/15/capistrano-deploy-to-multiple-servers/">Capistrano Deploy to Multiple Servers</a></h1>
     
     
@@ -143,145 +171,6 @@ role :app, %w{xx.xx.xx.xx xx.xx.xx.xx}, user: &#39;ubuntu&#39;, primary: true se
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>The introduce of <a href="http://capistranorb.com/documentation/faq/why-does-something-work-in-my-ssh-session-but-not-in-capistrano/">pty</a>, and some expression of <a href="https://developer.github.com/guides/using-ssh-agent-forwarding/">forward_agent</a>.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2017/04/15/waiting-for-dynamically-loaded-script/">Waiting for Dynamically Loaded Script</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2017-04-15T09:37:54+08:00'><span class='date'>2017-04-15</span> <span class='time'>9:37 am</span></time>
-        
-           | <a href="/blog/2017/04/15/waiting-for-dynamically-loaded-script/#disqus_thread"
-             data-disqus-identifier="http://weilluo.github.io/blog/2017/04/15/waiting-for-dynamically-loaded-script/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Historically, <code>&lt;script&gt;</code> tags are full blocking, hence the second <code>&lt;script&gt;</code> tag can’t get encountered befored the former has finished parsing/excuting. Only problem might be that <code>modern</code> browsers tend to load scripts asynchronously and deferred. So to make sure order is correct, use it like this:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Snippet </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-</pre></td><td class="code"><pre><code class="html"><span class="line"><span class="nt">&lt;p&gt;</span>Loading jQuery<span class="nt">&lt;/p&gt;</span>
-</span><span class="line"><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&#39;text/javascript&#39;</span> <span class="na">async=</span><span class="s">false</span> <span class="na">defer=</span><span class="s">false</span> <span class="na">src=</span><span class="s">&#39;scripts/jquery/core/jquery-1.4.4.js&#39;</span><span class="nt">&gt;&lt;/script&gt;</span>
-</span><span class="line"><span class="nt">&lt;p&gt;</span>Using jQuery<span class="nt">&lt;/p&gt;</span>
-</span><span class="line"><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&#39;text/javascript&#39;</span><span class="nt">&gt;</span>
-</span><span class="line">    <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
-</span><span class="line">        <span class="p">...</span>
-</span><span class="line">    <span class="p">});</span>
-</span><span class="line"><span class="nt">&lt;/script&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<hr />
-
-<h3 id="plain-script-elements">Plain script elements</h3>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-</pre></td><td class="code"><pre><code class="html"><span class="line"><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;//other-domain.com/1.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
-</span><span class="line"><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;2.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p><strong>Spec says:</strong> Download together, execute in order after any pending CSS, block rendering until complete.</p>
-
-<p><strong>Browsers say:</strong> Yes sir!</p>
-
-<h3 id="defer">Defer</h3>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-</pre></td><td class="code"><pre><code class="html"><span class="line"><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;//other-domain.com/1.js&quot;</span> <span class="na">defer</span><span class="nt">&gt;&lt;/script&gt;</span>
-</span><span class="line"><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;2.js&quot;</span> <span class="na">defer</span><span class="nt">&gt;&lt;/script&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p><strong>Spec says:</strong> Download together, execute in order just before DOMContentLoaded. Ignore <code>defer</code> on scripts without <code>src</code>.</p>
-
-<p><strong>IE &lt; 10 says</strong>: I might execute 2.js halfway through the execution of 1.js. Isn’t that fun??</p>
-
-<p><strong>The <a href="http://caniuse.com/#search=defer">browsers in red</a> say</strong>: I have no idea what this <code>defer</code> thing is, I’m going to load the scripts as if it weren’t there.</p>
-
-<p><strong>Other browsers say:</strong> Ok, but I might not ignore <code>defer</code> on scripts without <code>src</code>.</p>
-
-<h3 id="async">Async</h3>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-</pre></td><td class="code"><pre><code class="html"><span class="line"><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;//other-domain.com/1.js&quot;</span> <span class="na">async</span><span class="nt">&gt;&lt;/script&gt;</span>
-</span><span class="line"><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;2.js&quot;</span> <span class="na">async</span><span class="nt">&gt;&lt;/script&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p><strong>Spec says:</strong> Download together, execute in whatever order they download in.</p>
-
-<p><strong>The <a href="http://caniuse.com/#search=defer">browsers in red</a> say</strong>: What’s <code>async</code>? I’m going to load the scripts as if it weren’t there..</p>
-
-<p><strong>Other browsers say:</strong> Yeah, ok.</p>
-
-<h3 id="async-false">Async false</h3>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-</pre></td><td class="code"><pre><code class="javascript"><span class="line"><span class="p">[</span>
-</span><span class="line">  <span class="s1">&#39;1.js&#39;</span><span class="p">,</span>
-</span><span class="line">  <span class="s1">&#39;2.js&#39;</span>
-</span><span class="line"><span class="p">].</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">src</span><span class="p">)</span> <span class="p">{</span>
-</span><span class="line">  <span class="kd">var</span> <span class="nx">script</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;script&#39;</span><span class="p">);</span>
-</span><span class="line">  <span class="nx">script</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="nx">src</span><span class="p">;</span>
-</span><span class="line">  <span class="nx">script</span><span class="p">.</span><span class="nx">async</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
-</span><span class="line">  <span class="nb">document</span><span class="p">.</span><span class="nx">head</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">script</span><span class="p">);</span>
-</span><span class="line"><span class="p">});</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p><strong>Spec says:</strong> Download together, execute in order as soon as all download.</p>
-
-<p><strong>Firefox &lt; 3.6, Opera says:</strong> I have no idea what this <code>async</code> thing is, but it just so happens I execute scripts added via JS in the order they’re added.</p>
-
-<p><strong>Safari 5.0 says:</strong>  I understand <code>async</code>, but don’t understand setting it to <code>false</code> with JS. I’ll execute your scripts as soon as they land, in whatever order.</p>
-
-<p><strong>IE &lt; 10 says:</strong> No idea about <code>async</code>, but there is a workaround using <code>onreadystatechange</code>.</p>
-
-<p><strong>The <a href="http://caniuse.com/#search=defer">browsers in red</a> say</strong>: I don’t understand this <code>async</code> thing, I’ll execute your scripts as soon as they land, in whatever order.</p>
-
-<p><strong>Everything else says:</strong> I’m your friend, we’re going to do this by the book.</p>
-
-<hr />
-
-<p>Reference:</p>
-
-<p><a href="http://stackoverflow.com/questions/7308908/waiting-for-dynamically-loaded-script">http://stackoverflow.com/questions/7308908/waiting-for-dynamically-loaded-script</a></p>
-
-<p><a href="https://www.html5rocks.com/en/tutorials/speed/script-loading/">https://www.html5rocks.com/en/tutorials/speed/script-loading</a></p>
-
-<p>Modern browsers only execute scripts asyncrounously or deferred if async and defer has been specified. <code>async=false</code> and <code>defer=false</code> is completely unnecessary in HTML. However, scripts that are dynamically created have async set to <code>true</code> by default, which is why you need the <code>async = false</code>.</p>
 </div>
   
   
@@ -378,55 +267,13 @@ role :app, %w{xx.xx.xx.xx xx.xx.xx.xx}, user: &#39;ubuntu&#39;, primary: true se
 
   <div class="entry-content"><h2 id="issus">Issus</h2>
 
-<p>Many software will apply the <code>admin</code> permission to possibly use some system tools, so I try to add my account to admin group.</p>
-
-<h2 id="solution">Solution</h2>
-
-<ul>
-  <li>
-    <p>press <code>command</code> + <code>s</code> while boot, then mac will go to <code>single-user-mode</code> as <code>root</code>. This is a terminal interface that allows you to login and interact with your computer via text input only.</p>
-  </li>
-  <li>
-    <p>mount the root device as <code>read-write</code></p>
-  </li>
-</ul>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-</pre></td><td class="code"><pre><code class="bash"><span class="line">fsck -fy
-</span><span class="line">mount -uw /
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<ul>
-  <li>edit the sudo user list, and move <code>wluo</code> into it.</li>
-</ul>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-</pre></td><td class="code"><pre><code class="bash"><span class="line">chmod <span class="m">755</span> etc/sudoers
-</span><span class="line">vim etc/sudoers  <span class="c"># put &quot;wluo ALL=(ALL) ALL&quot; under &quot;root ALL=(ALL) ALL&quot;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<ul>
-  <li>
-    <p><code>reboot</code> mac, then open <code>terminal</code>.</p>
-  </li>
-  <li>
-    <p>put <code>wluo</code> into <code>admin</code> group</p>
-  </li>
-</ul>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-</pre></td><td class="code"><pre><code class="bash"><span class="line">sudo su
-</span><span class="line">dseditgroup -o edit -a wluo -t user admin
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h2 id="references">References</h2>
-
-<p><a href="http://www.techradar.com/how-to/computing/apple/how-to-use-os-x-boot-options-to-troubleshoot-your-mac-1305645">http://www.techradar.com/how-to/computing/apple/how-to-use-os-x-boot-options-to-troubleshoot-your-mac-1305645</a></p>
+<p>Many software will apply the <code>admin</code> permission to possibly use some system tools, so I try to add my account to admin group.
 </div>
   
+  
+    <footer>
+      <a rel="full-article" href="/blog/2016/02/05/add-a-user-to-admin-group-on-mac/">Read on &rarr;</a>
+    </footer>
   
 
 
@@ -466,119 +313,13 @@ role :app, %w{xx.xx.xx.xx xx.xx.xx.xx}, user: &#39;ubuntu&#39;, primary: true se
 
 <p>So we want to ignore sending email by this case. As we know, the<code> email-ext</code> plugin can help us. we should write <code>pre-send scripts</code>, but we don’t know how to write them.</p>
 
-<p>How do I write a script to cancel sending email when failure output message contains a specified error message?</p>
-
-<p><em>Solution</em>:</p>
-
-<p>My <code>groovy</code> script in email-ext plugin pre-send-script is:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">try {
-</span><span class="line">    def logFilePath = build.getLogFile().getPath();
-</span><span class="line">    String logContent = new File(logFilePath).text;
-</span><span class="line">    if (logContent.find(/Xvfb failed to start/)) cancel=true;
-</span><span class="line">} catch (all) {
-</span><span class="line">}</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>That resolve my problem.</p>
-
-<ul>
-  <li>CHANGES Token, follow <a href="http://stackoverflow.com/questions/7773010/how-to-include-git-changelog-in-jenkins-emails">this</a></li>
-</ul>
-
-<p>Config email notification in specified job, change the content like below:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">&lt;pre&gt;$PROJECT_DEFAULT_CONTENT&lt;/pre&gt;
-</span><span class="line">&lt;pre&gt;
-</span><span class="line">Changes:
-</span><span class="line">${CHANGES, showPaths=true, format="%a: %r %p \n-- %m", pathFormat="\n\t- %p"}
-</span><span class="line">&lt;/pre&gt;</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>Then I will receive this format email:</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">test-email - Build # 9 - Successful:
-</span><span class="line">
-</span><span class="line">Check console output at http://jenkins.cb-apac.com/job/test-email/9/ to view the results.
-</span><span class="line">Changes:
-</span><span class="line">Wei Luo: f87b103da4817cbcf1a4ce17ed5bf9687146bfdf
-</span><span class="line">  - app/jobs2/checkparams_check.rb
-</span><span class="line">  - config/resque_schedule.yml
-</span><span class="line">  - app/jobs2/watch_dog.rb
-</span><span class="line">-- copy jobs to resque.</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h2 id="this-is-arguments-description">This is arguments description</h2>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-<span class="line-number">18</span>
-<span class="line-number">19</span>
-<span class="line-number">20</span>
-<span class="line-number">21</span>
-<span class="line-number">22</span>
-<span class="line-number">23</span>
-<span class="line-number">24</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">${CHANGES}
-</span><span class="line">Displays the changes since the last build.
-</span><span class="line">
-</span><span class="line">showDependencies
-</span><span class="line">    If true, changes to projects this build depends on are shown. Defaults to false
-</span><span class="line">showPaths
-</span><span class="line">    If true, the paths, modifued by a commit are shown. Defaults to false
-</span><span class="line">format
-</span><span class="line">    For each commit listed, a string containing %X, where %x is one of:
-</span><span class="line">
-</span><span class="line">    %a
-</span><span class="line">        author
-</span><span class="line">    %d
-</span><span class="line">        date
-</span><span class="line">    %m
-</span><span class="line">        message
-</span><span class="line">    %p
-</span><span class="line">        path
-</span><span class="line">    %r
-</span><span class="line">        revision
-</span><span class="line">
-</span><span class="line">    Not all revision systems support %d and %r. If specified showPaths argument is ignored. Defaults to "[%a] %m\\n"
-</span><span class="line">pathFormat
-</span><span class="line">    A string containing %p to indicate how to print paths. Defaults to "\\t%p\\n"</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<h2 id="to-be-continue">TO BE CONTINUE</h2>
+<p>How do I write a script to cancel sending email when failure output message contains a specified error message?
 </div>
   
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/11/04/jenkins-email-notificaiton/">Read on &rarr;</a>
+    </footer>
   
 
 
@@ -601,7 +342,11 @@ role :app, %w{xx.xx.xx.xx xx.xx.xx.xx}, user: &#39;ubuntu&#39;, primary: true se
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2018/02/07/angular-aot/">Angular Need Aot</a>
+        <a href="/blog/2018/09/19/javascript-priority-of-params/">Javascript 参数的优先级</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2017/06/07/angular-aot/">Angular Need Aot</a>
       </li>
     
       <li class="post">
@@ -616,21 +361,17 @@ role :app, %w{xx.xx.xx.xx xx.xx.xx.xx}, user: &#39;ubuntu&#39;, primary: true se
         <a href="/blog/2017/04/26/difference-between-config-and-run-in-angular/">Difference Between Config and Run in Angular</a>
       </li>
     
-      <li class="post">
-        <a href="/blog/2017/04/15/s3-policy-on-ec2-having-changes-between-ecs-and-eb/">S3 Policy on EC2 Having Changes Between ECS and EB</a>
-      </li>
-    
   </ul>
 </section>
 <section>
   <h1>Categories</h1>
-  <div id="category-list"><li><a href='/blog/categories/angular/'>ANGULAR (1)</a></li><li><a href='/blog/categories/aws/'>AWS (2)</a></li><li><a href='/blog/categories/css/'>CSS (1)</a></li><li><a href='/blog/categories/disqus/'>DISQUS (1)</a></li><li><a href='/blog/categories/es6/'>ES6 (1)</a></li><li><a href='/blog/categories/git/'>GIT (2)</a></li><li><a href='/blog/categories/javascript/'>JAVASCRIPT (2)</a></li><li><a href='/blog/categories/jenkins/'>JENKINS (1)</a></li><li><a href='/blog/categories/mac/'>MAC (2)</a></li><li><a href='/blog/categories/mongodb/'>MONGODB (1)</a></li><li><a href='/blog/categories/nodejs/'>NODEJS (1)</a></li><li><a href='/blog/categories/rails/'>RAILS (2)</a></li><li><a href='/blog/categories/react/'>REACT (1)</a></li><li><a href='/blog/categories/ruby/'>RUBY (4)</a></li><li><a href='/blog/categories/shell/'>SHELL (2)</a></li><li><a href='/blog/categories/sinatra/'>SINATRA (1)</a></li><li><a href='/blog/categories/sublime/'>SUBLIME (1)</a></li><li><a href='/blog/categories/swap/'>SWAP (1)</a></li><li><a href='/blog/categories/test/'>TEST (2)</a></li><li><a href='/blog/categories/ubuntu/'>UBUNTU (2)</a></li><li><a href='/blog/categories/watchman/'>WATCHMAN (1)</a></li><li><a href='/blog/categories/shua-ji/'>刷机 (1)</a></li></div>
+  <div id="category-list"><li><a href='/blog/categories/angular/'>ANGULAR (1)</a></li><li><a href='/blog/categories/aws/'>AWS (2)</a></li><li><a href='/blog/categories/disqus/'>DISQUS (1)</a></li><li><a href='/blog/categories/es6/'>ES6 (1)</a></li><li><a href='/blog/categories/git/'>GIT (1)</a></li><li><a href='/blog/categories/javascript/'>JAVASCRIPT (2)</a></li><li><a href='/blog/categories/jenkins/'>JENKINS (1)</a></li><li><a href='/blog/categories/mac/'>MAC (1)</a></li><li><a href='/blog/categories/nodejs/'>NODEJS (1)</a></li><li><a href='/blog/categories/rails/'>RAILS (1)</a></li><li><a href='/blog/categories/react/'>REACT (1)</a></li><li><a href='/blog/categories/ruby/'>RUBY (3)</a></li><li><a href='/blog/categories/shell/'>SHELL (2)</a></li><li><a href='/blog/categories/sinatra/'>SINATRA (1)</a></li><li><a href='/blog/categories/sublime/'>SUBLIME (1)</a></li><li><a href='/blog/categories/swap/'>SWAP (1)</a></li><li><a href='/blog/categories/test/'>TEST (2)</a></li><li><a href='/blog/categories/ubuntu/'>UBUNTU (1)</a></li><li><a href='/blog/categories/watchman/'>WATCHMAN (1)</a></li><li><a href='/blog/categories/shua-ji/'>刷机 (1)</a></li></div>
 </section>
 <section>
   <h1>
     <i class="fa fa-tags" aria-hidden="true"></i> Tags
   </h1>
-  <div id="tag-list"><li><a href='/blog/tags/angular/'>angular (1)</a></li><li><a href='/blog/tags/aws/'>aws (2)</a></li><li><a href='/blog/tags/css/'>css (1)</a></li><li><a href='/blog/tags/disqus/'>disqus (1)</a></li><li><a href='/blog/tags/es6/'>es6 (1)</a></li><li><a href='/blog/tags/git/'>git (2)</a></li><li><a href='/blog/tags/javascript/'>javascript (2)</a></li><li><a href='/blog/tags/jenkins/'>jenkins (1)</a></li><li><a href='/blog/tags/mac/'>mac (2)</a></li><li><a href='/blog/tags/mongodb/'>mongodb (1)</a></li><li><a href='/blog/tags/nodejs/'>nodejs (1)</a></li><li><a href='/blog/tags/rails/'>rails (2)</a></li><li><a href='/blog/tags/react/'>react (1)</a></li><li><a href='/blog/tags/ruby/'>ruby (4)</a></li><li><a href='/blog/tags/shell/'>shell (2)</a></li><li><a href='/blog/tags/sinatra/'>sinatra (1)</a></li><li><a href='/blog/tags/sublime/'>sublime (1)</a></li><li><a href='/blog/tags/swap/'>swap (1)</a></li><li><a href='/blog/tags/test/'>test (2)</a></li><li><a href='/blog/tags/ubuntu/'>ubuntu (2)</a></li><li><a href='/blog/tags/watchman/'>watchman (1)</a></li><li><a href='/blog/tags/shua-ji/'>刷机 (1)</a></li></div>
+  <div id="tag-list"><li><a href='/blog/tags/angular/'>angular (1)</a></li><li><a href='/blog/tags/aws/'>aws (2)</a></li><li><a href='/blog/tags/disqus/'>disqus (1)</a></li><li><a href='/blog/tags/es6/'>es6 (1)</a></li><li><a href='/blog/tags/git/'>git (1)</a></li><li><a href='/blog/tags/javascript/'>javascript (2)</a></li><li><a href='/blog/tags/jenkins/'>jenkins (1)</a></li><li><a href='/blog/tags/mac/'>mac (1)</a></li><li><a href='/blog/tags/nodejs/'>nodejs (1)</a></li><li><a href='/blog/tags/rails/'>rails (1)</a></li><li><a href='/blog/tags/react/'>react (1)</a></li><li><a href='/blog/tags/ruby/'>ruby (3)</a></li><li><a href='/blog/tags/shell/'>shell (2)</a></li><li><a href='/blog/tags/sinatra/'>sinatra (1)</a></li><li><a href='/blog/tags/sublime/'>sublime (1)</a></li><li><a href='/blog/tags/swap/'>swap (1)</a></li><li><a href='/blog/tags/test/'>test (2)</a></li><li><a href='/blog/tags/ubuntu/'>ubuntu (1)</a></li><li><a href='/blog/tags/watchman/'>watchman (1)</a></li><li><a href='/blog/tags/shua-ji/'>刷机 (1)</a></li></div>
 </section>
 
   

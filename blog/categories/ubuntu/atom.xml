@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ubuntu | GUIDE]]></title>
   <link href="http://weilluo.github.io/blog/categories/ubuntu/atom.xml" rel="self"/>
   <link href="http://weilluo.github.io/"/>
-  <updated>2018-07-16T13:29:02+08:00</updated>
+  <updated>2018-09-19T17:40:50+08:00</updated>
   <id>http://weilluo.github.io/</id>
   <author>
     <name><![CDATA[Wei Luo]]></name>
@@ -12,20 +12,6 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
-  
-  <entry>
-    <title type="html"><![CDATA[Setup JDK Environment]]></title>
-    <link href="http://weilluo.github.io/blog/2015/05/06/setup-jdk-environment/"/>
-    <updated>2015-05-06T10:13:40+08:00</updated>
-    <id>http://weilluo.github.io/blog/2015/05/06/setup-jdk-environment</id>
-    <content type="html"><![CDATA[<p><code>bash
-# set jdk environment
-export JAVA_HOME="/home/jenkins/Development/jdk1.8.0_40"
-export CLASSPATH=".:$JAVA_HOME/lib/:$JAVA_HOME/jre/lib:$CLASSPATH"
-export PATH="$JAVA_HOME/bin:$JAVA_HOME/jre/bin:$PATH"
-</code></p>
-]]></content>
-  </entry>
   
   <entry>
     <title type="html"><![CDATA[Install Ruby on Ubuntu]]></title>

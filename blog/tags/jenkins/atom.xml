@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Jenkins | GUIDE]]></title>
   <link href="http://weilluo.github.io/blog/tags/jenkins/atom.xml" rel="self"/>
   <link href="http://weilluo.github.io/"/>
-  <updated>2018-07-16T13:29:02+08:00</updated>
+  <updated>2018-09-19T17:40:50+08:00</updated>
   <id>http://weilluo.github.io/</id>
   <author>
     <name><![CDATA[Wei Luo]]></name>
@@ -28,9 +28,9 @@
 
 <p>So we want to ignore sending email by this case. As we know, the<code> email-ext</code> plugin can help us. we should write <code>pre-send scripts</code>, but we don’t know how to write them.</p>
 
-<p>How do I write a script to cancel sending email when failure output message contains a specified error message?</p>
-
-<p><em>Solution</em>:</p>
+<p>How do I write a script to cancel sending email when failure output message contains a specified error message?
+<!--more-->
+<em>Solution</em>:</p>
 
 <p>My <code>groovy</code> script in email-ext plugin pre-send-script is:</p>
 

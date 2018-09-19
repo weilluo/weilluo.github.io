@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Mock | GUIDE]]></title>
   <link href="http://weilluo.github.io/blog/tags/mock/atom.xml" rel="self"/>
   <link href="http://weilluo.github.io/"/>
-  <updated>2018-07-16T13:29:02+08:00</updated>
+  <updated>2018-09-19T17:40:50+08:00</updated>
   <id>http://weilluo.github.io/</id>
   <author>
     <name><![CDATA[Wei Luo]]></name>
@@ -20,9 +20,9 @@
     <id>http://weilluo.github.io/blog/2017/05/06/mock-a-method-when-test-express-api</id>
     <content type="html"><![CDATA[<p>I think many guys are using <code>express</code> as they backend service framework, there is a most important thing <code>Test</code>. We should write test for the apis that usually contains a lot of business logics.</p>
 
-<p>Today I want to show my experiences on writing test for express apis.</p>
-
-<p>Dependencies</p>
+<p>Today I want to show my experiences on writing test for express apis.
+<!--more-->
+Dependencies</p>
 
 <pre><code>"babel-register": "6.23.0",
 "chai": "3.5.0",

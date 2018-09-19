@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Permission | GUIDE]]></title>
   <link href="http://weilluo.github.io/blog/tags/permission/atom.xml" rel="self"/>
   <link href="http://weilluo.github.io/"/>
-  <updated>2018-07-16T13:29:02+08:00</updated>
+  <updated>2018-09-19T17:40:50+08:00</updated>
   <id>http://weilluo.github.io/</id>
   <author>
     <name><![CDATA[Wei Luo]]></name>
@@ -20,9 +20,9 @@
     <id>http://weilluo.github.io/blog/2016/02/05/add-a-user-to-admin-group-on-mac</id>
     <content type="html"><![CDATA[<h2 id="issus">Issus</h2>
 
-<p>Many software will apply the <code>admin</code> permission to possibly use some system tools, so I try to add my account to admin group.</p>
-
-<h2 id="solution">Solution</h2>
+<p>Many software will apply the <code>admin</code> permission to possibly use some system tools, so I try to add my account to admin group.
+<!--more-->
+## Solution</p>
 
 <ul>
   <li>
@@ -60,10 +60,6 @@ vim etc/sudoers  # put "wluo ALL=(ALL) ALL" under "root ALL=(ALL) ALL"
 sudo su
 dseditgroup -o edit -a wluo -t user admin
 </code></p>
-
-<h2 id="references">References</h2>
-
-<p><a href="http://www.techradar.com/how-to/computing/apple/how-to-use-os-x-boot-options-to-troubleshoot-your-mac-1305645">http://www.techradar.com/how-to/computing/apple/how-to-use-os-x-boot-options-to-troubleshoot-your-mac-1305645</a></p>
 ]]></content>
   </entry>
   

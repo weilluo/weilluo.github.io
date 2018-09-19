@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: React | GUIDE]]></title>
   <link href="http://weilluo.github.io/blog/tags/react/atom.xml" rel="self"/>
   <link href="http://weilluo.github.io/"/>
-  <updated>2018-07-16T13:29:02+08:00</updated>
+  <updated>2018-09-19T17:40:50+08:00</updated>
   <id>http://weilluo.github.io/</id>
   <author>
     <name><![CDATA[Wei Luo]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Angular Need Aot]]></title>
-    <link href="http://weilluo.github.io/blog/2018/02/07/angular-aot/"/>
-    <updated>2018-02-07T14:02:05+08:00</updated>
-    <id>http://weilluo.github.io/blog/2018/02/07/angular-aot</id>
+    <link href="http://weilluo.github.io/blog/2017/06/07/angular-aot/"/>
+    <updated>2017-06-07T14:02:05+08:00</updated>
+    <id>http://weilluo.github.io/blog/2017/06/07/angular-aot</id>
     <content type="html"><![CDATA[<h2 id="compare-with-react-and-vue">Compare with React and Vue</h2>
 
 <ul>
@@ -46,11 +46,9 @@
 </span><span class='line'>  <span class="p">{</span><span class="nx">className</span><span class="o">:</span> <span class="err">‘</span><span class="nx">greeting</span><span class="err">’</span><span class="p">},</span>
 </span><span class='line'>  <span class="err">‘</span><span class="nx">Hello</span><span class="p">,</span> <span class="nx">world</span><span class="o">!</span><span class="err">’</span>
 </span><span class='line'><span class="p">);</span>
-</span></code></pre></td></tr></table></div></figure></p>
-
-<ul>
-  <li>Vue Template</li>
-</ul>
+</span></code></pre></td></tr></table></div></figure>
+<!--more-->
+- Vue Template</p>
 
 <p><figure class='code'><figcaption class='code-header'><span>Before </span></figcaption>
  <div class="CodeRay">

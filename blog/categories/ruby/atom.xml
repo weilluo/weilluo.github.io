@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby | GUIDE]]></title>
   <link href="http://weilluo.github.io/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://weilluo.github.io/"/>
-  <updated>2018-07-16T13:29:02+08:00</updated>
+  <updated>2018-09-19T17:40:50+08:00</updated>
   <id>http://weilluo.github.io/</id>
   <author>
     <name><![CDATA[Wei Luo]]></name>
@@ -89,64 +89,49 @@
     <link href="http://weilluo.github.io/blog/2015/10/14/activerecord-class_attribute/"/>
     <updated>2015-10-14T11:51:44+08:00</updated>
     <id>http://weilluo.github.io/blog/2015/10/14/activerecord-class_attribute</id>
-    <content type="html"><![CDATA[<p>how to use class_attribuet:</p>
-
-<p>```ruby
-require ‘active_record’</p>
-
-<p>class Base
-  class_attribute :setting
-end</p>
-
-<p>class Subclass &lt; Base
-end</p>
-
-<p>Base.setting = true
-puts Subclass.setting # =&gt; true
-Subclass.setting = false
-puts Subclass.setting # =&gt; false
-puts Base.setting # =&gt; true</p>
-
-<p>base = Base.new
-puts base.setting # =&gt; true
-base.setting = false
-puts Base.setting # =&gt; true
-puts base.setting # =&gt; false
-```</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Use Whenever Gem]]></title>
-    <link href="http://weilluo.github.io/blog/2015/04/07/use-whenever-gem/"/>
-    <updated>2015-04-07T10:31:35+08:00</updated>
-    <id>http://weilluo.github.io/blog/2015/04/07/use-whenever-gem</id>
-    <content type="html"><![CDATA[<p>Whenever gem hosthome <a href="https://github.com/javan/whenever">https://github.com/javan/whenever</a></p>
-
-<ul>
-  <li>After installing whenever, use these command to initialize:</li>
-</ul>
-
-<p><code>ruby
-wheneverize .
-</code></p>
-
-<ul>
-  <li>update your scheduler:</li>
-</ul>
-
-<p><code>ruby
-whenever --update-crontab
-</code></p>
-
-<ul>
-  <li><code>crontab</code> usage:</li>
-</ul>
-
-<p><code>bash
-crontab -l # view the schedulers.
-crontab -r # remove all schedulers.
-</code></p>
+    <content type="html"><![CDATA[<p>how to use class_attribuet:
+<!--more-->
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="err">‘</span><span class="n">active_record</span><span class="err">’</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;class Base</span>
+</span><span class='line'><span class="sr">  class_attribute :setting</span>
+</span><span class='line'><span class="sr">end&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="k">class</span> <span class="nc">Subclass</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="no">Base</span>
+</span><span class='line'><span class="k">end</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;p&gt;Base.setting = true</span>
+</span><span class='line'><span class="sr">puts Subclass.setting # =&amp;gt; true</span>
+</span><span class='line'><span class="sr">Subclass.setting = false</span>
+</span><span class='line'><span class="sr">puts Subclass.setting # =&amp;gt; false</span>
+</span><span class='line'><span class="sr">puts Base.setting # =&amp;gt; true&lt;/</span><span class="nb">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">base</span> <span class="o">=</span> <span class="no">Base</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'><span class="nb">puts</span> <span class="n">base</span><span class="o">.</span><span class="n">setting</span> <span class="c1"># =&amp;gt; true</span>
+</span><span class='line'><span class="n">base</span><span class="o">.</span><span class="n">setting</span> <span class="o">=</span> <span class="kp">false</span>
+</span><span class='line'><span class="nb">puts</span> <span class="no">Base</span><span class="o">.</span><span class="n">setting</span> <span class="c1"># =&amp;gt; true</span>
+</span><span class='line'><span class="nb">puts</span> <span class="n">base</span><span class="o">.</span><span class="n">setting</span> <span class="c1"># =&amp;gt; false</span>
+</span></code></pre></td></tr></table></div></figure></p>
 ]]></content>
   </entry>
   

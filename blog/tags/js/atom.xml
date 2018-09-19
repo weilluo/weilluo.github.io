@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: Js | GUIDE]]></title>
   <link href="http://weilluo.github.io/blog/tags/js/atom.xml" rel="self"/>
   <link href="http://weilluo.github.io/"/>
-  <updated>2018-07-16T13:29:02+08:00</updated>
+  <updated>2018-09-19T17:40:50+08:00</updated>
   <id>http://weilluo.github.io/</id>
   <author>
     <name><![CDATA[Wei Luo]]></name>
@@ -28,9 +28,9 @@
 
 <p>There are <a href="https://en.wikipedia.org/wiki/ECMAScript#Versions">released versions</a> of <code>ECMAScript</code>.</p>
 
-<p>Other little languages compile into javascript, such as <a href="http://coffeescript.org/">CoffeeScript</a>, <a href="http://www.typescriptlang.org/">TypeScript</a>.</p>
-
-<h2 id="new-features">New features</h2>
+<p>Other little languages compile into javascript, such as <a href="http://coffeescript.org/">CoffeeScript</a>, <a href="http://www.typescriptlang.org/">TypeScript</a>.
+<!--more-->
+## New features</p>
 
 <ul>
   <li>Constants</li>

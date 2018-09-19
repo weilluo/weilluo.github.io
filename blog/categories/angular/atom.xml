@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Angular | GUIDE]]></title>
   <link href="http://weilluo.github.io/blog/categories/angular/atom.xml" rel="self"/>
   <link href="http://weilluo.github.io/"/>
-  <updated>2018-07-16T13:29:02+08:00</updated>
+  <updated>2018-09-19T17:40:50+08:00</updated>
   <id>http://weilluo.github.io/</id>
   <author>
     <name><![CDATA[Wei Luo]]></name>
@@ -18,9 +18,9 @@
     <link href="http://weilluo.github.io/blog/2017/04/26/difference-between-config-and-run-in-angular/"/>
     <updated>2017-04-26T20:30:25+08:00</updated>
     <id>http://weilluo.github.io/blog/2017/04/26/difference-between-config-and-run-in-angular</id>
-    <content type="html"><![CDATA[<p>Configuration blocks and run blocks get executed at different points in the application bootstrap, and have different injection locals at their disposal. Here’s a summary of what you can find in the <a href="http://docs.angularjs.org/guide/module">AngularJS documentation</a>.</p>
-
-<p>Configuration blocks (registered with <code>module.config()</code>) get executed during provider registration, and can only be injected providers and constants (see <code>module.provider()</code> and <code>module.constant()</code>). This is typically where you would configure application-wide stuff, such as the $routeProvider. Stuff that needs to be configured before the services are created.</p>
+    <content type="html"><![CDATA[<p>Configuration blocks and run blocks get executed at different points in the application bootstrap, and have different injection locals at their disposal. Here’s a summary of what you can find in the <a href="http://docs.angularjs.org/guide/module">AngularJS documentation</a>.
+<!--more-->
+Configuration blocks (registered with <code>module.config()</code>) get executed during provider registration, and can only be injected providers and constants (see <code>module.provider()</code> and <code>module.constant()</code>). This is typically where you would configure application-wide stuff, such as the $routeProvider. Stuff that needs to be configured before the services are created.</p>
 
 <p>Run blocks (registered with <code>module.run()</code>) get executed after the injector has all the providers. Now, all instances and constants can be injected. This is typically where you would configure services, <code>$rootScope</code>, events and so on.</p>
 

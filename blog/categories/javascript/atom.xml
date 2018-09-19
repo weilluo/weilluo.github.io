@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Javascript | GUIDE]]></title>
   <link href="http://weilluo.github.io/blog/categories/javascript/atom.xml" rel="self"/>
   <link href="http://weilluo.github.io/"/>
-  <updated>2018-07-16T13:29:02+08:00</updated>
+  <updated>2018-09-19T17:40:50+08:00</updated>
   <id>http://weilluo.github.io/</id>
   <author>
     <name><![CDATA[Wei Luo]]></name>
@@ -14,124 +14,83 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Waiting for Dynamically Loaded Script]]></title>
-    <link href="http://weilluo.github.io/blog/2017/04/15/waiting-for-dynamically-loaded-script/"/>
-    <updated>2017-04-15T09:37:54+08:00</updated>
-    <id>http://weilluo.github.io/blog/2017/04/15/waiting-for-dynamically-loaded-script</id>
-    <content type="html"><![CDATA[<p>Historically, <code>&lt;script&gt;</code> tags are full blocking, hence the second <code>&lt;script&gt;</code> tag can’t get encountered befored the former has finished parsing/excuting. Only problem might be that <code>modern</code> browsers tend to load scripts asynchronously and deferred. So to make sure order is correct, use it like this:</p>
+    <title type="html"><![CDATA[Javascript 参数的优先级]]></title>
+    <link href="http://weilluo.github.io/blog/2018/09/19/javascript-priority-of-params/"/>
+    <updated>2018-09-19T15:08:37+08:00</updated>
+    <id>http://weilluo.github.io/blog/2018/09/19/javascript-priority-of-params</id>
+    <content type="html"><![CDATA[<h3 id="function-">1. 全局，function 内</h3>
 
-<p><figure class='code'><figcaption><span>Snippet </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;/p&gt;</span>
-</span><span class='line'><span class="nt">&lt;p&gt;</span>Loading jQuery<span class="nt">&lt;/p&gt;</span>
-</span><span class='line'><span class="nt">&lt;p&gt;</span><span class="ni">&amp;lt;</span>script type=’text/javascript’ async=false defer=false src=’scripts/jquery/core/jquery-1.4.4.js’<span class="ni">&amp;gt;&amp;lt;</span>/script<span class="ni">&amp;gt;</span><span class="nt">&lt;/p&gt;</span>
-</span><span class='line'><span class="nt">&lt;p&gt;</span>Using jQuery<span class="nt">&lt;/p&gt;</span>
-</span><span class='line'><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>    <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
-</span><span class='line'>        <span class="p">...</span>
-</span><span class='line'>    <span class="p">});</span>
-</span><span class='line'><span class="nt">&lt;/script&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="nt">&lt;p&gt;</span>
-</span></code></pre></td></tr></table></div></figure></p>
+<p><blockquote><p>function 内变量使用 var，重名时，局部变量的优先级更高</p></blockquote></p>
 
-<hr />
+<p><figure class='code'> <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> 1</span><span class="keyword">var</span> a1 = <span class="integer">1</span>;
+<span class="line-numbers"> 2</span>(<span class="keyword">function</span>() {
+<span class="line-numbers"> 3</span>    a1 = <span class="integer">2</span>;
+<span class="line-numbers"> 4</span>    console.log(a1);  <span class="comment">// 2</span>
+<span class="line-numbers"> 5</span>})();
+<span class="line-numbers"> 6</span>console.log(a1);  <span class="comment">// 2&lt;/p&gt;</span>
+<span class="line-numbers"> 7</span>
+<span class="line-numbers"> 8</span>&lt;p&gt;<span class="keyword">var</span> a2 = <span class="integer">1</span>, a3 = <span class="integer">1</span>;
+<span class="line-numbers"> 9</span>(<span class="keyword">function</span>() {
+<span class="line-numbers"><strong>10</strong></span>    <span class="keyword">var</span> a2 = <span class="integer">2</span>, a3;
+<span class="line-numbers">11</span>    console.log(a2);  <span class="comment">// 2</span>
+<span class="line-numbers">12</span>    console.log(a3);  <span class="comment">// undefined</span>
+<span class="line-numbers">13</span>})();
+<span class="line-numbers">14</span>console.log(a2);  <span class="comment">// 1</span>
+<span class="line-numbers">15</span>console.log(a3);  <span class="comment">// 1</span>
+</pre></div>
+</div>
+ </figure>
+<!--more-->
+### 2. 全局，function 的形参，局部变量</p>
 
-<h3 id="plain-script-elements">Plain script elements</h3>
+<p><blockquote><p>function 的局部变量优先级最高，然后是形参，最后是全局变量</p></blockquote></p>
 
-<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;//other-domain.com/1.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
-</span><span class='line'><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;2.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
-</span></code></pre></td></tr></table></div></figure></p>
+<p><figure class='code'> <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> 1</span><span class="keyword">var</span> a1 = <span class="integer">1</span>;
+<span class="line-numbers"> 2</span>(<span class="keyword">function</span>(a1) {
+<span class="line-numbers"> 3</span>    console.log(a1);  <span class="comment">// 2</span>
+<span class="line-numbers"> 4</span>})();
+<span class="line-numbers"> 5</span>console.log(a1);  <span class="comment">// 1&lt;/p&gt;</span>
+<span class="line-numbers"> 6</span>
+<span class="line-numbers"> 7</span><span class="tag">&lt;p&gt;</span>var a2 = 1;
+<span class="line-numbers"> 8</span>(function(a2) {
+<span class="line-numbers"> 9</span>    a2 = 3
+<span class="line-numbers"><strong>10</strong></span>    console.log(a2);  // 3
+<span class="line-numbers">11</span>})(2);
+<span class="line-numbers">12</span>console.log(a2);  // 1<span class="tag">&lt;/p&gt;</span>
+<span class="line-numbers">13</span>
+<span class="line-numbers">14</span>&lt;p&gt;<span class="keyword">var</span> a3 = <span class="integer">1</span>, a4 = <span class="integer">1</span>;
+<span class="line-numbers">15</span>(<span class="keyword">function</span>(a3, a4) {
+<span class="line-numbers">16</span>    <span class="keyword">var</span> a3, a4 = <span class="integer">3</span>
+<span class="line-numbers">17</span>    console.log(a3);  <span class="comment">// 22</span>
+<span class="line-numbers">18</span>    console.log(a4);  <span class="comment">// 3</span>
+<span class="line-numbers">19</span>})(<span class="integer">22</span>, <span class="integer">33</span>)
+<span class="line-numbers"><strong>20</strong></span>console.log(a3);  <span class="comment">// 1</span>
+<span class="line-numbers">21</span>console.log(a4);  <span class="comment">// 1</span>
+</pre></div>
+</div>
+ </figure></p>
 
-<p><strong>Spec says:</strong> Download together, execute in order after any pending CSS, block rendering until complete.</p>
+<h3 id="var--function-">3. var 和 function 的前置</h3>
 
-<p><strong>Browsers say:</strong> Yes sir!</p>
+<p><blockquote><p>使用 var 和 function 定义的变量和函数，运行时会前置，率先执行；<br/>但是 var 定义并赋值一个变量时，只会把定义前置。</p></blockquote></p>
 
-<h3 id="defer">Defer</h3>
-
-<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;//other-domain.com/1.js&quot;</span> <span class="na">defer=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
-</span><span class='line'><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;2.js&quot;</span> <span class="na">defer=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
-</span></code></pre></td></tr></table></div></figure></p>
-
-<p><strong>Spec says:</strong> Download together, execute in order just before DOMContentLoaded. Ignore <code>defer</code> on scripts without <code>src</code>.</p>
-
-<p><strong>IE &lt; 10 says</strong>: I might execute 2.js halfway through the execution of 1.js. Isn’t that fun??</p>
-
-<p><strong>The <a href="http://caniuse.com/#search=defer">browsers in red</a> say</strong>: I have no idea what this <code>defer</code> thing is, I’m going to load the scripts as if it weren’t there.</p>
-
-<p><strong>Other browsers say:</strong> Ok, but I might not ignore <code>defer</code> on scripts without <code>src</code>.</p>
-
-<h3 id="async">Async</h3>
-
-<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;//other-domain.com/1.js&quot;</span> <span class="na">async=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
-</span><span class='line'><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;2.js&quot;</span> <span class="na">async=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
-</span></code></pre></td></tr></table></div></figure></p>
-
-<p><strong>Spec says:</strong> Download together, execute in whatever order they download in.</p>
-
-<p><strong>The <a href="http://caniuse.com/#search=defer">browsers in red</a> say</strong>: What’s <code>async</code>? I’m going to load the scripts as if it weren’t there..</p>
-
-<p><strong>Other browsers say:</strong> Yeah, ok.</p>
-
-<h3 id="async-false">Async false</h3>
-
-<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="p">[</span>
-</span><span class='line'>  <span class="err">‘</span><span class="mi">1</span><span class="p">.</span><span class="nx">js</span><span class="err">’</span><span class="p">,</span>
-</span><span class='line'>  <span class="err">‘</span><span class="mi">2</span><span class="p">.</span><span class="nx">js</span><span class="err">’</span>
-</span><span class='line'><span class="p">].</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">src</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>  <span class="kd">var</span> <span class="nx">script</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="err">‘</span><span class="nx">script</span><span class="err">’</span><span class="p">);</span>
-</span><span class='line'>  <span class="nx">script</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="nx">src</span><span class="p">;</span>
-</span><span class='line'>  <span class="nx">script</span><span class="p">.</span><span class="nx">async</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
-</span><span class='line'>  <span class="nb">document</span><span class="p">.</span><span class="nx">head</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">script</span><span class="p">);</span>
-</span><span class='line'><span class="p">});</span>
-</span></code></pre></td></tr></table></div></figure></p>
-
-<p><strong>Spec says:</strong> Download together, execute in order as soon as all download.</p>
-
-<p><strong>Firefox &lt; 3.6, Opera says:</strong> I have no idea what this <code>async</code> thing is, but it just so happens I execute scripts added via JS in the order they’re added.</p>
-
-<p><strong>Safari 5.0 says:</strong>  I understand <code>async</code>, but don’t understand setting it to <code>false</code> with JS. I’ll execute your scripts as soon as they land, in whatever order.</p>
-
-<p><strong>IE &lt; 10 says:</strong> No idea about <code>async</code>, but there is a workaround using <code>onreadystatechange</code>.</p>
-
-<p><strong>The <a href="http://caniuse.com/#search=defer">browsers in red</a> say</strong>: I don’t understand this <code>async</code> thing, I’ll execute your scripts as soon as they land, in whatever order.</p>
-
-<p><strong>Everything else says:</strong> I’m your friend, we’re going to do this by the book.</p>
-
-<hr />
-
-<p>Reference:</p>
-
-<p><a href="http://stackoverflow.com/questions/7308908/waiting-for-dynamically-loaded-script">http://stackoverflow.com/questions/7308908/waiting-for-dynamically-loaded-script</a></p>
-
-<p><a href="https://www.html5rocks.com/en/tutorials/speed/script-loading/">https://www.html5rocks.com/en/tutorials/speed/script-loading</a></p>
-
-<p>Modern browsers only execute scripts asyncrounously or deferred if async and defer has been specified. <code>async=false</code> and <code>defer=false</code> is completely unnecessary in HTML. However, scripts that are dynamically created have async set to <code>true</code> by default, which is why you need the <code>async = false</code>.</p>
+<p><figure class='code'> <div class="CodeRay">
+  <div class="code"><pre><span class="line-numbers"> 1</span>(<span class="keyword">function</span>() {
+<span class="line-numbers"> 2</span>    console.log(a1);  <span class="comment">// undefined</span>
+<span class="line-numbers"> 3</span>    console.log(a2);  <span class="comment">// ƒ a2() {}</span>
+<span class="line-numbers"> 4</span>    <span class="keyword">var</span> a1;
+<span class="line-numbers"> 5</span>    <span class="keyword">function</span> <span class="function">a2</span>() {}
+<span class="line-numbers"> 6</span>})()&lt;<span class="regexp"><span class="delimiter">/</span><span class="content">p&gt;</span></span>
+<span class="line-numbers"> 7</span><span class="regexp"><span class="content"></span></span>
+<span class="line-numbers"> 8</span><span class="regexp"><span class="content">&lt;p&gt;(function() {</span></span>
+<span class="line-numbers"> 9</span><span class="regexp"><span class="content">    console.log(a1);  </span><span class="delimiter">/</span></span>/ <span class="predefined-constant">undefined</span>
+<span class="line-numbers"><strong>10</strong></span>    <span class="keyword">var</span> a1 = <span class="integer">1</span>;
+<span class="line-numbers">11</span>})()
+</pre></div>
+</div>
+ </figure></p>
 ]]></content>
   </entry>
   
@@ -150,9 +109,9 @@
 
 <p>There are <a href="https://en.wikipedia.org/wiki/ECMAScript#Versions">released versions</a> of <code>ECMAScript</code>.</p>
 
-<p>Other little languages compile into javascript, such as <a href="http://coffeescript.org/">CoffeeScript</a>, <a href="http://www.typescriptlang.org/">TypeScript</a>.</p>
-
-<h2 id="new-features">New features</h2>
+<p>Other little languages compile into javascript, such as <a href="http://coffeescript.org/">CoffeeScript</a>, <a href="http://www.typescriptlang.org/">TypeScript</a>.
+<!--more-->
+## New features</p>
 
 <ul>
   <li>Constants</li>
